@@ -18,6 +18,8 @@ export interface SeaGlassZone {
     | "river_mouth"
     | "natural";
   classification: "very_high" | "high" | "medium" | "low" | "very_low";
+  photos?: string[]; // URL paths to photos (e.g. "/images/koh_sichang_1.png")
+  placeQuery?: string; // Google Places search query for fetching photos
   notes: string; // Description en 1-2 phrases
   region:
     | "upper_gulf"

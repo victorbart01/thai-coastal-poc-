@@ -15,6 +15,7 @@
         "population": 0.95,
         "category": "river_delta",
         "classification": "very_high",
+        "placeQuery": "Samut Prakan beach Chao Phraya river mouth",
         "notes": "Source #1 : 10M+ habitants en amont, décharges historiques massives, ancien port industriel",
         "region": "upper_gulf"
       }
@@ -33,6 +34,7 @@
         "population": 0.90,
         "category": "urban_coast",
         "classification": "high",
+        "placeQuery": "Bang Saen Beach Chonburi",
         "notes": "Ancienne station balnéaire (1950s+), côte rocheuse, ancien village de pêcheurs avec déchets côtiers historiques",
         "region": "upper_gulf"
       }
@@ -51,6 +53,7 @@
         "population": 0.90,
         "category": "industrial",
         "classification": "high",
+        "placeQuery": "Si Racha coast Laem Chabang port Thailand",
         "notes": "Zone portuaire majeure depuis 1980s, industries lourdes, plages rocheuses avec accumulation de débris",
         "region": "upper_gulf"
       }
@@ -69,6 +72,7 @@
         "population": 0.95,
         "category": "urban_coast",
         "classification": "high",
+        "placeQuery": "Jomtien Beach Pattaya Thailand",
         "notes": "Tourisme de masse depuis 1960s, forte densité historique de déchets, plages mixtes sable/roche",
         "region": "upper_gulf"
       }
@@ -87,6 +91,7 @@
         "population": 0.65,
         "category": "island",
         "classification": "high",
+        "placeQuery": "Koh Larn island Pattaya beach",
         "notes": "Île touristique, criques rocheuses abritées, collecte de débris marins par les courants du golfe",
         "region": "upper_gulf"
       }
@@ -105,6 +110,7 @@
         "population": 0.80,
         "category": "industrial",
         "classification": "very_high",
+        "placeQuery": "Mae Ramphueng Beach Rayong Thailand",
         "notes": "Plus grande zone pétrochimique d'Asie du Sud-Est, plages rocheuses adjacentes, décharges industrielles historiques",
         "region": "eastern_seaboard"
       }
@@ -123,6 +129,7 @@
         "population": 0.50,
         "category": "island",
         "classification": "medium",
+        "placeQuery": "Koh Samet island Rayong beach",
         "notes": "Île en face de la zone industrielle de Rayong, criques rocheuses, courants transportant des débris",
         "region": "eastern_seaboard"
       }
@@ -141,6 +148,7 @@
         "population": 0.55,
         "category": "river_mouth",
         "classification": "high",
+        "placeQuery": "Chanthaburi river mouth coast Thailand",
         "notes": "Rivière Chanthaburi : ville historique de gemmes, ancienne industrie, embouchure avec mangroves",
         "region": "eastern_seaboard"
       }
@@ -159,6 +167,7 @@
         "population": 0.35,
         "category": "island",
         "classification": "medium",
+        "placeQuery": "Koh Chang island east coast Trat Thailand",
         "notes": "Plages rocheuses côté est exposées aux courants, moins touristique, accumulation naturelle",
         "region": "eastern_seaboard"
       }
@@ -177,6 +186,7 @@
         "population": 0.60,
         "category": "urban_coast",
         "classification": "medium",
+        "placeQuery": "Khao Takiab Beach Hua Hin Thailand",
         "notes": "Station balnéaire royale depuis 1920s, cap rocheux de Khao Takiab, vieille ville",
         "region": "central_gulf"
       }
@@ -195,6 +205,7 @@
         "population": 0.40,
         "category": "river_mouth",
         "classification": "medium",
+        "placeQuery": "Pak Nam Chumphon beach Thailand",
         "notes": "Embouchure rivière Chumphon, port de pêche historique",
         "region": "lower_gulf"
       }
@@ -213,6 +224,7 @@
         "population": 0.60,
         "category": "river_delta",
         "classification": "high",
+        "placeQuery": "Tapi river mouth Surat Thani coast Thailand",
         "notes": "Rivière Tapi, ville historique, port commercial, delta large",
         "region": "lower_gulf"
       }
@@ -231,6 +243,7 @@
         "population": 0.55,
         "category": "island",
         "classification": "medium",
+        "placeQuery": "Koh Samui beach northeast coast Thailand",
         "notes": "Tourisme massif depuis 1980s, plages rocheuses au NE, débris transportés par la mousson NE",
         "region": "lower_gulf"
       }
@@ -249,6 +262,7 @@
         "population": 0.40,
         "category": "island",
         "classification": "medium",
+        "placeQuery": "Koh Phangan south beach Thailand",
         "notes": "Criques rocheuses abritées côté sud, courants du golfe",
         "region": "lower_gulf"
       }
@@ -267,6 +281,7 @@
         "population": 0.50,
         "category": "river_mouth",
         "classification": "medium",
+        "placeQuery": "Pak Phanang beach Nakhon Si Thammarat Thailand",
         "notes": "Grande rivière Pak Phanang, ancienne cité commerciale, lagune côtière",
         "region": "lower_gulf"
       }
@@ -285,6 +300,7 @@
         "population": 0.70,
         "category": "river_delta",
         "classification": "high",
+        "placeQuery": "Songkhla beach lake mouth Thailand",
         "notes": "Lac Songkhla → mer, ancienne ville portuaire chinoise, zone industrielle Hat Yai en amont",
         "region": "lower_gulf"
       }
@@ -303,6 +319,7 @@
         "population": 0.30,
         "category": "river_mouth",
         "classification": "medium",
+        "placeQuery": "Ranong coast Kraburi river Thailand",
         "notes": "Rivière Kra Buri (frontière Myanmar), anciennes mines d'étain",
         "region": "andaman"
       }
@@ -321,6 +338,7 @@
         "population": 0.75,
         "category": "urban_coast",
         "classification": "medium",
+        "placeQuery": "Patong Beach Phuket Thailand",
         "notes": "Tourisme massif depuis 1970s, anciennes mines d'étain, exposition mousson SW",
         "region": "andaman"
       }
@@ -339,6 +357,7 @@
         "population": 0.80,
         "category": "urban_coast",
         "classification": "high",
+        "placeQuery": "Saphan Hin Phuket Town coast Thailand",
         "notes": "Ancien quartier industriel/portuaire de Phuket Town, ancienne décharge de Saphan Hin",
         "region": "andaman"
       }
@@ -357,6 +376,7 @@
         "population": 0.25,
         "category": "natural",
         "classification": "medium",
+        "placeQuery": "Phang Nga Bay mangrove coast Thailand",
         "notes": "Zone de mangroves, faible densité historique, mais concentration par les racines",
         "region": "andaman"
       }
@@ -375,6 +395,7 @@
         "population": 0.40,
         "category": "urban_coast",
         "classification": "medium",
+        "placeQuery": "Ao Nang Beach Krabi Thailand",
         "notes": "Tourisme croissant, criques calcaires avec piégeage naturel",
         "region": "andaman"
       }
@@ -393,6 +414,7 @@
         "population": 0.35,
         "category": "natural",
         "classification": "medium",
+        "placeQuery": "Hat Chao Mai beach Trang Thailand",
         "notes": "Côte relativement préservée, rivière Trang, plages mixtes",
         "region": "andaman"
       }
@@ -411,8 +433,28 @@
         "population": 0.30,
         "category": "natural",
         "classification": "medium",
+        "placeQuery": "Pak Bara Beach Satun Thailand",
         "notes": "Port vers les îles, côte peu industrialisée",
         "region": "andaman"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.81, 13.15] },
+      "properties": {
+        "id": "zone-24",
+        "name": "Koh Sichang",
+        "score": 0.7025,
+        "historical": 0.75,
+        "morphology": 0.85,
+        "river": 0.50,
+        "ocean": 0.80,
+        "population": 0.55,
+        "category": "island",
+        "classification": "high",
+        "photos": ["/images/koh_sichang_1.png"],
+        "notes": "Petite île du golfe supérieur face à Si Racha, plages rocheuses jonchées de sea glass. Spot confirmé par observation terrain. Courants du golfe concentrent les débris autour de l'île.",
+        "region": "upper_gulf"
       }
     }
   ]

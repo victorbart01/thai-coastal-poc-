@@ -30,6 +30,8 @@ interface RawZoneProperties {
   population: number;
   category: SeaGlassZone["category"];
   classification: SeaGlassZone["classification"];
+  photos?: string[];
+  placeQuery?: string;
   notes: string;
   region: SeaGlassZone["region"];
 }
@@ -51,6 +53,8 @@ function parseZone(feature: GeoJSONFeature<RawZoneProperties>): SeaGlassZone {
     },
     category: p.category,
     classification: p.classification,
+    photos: p.photos,
+    placeQuery: p.placeQuery,
     notes: p.notes,
     region: p.region,
   };
