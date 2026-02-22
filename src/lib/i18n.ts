@@ -105,6 +105,10 @@ const translations: Record<Locale, Record<string, string>> = {
     "river.upstreamPopulation": "Upstream population:",
     "river.majorCity": "Major city:",
 
+    // Auth
+    "auth.signIn": "Sign in",
+    "auth.signOut": "Sign out",
+
     // Loading
     loading: "Loading data...",
   },
@@ -209,6 +213,10 @@ const translations: Record<Locale, Record<string, string>> = {
     // River popup
     "river.upstreamPopulation": "ประชากรต้นน้ำ:",
     "river.majorCity": "เมืองหลัก:",
+
+    // Auth
+    "auth.signIn": "เข้าสู่ระบบ",
+    "auth.signOut": "ออกจากระบบ",
 
     // Loading
     loading: "กำลังโหลดข้อมูล...",

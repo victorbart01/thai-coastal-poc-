@@ -4,6 +4,7 @@ import { PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { useMapStore } from "@/store/useMapStore";
 import type { Locale } from "@/lib/i18n";
+import { AuthButton } from "@/components/AuthButton";
 
 interface HeaderProps {
   sidebarOpen?: boolean;
@@ -53,6 +54,12 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
 
       {/* Spacer */}
       <div className="flex-1" />
+
+      {/* Auth button */}
+      <AuthButton />
+
+      {/* Separator */}
+      <div className="mx-2 h-4 w-px bg-white/[0.08]" />
 
       {/* Language switcher */}
       <div className="flex items-center gap-0.5 rounded-full border border-white/[0.08] bg-ocean-800 p-0.5">
