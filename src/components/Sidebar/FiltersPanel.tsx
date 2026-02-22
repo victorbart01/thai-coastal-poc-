@@ -45,6 +45,8 @@ function CheckboxRow({
 export function FiltersPanel() {
   const filters = useMapStore((s) => s.filters);
   const setFilter = useMapStore((s) => s.setFilter);
+  const showSpots = useMapStore((s) => s.showSpots);
+  const setShowSpots = useMapStore((s) => s.setShowSpots);
   const { t } = useTranslation();
 
   return (
@@ -86,6 +88,12 @@ export function FiltersPanel() {
           onChange={(v) => setFilter("showRivers", v)}
           dotColor="#60a5fa"
           dotDashed
+        />
+        <CheckboxRow
+          label={t("filters.communitySpots")}
+          checked={showSpots}
+          onChange={(v) => setShowSpots(v)}
+          dotColor="#f472b6"
         />
       </div>
 

@@ -158,6 +158,20 @@ body {
   animation: spin-slow 2s linear infinite;
 }
 
+/* FAB pulse glow */
+@keyframes pulse-fab {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(244, 114, 182, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(244, 114, 182, 0.6), 0 0 60px rgba(244, 114, 182, 0.2);
+  }
+}
+
+.animate-pulse-fab {
+  animation: pulse-fab 2s ease-in-out infinite;
+}
+
 /* ─── Mapbox Overrides ─────────────────────────────────── */
 
 .mapboxgl-popup-content {

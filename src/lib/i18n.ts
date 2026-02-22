@@ -111,6 +111,53 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Loading
     loading: "Loading data...",
+
+    // Spot FAB
+    "fab.addSpot": "Add a spot",
+
+    // Spot form
+    "spotForm.title": "Drop a spot",
+    "spotForm.stepLocationLabel": "Location",
+    "spotForm.stepPhotosLabel": "Photos",
+    "spotForm.stepDetailsLabel": "Details",
+    "spotForm.stepPreviewLabel": "Preview",
+    "spotForm.stepLocation": "Choose location",
+    "spotForm.tapTheMap": "Tap anywhere on the map to place your spot",
+    "spotForm.stepPhotos": "Add photos",
+    "spotForm.photosHint": "Add 1–5 photos of the spot (JPEG, PNG or WebP, max 5 MB each)",
+    "spotForm.photoRequired": "At least one photo is required",
+    "spotForm.titleLabel": "Title",
+    "spotForm.titlePlaceholder": "e.g. Hidden cove near Koh Larn",
+    "spotForm.ratingLabel": "Rating",
+    "spotForm.tagsLabel": "Tags",
+    "spotForm.descriptionLabel": "Description (optional)",
+    "spotForm.descriptionPlaceholder": "What makes this spot special?",
+    "spotForm.stepPreview": "Preview your spot",
+    "spotForm.untitled": "Untitled spot",
+    "spotForm.back": "Back",
+    "spotForm.next": "Next",
+    "spotForm.publish": "Publish",
+    "spotForm.publishing": "Publishing...",
+
+    // Spot tags
+    "tag.rocky_beach": "Rocky beach",
+    "tag.sandy_beach": "Sandy beach",
+    "tag.cove": "Cove",
+    "tag.pier": "Pier",
+    "tag.river_mouth": "River mouth",
+    "tag.island": "Island",
+    "tag.urban": "Urban",
+    "tag.remote": "Remote",
+
+    // Spot popup
+    "spot.anonymous": "Anonymous",
+
+    // Filters — community spots
+    "filters.communitySpots": "Community spots",
+
+    // Legend — community spot
+    "legend.communitySpot": "Community spot",
+    "legend.userSubmitted": "User-submitted",
   },
   th: {
     // Header
@@ -220,6 +267,53 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Loading
     loading: "กำลังโหลดข้อมูล...",
+
+    // Spot FAB
+    "fab.addSpot": "เพิ่มจุด",
+
+    // Spot form
+    "spotForm.title": "แชร์จุด",
+    "spotForm.stepLocationLabel": "ตำแหน่ง",
+    "spotForm.stepPhotosLabel": "รูปภาพ",
+    "spotForm.stepDetailsLabel": "รายละเอียด",
+    "spotForm.stepPreviewLabel": "ตัวอย่าง",
+    "spotForm.stepLocation": "เลือกตำแหน่ง",
+    "spotForm.tapTheMap": "แตะบนแผนที่เพื่อวางจุดของคุณ",
+    "spotForm.stepPhotos": "เพิ่มรูปภาพ",
+    "spotForm.photosHint": "เพิ่ม 1–5 รูปของจุดนี้ (JPEG, PNG หรือ WebP สูงสุด 5 MB)",
+    "spotForm.photoRequired": "ต้องมีรูปภาพอย่างน้อย 1 รูป",
+    "spotForm.titleLabel": "ชื่อ",
+    "spotForm.titlePlaceholder": "เช่น อ่าวลับใกล้เกาะล้าน",
+    "spotForm.ratingLabel": "คะแนน",
+    "spotForm.tagsLabel": "แท็ก",
+    "spotForm.descriptionLabel": "คำอธิบาย (ไม่บังคับ)",
+    "spotForm.descriptionPlaceholder": "จุดนี้มีอะไรพิเศษ?",
+    "spotForm.stepPreview": "ตัวอย่างจุดของคุณ",
+    "spotForm.untitled": "จุดไม่มีชื่อ",
+    "spotForm.back": "กลับ",
+    "spotForm.next": "ถัดไป",
+    "spotForm.publish": "เผยแพร่",
+    "spotForm.publishing": "กำลังเผยแพร่...",
+
+    // Spot tags
+    "tag.rocky_beach": "หาดหิน",
+    "tag.sandy_beach": "หาดทราย",
+    "tag.cove": "อ่าว",
+    "tag.pier": "ท่าเรือ",
+    "tag.river_mouth": "ปากแม่น้ำ",
+    "tag.island": "เกาะ",
+    "tag.urban": "ในเมือง",
+    "tag.remote": "ห่างไกล",
+
+    // Spot popup
+    "spot.anonymous": "ไม่ระบุชื่อ",
+
+    // Filters — community spots
+    "filters.communitySpots": "จุดจากชุมชน",
+
+    // Legend — community spot
+    "legend.communitySpot": "จุดจากชุมชน",
+    "legend.userSubmitted": "ผู้ใช้แชร์",
   },
 };
 

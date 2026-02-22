@@ -13,7 +13,7 @@ import { distance as turfDistance } from "@turf/turf";
 
 import { useMapStore } from "@/store/useMapStore";
 import { useTranslation } from "@/lib/i18n";
-import type { SeaGlassZone, ProtectedArea, RiverMouth } from "@/lib/types";
+import type { SeaGlassZone, ProtectedArea, RiverMouth, Spot } from "@/lib/types";
 import type { FeatureCollection, Point } from "geojson";
 
 import { ZoneLayer } from "./ZoneLayer";
@@ -21,6 +21,9 @@ import { ProtectedLayer } from "./ProtectedLayer";
 import { RiverLayer } from "./RiverLayer";
 import { ZonePopup } from "./ZonePopup";
 import { ProtectedPopup } from "./ProtectedPopup";
+import { SpotLayer } from "./SpotLayer";
+import { SpotPopup } from "./SpotPopup";
+import { DraftMarker } from "@/components/SpotForm/DraftMarker";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -62,6 +65,7 @@ type PopupInfo =
   | { type: "zone"; zone: SeaGlassZone; nearbyProtected: ProtectedArea | null }
   | { type: "protected"; area: ProtectedArea }
   | { type: "river"; river: RiverMouth }
+  | { type: "spot"; spot: Spot }
   | null;
 
 /** Check if a zone falls within any protected area's radius */
@@ -82,6 +86,7 @@ interface MapContainerProps {
   filteredZones: SeaGlassZone[];
   protectedAreas: ProtectedArea[];
   riverMouths: RiverMouth[];
+  spots: Spot[];
 }
 
 /**
@@ -92,6 +97,7 @@ export function MapContainer({
   filteredZones,
   protectedAreas,
   riverMouths,
+  spots,
 }: MapContainerProps) {
   const mapRef = useRef<MapRef>(null);
   const selectZone = useMapStore((s) => s.selectZone);
@@ -100,9 +106,16 @@ export function MapContainer({
   const clearFlyTo = useMapStore((s) => s.clearFlyTo);
   const setViewport = useMapStore((s) => s.setViewport);
   const selectedZone = useMapStore((s) => s.selectedZone);
+  const spotFormStep = useMapStore((s) => s.spotFormStep);
+  const showSpotForm = useMapStore((s) => s.showSpotForm);
+  const updateDraftSpot = useMapStore((s) => s.updateDraftSpot);
+  const setSpotFormStep = useMapStore((s) => s.setSpotFormStep);
+  const selectSpot = useMapStore((s) => s.selectSpot);
 
   const [hoveredZoneId, setHoveredZoneId] = useState<string | null>(null);
   const [popupInfo, setPopupInfo] = useState<PopupInfo>(null);
+
+  const isLocationStep = showSpotForm && spotFormStep === 1;
 
   // Build GeoJSON from filtered zones
   const zonesGeoJSON = useMemo(
@@ -180,6 +193,57 @@ export function MapContainer({
   // Click handler for map layers
   const handleClick = useCallback(
     (e: MapLayerMouseEvent) => {
+      // Step 1 of spot form: pick location
+      if (isLocationStep) {
+        updateDraftSpot({
+          latitude: e.lngLat.lat,
+          longitude: e.lngLat.lng,
+        });
+        setSpotFormStep(2);
+        return;
+      }
+
+      // Check spot clusters → zoom in
+      const clusterFeature = e.features?.find(
+        (f) => f.layer?.id === "spots-clusters"
+      );
+      if (clusterFeature && mapRef.current) {
+        const clusterId = clusterFeature.properties?.cluster_id;
+        const source = mapRef.current.getSource("spots-source") as unknown as {
+          getClusterExpansionZoom: (
+            id: number,
+            cb: (err: unknown, zoom: number) => void
+          ) => void;
+        };
+        if (source?.getClusterExpansionZoom && clusterId != null) {
+          source.getClusterExpansionZoom(clusterId, (err, zoom) => {
+            if (err) return;
+            const coords = (clusterFeature.geometry as GeoJSON.Point)
+              .coordinates as [number, number];
+            mapRef.current?.flyTo({
+              center: coords,
+              zoom: zoom,
+              duration: 500,
+            });
+          });
+          return;
+        }
+      }
+
+      // Check unclustered spot click
+      const spotFeature = e.features?.find(
+        (f) => f.layer?.id === "spots-unclustered"
+      );
+      if (spotFeature) {
+        const spotId = spotFeature.properties?.id;
+        const spot = spots.find((s) => s.id === spotId);
+        if (spot) {
+          selectSpot(spot);
+          setPopupInfo({ type: "spot", spot });
+          return;
+        }
+      }
+
       // Check zone layer first (topmost)
       const zoneFeature = e.features?.find(
         (f) => f.layer?.id === "zones-circle"
@@ -213,9 +277,20 @@ export function MapContainer({
 
       // Click on nothing → clear
       clearSelection();
+      selectSpot(null);
       setPopupInfo(null);
     },
-    [filteredZones, protectedAreas, selectZone, clearSelection]
+    [
+      filteredZones,
+      protectedAreas,
+      spots,
+      selectZone,
+      clearSelection,
+      selectSpot,
+      isLocationStep,
+      updateDraftSpot,
+      setSpotFormStep,
+    ]
   );
 
   // River marker click
@@ -226,8 +301,9 @@ export function MapContainer({
   // Close popup
   const handleClosePopup = useCallback(() => {
     clearSelection();
+    selectSpot(null);
     setPopupInfo(null);
-  }, [clearSelection]);
+  }, [clearSelection, selectSpot]);
 
   // Track viewport
   const handleMove = useCallback(
@@ -241,6 +317,13 @@ export function MapContainer({
     [setViewport]
   );
 
+  // Determine cursor
+  const cursor = isLocationStep
+    ? "crosshair"
+    : hoveredZoneId
+      ? "pointer"
+      : "";
+
   return (
     <Map
       ref={mapRef}
@@ -252,15 +335,24 @@ export function MapContainer({
       onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      interactiveLayerIds={["zones-circle", "protected-fill"]}
-      cursor={hoveredZoneId ? "pointer" : ""}
+      interactiveLayerIds={[
+        "zones-circle",
+        "protected-fill",
+        "spots-unclustered",
+        "spots-clusters",
+      ]}
+      cursor={cursor}
     >
       <NavigationControl position="top-right" />
 
-      {/* Layer order: Protected (bottom) → Rivers → Zones (top) */}
+      {/* Layer order: Protected (bottom) → Rivers → Zones → Spots (top) */}
       <ProtectedLayer protectedAreas={protectedAreas} />
       <RiverLayer riverMouths={riverMouths} onRiverClick={handleRiverClick} />
       <ZoneLayer geojson={zonesGeoJSON} hoveredZoneId={hoveredZoneId} />
+      <SpotLayer spots={spots} />
+
+      {/* Draft marker for spot creation */}
+      <DraftMarker />
 
       {/* Popups */}
       {popupInfo?.type === "zone" && (
@@ -275,6 +367,9 @@ export function MapContainer({
       )}
       {popupInfo?.type === "river" && (
         <RiverPopup river={popupInfo.river} onClose={handleClosePopup} />
+      )}
+      {popupInfo?.type === "spot" && (
+        <SpotPopup spot={popupInfo.spot} onClose={handleClosePopup} />
       )}
     </Map>
   );

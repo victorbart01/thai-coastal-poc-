@@ -1,0 +1,27 @@
+"use client";
+
+import { Plus } from "lucide-react";
+import { useMapStore } from "@/store/useMapStore";
+import { useTranslation } from "@/lib/i18n";
+
+interface SpotFABProps {
+  isLoggedIn: boolean;
+}
+
+export function SpotFAB({ isLoggedIn }: SpotFABProps) {
+  const showSpotForm = useMapStore((s) => s.showSpotForm);
+  const openSpotForm = useMapStore((s) => s.openSpotForm);
+  const { t } = useTranslation();
+
+  if (!isLoggedIn || showSpotForm) return null;
+
+  return (
+    <button
+      onClick={openSpotForm}
+      className="animate-pulse-fab group fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-pink-400 shadow-[0_0_20px_rgba(244,114,182,0.4)] transition-all duration-200 hover:scale-110 hover:shadow-[0_0_30px_rgba(244,114,182,0.6)]"
+      title={t("fab.addSpot")}
+    >
+      <Plus className="h-6 w-6 text-white transition-transform duration-200 group-hover:rotate-90" />
+    </button>
+  );
+}

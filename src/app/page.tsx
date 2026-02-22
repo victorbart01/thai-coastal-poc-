@@ -5,11 +5,17 @@ import { MapContainer } from "@/components/Map/MapContainer";
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { MobileDrawer } from "@/components/MobileDrawer";
+import { SpotFAB } from "@/components/SpotFAB";
+import { SpotForm } from "@/components/SpotForm/SpotForm";
 import { useZones } from "@/lib/useZones";
+import { useSpots } from "@/lib/useSpots";
+import { useUser } from "@/lib/useUser";
 import { useTranslation } from "@/lib/i18n";
 
 export default function Home() {
   const { filteredZones, protectedAreas, riverMouths, loading } = useZones();
+  const { spots, refetch: refetchSpots } = useSpots();
+  const { user } = useUser();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -63,6 +69,7 @@ export default function Home() {
             filteredZones={filteredZones}
             protectedAreas={protectedAreas}
             riverMouths={riverMouths}
+            spots={spots}
           />
         </div>
       </div>
@@ -74,6 +81,12 @@ export default function Home() {
           protectedAreas={protectedAreas}
         />
       </div>
+
+      {/* Spot creation overlays */}
+      <SpotFAB isLoggedIn={!!user} />
+      {user && (
+        <SpotForm userId={user.id} onPublished={refetchSpots} />
+      )}
     </div>
   );
 }

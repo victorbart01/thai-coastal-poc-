@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { SeaGlassZone, ScoreFilter } from "@/lib/types";
+import type { SeaGlassZone, ScoreFilter, Spot, DraftSpot } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
 
 interface MapViewport {
@@ -13,6 +13,16 @@ interface FlyToTarget {
   longitude: number;
   zoom?: number;
 }
+
+const INITIAL_DRAFT: DraftSpot = {
+  latitude: null,
+  longitude: null,
+  title: "",
+  description: "",
+  rating: 3,
+  tags: [],
+  photos: [],
+};
 
 interface MapState {
   // Locale
@@ -39,6 +49,23 @@ interface MapState {
   flyToTarget: FlyToTarget | null;
   flyTo: (target: FlyToTarget) => void;
   clearFlyTo: () => void;
+
+  // Community spots
+  showSpots: boolean;
+  setShowSpots: (show: boolean) => void;
+
+  selectedSpot: Spot | null;
+  selectSpot: (spot: Spot | null) => void;
+
+  // Spot form
+  showSpotForm: boolean;
+  spotFormStep: number; // 1-4
+  draftSpot: DraftSpot;
+  openSpotForm: () => void;
+  closeSpotForm: () => void;
+  setSpotFormStep: (step: number) => void;
+  updateDraftSpot: (patch: Partial<DraftSpot>) => void;
+  resetDraftSpot: () => void;
 }
 
 export const useMapStore = create<MapState>((set) => ({
@@ -77,4 +104,35 @@ export const useMapStore = create<MapState>((set) => ({
   flyToTarget: null,
   flyTo: (target) => set({ flyToTarget: target }),
   clearFlyTo: () => set({ flyToTarget: null }),
+
+  // Community spots
+  showSpots: true,
+  setShowSpots: (show) => set({ showSpots: show }),
+
+  selectedSpot: null,
+  selectSpot: (spot) => set({ selectedSpot: spot }),
+
+  // Spot form
+  showSpotForm: false,
+  spotFormStep: 1,
+  draftSpot: { ...INITIAL_DRAFT },
+  openSpotForm: () =>
+    set({
+      showSpotForm: true,
+      spotFormStep: 1,
+      draftSpot: { ...INITIAL_DRAFT },
+      selectedSpot: null,
+    }),
+  closeSpotForm: () =>
+    set({
+      showSpotForm: false,
+      spotFormStep: 1,
+      draftSpot: { ...INITIAL_DRAFT },
+    }),
+  setSpotFormStep: (step) => set({ spotFormStep: step }),
+  updateDraftSpot: (patch) =>
+    set((state) => ({
+      draftSpot: { ...state.draftSpot, ...patch },
+    })),
+  resetDraftSpot: () => set({ draftSpot: { ...INITIAL_DRAFT } }),
 }));

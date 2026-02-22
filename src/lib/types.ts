@@ -55,3 +55,57 @@ export type ScoreFilter = {
   showProtected: boolean;
   showRivers: boolean;
 };
+
+// ─── Community Spots ("Drops") ──────────────────────────────
+
+export const SPOT_TAGS = [
+  "rocky_beach",
+  "sandy_beach",
+  "cove",
+  "pier",
+  "river_mouth",
+  "island",
+  "urban",
+  "remote",
+] as const;
+
+export type SpotTag = (typeof SPOT_TAGS)[number];
+
+export interface SpotPhoto {
+  id: string;
+  storage_path: string;
+  position: number;
+  url: string; // computed public URL
+}
+
+export interface SpotAuthor {
+  id: string;
+  display_name: string | null;
+  avatar_url: string | null;
+}
+
+export interface Spot {
+  id: string;
+  user_id: string;
+  title: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  rating: number; // 1-5
+  tags: SpotTag[];
+  status: string;
+  created_at: string;
+  updated_at: string;
+  photos: SpotPhoto[];
+  author: SpotAuthor;
+}
+
+export interface DraftSpot {
+  latitude: number | null;
+  longitude: number | null;
+  title: string;
+  description: string;
+  rating: number;
+  tags: SpotTag[];
+  photos: File[];
+}
