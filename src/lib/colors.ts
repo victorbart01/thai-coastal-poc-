@@ -9,13 +9,13 @@ export function getScoreColor(score: number): string {
   return "#64748b"; // very low — slate
 }
 
-/** Map a score to a human-readable label */
-export function getScoreLabel(score: number): string {
-  if (score >= 0.75) return "Très élevé";
-  if (score >= 0.55) return "Élevé";
-  if (score >= 0.35) return "Modéré";
-  if (score >= 0.15) return "Faible";
-  return "Très faible";
+/** Map a score to the i18n key for its label */
+export function getScoreLabelKey(score: number): string {
+  if (score >= 0.75) return "score.veryHigh";
+  if (score >= 0.55) return "score.high";
+  if (score >= 0.35) return "score.moderate";
+  if (score >= 0.15) return "score.low";
+  return "score.veryLow";
 }
 
 /** Map a score to a classification key */
@@ -29,15 +29,12 @@ export function getClassification(
   return "very_low";
 }
 
-/** Category display labels */
-export const CATEGORY_LABELS: Record<SeaGlassZone["category"], string> = {
-  river_delta: "Delta fluvial",
-  industrial: "Zone industrielle",
-  urban_coast: "Côte urbaine",
-  island: "Île",
-  river_mouth: "Embouchure",
-  natural: "Zone naturelle",
-};
+/** Get the i18n key for a category */
+export function getCategoryLabelKey(
+  category: SeaGlassZone["category"]
+): string {
+  return `category.${category}`;
+}
 
 /** Category badge colors */
 export const CATEGORY_COLORS: Record<SeaGlassZone["category"], string> = {

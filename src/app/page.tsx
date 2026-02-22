@@ -6,10 +6,12 @@ import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { MobileDrawer } from "@/components/MobileDrawer";
 import { useZones } from "@/lib/useZones";
+import { useTranslation } from "@/lib/i18n";
 
 export default function Home() {
   const { filteredZones, protectedAreas, riverMouths, loading } = useZones();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { t } = useTranslation();
 
   if (loading) {
     return (
@@ -18,7 +20,7 @@ export default function Home() {
           <span className="animate-spin-slow text-xl">🌊</span>
         </div>
         <p className="font-[family-name:var(--font-display)] text-sm text-text-secondary">
-          Chargement des données...
+          {t("loading")}
         </p>
       </div>
     );

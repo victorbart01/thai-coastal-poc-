@@ -8,10 +8,11 @@ import type { SeaGlassZone, ProtectedArea } from "@/lib/types";
 import { useZonePhotos } from "@/lib/useZonePhotos";
 import {
   getScoreColor,
-  getScoreLabel,
-  CATEGORY_LABELS,
+  getScoreLabelKey,
+  getCategoryLabelKey,
   CATEGORY_COLORS,
 } from "@/lib/colors";
+import { useTranslation } from "@/lib/i18n";
 
 interface ZonePopupProps {
   zone: SeaGlassZone;
@@ -19,15 +20,15 @@ interface ZonePopupProps {
   onClose: () => void;
 }
 
-const SUBSCORE_LABELS: {
+const SUBSCORE_KEYS: {
   key: keyof SeaGlassZone["subscores"];
-  label: string;
+  labelKey: string;
 }[] = [
-  { key: "historical", label: "Historique" },
-  { key: "morphology", label: "Morphologie" },
-  { key: "river", label: "Fluvial" },
-  { key: "ocean", label: "Océanique" },
-  { key: "population", label: "Population" },
+  { key: "historical", labelKey: "subscore.historical" },
+  { key: "morphology", labelKey: "subscore.morphology" },
+  { key: "river", labelKey: "subscore.river" },
+  { key: "ocean", labelKey: "subscore.ocean" },
+  { key: "population", labelKey: "subscore.population" },
 ];
 
 /**
@@ -37,7 +38,8 @@ const SUBSCORE_LABELS: {
  */
 export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
   const color = getScoreColor(zone.score);
-  const label = getScoreLabel(zone.score);
+  const { t } = useTranslation();
+  const label = t(getScoreLabelKey(zone.score));
   const categoryColor = CATEGORY_COLORS[zone.category];
   const { photos, loading: photosLoading } = useZonePhotos(zone);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -62,7 +64,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
             <div className="flex h-36 w-full items-center justify-center rounded-t-xl bg-ocean-800">
               <div className="flex flex-col items-center gap-2">
                 <div className="h-6 w-6 animate-spin rounded-full border-2 border-glass-bright/30 border-t-glass-bright" />
-                <span className="text-[10px] text-text-tertiary">Chargement des photos...</span>
+                <span className="text-[10px] text-text-tertiary">{t("popup.loadingPhotos")}</span>
               </div>
             </div>
           )}
@@ -72,7 +74,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
             <div className="flex h-24 w-full items-center justify-center rounded-t-xl bg-ocean-800/50">
               <div className="flex items-center gap-2 text-text-tertiary">
                 <ImageOff className="h-4 w-4" />
-                <span className="text-[10px]">Aucune photo disponible</span>
+                <span className="text-[10px]">{t("popup.noPhotos")}</span>
               </div>
             </div>
           )}
@@ -153,12 +155,12 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
 
             {/* Sub-scores with animated bars */}
             <div className="mt-3 space-y-2">
-              {SUBSCORE_LABELS.map(({ key, label: subLabel }) => {
+              {SUBSCORE_KEYS.map(({ key, labelKey }) => {
                 const value = zone.subscores[key];
                 return (
                   <div key={key} className="flex items-center gap-2">
                     <span className="w-[72px] shrink-0 text-[10px] text-text-tertiary">
-                      {subLabel}
+                      {t(labelKey)}
                     </span>
                     <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-ocean-600">
                       <div
@@ -191,7 +193,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
                   className="h-1.5 w-1.5 rounded-full"
                   style={{ backgroundColor: categoryColor }}
                 />
-                {CATEGORY_LABELS[zone.category]}
+                {t(getCategoryLabelKey(zone.category))}
               </span>
             </div>
 
@@ -206,13 +208,13 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
                 <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-danger" />
                 <div>
                   <p className="text-[11px] font-medium text-danger">
-                    Zone protégée à proximité
+                    {t("popup.nearbyProtected")}
                   </p>
                   <p className="mt-0.5 text-[10px] leading-relaxed text-danger/70">
                     {nearbyProtected.name} —{" "}
                     {nearbyProtected.status === "prohibited"
-                      ? "collecte strictement interdite"
-                      : "collecte restreinte"}
+                      ? t("popup.collectionProhibited")
+                      : t("popup.collectionRestricted")}
                     . {nearbyProtected.legalBasis}.
                   </p>
                 </div>

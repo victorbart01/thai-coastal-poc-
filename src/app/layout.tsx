@@ -15,7 +15,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Sea Glass Thailand — Probability Map",
+  title: "Sea Glass Interactive Map - Beta",
   description:
     "Interactive map identifying Thai coastal zones with high sea glass probability, based on oceanographic, historical, and geomorphological data.",
 };

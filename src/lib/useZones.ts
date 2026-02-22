@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useMapStore } from "@/store/useMapStore";
 import type { SeaGlassZone, ProtectedArea, RiverMouth } from "./types";
+import type { Locale } from "./i18n";
 
 interface GeoJSONFeature<T> {
   type: "Feature";
@@ -18,10 +19,11 @@ interface GeoJSONCollection<T> {
   features: GeoJSONFeature<T>[];
 }
 
-/** Raw zone properties as stored in the GeoJSON (flat subscores) */
+/** Raw zone properties as stored in the GeoJSON (flat subscores, bilingual fields) */
 interface RawZoneProperties {
   id: string;
-  name: string;
+  name_en: string;
+  name_th: string;
   score: number;
   historical: number;
   morphology: number;
@@ -32,16 +34,41 @@ interface RawZoneProperties {
   classification: SeaGlassZone["classification"];
   photos?: string[];
   placeQuery?: string;
-  notes: string;
+  notes_en: string;
+  notes_th: string;
   region: SeaGlassZone["region"];
 }
 
-/** Parse a zone GeoJSON feature into a SeaGlassZone */
-function parseZone(feature: GeoJSONFeature<RawZoneProperties>): SeaGlassZone {
+/** Raw protected area properties (bilingual notes) */
+interface RawProtectedProperties {
+  id: string;
+  name: string;
+  radiusKm: number;
+  status: "prohibited" | "restricted";
+  legalBasis: string;
+  notes_en: string;
+  notes_th: string;
+}
+
+/** Raw river mouth properties (bilingual name/majorCity) */
+interface RawRiverProperties {
+  id: string;
+  name_en: string;
+  name_th: string;
+  populationUpstream: string;
+  majorCity_en: string;
+  majorCity_th: string;
+}
+
+/** Parse a zone GeoJSON feature into a SeaGlassZone using the given locale */
+function parseZone(
+  feature: GeoJSONFeature<RawZoneProperties>,
+  locale: Locale
+): SeaGlassZone {
   const p = feature.properties;
   return {
     id: p.id,
-    name: p.name,
+    name: locale === "th" ? p.name_th : p.name_en,
     coordinates: feature.geometry.coordinates,
     score: p.score,
     subscores: {
@@ -55,39 +82,58 @@ function parseZone(feature: GeoJSONFeature<RawZoneProperties>): SeaGlassZone {
     classification: p.classification,
     photos: p.photos,
     placeQuery: p.placeQuery,
-    notes: p.notes,
+    notes: locale === "th" ? p.notes_th : p.notes_en,
     region: p.region,
   };
 }
 
-/** Parse a protected area GeoJSON feature */
+/** Parse a protected area GeoJSON feature using the given locale */
 function parseProtectedArea(
-  feature: GeoJSONFeature<ProtectedArea>
+  feature: GeoJSONFeature<RawProtectedProperties>,
+  locale: Locale
 ): ProtectedArea {
   const p = feature.properties;
   return {
-    ...p,
+    id: p.id,
+    name: p.name,
     coordinates: feature.geometry.coordinates,
+    radiusKm: p.radiusKm,
+    status: p.status,
+    legalBasis: p.legalBasis,
+    notes: locale === "th" ? p.notes_th : p.notes_en,
   };
 }
 
-/** Parse a river mouth GeoJSON feature */
-function parseRiverMouth(feature: GeoJSONFeature<RiverMouth>): RiverMouth {
+/** Parse a river mouth GeoJSON feature using the given locale */
+function parseRiverMouth(
+  feature: GeoJSONFeature<RawRiverProperties>,
+  locale: Locale
+): RiverMouth {
   const p = feature.properties;
   return {
-    ...p,
+    id: p.id,
+    name: locale === "th" ? p.name_th : p.name_en,
     coordinates: feature.geometry.coordinates,
+    populationUpstream: p.populationUpstream,
+    majorCity: locale === "th" ? p.majorCity_th : p.majorCity_en,
   };
 }
 
 /** Hook that loads GeoJSON data and applies current filters from the store */
 export function useZones() {
-  const [allZones, setAllZones] = useState<SeaGlassZone[]>([]);
-  const [protectedAreas, setProtectedAreas] = useState<ProtectedArea[]>([]);
-  const [riverMouths, setRiverMouths] = useState<RiverMouth[]>([]);
+  const [rawZones, setRawZones] = useState<
+    GeoJSONFeature<RawZoneProperties>[]
+  >([]);
+  const [rawProtected, setRawProtected] = useState<
+    GeoJSONFeature<RawProtectedProperties>[]
+  >([]);
+  const [rawRivers, setRawRivers] = useState<
+    GeoJSONFeature<RawRiverProperties>[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
   const filters = useMapStore((s) => s.filters);
+  const locale = useMapStore((s) => s.locale);
 
   // Load GeoJSON files on mount
   useEffect(() => {
@@ -101,14 +147,14 @@ export function useZones() {
 
         const zonesJson: GeoJSONCollection<RawZoneProperties> =
           await zonesRes.json();
-        const protectedJson: GeoJSONCollection<ProtectedArea> =
+        const protectedJson: GeoJSONCollection<RawProtectedProperties> =
           await protectedRes.json();
-        const riversJson: GeoJSONCollection<RiverMouth> =
+        const riversJson: GeoJSONCollection<RawRiverProperties> =
           await riversRes.json();
 
-        setAllZones(zonesJson.features.map(parseZone));
-        setProtectedAreas(protectedJson.features.map(parseProtectedArea));
-        setRiverMouths(riversJson.features.map(parseRiverMouth));
+        setRawZones(zonesJson.features);
+        setRawProtected(protectedJson.features);
+        setRawRivers(riversJson.features);
       } catch (err) {
         console.error("Failed to load GeoJSON data:", err);
       } finally {
@@ -118,6 +164,24 @@ export function useZones() {
 
     loadData();
   }, []);
+
+  // Parse zones with locale
+  const allZones = useMemo(
+    () => rawZones.map((f) => parseZone(f, locale)),
+    [rawZones, locale]
+  );
+
+  // Parse protected areas with locale
+  const protectedAreas = useMemo(
+    () => rawProtected.map((f) => parseProtectedArea(f, locale)),
+    [rawProtected, locale]
+  );
+
+  // Parse river mouths with locale
+  const riverMouths = useMemo(
+    () => rawRivers.map((f) => parseRiverMouth(f, locale)),
+    [rawRivers, locale]
+  );
 
   // Apply filters to zones
   const filteredZones = useMemo(() => {

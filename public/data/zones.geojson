@@ -6,7 +6,8 @@
       "geometry": { "type": "Point", "coordinates": [100.58, 13.52] },
       "properties": {
         "id": "zone-01",
-        "name": "Embouchure Chao Phraya (Samut Prakan)",
+        "name_en": "Chao Phraya Estuary (Samut Prakan)",
+        "name_th": "ปากแม่น้ำเจ้าพระยา (สมุทรปราการ)",
         "score": 0.83,
         "historical": 0.95,
         "morphology": 0.55,
@@ -16,7 +17,8 @@
         "category": "river_delta",
         "classification": "very_high",
         "placeQuery": "Samut Prakan beach Chao Phraya river mouth",
-        "notes": "Source #1 : 10M+ habitants en amont, décharges historiques massives, ancien port industriel",
+        "notes_en": "Source #1: 10M+ upstream population, massive historical landfills, former industrial port",
+        "notes_th": "แหล่ง #1: ประชากรต้นน้ำ 10 ล้านคน+ หลุมฝังกลบประวัติศาสตร์ขนาดใหญ่ ท่าเรืออุตสาหกรรมเดิม",
         "region": "upper_gulf"
       }
     },
@@ -25,7 +27,8 @@
       "geometry": { "type": "Point", "coordinates": [100.92, 13.30] },
       "properties": {
         "id": "zone-02",
-        "name": "Bang Saen / Ang Sila",
+        "name_en": "Bang Saen / Ang Sila",
+        "name_th": "บางแสน / อ่างศิลา",
         "score": 0.7475,
         "historical": 0.85,
         "morphology": 0.70,
@@ -35,7 +38,8 @@
         "category": "urban_coast",
         "classification": "high",
         "placeQuery": "Bang Saen Beach Chonburi",
-        "notes": "Ancienne station balnéaire (1950s+), côte rocheuse, ancien village de pêcheurs avec déchets côtiers historiques",
+        "notes_en": "Former resort town (1950s+), rocky coast, old fishing village with historical coastal waste",
+        "notes_th": "เมืองตากอากาศเก่า (1950s+) ชายฝั่งหิน หมู่บ้านชาวประมงเก่าที่มีขยะชายฝั่งในอดีต",
         "region": "upper_gulf"
       }
     },
@@ -44,7 +48,8 @@
       "geometry": { "type": "Point", "coordinates": [100.93, 13.17] },
       "properties": {
         "id": "zone-03",
-        "name": "Si Racha / Laem Chabang",
+        "name_en": "Si Racha / Laem Chabang",
+        "name_th": "ศรีราชา / แหลมฉบัง",
         "score": 0.7475,
         "historical": 0.95,
         "morphology": 0.65,
@@ -54,7 +59,8 @@
         "category": "industrial",
         "classification": "high",
         "placeQuery": "Si Racha coast Laem Chabang port Thailand",
-        "notes": "Zone portuaire majeure depuis 1980s, industries lourdes, plages rocheuses avec accumulation de débris",
+        "notes_en": "Major port zone since 1980s, heavy industry, rocky beaches with debris accumulation",
+        "notes_th": "เขตท่าเรือหลักตั้งแต่ปี 1980 อุตสาหกรรมหนัก หาดหินที่มีการสะสมของเศษซาก",
         "region": "upper_gulf"
       }
     },
@@ -63,7 +69,8 @@
       "geometry": { "type": "Point", "coordinates": [100.87, 12.90] },
       "properties": {
         "id": "zone-04",
-        "name": "Pattaya Sud / Jomtien",
+        "name_en": "South Pattaya / Jomtien",
+        "name_th": "พัทยาใต้ / จอมเทียน",
         "score": 0.645,
         "historical": 0.80,
         "morphology": 0.50,
@@ -73,7 +80,8 @@
         "category": "urban_coast",
         "classification": "high",
         "placeQuery": "Jomtien Beach Pattaya Thailand",
-        "notes": "Tourisme de masse depuis 1960s, forte densité historique de déchets, plages mixtes sable/roche",
+        "notes_en": "Mass tourism since 1960s, high historical waste density, mixed sand/rock beaches",
+        "notes_th": "การท่องเที่ยวขนาดใหญ่ตั้งแต่ปี 1960 ความหนาแน่นของขยะในอดีตสูง หาดทรายผสมหิน",
         "region": "upper_gulf"
       }
     },
@@ -82,7 +90,8 @@
       "geometry": { "type": "Point", "coordinates": [100.78, 12.92] },
       "properties": {
         "id": "zone-05",
-        "name": "Koh Larn (face Pattaya)",
+        "name_en": "Koh Larn (facing Pattaya)",
+        "name_th": "เกาะล้าน (ตรงข้ามพัทยา)",
         "score": 0.6275,
         "historical": 0.60,
         "morphology": 0.80,
@@ -92,7 +101,8 @@
         "category": "island",
         "classification": "high",
         "placeQuery": "Koh Larn island Pattaya beach",
-        "notes": "Île touristique, criques rocheuses abritées, collecte de débris marins par les courants du golfe",
+        "notes_en": "Tourist island, sheltered rocky coves, marine debris collected by Gulf currents",
+        "notes_th": "เกาะท่องเที่ยว อ่าวหินที่กำบัง เศษซากทะเลที่ถูกพัดมาโดยกระแสน้ำอ่าว",
         "region": "upper_gulf"
       }
     },
@@ -101,7 +111,8 @@
       "geometry": { "type": "Point", "coordinates": [101.17, 12.67] },
       "properties": {
         "id": "zone-06",
-        "name": "Rayong — Map Ta Phut",
+        "name_en": "Rayong — Map Ta Phut",
+        "name_th": "ระยอง — มาบตาพุด",
         "score": 0.775,
         "historical": 1.00,
         "morphology": 0.70,
@@ -111,7 +122,8 @@
         "category": "industrial",
         "classification": "very_high",
         "placeQuery": "Mae Ramphueng Beach Rayong Thailand",
-        "notes": "Plus grande zone pétrochimique d'Asie du Sud-Est, plages rocheuses adjacentes, décharges industrielles historiques",
+        "notes_en": "Largest petrochemical zone in Southeast Asia, adjacent rocky beaches, historical industrial landfills",
+        "notes_th": "เขตปิโตรเคมีที่ใหญ่ที่สุดในเอเชียตะวันออกเฉียงใต้ หาดหินข้างเคียง หลุมฝังกลบอุตสาหกรรมในอดีต",
         "region": "eastern_seaboard"
       }
     },
@@ -120,7 +132,8 @@
       "geometry": { "type": "Point", "coordinates": [101.44, 12.57] },
       "properties": {
         "id": "zone-07",
-        "name": "Koh Samet (côte ouest)",
+        "name_en": "Koh Samet (west coast)",
+        "name_th": "เกาะเสม็ด (ฝั่งตะวันตก)",
         "score": 0.5175,
         "historical": 0.40,
         "morphology": 0.75,
@@ -130,7 +143,8 @@
         "category": "island",
         "classification": "medium",
         "placeQuery": "Koh Samet island Rayong beach",
-        "notes": "Île en face de la zone industrielle de Rayong, criques rocheuses, courants transportant des débris",
+        "notes_en": "Island facing Rayong industrial zone, rocky coves, currents carrying debris",
+        "notes_th": "เกาะตรงข้ามเขตอุตสาหกรรมระยอง อ่าวหิน กระแสน้ำพัดพาเศษซาก",
         "region": "eastern_seaboard"
       }
     },
@@ -139,7 +153,8 @@
       "geometry": { "type": "Point", "coordinates": [102.00, 12.47] },
       "properties": {
         "id": "zone-08",
-        "name": "Chanthaburi — embouchure",
+        "name_en": "Chanthaburi — Estuary",
+        "name_th": "จันทบุรี — ปากแม่น้ำ",
         "score": 0.5825,
         "historical": 0.55,
         "morphology": 0.50,
@@ -149,7 +164,8 @@
         "category": "river_mouth",
         "classification": "high",
         "placeQuery": "Chanthaburi river mouth coast Thailand",
-        "notes": "Rivière Chanthaburi : ville historique de gemmes, ancienne industrie, embouchure avec mangroves",
+        "notes_en": "Chanthaburi River: historic gem city, former industry, estuary with mangroves",
+        "notes_th": "แม่น้ำจันทบุรี: เมืองอัญมณีเก่า อุตสาหกรรมเดิม ปากแม่น้ำมีป่าชายเลน",
         "region": "eastern_seaboard"
       }
     },
@@ -158,7 +174,8 @@
       "geometry": { "type": "Point", "coordinates": [102.36, 12.07] },
       "properties": {
         "id": "zone-09",
-        "name": "Koh Chang (côte est)",
+        "name_en": "Koh Chang (east coast)",
+        "name_th": "เกาะช้าง (ฝั่งตะวันออก)",
         "score": 0.4775,
         "historical": 0.30,
         "morphology": 0.75,
@@ -168,7 +185,8 @@
         "category": "island",
         "classification": "medium",
         "placeQuery": "Koh Chang island east coast Trat Thailand",
-        "notes": "Plages rocheuses côté est exposées aux courants, moins touristique, accumulation naturelle",
+        "notes_en": "Rocky beaches on east side exposed to currents, less touristic, natural accumulation",
+        "notes_th": "หาดหินฝั่งตะวันออกที่เปิดรับกระแสน้ำ การท่องเที่ยวน้อยกว่า การสะสมตามธรรมชาติ",
         "region": "eastern_seaboard"
       }
     },
@@ -177,7 +195,8 @@
       "geometry": { "type": "Point", "coordinates": [99.96, 12.54] },
       "properties": {
         "id": "zone-10",
-        "name": "Hua Hin — Khao Takiab",
+        "name_en": "Hua Hin — Khao Takiab",
+        "name_th": "หัวหิน — เขาตะเกียบ",
         "score": 0.515,
         "historical": 0.55,
         "morphology": 0.65,
@@ -187,7 +206,8 @@
         "category": "urban_coast",
         "classification": "medium",
         "placeQuery": "Khao Takiab Beach Hua Hin Thailand",
-        "notes": "Station balnéaire royale depuis 1920s, cap rocheux de Khao Takiab, vieille ville",
+        "notes_en": "Royal resort since 1920s, Khao Takiab rocky headland, old town",
+        "notes_th": "รีสอร์ทหลวงตั้งแต่ปี 1920 แหลมหินเขาตะเกียบ เมืองเก่า",
         "region": "central_gulf"
       }
     },
@@ -196,7 +216,8 @@
       "geometry": { "type": "Point", "coordinates": [99.20, 10.47] },
       "properties": {
         "id": "zone-11",
-        "name": "Chumphon — Pak Nam",
+        "name_en": "Chumphon — Pak Nam",
+        "name_th": "ชุมพร — ปากน้ำ",
         "score": 0.485,
         "historical": 0.35,
         "morphology": 0.55,
@@ -206,7 +227,8 @@
         "category": "river_mouth",
         "classification": "medium",
         "placeQuery": "Pak Nam Chumphon beach Thailand",
-        "notes": "Embouchure rivière Chumphon, port de pêche historique",
+        "notes_en": "Chumphon river mouth, historic fishing port",
+        "notes_th": "ปากแม่น้ำชุมพร ท่าเรือประมงเก่า",
         "region": "lower_gulf"
       }
     },
@@ -215,7 +237,8 @@
       "geometry": { "type": "Point", "coordinates": [99.33, 9.15] },
       "properties": {
         "id": "zone-12",
-        "name": "Surat Thani — embouchure Tapi",
+        "name_en": "Surat Thani — Tapi Estuary",
+        "name_th": "สุราษฎร์ธานี — ปากแม่น้ำตาปี",
         "score": 0.595,
         "historical": 0.55,
         "morphology": 0.45,
@@ -225,7 +248,8 @@
         "category": "river_delta",
         "classification": "high",
         "placeQuery": "Tapi river mouth Surat Thani coast Thailand",
-        "notes": "Rivière Tapi, ville historique, port commercial, delta large",
+        "notes_en": "Tapi River, historic town, commercial port, wide delta",
+        "notes_th": "แม่น้ำตาปี เมืองเก่า ท่าเรือพาณิชย์ สามเหลี่ยมปากแม่น้ำกว้าง",
         "region": "lower_gulf"
       }
     },
@@ -234,7 +258,8 @@
       "geometry": { "type": "Point", "coordinates": [100.10, 9.58] },
       "properties": {
         "id": "zone-13",
-        "name": "Koh Samui (côte NE)",
+        "name_en": "Koh Samui (NE coast)",
+        "name_th": "เกาะสมุย (ชายฝั่งตะวันออกเฉียงเหนือ)",
         "score": 0.4875,
         "historical": 0.40,
         "morphology": 0.70,
@@ -244,7 +269,8 @@
         "category": "island",
         "classification": "medium",
         "placeQuery": "Koh Samui beach northeast coast Thailand",
-        "notes": "Tourisme massif depuis 1980s, plages rocheuses au NE, débris transportés par la mousson NE",
+        "notes_en": "Massive tourism since 1980s, rocky beaches on NE, debris transported by NE monsoon",
+        "notes_th": "การท่องเที่ยวขนาดใหญ่ตั้งแต่ปี 1980 หาดหินทางตะวันออกเฉียงเหนือ เศษซากถูกพัดมาโดยมรสุมตะวันออกเฉียงเหนือ",
         "region": "lower_gulf"
       }
     },
@@ -253,7 +279,8 @@
       "geometry": { "type": "Point", "coordinates": [100.03, 9.72] },
       "properties": {
         "id": "zone-14",
-        "name": "Koh Phangan (côte sud)",
+        "name_en": "Koh Phangan (south coast)",
+        "name_th": "เกาะพะงัน (ชายฝั่งใต้)",
         "score": 0.4225,
         "historical": 0.30,
         "morphology": 0.70,
@@ -263,7 +290,8 @@
         "category": "island",
         "classification": "medium",
         "placeQuery": "Koh Phangan south beach Thailand",
-        "notes": "Criques rocheuses abritées côté sud, courants du golfe",
+        "notes_en": "Sheltered rocky coves on south side, Gulf currents",
+        "notes_th": "อ่าวหินที่กำบังทางฝั่งใต้ กระแสน้ำอ่าว",
         "region": "lower_gulf"
       }
     },
@@ -272,7 +300,8 @@
       "geometry": { "type": "Point", "coordinates": [100.20, 8.35] },
       "properties": {
         "id": "zone-15",
-        "name": "Nakhon Si Thammarat — Pak Phanang",
+        "name_en": "Nakhon Si Thammarat — Pak Phanang",
+        "name_th": "นครศรีธรรมราช — ปากพนัง",
         "score": 0.5475,
         "historical": 0.50,
         "morphology": 0.45,
@@ -282,7 +311,8 @@
         "category": "river_mouth",
         "classification": "medium",
         "placeQuery": "Pak Phanang beach Nakhon Si Thammarat Thailand",
-        "notes": "Grande rivière Pak Phanang, ancienne cité commerciale, lagune côtière",
+        "notes_en": "Large Pak Phanang River, former trading city, coastal lagoon",
+        "notes_th": "แม่น้ำปากพนังขนาดใหญ่ เมืองการค้าเก่า ทะเลสาบชายฝั่ง",
         "region": "lower_gulf"
       }
     },
@@ -291,7 +321,8 @@
       "geometry": { "type": "Point", "coordinates": [100.59, 7.19] },
       "properties": {
         "id": "zone-16",
-        "name": "Songkhla — embouchure du lac",
+        "name_en": "Songkhla — Lake Outlet",
+        "name_th": "สงขลา — ทางออกทะเลสาบ",
         "score": 0.6925,
         "historical": 0.70,
         "morphology": 0.60,
@@ -301,7 +332,8 @@
         "category": "river_delta",
         "classification": "high",
         "placeQuery": "Songkhla beach lake mouth Thailand",
-        "notes": "Lac Songkhla → mer, ancienne ville portuaire chinoise, zone industrielle Hat Yai en amont",
+        "notes_en": "Songkhla Lake to sea, former Chinese port city, Hat Yai industrial zone upstream",
+        "notes_th": "ทะเลสาบสงขลาสู่ทะเล เมืองท่าจีนเก่า เขตอุตสาหกรรมหาดใหญ่ต้นน้ำ",
         "region": "lower_gulf"
       }
     },
@@ -310,7 +342,8 @@
       "geometry": { "type": "Point", "coordinates": [98.60, 9.97] },
       "properties": {
         "id": "zone-17",
-        "name": "Ranong — embouchure Kra Buri",
+        "name_en": "Ranong — Kra Buri Estuary",
+        "name_th": "ระนอง — ปากแม่น้ำกระบุรี",
         "score": 0.465,
         "historical": 0.35,
         "morphology": 0.60,
@@ -320,7 +353,8 @@
         "category": "river_mouth",
         "classification": "medium",
         "placeQuery": "Ranong coast Kraburi river Thailand",
-        "notes": "Rivière Kra Buri (frontière Myanmar), anciennes mines d'étain",
+        "notes_en": "Kra Buri River (Myanmar border), former tin mines",
+        "notes_th": "แม่น้ำกระบุรี (ชายแดนเมียนมาร์) เหมืองดีบุกเก่า",
         "region": "andaman"
       }
     },
@@ -329,7 +363,8 @@
       "geometry": { "type": "Point", "coordinates": [98.28, 7.89] },
       "properties": {
         "id": "zone-18",
-        "name": "Phuket — Patong / côte ouest",
+        "name_en": "Phuket — Patong / West Coast",
+        "name_th": "ภูเก็ต — ป่าตอง / ชายฝั่งตะวันตก",
         "score": 0.525,
         "historical": 0.50,
         "morphology": 0.60,
@@ -339,7 +374,8 @@
         "category": "urban_coast",
         "classification": "medium",
         "placeQuery": "Patong Beach Phuket Thailand",
-        "notes": "Tourisme massif depuis 1970s, anciennes mines d'étain, exposition mousson SW",
+        "notes_en": "Massive tourism since 1970s, former tin mines, SW monsoon exposure",
+        "notes_th": "การท่องเที่ยวขนาดใหญ่ตั้งแต่ปี 1970 เหมืองดีบุกเก่า เปิดรับมรสุมตะวันตกเฉียงใต้",
         "region": "andaman"
       }
     },
@@ -348,7 +384,8 @@
       "geometry": { "type": "Point", "coordinates": [98.38, 7.87] },
       "properties": {
         "id": "zone-19",
-        "name": "Phuket — côte est (Saphan Hin)",
+        "name_en": "Phuket — East Coast (Saphan Hin)",
+        "name_th": "ภูเก็ต — ชายฝั่งตะวันออก (สะพานหิน)",
         "score": 0.58,
         "historical": 0.75,
         "morphology": 0.55,
@@ -358,7 +395,8 @@
         "category": "urban_coast",
         "classification": "high",
         "placeQuery": "Saphan Hin Phuket Town coast Thailand",
-        "notes": "Ancien quartier industriel/portuaire de Phuket Town, ancienne décharge de Saphan Hin",
+        "notes_en": "Former industrial/port district of Phuket Town, former Saphan Hin landfill",
+        "notes_th": "ย่านอุตสาหกรรม/ท่าเรือเก่าของเมืองภูเก็ต หลุมฝังกลบสะพานหินเดิม",
         "region": "andaman"
       }
     },
@@ -367,7 +405,8 @@
       "geometry": { "type": "Point", "coordinates": [98.52, 8.45] },
       "properties": {
         "id": "zone-20",
-        "name": "Phang Nga — côte mangrove",
+        "name_en": "Phang Nga — Mangrove Coast",
+        "name_th": "พังงา — ชายฝั่งป่าชายเลน",
         "score": 0.345,
         "historical": 0.20,
         "morphology": 0.45,
@@ -377,7 +416,8 @@
         "category": "natural",
         "classification": "medium",
         "placeQuery": "Phang Nga Bay mangrove coast Thailand",
-        "notes": "Zone de mangroves, faible densité historique, mais concentration par les racines",
+        "notes_en": "Mangrove zone, low historical density, but concentration by roots",
+        "notes_th": "เขตป่าชายเลน ความหนาแน่นประวัติศาสตร์ต่ำ แต่รวมตัวโดยราก",
         "region": "andaman"
       }
     },
@@ -386,7 +426,8 @@
       "geometry": { "type": "Point", "coordinates": [98.82, 8.03] },
       "properties": {
         "id": "zone-21",
-        "name": "Krabi — Ao Nang",
+        "name_en": "Krabi — Ao Nang",
+        "name_th": "กระบี่ — อ่าวนาง",
         "score": 0.4275,
         "historical": 0.30,
         "morphology": 0.65,
@@ -396,7 +437,8 @@
         "category": "urban_coast",
         "classification": "medium",
         "placeQuery": "Ao Nang Beach Krabi Thailand",
-        "notes": "Tourisme croissant, criques calcaires avec piégeage naturel",
+        "notes_en": "Growing tourism, limestone coves with natural trapping",
+        "notes_th": "การท่องเที่ยวเติบโต อ่าวหินปูนที่มีการกักเก็บตามธรรมชาติ",
         "region": "andaman"
       }
     },
@@ -405,7 +447,8 @@
       "geometry": { "type": "Point", "coordinates": [99.28, 7.40] },
       "properties": {
         "id": "zone-22",
-        "name": "Trang — Hat Chao Mai",
+        "name_en": "Trang — Hat Chao Mai",
+        "name_th": "ตรัง — หาดเจ้าไหม",
         "score": 0.395,
         "historical": 0.25,
         "morphology": 0.55,
@@ -415,7 +458,8 @@
         "category": "natural",
         "classification": "medium",
         "placeQuery": "Hat Chao Mai beach Trang Thailand",
-        "notes": "Côte relativement préservée, rivière Trang, plages mixtes",
+        "notes_en": "Relatively preserved coast, Trang River, mixed beaches",
+        "notes_th": "ชายฝั่งที่ค่อนข้างอนุรักษ์ไว้ แม่น้ำตรัง หาดผสม",
         "region": "andaman"
       }
     },
@@ -424,7 +468,8 @@
       "geometry": { "type": "Point", "coordinates": [99.75, 6.87] },
       "properties": {
         "id": "zone-23",
-        "name": "Satun — Pak Bara",
+        "name_en": "Satun — Pak Bara",
+        "name_th": "สตูล — ปากบารา",
         "score": 0.3525,
         "historical": 0.20,
         "morphology": 0.50,
@@ -434,7 +479,8 @@
         "category": "natural",
         "classification": "medium",
         "placeQuery": "Pak Bara Beach Satun Thailand",
-        "notes": "Port vers les îles, côte peu industrialisée",
+        "notes_en": "Port to the islands, low-industrialized coast",
+        "notes_th": "ท่าเรือไปยังหมู่เกาะ ชายฝั่งอุตสาหกรรมต่ำ",
         "region": "andaman"
       }
     },
@@ -443,7 +489,8 @@
       "geometry": { "type": "Point", "coordinates": [100.81, 13.15] },
       "properties": {
         "id": "zone-24",
-        "name": "Koh Sichang",
+        "name_en": "Koh Sichang",
+        "name_th": "เกาะสีชัง",
         "score": 0.7025,
         "historical": 0.75,
         "morphology": 0.85,
@@ -453,7 +500,8 @@
         "category": "island",
         "classification": "high",
         "photos": ["/images/koh_sichang_1.png"],
-        "notes": "Petite île du golfe supérieur face à Si Racha, plages rocheuses jonchées de sea glass. Spot confirmé par observation terrain. Courants du golfe concentrent les débris autour de l'île.",
+        "notes_en": "Small upper Gulf island facing Si Racha, rocky beaches strewn with sea glass. Spot confirmed by field observation. Gulf currents concentrate debris around the island.",
+        "notes_th": "เกาะเล็กในอ่าวบนตรงข้ามศรีราชา หาดหินที่เต็มไปด้วยซีกลาส ยืนยันจากการสำรวจภาคสนาม กระแสน้ำอ่าวรวมเศษซากรอบเกาะ",
         "region": "upper_gulf"
       }
     }

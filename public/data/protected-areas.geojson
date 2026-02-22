@@ -10,7 +10,8 @@
         "radiusKm": 15,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -22,7 +23,8 @@
         "radiusKm": 12,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -34,7 +36,8 @@
         "radiusKm": 10,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -46,7 +49,8 @@
         "radiusKm": 18,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -58,7 +62,8 @@
         "radiusKm": 12,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -70,7 +75,8 @@
         "radiusKm": 8,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -82,7 +88,8 @@
         "radiusKm": 20,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -94,7 +101,8 @@
         "radiusKm": 10,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -106,7 +114,8 @@
         "radiusKm": 25,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     },
     {
@@ -118,7 +127,8 @@
         "radiusKm": 8,
         "status": "restricted",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte restreinte — autorisation possible auprès du parc. Vérifier les conditions locales."
+        "notes_en": "Collection restricted — authorization possible from the park. Check local conditions.",
+        "notes_th": "การเก็บถูกจำกัด — สามารถขออนุญาตจากอุทยาน ตรวจสอบเงื่อนไขท้องถิ่น"
       }
     },
     {
@@ -130,7 +140,8 @@
         "radiusKm": 5,
         "status": "prohibited",
         "legalBasis": "National Park Act B.E. 2562 (2019)",
-        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+        "notes_en": "Collection of any natural or non-natural material strictly prohibited. Fine up to 100,000 THB.",
+        "notes_th": "ห้ามเก็บวัสดุใดๆ ไม่ว่าจะเป็นธรรมชาติหรือไม่ อย่างเด็ดขาด ปรับสูงสุด 100,000 บาท"
       }
     }
   ]

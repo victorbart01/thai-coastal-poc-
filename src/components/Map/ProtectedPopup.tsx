@@ -3,29 +3,30 @@
 import { Popup } from "react-map-gl";
 import { ShieldAlert } from "lucide-react";
 import type { ProtectedArea } from "@/lib/types";
+import { useTranslation } from "@/lib/i18n";
 
 interface ProtectedPopupProps {
   area: ProtectedArea;
   onClose: () => void;
 }
 
-const STATUS_LABELS: Record<ProtectedArea["status"], string> = {
-  prohibited: "Collecte interdite",
-  restricted: "Collecte restreinte",
-};
-
-const STATUS_DESCRIPTIONS: Record<ProtectedArea["status"], string> = {
-  prohibited:
-    "La collecte de tout matériau — naturel ou non — est strictement interdite dans ce parc national. Les contrevenants s'exposent à une amende pouvant aller jusqu'à 100 000 THB et/ou une peine d'emprisonnement.",
-  restricted:
-    "La collecte est soumise à autorisation préalable du parc. Vérifiez les conditions locales auprès de l'administration du parc avant toute activité.",
-};
-
 /**
  * Popup displayed when a protected area is clicked.
  * Shows name, status, legal basis, and detailed legal warning.
  */
 export function ProtectedPopup({ area, onClose }: ProtectedPopupProps) {
+  const { t } = useTranslation();
+
+  const statusLabel =
+    area.status === "prohibited"
+      ? t("protected.prohibited")
+      : t("protected.restricted");
+
+  const statusDescription =
+    area.status === "prohibited"
+      ? t("protected.prohibitedDesc")
+      : t("protected.restrictedDesc");
+
   return (
     <Popup
       longitude={area.coordinates[0]}
@@ -58,13 +59,13 @@ export function ProtectedPopup({ area, onClose }: ProtectedPopupProps) {
                 area.status === "prohibited" ? "bg-danger" : "bg-score-low"
               }`}
             />
-            {STATUS_LABELS[area.status]}
+            {statusLabel}
           </span>
         </div>
 
         {/* Radius */}
         <p className="mt-2.5 text-[11px] text-text-secondary">
-          <span className="text-text-tertiary">Rayon de protection : </span>
+          <span className="text-text-tertiary">{t("protected.protectionRadius")} </span>
           <span className="font-[family-name:var(--font-display)] font-medium">
             {area.radiusKm} km
           </span>
@@ -72,14 +73,14 @@ export function ProtectedPopup({ area, onClose }: ProtectedPopupProps) {
 
         {/* Legal basis */}
         <p className="mt-1.5 text-[11px] text-text-secondary">
-          <span className="text-text-tertiary">Base légale : </span>
+          <span className="text-text-tertiary">{t("protected.legalBasis")} </span>
           {area.legalBasis}
         </p>
 
         {/* Detailed warning */}
         <div className="mt-3 rounded-lg border border-danger/10 bg-danger/5 p-2.5">
           <p className="text-[10px] leading-relaxed text-text-secondary">
-            {STATUS_DESCRIPTIONS[area.status]}
+            {statusDescription}
           </p>
         </div>
       </div>

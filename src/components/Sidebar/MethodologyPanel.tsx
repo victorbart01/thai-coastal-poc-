@@ -2,37 +2,19 @@
 
 import { useState } from "react";
 import { ChevronDown, FlaskConical } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
-const SUBSCORES = [
-  {
-    name: "Historique (M_hist)",
-    weight: "25%",
-    desc: "Proximité de décharges et industries historiques, anciens sites portuaires.",
-  },
-  {
-    name: "Morphologie (M_morpho)",
-    weight: "25%",
-    desc: "Type de côte favorable à l'accumulation : plages rocheuses, criques abritées, caps.",
-  },
-  {
-    name: "Fluvial (M_river)",
-    weight: "20%",
-    desc: "Proximité d'une embouchure de rivière et population en amont (apport de verre).",
-  },
-  {
-    name: "Océanique (M_ocean)",
-    weight: "15%",
-    desc: "Exposition aux courants dominants et vagues favorisant le dépôt côtier.",
-  },
-  {
-    name: "Population (M_pop)",
-    weight: "15%",
-    desc: "Densité de population historique côtière (source de verre rejeté).",
-  },
+const SUBSCORE_KEYS = [
+  { nameKey: "methodology.historical.name", weight: "25%", descKey: "methodology.historical.desc" },
+  { nameKey: "methodology.morphology.name", weight: "25%", descKey: "methodology.morphology.desc" },
+  { nameKey: "methodology.river.name", weight: "20%", descKey: "methodology.river.desc" },
+  { nameKey: "methodology.ocean.name", weight: "15%", descKey: "methodology.ocean.desc" },
+  { nameKey: "methodology.population.name", weight: "15%", descKey: "methodology.population.desc" },
 ];
 
 export function MethodologyPanel() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div className="rounded-lg border border-white/[0.06] bg-ocean-700 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
@@ -43,7 +25,7 @@ export function MethodologyPanel() {
         <div className="flex items-center gap-2">
           <FlaskConical className="h-3.5 w-3.5 text-text-tertiary" />
           <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
-            Méthodologie
+            {t("methodology.title")}
           </h3>
         </div>
         <ChevronDown
@@ -65,18 +47,18 @@ export function MethodologyPanel() {
 
           {/* Sub-scores descriptions */}
           <div className="mt-3 space-y-3">
-            {SUBSCORES.map((sub) => (
-              <div key={sub.name}>
+            {SUBSCORE_KEYS.map((sub) => (
+              <div key={sub.nameKey}>
                 <div className="flex items-center gap-1.5">
                   <span className="font-[family-name:var(--font-display)] text-[11px] font-medium text-text-primary">
-                    {sub.name}
+                    {t(sub.nameKey)}
                   </span>
                   <span className="rounded-full bg-glass-deep/10 px-1.5 py-px font-[family-name:var(--font-display)] text-[9px] font-medium tabular-nums text-glass-deep">
                     {sub.weight}
                   </span>
                 </div>
                 <p className="mt-0.5 text-[11px] leading-relaxed text-text-tertiary">
-                  {sub.desc}
+                  {t(sub.descKey)}
                 </p>
               </div>
             ))}
@@ -85,12 +67,10 @@ export function MethodologyPanel() {
           {/* Sources */}
           <div className="mt-4 border-t border-white/[0.06] pt-3">
             <p className="text-[10px] uppercase tracking-wider text-text-tertiary">
-              Sources de données
+              {t("methodology.dataSources")}
             </p>
             <p className="mt-1.5 text-[11px] leading-relaxed text-text-tertiary">
-              Estimations basées sur des données océanographiques (OSCAR),
-              géomorphologiques (Sentinel-2), hydrologiques (HydroSHEDS),
-              historiques (OSM) et légales (WDPA, DNP Thailand).
+              {t("methodology.dataSourcesDesc")}
             </p>
           </div>
         </div>

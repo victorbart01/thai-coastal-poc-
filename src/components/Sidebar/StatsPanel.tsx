@@ -1,6 +1,7 @@
 "use client";
 
 import type { SeaGlassZone, ProtectedArea } from "@/lib/types";
+import { useTranslation } from "@/lib/i18n";
 
 interface StatsPanelProps {
   zones: SeaGlassZone[];
@@ -32,13 +33,14 @@ function StatCard({ label, value, accent }: StatCardProps) {
 
 export function StatsPanel({ zones, protectedAreas }: StatsPanelProps) {
   const highProbCount = zones.filter((z) => z.score >= 0.55).length;
+  const { t } = useTranslation();
 
   return (
     <div className="grid grid-cols-2 gap-2">
-      <StatCard label="Zones affichées" value={zones.length} accent />
-      <StatCard label="Haute probabilité" value={highProbCount} accent />
-      <StatCard label="Zones protégées" value={protectedAreas.length} />
-      <StatCard label="Km de côtes" value="3,219" />
+      <StatCard label={t("stats.zonesDisplayed")} value={zones.length} accent />
+      <StatCard label={t("stats.highProbability")} value={highProbCount} accent />
+      <StatCard label={t("stats.protectedAreas")} value={protectedAreas.length} />
+      <StatCard label={t("stats.coastlineKm")} value="3,219" />
     </div>
   );
 }

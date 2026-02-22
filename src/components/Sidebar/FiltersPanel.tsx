@@ -1,6 +1,7 @@
 "use client";
 
 import { useMapStore } from "@/store/useMapStore";
+import { useTranslation } from "@/lib/i18n";
 
 interface CheckboxRowProps {
   label: string;
@@ -44,42 +45,43 @@ function CheckboxRow({
 export function FiltersPanel() {
   const filters = useMapStore((s) => s.filters);
   const setFilter = useMapStore((s) => s.setFilter);
+  const { t } = useTranslation();
 
   return (
     <div className="rounded-lg border border-white/[0.06] bg-ocean-700 p-4 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
       <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
-        Filtres
+        {t("filters.title")}
       </h3>
 
       {/* Checkboxes */}
       <div className="mt-2 space-y-0.5">
         <CheckboxRow
-          label="Haute / Très haute"
+          label={t("filters.highVeryHigh")}
           checked={filters.showHigh}
           onChange={(v) => setFilter("showHigh", v)}
           dotColor="#22d3ee"
         />
         <CheckboxRow
-          label="Modérée"
+          label={t("filters.moderate")}
           checked={filters.showMedium}
           onChange={(v) => setFilter("showMedium", v)}
           dotColor="#facc15"
         />
         <CheckboxRow
-          label="Faible"
+          label={t("filters.low")}
           checked={filters.showLow}
           onChange={(v) => setFilter("showLow", v)}
           dotColor="#fb923c"
         />
         <CheckboxRow
-          label="Zones protégées"
+          label={t("filters.protectedAreas")}
           checked={filters.showProtected}
           onChange={(v) => setFilter("showProtected", v)}
           dotColor="#ef4444"
           dotDashed
         />
         <CheckboxRow
-          label="Rivières"
+          label={t("filters.rivers")}
           checked={filters.showRivers}
           onChange={(v) => setFilter("showRivers", v)}
           dotColor="#60a5fa"
@@ -94,7 +96,7 @@ export function FiltersPanel() {
       <div>
         <div className="flex items-center justify-between">
           <span className="text-[10px] uppercase tracking-wider text-text-tertiary">
-            Score minimum
+            {t("filters.minScore")}
           </span>
           <span className="font-[family-name:var(--font-display)] text-xs font-medium tabular-nums text-glass">
             {(filters.minScore * 100).toFixed(0)}%

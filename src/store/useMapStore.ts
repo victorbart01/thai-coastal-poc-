@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { SeaGlassZone, ScoreFilter } from "@/lib/types";
+import type { Locale } from "@/lib/i18n";
 
 interface MapViewport {
   latitude: number;
@@ -14,6 +15,10 @@ interface FlyToTarget {
 }
 
 interface MapState {
+  // Locale
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
+
   // Filters
   filters: ScoreFilter;
   setFilter: <K extends keyof ScoreFilter>(
@@ -37,6 +42,10 @@ interface MapState {
 }
 
 export const useMapStore = create<MapState>((set) => ({
+  // Locale
+  locale: "en",
+  setLocale: (locale) => set({ locale }),
+
   // Default filters: show everything
   filters: {
     minScore: 0,

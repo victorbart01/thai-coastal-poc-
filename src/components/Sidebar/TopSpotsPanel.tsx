@@ -3,8 +3,9 @@
 import { useMemo } from "react";
 import { MapPin } from "lucide-react";
 import type { SeaGlassZone } from "@/lib/types";
-import { getScoreColor, CATEGORY_LABELS } from "@/lib/colors";
+import { getScoreColor, getCategoryLabelKey, CATEGORY_COLORS } from "@/lib/colors";
 import { useMapStore } from "@/store/useMapStore";
+import { useTranslation } from "@/lib/i18n";
 
 interface TopSpotsPanelProps {
   zones: SeaGlassZone[];
@@ -14,6 +15,7 @@ export function TopSpotsPanel({ zones }: TopSpotsPanelProps) {
   const selectZone = useMapStore((s) => s.selectZone);
   const flyTo = useMapStore((s) => s.flyTo);
   const selectedZone = useMapStore((s) => s.selectedZone);
+  const { t } = useTranslation();
 
   // Top 6 by score, descending
   const topSpots = useMemo(
@@ -33,7 +35,7 @@ export function TopSpotsPanel({ zones }: TopSpotsPanelProps) {
   return (
     <div className="rounded-lg border border-white/[0.06] bg-ocean-700 p-4 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
       <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
-        Top spots
+        {t("topSpots.title")}
       </h3>
 
       <div className="mt-3 space-y-2">
@@ -91,7 +93,7 @@ export function TopSpotsPanel({ zones }: TopSpotsPanelProps) {
               {/* Category + fly-to hint */}
               <div className="mt-1.5 flex items-center justify-between">
                 <span className="text-[10px] text-text-tertiary">
-                  {CATEGORY_LABELS[zone.category]}
+                  {t(getCategoryLabelKey(zone.category))}
                 </span>
                 <MapPin className="h-3 w-3 text-text-tertiary opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
               </div>

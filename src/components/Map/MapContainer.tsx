@@ -12,6 +12,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { distance as turfDistance } from "@turf/turf";
 
 import { useMapStore } from "@/store/useMapStore";
+import { useTranslation } from "@/lib/i18n";
 import type { SeaGlassZone, ProtectedArea, RiverMouth } from "@/lib/types";
 import type { FeatureCollection, Point } from "geojson";
 
@@ -123,6 +124,31 @@ export function MapContainer({
       });
     }
   }, [selectedZone, protectedAreas]);
+
+  // Update popup data when zones/protectedAreas change (e.g. locale switch)
+  useEffect(() => {
+    if (popupInfo?.type === "zone") {
+      const freshZone = filteredZones.find((z) => z.id === popupInfo.zone.id);
+      if (freshZone && freshZone !== popupInfo.zone) {
+        setPopupInfo({
+          type: "zone",
+          zone: freshZone,
+          nearbyProtected: findNearbyProtected(freshZone, protectedAreas),
+        });
+      }
+    } else if (popupInfo?.type === "protected") {
+      const freshArea = protectedAreas.find((a) => a.id === popupInfo.area.id);
+      if (freshArea && freshArea !== popupInfo.area) {
+        setPopupInfo({ type: "protected", area: freshArea });
+      }
+    } else if (popupInfo?.type === "river") {
+      const freshRiver = riverMouths.find((r) => r.id === popupInfo.river.id);
+      if (freshRiver && freshRiver !== popupInfo.river) {
+        setPopupInfo({ type: "river", river: freshRiver });
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally react to data array changes only (locale switch)
+  }, [filteredZones, protectedAreas, riverMouths]);
 
   // Handle flyTo requests from the store
   useEffect(() => {
@@ -262,6 +288,8 @@ function RiverPopup({
   river: RiverMouth;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
+
   return (
     <Popup
       longitude={river.coordinates[0]}
@@ -279,11 +307,11 @@ function RiverPopup({
           </h3>
         </div>
         <p className="mt-2 text-[11px] text-text-secondary">
-          <span className="text-text-tertiary">Population amont : </span>
+          <span className="text-text-tertiary">{t("river.upstreamPopulation")} </span>
           {river.populationUpstream}
         </p>
         <p className="mt-1 text-[11px] text-text-secondary">
-          <span className="text-text-tertiary">Ville principale : </span>
+          <span className="text-text-tertiary">{t("river.majorCity")} </span>
           {river.majorCity}
         </p>
       </div>
