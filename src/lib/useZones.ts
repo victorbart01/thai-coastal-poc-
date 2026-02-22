@@ -185,6 +185,8 @@ export function useZones() {
 
   // Apply filters to zones
   const filteredZones = useMemo(() => {
+    if (!filters.showZones) return [];
+
     return allZones.filter((zone) => {
       // Min score filter
       if (zone.score < filters.minScore) return false;

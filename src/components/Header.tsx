@@ -24,18 +24,8 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
 
       {/* Title */}
       <h1 className="ml-3 font-[family-name:var(--font-display)] text-sm font-semibold tracking-wide text-text-primary">
-        Sea Glass Interactive Map
+        {t("header.title")}
       </h1>
-
-      {/* Badge */}
-      <span className="ml-3 hidden rounded-full bg-gradient-to-r from-glass-deep/20 to-accent-pink/20 px-2.5 py-0.5 font-[family-name:var(--font-display)] text-[10px] font-medium tracking-wider text-accent-pink sm:inline-block">
-        BETA
-      </span>
-
-      {/* Thailand only label */}
-      <span className="ml-2 hidden text-[10px] text-text-tertiary sm:inline-block">
-        {t("header.thailandOnly")}
-      </span>
 
       {/* Spacer */}
       <div className="flex-1" />

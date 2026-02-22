@@ -23,6 +23,7 @@ function spotsToGeoJSON(spots: Spot[]): FeatureCollection<Point> {
         id: spot.id,
         title: spot.title,
         rating: spot.rating,
+        like_count: spot.like_count ?? 0,
       },
     })),
   };
@@ -67,7 +68,15 @@ const unclusteredLayer: CircleLayer = {
   filter: ["!", ["has", "point_count"]],
   paint: {
     "circle-color": SPOT_COLOR,
-    "circle-radius": 7,
+    "circle-radius": [
+      "interpolate",
+      ["linear"],
+      ["get", "like_count"],
+      0, 6,
+      5, 8,
+      20, 11,
+      50, 14,
+    ],
     "circle-opacity": 0.85,
     "circle-stroke-width": 2,
     "circle-stroke-color": "#ffffff",

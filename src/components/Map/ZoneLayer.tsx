@@ -26,40 +26,18 @@ export function ZoneLayer({ geojson, hoveredZoneId }: ZoneLayerProps) {
         ["+", ["+", 6, ["*", ["get", "score"], 16]], 4],
         ["+", 6, ["*", ["get", "score"], 16]],
       ],
-      // Color by score thresholds
-      "circle-color": [
-        "case",
-        [">=", ["get", "score"], 0.75],
-        "#06b6d4",
-        [">=", ["get", "score"], 0.55],
-        "#22d3ee",
-        [">=", ["get", "score"], 0.35],
-        "#facc15",
-        [">=", ["get", "score"], 0.15],
-        "#fb923c",
-        "#64748b",
-      ],
-      // Opacity: 0.9 on hover, 0.7 otherwise
+      // Uniform neutral color
+      "circle-color": "#94a3b8",
+      // Opacity: 0.7 on hover, 0.5 otherwise
       "circle-opacity": [
         "case",
         ["==", ["get", "id"], hoveredZoneId ?? ""],
-        0.9,
         0.7,
+        0.5,
       ],
-      // Stroke: 2px, same color as fill
+      // Stroke: 2px, neutral
       "circle-stroke-width": 2,
-      "circle-stroke-color": [
-        "case",
-        [">=", ["get", "score"], 0.75],
-        "#06b6d4",
-        [">=", ["get", "score"], 0.55],
-        "#22d3ee",
-        [">=", ["get", "score"], 0.35],
-        "#facc15",
-        [">=", ["get", "score"], 0.15],
-        "#fb923c",
-        "#64748b",
-      ],
+      "circle-stroke-color": "#94a3b8",
     },
   };
 

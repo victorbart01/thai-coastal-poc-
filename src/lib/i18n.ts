@@ -5,62 +5,42 @@ export type Locale = "en" | "th";
 const translations: Record<Locale, Record<string, string>> = {
   en: {
     // Header
-    "header.title": "Sea Glass Interactive Map",
-    "header.badge": "BETA",
-    "header.thailandOnly": "Thailand only",
+    "header.title": "Sea Glass Map",
     "header.openPanel": "Open panel",
     "header.closePanel": "Close panel",
 
-    // Filters
-    "filters.title": "Filters",
-    "filters.highVeryHigh": "High / Very high",
-    "filters.moderate": "Moderate",
-    "filters.low": "Low",
+    // Tagline
+    "tagline.main": "The world's sea glass community.",
+
+    // Search
+    "search.placeholder": "Find a beach, spot or collector...",
+    "search.comingSoon": "Coming soon",
+
+    // Navigation
+    "nav.about": "About",
+    "nav.shop": "Shop",
+    "nav.forum": "Forum",
+    "nav.signUp": "Sign up",
+    "nav.dashboard": "Dashboard",
+
+    // Popular spots
+    "popularSpots.title": "Popular spots",
+
+    // Activity feed
+    "activity.title": "Recent activity",
+    "activity.addedSpot": "added a new spot:",
+
+    // Top contributors
+    "contributors.title": "Top contributors",
+
+    // Map toggles
+    "toggles.title": "Map layers",
+    "toggles.zones": "Probability zones",
+
+    // Filters (kept for toggles)
     "filters.protectedAreas": "Protected areas",
     "filters.rivers": "Rivers",
-    "filters.minScore": "Minimum score",
-
-    // Legend
-    "legend.title": "Legend",
-    "legend.veryHigh": "Very high",
-    "legend.high": "High",
-    "legend.moderate": "Moderate",
-    "legend.low": "Low",
-    "legend.veryLow": "Very low",
-    "legend.protectedArea": "Protected area",
-    "legend.collectionForbidden": "Collection forbidden",
-    "legend.riverMouth": "River mouth",
-    "legend.glassSource": "Glass source",
-
-    // Stats
-    "stats.zonesDisplayed": "Zones displayed",
-    "stats.highProbability": "High probability",
-    "stats.protectedAreas": "Protected areas",
-    "stats.coastlineKm": "Km of coastline",
-
-    // Methodology
-    "methodology.title": "Methodology",
-    "methodology.dataSources": "Data sources",
-    "methodology.dataSourcesDesc":
-      "Estimates based on oceanographic (OSCAR), geomorphological (Sentinel-2), hydrological (HydroSHEDS), historical (OSM), and legal (WDPA, DNP Thailand) data.",
-    "methodology.historical.name": "Historical (M_hist)",
-    "methodology.historical.desc":
-      "Proximity to historical landfills and industries, former port sites.",
-    "methodology.morphology.name": "Morphology (M_morpho)",
-    "methodology.morphology.desc":
-      "Favorable coastline type for accumulation: rocky beaches, sheltered coves, headlands.",
-    "methodology.river.name": "Fluvial (M_river)",
-    "methodology.river.desc":
-      "Proximity to a river mouth and upstream population (glass input).",
-    "methodology.ocean.name": "Oceanic (M_ocean)",
-    "methodology.ocean.desc":
-      "Exposure to dominant currents and waves favoring coastal deposition.",
-    "methodology.population.name": "Population (M_pop)",
-    "methodology.population.desc":
-      "Historical coastal population density (source of discarded glass).",
-
-    // Top spots
-    "topSpots.title": "Top spots",
+    "filters.communitySpots": "Community spots",
 
     // Zone popup
     "popup.loadingPhotos": "Loading photos...",
@@ -152,9 +132,6 @@ const translations: Record<Locale, Record<string, string>> = {
     // Spot popup
     "spot.anonymous": "Anonymous",
 
-    // Filters — community spots
-    "filters.communitySpots": "Community spots",
-
     // Legend — community spot
     "legend.communitySpot": "Community spot",
     "legend.userSubmitted": "User-submitted",
@@ -179,8 +156,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "social.delete": "Delete",
     "social.deleteConfirm": "Delete this comment?",
 
-    // Recent finds
-    "recentFinds.title": "Recent finds",
+    // Recent finds (kept for empty state)
     "recentFinds.empty": "No spots yet",
 
     // Profile
@@ -220,70 +196,55 @@ const translations: Record<Locale, Record<string, string>> = {
     "rarity.legendary": "Legendary",
 
     // Leaderboard
-    "leaderboard.title": "Leaderboard",
     "leaderboard.spots": "spots",
     "leaderboard.likes": "likes",
-    "leaderboard.score": "score",
     "leaderboard.empty": "No contributors yet",
+
+    // Placeholder pages
+    "about.title": "About Sea Glass Map",
+    "shop.title": "Shop",
+    "shop.comingSoon": "Coming soon — stay tuned!",
+    "forum.title": "Forum",
+    "forum.comingSoon": "Coming soon — stay tuned!",
   },
   th: {
     // Header
-    "header.title": "แผนที่แบบโต้ตอบซีกลาส",
-    "header.badge": "เบต้า",
-    "header.thailandOnly": "เฉพาะประเทศไทย",
+    "header.title": "แผนที่ซีกลาส",
     "header.openPanel": "เปิดแผง",
     "header.closePanel": "ปิดแผง",
 
-    // Filters
-    "filters.title": "ตัวกรอง",
-    "filters.highVeryHigh": "สูง / สูงมาก",
-    "filters.moderate": "ปานกลาง",
-    "filters.low": "ต่ำ",
+    // Tagline
+    "tagline.main": "ชุมชนซีกลาสของโลก",
+
+    // Search
+    "search.placeholder": "ค้นหาชายหาด จุด หรือนักสะสม...",
+    "search.comingSoon": "เร็วๆ นี้",
+
+    // Navigation
+    "nav.about": "เกี่ยวกับ",
+    "nav.shop": "ร้านค้า",
+    "nav.forum": "ฟอรัม",
+    "nav.signUp": "สมัคร",
+    "nav.dashboard": "แดชบอร์ด",
+
+    // Popular spots
+    "popularSpots.title": "จุดยอดนิยม",
+
+    // Activity feed
+    "activity.title": "กิจกรรมล่าสุด",
+    "activity.addedSpot": "เพิ่มจุดใหม่:",
+
+    // Top contributors
+    "contributors.title": "ผู้ร่วมสร้างอันดับต้น",
+
+    // Map toggles
+    "toggles.title": "เลเยอร์แผนที่",
+    "toggles.zones": "โซนความน่าจะเป็น",
+
+    // Filters (kept for toggles)
     "filters.protectedAreas": "พื้นที่คุ้มครอง",
     "filters.rivers": "แม่น้ำ",
-    "filters.minScore": "คะแนนขั้นต่ำ",
-
-    // Legend
-    "legend.title": "คำอธิบาย",
-    "legend.veryHigh": "สูงมาก",
-    "legend.high": "สูง",
-    "legend.moderate": "ปานกลาง",
-    "legend.low": "ต่ำ",
-    "legend.veryLow": "ต่ำมาก",
-    "legend.protectedArea": "พื้นที่คุ้มครอง",
-    "legend.collectionForbidden": "ห้ามเก็บ",
-    "legend.riverMouth": "ปากแม่น้ำ",
-    "legend.glassSource": "แหล่งแก้ว",
-
-    // Stats
-    "stats.zonesDisplayed": "โซนที่แสดง",
-    "stats.highProbability": "ความน่าจะเป็นสูง",
-    "stats.protectedAreas": "พื้นที่คุ้มครอง",
-    "stats.coastlineKm": "กม. ชายฝั่ง",
-
-    // Methodology
-    "methodology.title": "วิธีการ",
-    "methodology.dataSources": "แหล่งข้อมูล",
-    "methodology.dataSourcesDesc":
-      "การประมาณการจากข้อมูลสมุทรศาสตร์ (OSCAR) ธรณีสัณฐาน (Sentinel-2) อุทกวิทยา (HydroSHEDS) ประวัติศาสตร์ (OSM) และกฎหมาย (WDPA, DNP Thailand)",
-    "methodology.historical.name": "ประวัติศาสตร์ (M_hist)",
-    "methodology.historical.desc":
-      "ความใกล้เคียงกับหลุมฝังกลบและอุตสาหกรรมในอดีต ท่าเรือเดิม",
-    "methodology.morphology.name": "สัณฐานวิทยา (M_morpho)",
-    "methodology.morphology.desc":
-      "ประเภทชายฝั่งที่เอื้อต่อการสะสม: หาดหิน อ่าวที่กำบัง แหลม",
-    "methodology.river.name": "แม่น้ำ (M_river)",
-    "methodology.river.desc":
-      "ความใกล้เคียงกับปากแม่น้ำและประชากรต้นน้ำ (แหล่งแก้ว)",
-    "methodology.ocean.name": "มหาสมุทร (M_ocean)",
-    "methodology.ocean.desc":
-      "การเปิดรับกระแสน้ำและคลื่นที่ส่งเสริมการทับถมชายฝั่ง",
-    "methodology.population.name": "ประชากร (M_pop)",
-    "methodology.population.desc":
-      "ความหนาแน่นประชากรชายฝั่งในอดีต (แหล่งแก้วที่ถูกทิ้ง)",
-
-    // Top spots
-    "topSpots.title": "จุดยอดนิยม",
+    "filters.communitySpots": "จุดจากชุมชน",
 
     // Zone popup
     "popup.loadingPhotos": "กำลังโหลดรูปภาพ...",
@@ -375,9 +336,6 @@ const translations: Record<Locale, Record<string, string>> = {
     // Spot popup
     "spot.anonymous": "ไม่ระบุชื่อ",
 
-    // Filters — community spots
-    "filters.communitySpots": "จุดจากชุมชน",
-
     // Legend — community spot
     "legend.communitySpot": "จุดจากชุมชน",
     "legend.userSubmitted": "ผู้ใช้แชร์",
@@ -402,8 +360,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "social.delete": "ลบ",
     "social.deleteConfirm": "ลบความคิดเห็นนี้?",
 
-    // Recent finds
-    "recentFinds.title": "พบล่าสุด",
+    // Recent finds (kept for empty state)
     "recentFinds.empty": "ยังไม่มีจุด",
 
     // Profile
@@ -443,11 +400,16 @@ const translations: Record<Locale, Record<string, string>> = {
     "rarity.legendary": "ตำนาน",
 
     // Leaderboard
-    "leaderboard.title": "กระดานผู้นำ",
     "leaderboard.spots": "จุด",
     "leaderboard.likes": "ถูกใจ",
-    "leaderboard.score": "คะแนน",
     "leaderboard.empty": "ยังไม่มีผู้ร่วมสร้าง",
+
+    // Placeholder pages
+    "about.title": "เกี่ยวกับ Sea Glass Map",
+    "shop.title": "ร้านค้า",
+    "shop.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
+    "forum.title": "ฟอรัม",
+    "forum.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
   },
 };
 

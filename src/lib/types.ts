@@ -54,6 +54,7 @@ export type ScoreFilter = {
   showLow: boolean;
   showProtected: boolean;
   showRivers: boolean;
+  showZones: boolean;
 };
 
 // ─── Community Spots ("Drops") ──────────────────────────────

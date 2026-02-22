@@ -15,9 +15,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Sea Glass Interactive Map - Beta",
+  title: "Sea Glass Map — The world's sea glass community",
   description:
-    "Interactive map identifying Thai coastal zones with high sea glass probability, based on oceanographic, historical, and geomorphological data.",
+    "Discover, share and explore sea glass spots around the world. A community-driven interactive map for sea glass collectors.",
 };
 
 export default function RootLayout({

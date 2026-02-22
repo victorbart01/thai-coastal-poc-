@@ -70,7 +70,7 @@ export default function Home() {
 
       {/* Desktop sidebar — always visible on lg+, floating right */}
       <div className="absolute right-0 top-12 bottom-0 z-10 hidden w-[360px] lg:block">
-        <Sidebar zones={filteredZones} protectedAreas={protectedAreas} spots={allSpots} />
+        <Sidebar spots={allSpots} />
       </div>
 
       {/* Tablet sidebar — slide-over overlay on md to lg, from right */}
@@ -83,22 +83,14 @@ export default function Home() {
           />
           {/* Sidebar panel — from right */}
           <div className="animate-sidebar-enter fixed inset-y-12 right-0 z-30 hidden w-[360px] shadow-2xl md:block lg:hidden">
-            <Sidebar
-              zones={filteredZones}
-              protectedAreas={protectedAreas}
-              spots={allSpots}
-            />
+            <Sidebar spots={allSpots} />
           </div>
         </>
       )}
 
       {/* Mobile drawer — visible only on < md */}
       <div className="md:hidden">
-        <MobileDrawer
-          zones={filteredZones}
-          protectedAreas={protectedAreas}
-          spots={allSpots}
-        />
+        <MobileDrawer spots={allSpots} />
       </div>
 
       {/* Comments panel */}

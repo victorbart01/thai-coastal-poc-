@@ -2,25 +2,23 @@
 
 import { useState, useRef, useCallback } from "react";
 import { ChevronUp } from "lucide-react";
-import type { SeaGlassZone, ProtectedArea, Spot } from "@/lib/types";
-import { StatsPanel } from "./Sidebar/StatsPanel";
-import { LegendPanel } from "./Sidebar/LegendPanel";
-import { FiltersPanel } from "./Sidebar/FiltersPanel";
-import { TopSpotsPanel } from "./Sidebar/TopSpotsPanel";
-import { RecentFindsPanel } from "./Sidebar/RecentFindsPanel";
+import type { Spot } from "@/lib/types";
+import { TaglineSection } from "./Sidebar/TaglineSection";
+import { SearchBar } from "./Sidebar/SearchBar";
+import { QuickLinks } from "./Sidebar/QuickLinks";
+import { PopularSpotsPanel } from "./Sidebar/PopularSpotsPanel";
+import { ActivityFeed } from "./Sidebar/ActivityFeed";
 import { LeaderboardPanel } from "./Sidebar/LeaderboardPanel";
-import { MethodologyPanel } from "./Sidebar/MethodologyPanel";
+import { MapToggles } from "./Sidebar/MapToggles";
 
 interface MobileDrawerProps {
-  zones: SeaGlassZone[];
-  protectedAreas: ProtectedArea[];
   spots: Spot[];
 }
 
 const COLLAPSED_HEIGHT = 30;
 const EXPANDED_HEIGHT = 80;
 
-export function MobileDrawer({ zones, protectedAreas, spots }: MobileDrawerProps) {
+export function MobileDrawer({ spots }: MobileDrawerProps) {
   const [sheetHeight, setSheetHeight] = useState(COLLAPSED_HEIGHT);
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef<{ startY: number; startHeight: number } | null>(null);
@@ -90,13 +88,13 @@ export function MobileDrawer({ zones, protectedAreas, spots }: MobileDrawerProps
 
       {/* Content */}
       <div className="sidebar-scroll flex-1 space-y-3 overflow-y-auto px-3 pb-8">
-        <StatsPanel zones={zones} protectedAreas={protectedAreas} />
-        <LegendPanel />
-        <FiltersPanel />
-        <TopSpotsPanel zones={zones} />
-        <RecentFindsPanel spots={spots} />
+        <TaglineSection />
+        <SearchBar />
+        <QuickLinks />
+        <PopularSpotsPanel spots={spots} />
+        <ActivityFeed spots={spots} />
         <LeaderboardPanel spots={spots} />
-        <MethodologyPanel />
+        <MapToggles />
       </div>
     </div>
   );
