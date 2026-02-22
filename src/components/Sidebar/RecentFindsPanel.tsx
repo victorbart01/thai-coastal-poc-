@@ -39,7 +39,7 @@ export function RecentFindsPanel({ spots }: RecentFindsPanelProps) {
   };
 
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-ocean-700 p-4 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
+    <div className="glass-card rounded-2xl p-4">
       <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
         {t("recentFinds.title")}
       </h3>
@@ -56,10 +56,10 @@ export function RecentFindsPanel({ spots }: RecentFindsPanelProps) {
               <button
                 key={spot.id}
                 onClick={() => handleClick(spot)}
-                className={`group w-full rounded-lg border p-2.5 text-left transition-all duration-200 ${
+                className={`group w-full rounded-2xl border p-2.5 text-left transition-all duration-200 ${
                   isSelected
-                    ? "border-pink-400/30 bg-ocean-600 shadow-[0_0_12px_rgba(244,114,182,0.08)]"
-                    : "border-transparent bg-ocean-900/50 hover:border-white/[0.08] hover:bg-ocean-600/50"
+                    ? "border-accent-pink/30 bg-black/[0.08] shadow-[0_2px_12px_rgba(244,114,182,0.12)]"
+                    : "border-transparent bg-black/[0.03] hover:border-black/[0.08] hover:bg-black/[0.06]"
                 }`}
               >
                 <div className="flex gap-2.5">

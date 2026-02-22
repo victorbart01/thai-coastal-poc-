@@ -55,13 +55,10 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
         maxWidth="320px"
         offset={16}
       >
-        <div
-          className="min-w-[280px] rounded-xl"
-          style={{ borderLeft: `3px solid ${color}` }}
-        >
+        <div className="min-w-[280px] overflow-hidden rounded-2xl">
           {/* Photo loading skeleton */}
           {photosLoading && (
-            <div className="flex h-36 w-full items-center justify-center rounded-t-xl bg-ocean-800">
+            <div className="flex h-36 w-full items-center justify-center rounded-t-2xl bg-black/[0.04]">
               <div className="flex flex-col items-center gap-2">
                 <div className="h-6 w-6 animate-spin rounded-full border-2 border-glass-bright/30 border-t-glass-bright" />
                 <span className="text-[10px] text-text-tertiary">{t("popup.loadingPhotos")}</span>
@@ -71,7 +68,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
 
           {/* No photos fallback */}
           {!photosLoading && photos.length === 0 && zone.placeQuery && (
-            <div className="flex h-24 w-full items-center justify-center rounded-t-xl bg-ocean-800/50">
+            <div className="flex h-24 w-full items-center justify-center rounded-t-2xl bg-black/[0.03]">
               <div className="flex items-center gap-2 text-text-tertiary">
                 <ImageOff className="h-4 w-4" />
                 <span className="text-[10px]">{t("popup.noPhotos")}</span>
@@ -94,7 +91,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
                 unoptimized
               />
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-ocean-700/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               {/* Photo count badge */}
               <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
                 <Camera className="h-3 w-3 text-white/80" />
@@ -162,7 +159,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
                     <span className="w-[72px] shrink-0 text-[10px] text-text-tertiary">
                       {t(labelKey)}
                     </span>
-                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-ocean-600">
+                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/[0.06]">
                       <div
                         className="animate-fill-bar h-full rounded-full transition-all duration-300"
                         style={{

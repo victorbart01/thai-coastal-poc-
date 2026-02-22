@@ -32,7 +32,7 @@ export function StepDetails() {
           onChange={(e) => updateDraftSpot({ title: e.target.value })}
           maxLength={80}
           placeholder={t("spotForm.titlePlaceholder")}
-          className="mt-1 w-full rounded-lg border border-ocean-500 bg-ocean-800 px-3 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-pink-400 focus:outline-none focus:ring-1 focus:ring-pink-400/30"
+          className="mt-1 w-full rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent-pink focus:outline-none focus:ring-1 focus:ring-accent-pink/30"
         />
       </div>
 
@@ -51,8 +51,8 @@ export function StepDetails() {
               <Star
                 className={`h-6 w-6 ${
                   i < draftSpot.rating
-                    ? "fill-pink-400 text-pink-400"
-                    : "text-ocean-500"
+                    ? "fill-accent-pink text-accent-pink"
+                    : "text-gray-300"
                 }`}
               />
             </button>
@@ -77,8 +77,8 @@ export function StepDetails() {
                 onClick={() => toggleTag(tag)}
                 className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
                   active
-                    ? "bg-pink-400/20 text-pink-400"
-                    : "bg-ocean-600 text-text-tertiary hover:text-text-secondary"
+                    ? "bg-accent-pink/20 text-accent-pink"
+                    : "bg-black/[0.06] text-text-tertiary hover:text-text-secondary"
                 }`}
               >
                 {t(`tag.${tag}`)}
@@ -99,7 +99,7 @@ export function StepDetails() {
           maxLength={500}
           rows={3}
           placeholder={t("spotForm.descriptionPlaceholder")}
-          className="mt-1 w-full resize-none rounded-lg border border-ocean-500 bg-ocean-800 px-3 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-pink-400 focus:outline-none focus:ring-1 focus:ring-pink-400/30"
+          className="mt-1 w-full resize-none rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent-pink focus:outline-none focus:ring-1 focus:ring-accent-pink/30"
         />
       </div>
     </div>

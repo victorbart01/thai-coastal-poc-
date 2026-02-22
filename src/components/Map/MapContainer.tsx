@@ -329,7 +329,7 @@ export function MapContainer({
       ref={mapRef}
       initialViewState={INITIAL_VIEW}
       style={{ width: "100%", height: "100%" }}
-      mapStyle="mapbox://styles/mapbox/dark-v11"
+      mapStyle="mapbox://styles/mapbox/streets-v12"
       mapboxAccessToken={MAPBOX_TOKEN}
       onMove={handleMove}
       onClick={handleClick}
@@ -394,7 +394,7 @@ function RiverPopup({
       maxWidth="240px"
       offset={16}
     >
-      <div className="min-w-[200px] rounded-xl border-l-[3px] border-l-river p-4">
+      <div className="min-w-[200px] overflow-hidden rounded-2xl p-4">
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 rounded-full border-2 border-dashed border-river bg-river/20" />
           <h3 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">

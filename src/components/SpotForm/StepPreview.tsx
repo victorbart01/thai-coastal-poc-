@@ -20,7 +20,7 @@ export function StepPreview() {
       </h3>
 
       {/* Preview card — mirrors SpotPopup */}
-      <div className="rounded-xl border border-white/[0.06] border-l-[3px] border-l-pink-400 bg-ocean-700">
+      <div className="glass-card overflow-hidden rounded-2xl">
         {/* Photo carousel */}
         {previewUrls.length > 0 && (
           <div className="group relative overflow-hidden rounded-t-xl">
@@ -32,7 +32,7 @@ export function StepPreview() {
               className="h-36 w-full object-cover"
               unoptimized
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ocean-700/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
               <Camera className="h-3 w-3 text-white/80" />
               <span className="font-[family-name:var(--font-display)] text-[10px] text-white/80">
@@ -79,8 +79,8 @@ export function StepPreview() {
                 key={i}
                 className={`h-3.5 w-3.5 ${
                   i < draftSpot.rating
-                    ? "fill-pink-400 text-pink-400"
-                    : "text-ocean-500"
+                    ? "fill-accent-pink text-accent-pink"
+                    : "text-gray-300"
                 }`}
               />
             ))}
@@ -92,7 +92,7 @@ export function StepPreview() {
               {draftSpot.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-pink-400/10 px-2 py-0.5 text-[10px] text-pink-400"
+                  className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-[10px] text-accent-pink"
                 >
                   {t(`tag.${tag}`)}
                 </span>

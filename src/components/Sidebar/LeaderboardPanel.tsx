@@ -47,7 +47,7 @@ export function LeaderboardPanel({ spots }: LeaderboardPanelProps) {
   const maxScore = leaderboard[0]?.score ?? 1;
 
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-ocean-700 p-4 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
+    <div className="glass-card rounded-2xl p-4">
       <h3 className="flex items-center gap-1.5 font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
         <Trophy className="h-3.5 w-3.5 text-yellow-400" />
         {t("leaderboard.title")}
@@ -61,7 +61,7 @@ export function LeaderboardPanel({ spots }: LeaderboardPanelProps) {
             <Link
               key={entry.user.id}
               href={`/profile/${entry.user.id}`}
-              className="group flex items-center gap-2.5 rounded-lg border border-transparent bg-ocean-900/50 p-2 transition-all duration-200 hover:border-white/[0.08] hover:bg-ocean-600/50"
+              className="group flex items-center gap-2.5 rounded-2xl border border-transparent bg-black/[0.03] p-2 transition-all duration-200 hover:border-black/[0.08] hover:bg-black/[0.06]"
             >
               {/* Rank */}
               <span
@@ -72,7 +72,7 @@ export function LeaderboardPanel({ spots }: LeaderboardPanelProps) {
                     ? "bg-gray-300/20 text-gray-300"
                     : entry.rank === 3
                     ? "bg-amber-600/20 text-amber-600"
-                    : "bg-ocean-600 text-text-tertiary"
+                    : "bg-black/[0.06] text-text-tertiary"
                 }`}
               >
                 {entry.rank}
@@ -109,7 +109,7 @@ export function LeaderboardPanel({ spots }: LeaderboardPanelProps) {
                   </span>
                 </div>
                 {/* Progress bar */}
-                <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-ocean-600">
+                <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-black/[0.06]">
                   <div
                     className="h-full rounded-full bg-gradient-to-r from-glass-deep to-glass-bright transition-all duration-500"
                     style={{ width: `${(entry.score / maxScore) * 100}%` }}

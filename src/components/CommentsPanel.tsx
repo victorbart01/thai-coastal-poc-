@@ -48,7 +48,7 @@ export function CommentsPanel() {
   const renderComment = (comment: Comment, isReply = false) => (
     <div
       key={comment.id}
-      className={`${isReply ? "ml-8 border-l border-white/[0.06] pl-3" : ""}`}
+      className={`${isReply ? "ml-8 border-l border-black/[0.06] pl-3" : ""}`}
     >
       <div className="flex items-start gap-2.5 py-2.5">
         {/* Avatar */}
@@ -126,15 +126,15 @@ export function CommentsPanel() {
       />
 
       {/* Panel */}
-      <div className="animate-panel-enter-right fixed inset-y-0 right-0 z-40 flex w-full max-w-sm flex-col bg-ocean-900 shadow-2xl">
+      <div className="animate-panel-enter-right glass-surface fixed inset-y-0 right-0 z-40 flex w-full max-w-sm flex-col shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-3">
+        <div className="flex items-center justify-between border-b border-black/[0.06] px-4 py-3">
           <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
             {t("social.comments")}
           </h2>
           <button
             onClick={closeComments}
-            className="rounded-lg p-1.5 text-text-tertiary transition-colors hover:bg-ocean-700 hover:text-text-primary"
+            className="rounded-lg p-1.5 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
           >
             <X className="h-4 w-4" />
           </button>
@@ -151,18 +151,18 @@ export function CommentsPanel() {
               {t("social.noComments")}
             </p>
           ) : (
-            <div className="divide-y divide-white/[0.04]">
+            <div className="divide-y divide-black/[0.04]">
               {comments.map((c) => renderComment(c))}
             </div>
           )}
         </div>
 
         {/* Input bar */}
-        <div className="border-t border-white/[0.06] p-3">
+        <div className="border-t border-black/[0.06] p-3">
           {user ? (
             <>
               {replyTo && (
-                <div className="mb-2 flex items-center gap-2 rounded-md bg-ocean-700 px-2.5 py-1.5">
+                <div className="mb-2 flex items-center gap-2 rounded-md bg-black/[0.04] px-2.5 py-1.5">
                   <Reply className="h-3 w-3 text-pink-400" />
                   <span className="flex-1 truncate text-[10px] text-text-secondary">
                     {t("social.reply")} @{replyTo.name}
@@ -183,12 +183,12 @@ export function CommentsPanel() {
                   onKeyDown={handleKeyDown}
                   placeholder={t("social.addComment")}
                   maxLength={500}
-                  className="flex-1 rounded-lg border border-white/[0.08] bg-ocean-800 px-3 py-2 text-xs text-text-primary placeholder:text-text-tertiary focus:border-glass-deep focus:outline-none"
+                  className="flex-1 rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-2 text-xs text-text-primary placeholder:text-text-tertiary focus:border-accent-pink focus:outline-none"
                 />
                 <button
                   onClick={handleSubmit}
                   disabled={!text.trim() || submitting}
-                  className="rounded-lg bg-pink-500 p-2 text-white transition-colors hover:bg-pink-400 disabled:opacity-40"
+                  className="rounded-lg bg-gradient-to-r from-glass-deep to-accent-pink p-2 text-white transition-colors disabled:opacity-40"
                 >
                   <Send className="h-3.5 w-3.5" />
                 </button>

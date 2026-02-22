@@ -72,11 +72,11 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
   if (spotFormStep === 1) {
     return (
       <div className="fixed left-1/2 top-16 z-30 -translate-x-1/2 animate-slide-in">
-        <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-ocean-800/95 px-4 py-3 shadow-2xl backdrop-blur-sm">
+        <div className="glass-card flex items-center gap-3 rounded-2xl px-4 py-3 shadow-2xl">
           <StepLocation />
           <button
             onClick={closeSpotForm}
-            className="shrink-0 rounded-full p-1 text-text-tertiary transition-colors hover:bg-ocean-600 hover:text-text-primary"
+            className="shrink-0 rounded-full p-1 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
           >
             <X className="h-4 w-4" />
           </button>
@@ -95,15 +95,15 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
 
       {/* Modal panel */}
       <div className="fixed bottom-0 left-0 right-0 z-50 mx-auto max-w-md animate-slide-in md:bottom-auto md:left-1/2 md:top-1/2 md:max-h-[85vh] md:-translate-x-1/2 md:-translate-y-1/2">
-        <div className="rounded-t-2xl border border-white/[0.06] bg-ocean-800 shadow-2xl md:rounded-2xl">
+        <div className="glass-card rounded-t-2xl shadow-2xl md:rounded-2xl">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-3">
+          <div className="flex items-center justify-between border-b border-black/[0.06] px-4 py-3">
             <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
               {t("spotForm.title")}
             </h2>
             <button
               onClick={closeSpotForm}
-              className="rounded-full p-1 text-text-tertiary transition-colors hover:bg-ocean-600 hover:text-text-primary"
+              className="rounded-full p-1 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
             >
               <X className="h-4 w-4" />
             </button>
@@ -115,13 +115,13 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
               <div key={i} className="flex-1">
                 <div
                   className={`h-1 rounded-full transition-colors ${
-                    i + 1 <= spotFormStep ? "bg-pink-400" : "bg-ocean-600"
+                    i + 1 <= spotFormStep ? "bg-gradient-to-r from-glass-deep to-accent-pink" : "bg-black/[0.06]"
                   }`}
                 />
                 <p
                   className={`mt-1 text-center text-[9px] ${
                     i + 1 === spotFormStep
-                      ? "font-medium text-pink-400"
+                      ? "font-medium text-accent-pink"
                       : "text-text-tertiary"
                   }`}
                 >
@@ -146,10 +146,10 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
           )}
 
           {/* Navigation */}
-          <div className="flex items-center justify-between border-t border-white/[0.06] px-4 py-3">
+          <div className="flex items-center justify-between border-t border-black/[0.06] px-4 py-3">
             <button
               onClick={handleBack}
-              className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs text-text-secondary transition-colors hover:bg-ocean-600"
+              className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs text-text-secondary transition-colors hover:bg-black/[0.06]"
             >
               <ChevronLeft className="h-3.5 w-3.5" />
               {t("spotForm.back")}
@@ -159,7 +159,7 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
               <button
                 onClick={handleNext}
                 disabled={!canGoNext}
-                className="flex items-center gap-1 rounded-lg bg-pink-400 px-4 py-1.5 text-xs font-medium text-white transition-all hover:bg-pink-500 disabled:opacity-30 disabled:hover:bg-pink-400"
+                className="flex items-center gap-1 rounded-lg bg-gradient-to-r from-glass-deep to-accent-pink px-4 py-1.5 text-xs font-medium text-white transition-all disabled:opacity-30"
               >
                 {t("spotForm.next")}
                 <ChevronRight className="h-3.5 w-3.5" />
@@ -168,7 +168,7 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
               <button
                 onClick={handlePublish}
                 disabled={creating}
-                className="flex items-center gap-2 rounded-lg bg-pink-400 px-5 py-1.5 text-xs font-medium text-white transition-all hover:bg-pink-500 disabled:opacity-60"
+                className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-glass-deep to-accent-pink px-5 py-1.5 text-xs font-medium text-white transition-all disabled:opacity-60"
               >
                 {creating && (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />

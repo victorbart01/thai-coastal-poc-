@@ -5,10 +5,10 @@ import type { Badge, BadgeRarity } from "@/lib/types";
 import { useTranslation } from "@/lib/i18n";
 
 const RARITY_COLORS: Record<BadgeRarity, string> = {
-  common:    "border-white/10 bg-ocean-700",
-  rare:      "border-blue-400/30 bg-blue-400/10",
-  epic:      "border-purple-400/30 bg-purple-400/10",
-  legendary: "border-yellow-400/30 bg-yellow-400/10",
+  common:    "border-black/10 bg-black/[0.06] backdrop-blur-sm",
+  rare:      "border-blue-400/30 bg-black/[0.06] backdrop-blur-sm",
+  epic:      "border-purple-400/30 bg-black/[0.06] backdrop-blur-sm",
+  legendary: "border-yellow-400/30 bg-black/[0.06] backdrop-blur-sm",
 };
 
 const RARITY_TEXT: Record<BadgeRarity, string> = {
@@ -28,10 +28,10 @@ export function BadgeCard({ badge, earned }: BadgeCardProps) {
 
   return (
     <div
-      className={`relative flex flex-col items-center gap-1.5 rounded-lg border p-3 transition-all duration-200 ${
+      className={`relative flex flex-col items-center gap-1.5 rounded-2xl border p-3 transition-all duration-200 ${
         earned
           ? RARITY_COLORS[badge.rarity]
-          : "border-white/[0.04] bg-ocean-900/50 opacity-50 grayscale"
+          : "border-black/[0.04] bg-black/[0.03] opacity-50 grayscale"
       }`}
     >
       {/* Lock overlay for unearned */}

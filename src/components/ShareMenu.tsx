@@ -46,11 +46,11 @@ export function ShareMenu({ spotId, onClose }: ShareMenuProps) {
   return (
     <div
       ref={ref}
-      className="absolute bottom-full right-0 z-50 mb-2 w-44 rounded-lg border border-white/[0.08] bg-ocean-700 py-1 shadow-xl"
+      className="glass-card absolute bottom-full right-0 z-50 mb-2 w-44 rounded-2xl py-1 shadow-xl"
     >
       <button
         onClick={handleCopy}
-        className="flex w-full items-center gap-2.5 px-3 py-2 text-left text-xs text-text-secondary transition-colors hover:bg-ocean-600 hover:text-text-primary"
+        className="flex w-full items-center gap-2.5 px-3 py-2 text-left text-xs text-text-secondary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
       >
         {copied ? (
           <Check className="h-3.5 w-3.5 text-emerald-400" />
@@ -61,7 +61,7 @@ export function ShareMenu({ spotId, onClose }: ShareMenuProps) {
       </button>
       <button
         onClick={handleLine}
-        className="flex w-full items-center gap-2.5 px-3 py-2 text-left text-xs text-text-secondary transition-colors hover:bg-ocean-600 hover:text-text-primary"
+        className="flex w-full items-center gap-2.5 px-3 py-2 text-left text-xs text-text-secondary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
       >
         <MessageCircle className="h-3.5 w-3.5" />
         {t("social.shareToLine")}

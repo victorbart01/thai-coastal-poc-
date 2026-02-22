@@ -29,7 +29,7 @@ export function StepPhotos() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <Camera className="h-4 w-4 text-pink-400" />
+        <Camera className="h-4 w-4 text-accent-pink" />
         <h3 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
           {t("spotForm.stepPhotos")}
         </h3>
@@ -62,7 +62,7 @@ export function StepPhotos() {
         {draftSpot.photos.length < 5 && (
           <button
             onClick={() => fileRef.current?.click()}
-            className="flex aspect-square items-center justify-center rounded-lg border-2 border-dashed border-ocean-500 text-text-tertiary transition-colors hover:border-pink-400 hover:text-pink-400"
+            className="flex aspect-square items-center justify-center rounded-lg border-2 border-dashed border-black/[0.12] text-text-tertiary transition-colors hover:border-accent-pink hover:text-accent-pink"
           >
             <Plus className="h-5 w-5" />
           </button>

@@ -17,10 +17,10 @@ export function MethodologyPanel() {
   const { t } = useTranslation();
 
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-ocean-700 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
+    <div className="glass-card rounded-2xl">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between p-4 text-left transition-colors duration-150 hover:bg-ocean-600/30"
+        className="flex w-full items-center justify-between p-4 text-left transition-colors duration-150 hover:bg-black/[0.06]"
       >
         <div className="flex items-center gap-2">
           <FlaskConical className="h-3.5 w-3.5 text-text-tertiary" />
@@ -36,9 +36,9 @@ export function MethodologyPanel() {
       </button>
 
       {isOpen && (
-        <div className="border-t border-white/[0.06] px-4 pb-4 pt-3">
+        <div className="border-t border-black/[0.06] px-4 pb-4 pt-3">
           {/* Formula */}
-          <div className="rounded-md border border-glass-deep/10 bg-ocean-900/60 p-3">
+          <div className="rounded-md border border-glass-deep/10 bg-black/[0.03] p-3">
             <p className="font-[family-name:var(--font-display)] text-[11px] leading-relaxed text-glass">
               Score = 0.25 × hist + 0.25 × morpho + 0.20 × river + 0.15 ×
               ocean + 0.15 × pop
@@ -65,7 +65,7 @@ export function MethodologyPanel() {
           </div>
 
           {/* Sources */}
-          <div className="mt-4 border-t border-white/[0.06] pt-3">
+          <div className="mt-4 border-t border-black/[0.06] pt-3">
             <p className="text-[10px] uppercase tracking-wider text-text-tertiary">
               {t("methodology.dataSources")}
             </p>

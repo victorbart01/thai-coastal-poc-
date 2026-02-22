@@ -16,7 +16,7 @@ interface StatCardProps {
 
 function StatCard({ label, value, accent }: StatCardProps) {
   return (
-    <div className="group rounded-lg border border-white/[0.06] bg-ocean-700 p-3 shadow-[0_2px_8px_rgba(0,0,0,0.2)] transition-all duration-200 hover:border-glass/20 hover:shadow-[0_2px_12px_rgba(6,182,212,0.08)]">
+    <div className="group glass-card rounded-2xl p-3 transition-all duration-200 hover:border-glass/20">
       <p className="text-[10px] uppercase tracking-wider text-text-tertiary transition-colors duration-200 group-hover:text-text-secondary">
         {label}
       </p>

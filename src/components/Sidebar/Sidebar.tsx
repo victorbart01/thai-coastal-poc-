@@ -28,7 +28,7 @@ const STAGGER_MS = 80;
 
 export function Sidebar({ zones, protectedAreas, spots }: SidebarProps) {
   return (
-    <aside className="sidebar-scroll flex h-full flex-col gap-3 overflow-y-auto bg-ocean-900 p-3">
+    <aside className="sidebar-scroll glass-surface flex h-full flex-col gap-3 overflow-y-auto p-3">
       {PANELS.map((panel, i) => (
         <div
           key={panel}

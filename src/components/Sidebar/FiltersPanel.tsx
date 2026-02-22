@@ -19,7 +19,7 @@ function CheckboxRow({
   dotDashed,
 }: CheckboxRowProps) {
   return (
-    <label className="flex cursor-pointer items-center gap-2.5 rounded-md px-1 py-1.5 transition-colors duration-150 hover:bg-ocean-600/30">
+    <label className="flex cursor-pointer items-center gap-2.5 rounded-md px-1 py-1.5 transition-colors duration-150 hover:bg-black/[0.06]">
       <input
         type="checkbox"
         checked={checked}
@@ -50,7 +50,7 @@ export function FiltersPanel() {
   const { t } = useTranslation();
 
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-ocean-700 p-4 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
+    <div className="glass-card rounded-2xl p-4">
       <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
         {t("filters.title")}
       </h3>
@@ -98,7 +98,7 @@ export function FiltersPanel() {
       </div>
 
       {/* Separator */}
-      <div className="my-3 border-t border-white/[0.06]" />
+      <div className="my-3 border-t border-black/[0.06]" />
 
       {/* Range slider */}
       <div>
@@ -116,7 +116,7 @@ export function FiltersPanel() {
           max={100}
           value={filters.minScore * 100}
           onChange={(e) => setFilter("minScore", Number(e.target.value) / 100)}
-          className="score-slider mt-2 h-1.5 w-full cursor-pointer appearance-none rounded-full bg-ocean-600"
+          className="score-slider mt-2 h-1.5 w-full cursor-pointer appearance-none rounded-full bg-black/[0.06]"
         />
         <div className="mt-1 flex justify-between">
           <span className="font-[family-name:var(--font-display)] text-[9px] text-text-tertiary">

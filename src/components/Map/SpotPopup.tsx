@@ -62,7 +62,7 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
       maxWidth="300px"
       offset={16}
     >
-      <div className="min-w-[260px] rounded-xl border-l-[3px] border-l-pink-400">
+      <div className="min-w-[260px] overflow-hidden rounded-2xl">
         {/* Photo carousel */}
         {spot.photos.length > 0 && (
           <div className="group relative overflow-hidden rounded-t-xl">
@@ -74,7 +74,7 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
               className="h-40 w-full object-cover"
               unoptimized
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ocean-700/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             {/* Photo count */}
             <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
               <Camera className="h-3 w-3 text-white/80" />
@@ -130,13 +130,13 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
                 unoptimized
               />
             ) : (
-              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-pink-400/20 text-[10px] text-pink-400">
+              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-accent-pink/20 text-[10px] text-accent-pink">
                 {(spot.author.display_name ?? "?")[0]}
               </div>
             )}
             <Link
               href={`/profile/${spot.user_id}`}
-              className="text-[11px] text-text-secondary transition-colors hover:text-pink-400 hover:underline"
+              className="text-[11px] text-text-secondary transition-colors hover:text-accent-pink hover:underline"
             >
               {spot.author.display_name ?? t("spot.anonymous")}
             </Link>
@@ -152,8 +152,8 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
                 key={i}
                 className={`h-3.5 w-3.5 ${
                   i < spot.rating
-                    ? "fill-pink-400 text-pink-400"
-                    : "text-ocean-500"
+                    ? "fill-accent-pink text-accent-pink"
+                    : "text-gray-300"
                 }`}
               />
             ))}
@@ -168,7 +168,7 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
               {spot.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-pink-400/10 px-2 py-0.5 text-[10px] text-pink-400"
+                  className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-[10px] text-accent-pink"
                 >
                   {t(`tag.${tag}`)}
                 </span>
@@ -184,23 +184,23 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
           )}
 
           {/* Social action bar */}
-          <div className="mt-3 flex items-center gap-1 border-t border-white/[0.06] pt-3">
+          <div className="mt-3 flex items-center gap-1 border-t border-black/[0.06] pt-3">
             {/* Like */}
             <button
               onClick={() => user && toggleLike(spot.id, user.id)}
               disabled={!user || likingToggling}
               title={user ? (isLiked ? t("social.unlike") : t("social.like")) : t("social.signInToLike")}
-              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] transition-colors hover:bg-ocean-600 disabled:opacity-50"
+              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] transition-colors hover:bg-black/[0.06] disabled:opacity-50"
             >
               <Heart
                 className={`h-3.5 w-3.5 transition-colors ${
                   isLiked
-                    ? "fill-pink-400 text-pink-400"
+                    ? "fill-accent-pink text-accent-pink"
                     : "text-text-tertiary"
                 }`}
               />
               {likeCount > 0 && (
-                <span className={isLiked ? "text-pink-400" : "text-text-tertiary"}>
+                <span className={isLiked ? "text-accent-pink" : "text-text-tertiary"}>
                   {likeCount}
                 </span>
               )}
@@ -210,7 +210,7 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
             <button
               onClick={() => openComments(spot.id)}
               title={t("social.comment")}
-              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-text-tertiary transition-colors hover:bg-ocean-600 hover:text-text-secondary"
+              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-secondary"
             >
               <MessageCircle className="h-3.5 w-3.5" />
               {(social?.comment_count ?? spot.comment_count ?? 0) > 0 && (
@@ -223,12 +223,12 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
               onClick={() => user && toggleSave(spot.id, user.id)}
               disabled={!user || savingToggling}
               title={user ? (isSaved ? t("social.unsave") : t("social.save")) : t("social.signInToSave")}
-              className="rounded-md px-2 py-1 transition-colors hover:bg-ocean-600 disabled:opacity-50"
+              className="rounded-md px-2 py-1 transition-colors hover:bg-black/[0.06] disabled:opacity-50"
             >
               <Bookmark
                 className={`h-3.5 w-3.5 transition-colors ${
                   isSaved
-                    ? "fill-pink-400 text-pink-400"
+                    ? "fill-accent-pink text-accent-pink"
                     : "text-text-tertiary"
                 }`}
               />
@@ -239,7 +239,7 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
               <button
                 onClick={() => setShowShare(!showShare)}
                 title={t("social.share")}
-                className="rounded-md px-2 py-1 text-text-tertiary transition-colors hover:bg-ocean-600 hover:text-text-secondary"
+                className="rounded-md px-2 py-1 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-secondary"
               >
                 <Share2 className="h-3.5 w-3.5" />
               </button>

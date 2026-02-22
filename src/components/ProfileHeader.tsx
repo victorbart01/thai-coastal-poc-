@@ -37,10 +37,10 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats }:
             src={avatarUrl}
             alt={displayName}
             referrerPolicy="no-referrer"
-            className="h-16 w-16 shrink-0 rounded-full border-2 border-white/10"
+            className="h-16 w-16 shrink-0 rounded-full border-2 border-black/10"
           />
         ) : (
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-white/10 bg-pink-400/20 text-xl font-bold text-pink-400">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-black/10 bg-pink-400/20 text-xl font-bold text-pink-400">
             {displayName[0]?.toUpperCase()}
           </div>
         )}
@@ -60,7 +60,7 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats }:
         {/* Share button */}
         <button
           onClick={handleShare}
-          className="flex shrink-0 items-center gap-1.5 rounded-lg border border-white/[0.08] bg-ocean-800 px-3 py-1.5 text-[11px] text-text-secondary transition-colors hover:bg-ocean-700 hover:text-text-primary"
+          className="flex shrink-0 items-center gap-1.5 rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-1.5 text-[11px] text-text-secondary transition-colors hover:bg-black/[0.08] hover:text-text-primary"
         >
           {copied ? (
             <>
@@ -87,7 +87,7 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats }:
           ].map(({ label, value }) => (
             <div
               key={label}
-              className="rounded-lg border border-white/[0.06] bg-ocean-700 px-3 py-2.5 text-center"
+              className="glass-card rounded-2xl px-3 py-2.5 text-center"
             >
               <p className="font-[family-name:var(--font-display)] text-lg font-bold text-text-primary">
                 {value}

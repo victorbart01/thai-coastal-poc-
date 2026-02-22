@@ -30,7 +30,7 @@ export function AuthButton() {
 
   if (loading) {
     return (
-      <div className="h-7 w-16 animate-pulse rounded-full bg-white/[0.06]" />
+      <div className="h-7 w-16 animate-pulse rounded-full bg-black/[0.04]" />
     );
   }
 
@@ -46,7 +46,7 @@ export function AuthButton() {
             },
           });
         }}
-        className="rounded-full border border-white/[0.08] bg-ocean-800 px-3 py-1 font-[family-name:var(--font-display)] text-[11px] font-semibold tracking-wide text-text-secondary transition-all duration-200 hover:bg-ocean-700 hover:text-text-primary"
+        className="rounded-full border border-black/[0.08] bg-black/[0.04] px-3 py-1 font-[family-name:var(--font-display)] text-[11px] font-semibold tracking-wide text-text-secondary transition-all duration-200 hover:bg-black/[0.08] hover:text-text-primary"
       >
         {t("auth.signIn")}
       </button>
@@ -62,7 +62,7 @@ export function AuthButton() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-white/[0.08] transition-all duration-200 hover:border-glass-deep/40"
+        className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-black/[0.08] transition-all duration-200 hover:border-glass-deep/40"
       >
         {avatarUrl ? (
           <img
@@ -79,8 +79,8 @@ export function AuthButton() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-lg border border-white/[0.08] bg-ocean-800 shadow-xl">
-          <div className="border-b border-white/[0.06] px-4 py-3">
+        <div className="glass-card absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-2xl shadow-xl">
+          <div className="border-b border-black/[0.06] px-4 py-3">
             <p className="truncate text-sm font-medium text-text-primary">
               {displayName}
             </p>
@@ -91,7 +91,7 @@ export function AuthButton() {
           <Link
             href={`/profile/${user.id}`}
             onClick={() => setOpen(false)}
-            className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-text-secondary transition-colors duration-150 hover:bg-white/[0.04] hover:text-text-primary"
+            className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-text-secondary transition-colors duration-150 hover:bg-black/[0.04] hover:text-text-primary"
           >
             <User className="h-3.5 w-3.5" />
             {t("profile.title")}
@@ -102,7 +102,7 @@ export function AuthButton() {
               await supabase.auth.signOut();
               setOpen(false);
             }}
-            className="w-full px-4 py-2.5 text-left text-sm text-text-secondary transition-colors duration-150 hover:bg-white/[0.04] hover:text-text-primary"
+            className="w-full px-4 py-2.5 text-left text-sm text-text-secondary transition-colors duration-150 hover:bg-black/[0.04] hover:text-text-primary"
           >
             {t("auth.signOut")}
           </button>

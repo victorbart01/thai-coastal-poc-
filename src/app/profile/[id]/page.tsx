@@ -35,7 +35,7 @@ export default function ProfilePage() {
   if (loading || !profile) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-ocean-950">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-glass-deep to-glass-bright shadow-[0_0_24px_rgba(6,182,212,0.3)]">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-glass-deep to-glass-bright shadow-[0_4px_16px_rgba(6,182,212,0.2)]">
           <span className="animate-spin-slow text-xl">🌊</span>
         </div>
       </div>
@@ -45,10 +45,10 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-ocean-950">
       {/* Top bar */}
-      <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-white/[0.06] bg-ocean-950/80 px-4 py-3 backdrop-blur-md">
+      <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-black/[0.06] bg-ocean-950/80 px-4 py-3 backdrop-blur-md">
         <Link
           href="/"
-          className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs text-text-secondary transition-colors hover:bg-ocean-800 hover:text-text-primary"
+          className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs text-text-secondary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
         >
           <ArrowLeft className="h-4 w-4" />
           {t("profile.backToMap")}
@@ -100,7 +100,7 @@ export default function ProfilePage() {
                   <Link
                     key={spot.id}
                     href={`/?spot=${spot.id}`}
-                    className="group overflow-hidden rounded-lg border border-white/[0.06] bg-ocean-800 transition-all duration-200 hover:border-white/10 hover:shadow-lg"
+                    className="glass-card group overflow-hidden rounded-2xl transition-all duration-200 hover:bg-black/[0.10] hover:shadow-lg"
                   >
                     {/* Thumbnail */}
                     {thumbnail && (
@@ -112,7 +112,7 @@ export default function ProfilePage() {
                           className="object-cover transition-transform duration-300 group-hover:scale-105"
                           unoptimized
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-ocean-800/60 via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                       </div>
                     )}
 
@@ -128,8 +128,8 @@ export default function ProfilePage() {
                               key={i}
                               className={`h-3 w-3 ${
                                 i < spot.rating
-                                  ? "fill-pink-400 text-pink-400"
-                                  : "text-ocean-500"
+                                  ? "fill-accent-pink text-accent-pink"
+                                  : "text-gray-300"
                               }`}
                             />
                           ))}

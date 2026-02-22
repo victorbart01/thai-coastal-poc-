@@ -14,7 +14,7 @@ export function LegendPanel() {
   ];
 
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-ocean-700 p-4 shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
+    <div className="glass-card rounded-2xl p-4">
       <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
         {t("legend.title")}
       </h3>
@@ -24,7 +24,7 @@ export function LegendPanel() {
         {SCORE_LEVELS.map((level) => (
           <div key={level.labelKey} className="flex items-center gap-2.5">
             <span
-              className="h-2.5 w-2.5 shrink-0 rounded-full shadow-[0_0_6px_rgba(0,0,0,0.2)]"
+              className="h-2.5 w-2.5 shrink-0 rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.15)]"
               style={{ backgroundColor: level.color }}
             />
             <span className="text-xs text-text-body">{t(level.labelKey)}</span>
@@ -36,7 +36,7 @@ export function LegendPanel() {
       </div>
 
       {/* Separator */}
-      <div className="my-3 border-t border-white/[0.06]" />
+      <div className="my-3 border-t border-black/[0.06]" />
 
       {/* Symbols */}
       <div className="space-y-2">
@@ -60,7 +60,7 @@ export function LegendPanel() {
         </div>
         <div className="flex items-center gap-2.5">
           <span
-            className="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-white/50 shadow-[0_0_6px_rgba(0,0,0,0.2)]"
+            className="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-black/10 shadow-[0_1px_3px_rgba(0,0,0,0.15)]"
             style={{ backgroundColor: "#f472b6" }}
           />
           <span className="text-xs text-text-body">{t("legend.communitySpot")}</span>
