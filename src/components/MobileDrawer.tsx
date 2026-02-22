@@ -2,22 +2,24 @@
 
 import { useState, useRef, useCallback } from "react";
 import { ChevronUp } from "lucide-react";
-import type { SeaGlassZone, ProtectedArea } from "@/lib/types";
+import type { SeaGlassZone, ProtectedArea, Spot } from "@/lib/types";
 import { StatsPanel } from "./Sidebar/StatsPanel";
 import { LegendPanel } from "./Sidebar/LegendPanel";
 import { FiltersPanel } from "./Sidebar/FiltersPanel";
 import { TopSpotsPanel } from "./Sidebar/TopSpotsPanel";
+import { RecentFindsPanel } from "./Sidebar/RecentFindsPanel";
 import { MethodologyPanel } from "./Sidebar/MethodologyPanel";
 
 interface MobileDrawerProps {
   zones: SeaGlassZone[];
   protectedAreas: ProtectedArea[];
+  spots: Spot[];
 }
 
 const COLLAPSED_HEIGHT = 30;
 const EXPANDED_HEIGHT = 80;
 
-export function MobileDrawer({ zones, protectedAreas }: MobileDrawerProps) {
+export function MobileDrawer({ zones, protectedAreas, spots }: MobileDrawerProps) {
   const [sheetHeight, setSheetHeight] = useState(COLLAPSED_HEIGHT);
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef<{ startY: number; startHeight: number } | null>(null);
@@ -91,6 +93,7 @@ export function MobileDrawer({ zones, protectedAreas }: MobileDrawerProps) {
         <LegendPanel />
         <FiltersPanel />
         <TopSpotsPanel zones={zones} />
+        <RecentFindsPanel spots={spots} />
         <MethodologyPanel />
       </div>
     </div>

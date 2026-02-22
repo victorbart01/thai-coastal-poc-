@@ -49,6 +49,23 @@ export function useSpots() {
       profileMap.set(p.id, p);
     }
 
+    // 2.5 Fetch likes and comments counts per spot
+    const spotIds = data.map((r) => r.id);
+    const [likesRes, commentsRes] = await Promise.all([
+      supabase.from("likes").select("spot_id").in("spot_id", spotIds),
+      supabase.from("comments").select("spot_id").in("spot_id", spotIds),
+    ]);
+
+    const likeCountMap = new Map<string, number>();
+    for (const l of likesRes.data ?? []) {
+      likeCountMap.set(l.spot_id, (likeCountMap.get(l.spot_id) ?? 0) + 1);
+    }
+
+    const commentCountMap = new Map<string, number>();
+    for (const c of commentsRes.data ?? []) {
+      commentCountMap.set(c.spot_id, (commentCountMap.get(c.spot_id) ?? 0) + 1);
+    }
+
     // 3. Merge
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 
@@ -90,6 +107,8 @@ export function useSpots() {
         updated_at: row.updated_at,
         photos,
         author,
+        like_count: likeCountMap.get(row.id) ?? 0,
+        comment_count: commentCountMap.get(row.id) ?? 0,
       };
     });
 

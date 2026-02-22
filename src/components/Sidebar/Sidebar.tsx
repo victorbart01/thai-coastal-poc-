@@ -1,15 +1,17 @@
 "use client";
 
-import type { SeaGlassZone, ProtectedArea } from "@/lib/types";
+import type { SeaGlassZone, ProtectedArea, Spot } from "@/lib/types";
 import { StatsPanel } from "./StatsPanel";
 import { LegendPanel } from "./LegendPanel";
 import { FiltersPanel } from "./FiltersPanel";
 import { TopSpotsPanel } from "./TopSpotsPanel";
+import { RecentFindsPanel } from "./RecentFindsPanel";
 import { MethodologyPanel } from "./MethodologyPanel";
 
 interface SidebarProps {
   zones: SeaGlassZone[];
   protectedAreas: ProtectedArea[];
+  spots: Spot[];
 }
 
 const PANELS = [
@@ -17,11 +19,12 @@ const PANELS = [
   "legend",
   "filters",
   "topspots",
+  "recentfinds",
   "methodology",
 ] as const;
 const STAGGER_MS = 80;
 
-export function Sidebar({ zones, protectedAreas }: SidebarProps) {
+export function Sidebar({ zones, protectedAreas, spots }: SidebarProps) {
   return (
     <aside className="sidebar-scroll flex h-full flex-col gap-3 overflow-y-auto bg-ocean-900 p-3">
       {PANELS.map((panel, i) => (
@@ -36,6 +39,7 @@ export function Sidebar({ zones, protectedAreas }: SidebarProps) {
           {panel === "legend" && <LegendPanel />}
           {panel === "filters" && <FiltersPanel />}
           {panel === "topspots" && <TopSpotsPanel zones={zones} />}
+          {panel === "recentfinds" && <RecentFindsPanel spots={spots} />}
           {panel === "methodology" && <MethodologyPanel />}
         </div>
       ))}

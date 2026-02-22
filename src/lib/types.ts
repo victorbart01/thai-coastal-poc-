@@ -98,6 +98,29 @@ export interface Spot {
   updated_at: string;
   photos: SpotPhoto[];
   author: SpotAuthor;
+  like_count?: number;
+  comment_count?: number;
+  is_liked?: boolean;
+  is_saved?: boolean;
+}
+
+export interface Comment {
+  id: string;
+  spot_id: string;
+  user_id: string;
+  parent_id: string | null;
+  content: string;
+  created_at: string;
+  updated_at: string;
+  author: SpotAuthor;
+  replies?: Comment[];
+}
+
+export interface SpotSocialCounts {
+  like_count: number;
+  comment_count: number;
+  is_liked: boolean;
+  is_saved: boolean;
 }
 
 export interface DraftSpot {

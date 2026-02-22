@@ -149,6 +149,20 @@ body {
   animation: fade-in 0.2s ease-out forwards;
 }
 
+/* Panel enter from right (comments panel) */
+@keyframes panel-enter-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-panel-enter-right {
+  animation: panel-enter-right 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 /* Loading spinner */
 @keyframes spin-slow {
   to { transform: rotate(360deg); }

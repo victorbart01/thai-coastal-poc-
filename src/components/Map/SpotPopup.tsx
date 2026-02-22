@@ -1,36 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Popup } from "react-map-gl";
-import { ChevronLeft, ChevronRight, Camera, Star } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Camera,
+  Star,
+  Heart,
+  MessageCircle,
+  Bookmark,
+  Share2,
+} from "lucide-react";
 import type { Spot } from "@/lib/types";
 import { useTranslation } from "@/lib/i18n";
+import { timeAgo } from "@/lib/timeAgo";
+import { useLikes } from "@/lib/useLikes";
+import { useSaves } from "@/lib/useSaves";
+import { useSpotSocial } from "@/lib/useSpotSocial";
+import { useUser } from "@/lib/useUser";
+import { useMapStore } from "@/store/useMapStore";
+import { ShareMenu } from "@/components/ShareMenu";
 
 interface SpotPopupProps {
   spot: Spot;
   onClose: () => void;
 }
 
-function timeAgo(dateStr: string, locale: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const minutes = Math.floor(diff / 60000);
-  if (minutes < 1) return locale === "th" ? "เมื่อสักครู่" : "just now";
-  if (minutes < 60)
-    return locale === "th" ? `${minutes} นาทีที่แล้ว` : `${minutes}m ago`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24)
-    return locale === "th" ? `${hours} ชั่วโมงที่แล้ว` : `${hours}h ago`;
-  const days = Math.floor(hours / 24);
-  if (days < 30)
-    return locale === "th" ? `${days} วันที่แล้ว` : `${days}d ago`;
-  const months = Math.floor(days / 30);
-  return locale === "th" ? `${months} เดือนที่แล้ว` : `${months}mo ago`;
-}
-
 export function SpotPopup({ spot, onClose }: SpotPopupProps) {
   const { t, locale } = useTranslation();
+  const { user } = useUser();
+  const openComments = useMapStore((s) => s.openComments);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [showShare, setShowShare] = useState(false);
+
+  const { social, fetchSocial } = useSpotSocial();
+  const { likeCount, isLiked, toggling: likingToggling, setInitial: setLikeInitial, toggleLike } = useLikes();
+  const { isSaved, toggling: savingToggling, setInitial: setSaveInitial, toggleSave } = useSaves();
+
+  // Fetch social counts when popup opens
+  useEffect(() => {
+    fetchSocial(spot.id, user?.id);
+  }, [spot.id, user?.id, fetchSocial]);
+
+  // Sync local state when social data arrives
+  useEffect(() => {
+    if (social) {
+      setLikeInitial(social.like_count, social.is_liked);
+      setSaveInitial(social.is_saved);
+    }
+  }, [social, setLikeInitial, setSaveInitial]);
 
   return (
     <Popup
@@ -158,6 +178,75 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
               {spot.description}
             </p>
           )}
+
+          {/* Social action bar */}
+          <div className="mt-3 flex items-center gap-1 border-t border-white/[0.06] pt-3">
+            {/* Like */}
+            <button
+              onClick={() => user && toggleLike(spot.id, user.id)}
+              disabled={!user || likingToggling}
+              title={user ? (isLiked ? t("social.unlike") : t("social.like")) : t("social.signInToLike")}
+              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] transition-colors hover:bg-ocean-600 disabled:opacity-50"
+            >
+              <Heart
+                className={`h-3.5 w-3.5 transition-colors ${
+                  isLiked
+                    ? "fill-pink-400 text-pink-400"
+                    : "text-text-tertiary"
+                }`}
+              />
+              {likeCount > 0 && (
+                <span className={isLiked ? "text-pink-400" : "text-text-tertiary"}>
+                  {likeCount}
+                </span>
+              )}
+            </button>
+
+            {/* Comments */}
+            <button
+              onClick={() => openComments(spot.id)}
+              title={t("social.comment")}
+              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-text-tertiary transition-colors hover:bg-ocean-600 hover:text-text-secondary"
+            >
+              <MessageCircle className="h-3.5 w-3.5" />
+              {(social?.comment_count ?? spot.comment_count ?? 0) > 0 && (
+                <span>{social?.comment_count ?? spot.comment_count ?? 0}</span>
+              )}
+            </button>
+
+            {/* Save */}
+            <button
+              onClick={() => user && toggleSave(spot.id, user.id)}
+              disabled={!user || savingToggling}
+              title={user ? (isSaved ? t("social.unsave") : t("social.save")) : t("social.signInToSave")}
+              className="rounded-md px-2 py-1 transition-colors hover:bg-ocean-600 disabled:opacity-50"
+            >
+              <Bookmark
+                className={`h-3.5 w-3.5 transition-colors ${
+                  isSaved
+                    ? "fill-pink-400 text-pink-400"
+                    : "text-text-tertiary"
+                }`}
+              />
+            </button>
+
+            {/* Share */}
+            <div className="relative ml-auto">
+              <button
+                onClick={() => setShowShare(!showShare)}
+                title={t("social.share")}
+                className="rounded-md px-2 py-1 text-text-tertiary transition-colors hover:bg-ocean-600 hover:text-text-secondary"
+              >
+                <Share2 className="h-3.5 w-3.5" />
+              </button>
+              {showShare && (
+                <ShareMenu
+                  spotId={spot.id}
+                  onClose={() => setShowShare(false)}
+                />
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </Popup>

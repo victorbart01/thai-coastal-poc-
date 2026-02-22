@@ -158,6 +158,30 @@ const translations: Record<Locale, Record<string, string>> = {
     // Legend — community spot
     "legend.communitySpot": "Community spot",
     "legend.userSubmitted": "User-submitted",
+
+    // Social — likes, comments, saves
+    "social.like": "Like",
+    "social.unlike": "Unlike",
+    "social.comment": "Comment",
+    "social.comments": "Comments",
+    "social.save": "Save",
+    "social.unsave": "Unsave",
+    "social.share": "Share",
+    "social.copyLink": "Copy link",
+    "social.shareToLine": "Share to LINE",
+    "social.copied": "Copied!",
+    "social.signInToComment": "Sign in to comment",
+    "social.signInToLike": "Sign in to like",
+    "social.signInToSave": "Sign in to save",
+    "social.noComments": "No comments yet",
+    "social.addComment": "Add a comment...",
+    "social.reply": "Reply",
+    "social.delete": "Delete",
+    "social.deleteConfirm": "Delete this comment?",
+
+    // Recent finds
+    "recentFinds.title": "Recent finds",
+    "recentFinds.empty": "No spots yet",
   },
   th: {
     // Header
@@ -314,6 +338,30 @@ const translations: Record<Locale, Record<string, string>> = {
     // Legend — community spot
     "legend.communitySpot": "จุดจากชุมชน",
     "legend.userSubmitted": "ผู้ใช้แชร์",
+
+    // Social — likes, comments, saves
+    "social.like": "ถูกใจ",
+    "social.unlike": "เลิกถูกใจ",
+    "social.comment": "แสดงความคิดเห็น",
+    "social.comments": "ความคิดเห็น",
+    "social.save": "บันทึก",
+    "social.unsave": "เลิกบันทึก",
+    "social.share": "แชร์",
+    "social.copyLink": "คัดลอกลิงก์",
+    "social.shareToLine": "แชร์ไปยัง LINE",
+    "social.copied": "คัดลอกแล้ว!",
+    "social.signInToComment": "เข้าสู่ระบบเพื่อแสดงความคิดเห็น",
+    "social.signInToLike": "เข้าสู่ระบบเพื่อถูกใจ",
+    "social.signInToSave": "เข้าสู่ระบบเพื่อบันทึก",
+    "social.noComments": "ยังไม่มีความคิดเห็น",
+    "social.addComment": "เพิ่มความคิดเห็น...",
+    "social.reply": "ตอบกลับ",
+    "social.delete": "ลบ",
+    "social.deleteConfirm": "ลบความคิดเห็นนี้?",
+
+    // Recent finds
+    "recentFinds.title": "พบล่าสุด",
+    "recentFinds.empty": "ยังไม่มีจุด",
   },
 };
 

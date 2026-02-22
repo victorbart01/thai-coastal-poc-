@@ -66,6 +66,12 @@ interface MapState {
   setSpotFormStep: (step: number) => void;
   updateDraftSpot: (patch: Partial<DraftSpot>) => void;
   resetDraftSpot: () => void;
+
+  // Comments panel
+  showCommentsPanel: boolean;
+  commentingSpotId: string | null;
+  openComments: (spotId: string) => void;
+  closeComments: () => void;
 }
 
 export const useMapStore = create<MapState>((set) => ({
@@ -135,4 +141,12 @@ export const useMapStore = create<MapState>((set) => ({
       draftSpot: { ...state.draftSpot, ...patch },
     })),
   resetDraftSpot: () => set({ draftSpot: { ...INITIAL_DRAFT } }),
+
+  // Comments panel
+  showCommentsPanel: false,
+  commentingSpotId: null,
+  openComments: (spotId) =>
+    set({ showCommentsPanel: true, commentingSpotId: spotId }),
+  closeComments: () =>
+    set({ showCommentsPanel: false, commentingSpotId: null }),
 }));
