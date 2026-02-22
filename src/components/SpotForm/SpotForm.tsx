@@ -68,6 +68,23 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
     }
   };
 
+  // Step 1: show a small floating banner so the map stays interactive
+  if (spotFormStep === 1) {
+    return (
+      <div className="fixed left-1/2 top-16 z-30 -translate-x-1/2 animate-slide-in">
+        <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-ocean-800/95 px-4 py-3 shadow-2xl backdrop-blur-sm">
+          <StepLocation />
+          <button
+            onClick={closeSpotForm}
+            className="shrink-0 rounded-full p-1 text-text-tertiary transition-colors hover:bg-ocean-600 hover:text-text-primary"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       {/* Backdrop */}
@@ -116,7 +133,6 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
 
           {/* Step content */}
           <div className="max-h-[50vh] overflow-y-auto px-4 py-4 md:max-h-[55vh]">
-            {spotFormStep === 1 && <StepLocation />}
             {spotFormStep === 2 && <StepPhotos />}
             {spotFormStep === 3 && <StepDetails />}
             {spotFormStep === 4 && <StepPreview />}
@@ -133,8 +149,7 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
           <div className="flex items-center justify-between border-t border-white/[0.06] px-4 py-3">
             <button
               onClick={handleBack}
-              disabled={spotFormStep === 1}
-              className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs text-text-secondary transition-colors hover:bg-ocean-600 disabled:opacity-30 disabled:hover:bg-transparent"
+              className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs text-text-secondary transition-colors hover:bg-ocean-600"
             >
               <ChevronLeft className="h-3.5 w-3.5" />
               {t("spotForm.back")}
