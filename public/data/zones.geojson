@@ -1,0 +1,419 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.58, 13.52] },
+      "properties": {
+        "id": "zone-01",
+        "name": "Embouchure Chao Phraya (Samut Prakan)",
+        "score": 0.83,
+        "historical": 0.95,
+        "morphology": 0.55,
+        "river": 1.00,
+        "ocean": 0.75,
+        "population": 0.95,
+        "category": "river_delta",
+        "classification": "very_high",
+        "notes": "Source #1 : 10M+ habitants en amont, décharges historiques massives, ancien port industriel",
+        "region": "upper_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.92, 13.30] },
+      "properties": {
+        "id": "zone-02",
+        "name": "Bang Saen / Ang Sila",
+        "score": 0.7475,
+        "historical": 0.85,
+        "morphology": 0.70,
+        "river": 0.60,
+        "ocean": 0.70,
+        "population": 0.90,
+        "category": "urban_coast",
+        "classification": "high",
+        "notes": "Ancienne station balnéaire (1950s+), côte rocheuse, ancien village de pêcheurs avec déchets côtiers historiques",
+        "region": "upper_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.93, 13.17] },
+      "properties": {
+        "id": "zone-03",
+        "name": "Si Racha / Laem Chabang",
+        "score": 0.7475,
+        "historical": 0.95,
+        "morphology": 0.65,
+        "river": 0.50,
+        "ocean": 0.75,
+        "population": 0.90,
+        "category": "industrial",
+        "classification": "high",
+        "notes": "Zone portuaire majeure depuis 1980s, industries lourdes, plages rocheuses avec accumulation de débris",
+        "region": "upper_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.87, 12.90] },
+      "properties": {
+        "id": "zone-04",
+        "name": "Pattaya Sud / Jomtien",
+        "score": 0.645,
+        "historical": 0.80,
+        "morphology": 0.50,
+        "river": 0.40,
+        "ocean": 0.65,
+        "population": 0.95,
+        "category": "urban_coast",
+        "classification": "high",
+        "notes": "Tourisme de masse depuis 1960s, forte densité historique de déchets, plages mixtes sable/roche",
+        "region": "upper_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.78, 12.92] },
+      "properties": {
+        "id": "zone-05",
+        "name": "Koh Larn (face Pattaya)",
+        "score": 0.6275,
+        "historical": 0.60,
+        "morphology": 0.80,
+        "river": 0.30,
+        "ocean": 0.80,
+        "population": 0.65,
+        "category": "island",
+        "classification": "high",
+        "notes": "Île touristique, criques rocheuses abritées, collecte de débris marins par les courants du golfe",
+        "region": "upper_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [101.17, 12.67] },
+      "properties": {
+        "id": "zone-06",
+        "name": "Rayong — Map Ta Phut",
+        "score": 0.775,
+        "historical": 1.00,
+        "morphology": 0.70,
+        "river": 0.55,
+        "ocean": 0.80,
+        "population": 0.80,
+        "category": "industrial",
+        "classification": "very_high",
+        "notes": "Plus grande zone pétrochimique d'Asie du Sud-Est, plages rocheuses adjacentes, décharges industrielles historiques",
+        "region": "eastern_seaboard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [101.44, 12.57] },
+      "properties": {
+        "id": "zone-07",
+        "name": "Koh Samet (côte ouest)",
+        "score": 0.5175,
+        "historical": 0.40,
+        "morphology": 0.75,
+        "river": 0.25,
+        "ocean": 0.70,
+        "population": 0.50,
+        "category": "island",
+        "classification": "medium",
+        "notes": "Île en face de la zone industrielle de Rayong, criques rocheuses, courants transportant des débris",
+        "region": "eastern_seaboard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [102.00, 12.47] },
+      "properties": {
+        "id": "zone-08",
+        "name": "Chanthaburi — embouchure",
+        "score": 0.5825,
+        "historical": 0.55,
+        "morphology": 0.50,
+        "river": 0.85,
+        "ocean": 0.45,
+        "population": 0.55,
+        "category": "river_mouth",
+        "classification": "high",
+        "notes": "Rivière Chanthaburi : ville historique de gemmes, ancienne industrie, embouchure avec mangroves",
+        "region": "eastern_seaboard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [102.36, 12.07] },
+      "properties": {
+        "id": "zone-09",
+        "name": "Koh Chang (côte est)",
+        "score": 0.4775,
+        "historical": 0.30,
+        "morphology": 0.75,
+        "river": 0.40,
+        "ocean": 0.55,
+        "population": 0.35,
+        "category": "island",
+        "classification": "medium",
+        "notes": "Plages rocheuses côté est exposées aux courants, moins touristique, accumulation naturelle",
+        "region": "eastern_seaboard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.96, 12.54] },
+      "properties": {
+        "id": "zone-10",
+        "name": "Hua Hin — Khao Takiab",
+        "score": 0.515,
+        "historical": 0.55,
+        "morphology": 0.65,
+        "river": 0.25,
+        "ocean": 0.50,
+        "population": 0.60,
+        "category": "urban_coast",
+        "classification": "medium",
+        "notes": "Station balnéaire royale depuis 1920s, cap rocheux de Khao Takiab, vieille ville",
+        "region": "central_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.20, 10.47] },
+      "properties": {
+        "id": "zone-11",
+        "name": "Chumphon — Pak Nam",
+        "score": 0.485,
+        "historical": 0.35,
+        "morphology": 0.55,
+        "river": 0.70,
+        "ocean": 0.40,
+        "population": 0.40,
+        "category": "river_mouth",
+        "classification": "medium",
+        "notes": "Embouchure rivière Chumphon, port de pêche historique",
+        "region": "lower_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.33, 9.15] },
+      "properties": {
+        "id": "zone-12",
+        "name": "Surat Thani — embouchure Tapi",
+        "score": 0.595,
+        "historical": 0.55,
+        "morphology": 0.45,
+        "river": 0.90,
+        "ocean": 0.50,
+        "population": 0.60,
+        "category": "river_delta",
+        "classification": "high",
+        "notes": "Rivière Tapi, ville historique, port commercial, delta large",
+        "region": "lower_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.10, 9.58] },
+      "properties": {
+        "id": "zone-13",
+        "name": "Koh Samui (côte NE)",
+        "score": 0.4875,
+        "historical": 0.40,
+        "morphology": 0.70,
+        "river": 0.20,
+        "ocean": 0.60,
+        "population": 0.55,
+        "category": "island",
+        "classification": "medium",
+        "notes": "Tourisme massif depuis 1980s, plages rocheuses au NE, débris transportés par la mousson NE",
+        "region": "lower_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.03, 9.72] },
+      "properties": {
+        "id": "zone-14",
+        "name": "Koh Phangan (côte sud)",
+        "score": 0.4225,
+        "historical": 0.30,
+        "morphology": 0.70,
+        "river": 0.15,
+        "ocean": 0.55,
+        "population": 0.40,
+        "category": "island",
+        "classification": "medium",
+        "notes": "Criques rocheuses abritées côté sud, courants du golfe",
+        "region": "lower_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.20, 8.35] },
+      "properties": {
+        "id": "zone-15",
+        "name": "Nakhon Si Thammarat — Pak Phanang",
+        "score": 0.5475,
+        "historical": 0.50,
+        "morphology": 0.45,
+        "river": 0.80,
+        "ocean": 0.50,
+        "population": 0.50,
+        "category": "river_mouth",
+        "classification": "medium",
+        "notes": "Grande rivière Pak Phanang, ancienne cité commerciale, lagune côtière",
+        "region": "lower_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.59, 7.19] },
+      "properties": {
+        "id": "zone-16",
+        "name": "Songkhla — embouchure du lac",
+        "score": 0.6925,
+        "historical": 0.70,
+        "morphology": 0.60,
+        "river": 0.90,
+        "ocean": 0.55,
+        "population": 0.70,
+        "category": "river_delta",
+        "classification": "high",
+        "notes": "Lac Songkhla → mer, ancienne ville portuaire chinoise, zone industrielle Hat Yai en amont",
+        "region": "lower_gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.60, 9.97] },
+      "properties": {
+        "id": "zone-17",
+        "name": "Ranong — embouchure Kra Buri",
+        "score": 0.465,
+        "historical": 0.35,
+        "morphology": 0.60,
+        "river": 0.65,
+        "ocean": 0.35,
+        "population": 0.30,
+        "category": "river_mouth",
+        "classification": "medium",
+        "notes": "Rivière Kra Buri (frontière Myanmar), anciennes mines d'étain",
+        "region": "andaman"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.28, 7.89] },
+      "properties": {
+        "id": "zone-18",
+        "name": "Phuket — Patong / côte ouest",
+        "score": 0.525,
+        "historical": 0.50,
+        "morphology": 0.60,
+        "river": 0.20,
+        "ocean": 0.65,
+        "population": 0.75,
+        "category": "urban_coast",
+        "classification": "medium",
+        "notes": "Tourisme massif depuis 1970s, anciennes mines d'étain, exposition mousson SW",
+        "region": "andaman"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.38, 7.87] },
+      "properties": {
+        "id": "zone-19",
+        "name": "Phuket — côte est (Saphan Hin)",
+        "score": 0.58,
+        "historical": 0.75,
+        "morphology": 0.55,
+        "river": 0.30,
+        "ocean": 0.50,
+        "population": 0.80,
+        "category": "urban_coast",
+        "classification": "high",
+        "notes": "Ancien quartier industriel/portuaire de Phuket Town, ancienne décharge de Saphan Hin",
+        "region": "andaman"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.52, 8.45] },
+      "properties": {
+        "id": "zone-20",
+        "name": "Phang Nga — côte mangrove",
+        "score": 0.345,
+        "historical": 0.20,
+        "morphology": 0.45,
+        "river": 0.50,
+        "ocean": 0.30,
+        "population": 0.25,
+        "category": "natural",
+        "classification": "medium",
+        "notes": "Zone de mangroves, faible densité historique, mais concentration par les racines",
+        "region": "andaman"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.82, 8.03] },
+      "properties": {
+        "id": "zone-21",
+        "name": "Krabi — Ao Nang",
+        "score": 0.4275,
+        "historical": 0.30,
+        "morphology": 0.65,
+        "river": 0.35,
+        "ocean": 0.40,
+        "population": 0.40,
+        "category": "urban_coast",
+        "classification": "medium",
+        "notes": "Tourisme croissant, criques calcaires avec piégeage naturel",
+        "region": "andaman"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.28, 7.40] },
+      "properties": {
+        "id": "zone-22",
+        "name": "Trang — Hat Chao Mai",
+        "score": 0.395,
+        "historical": 0.25,
+        "morphology": 0.55,
+        "river": 0.45,
+        "ocean": 0.35,
+        "population": 0.35,
+        "category": "natural",
+        "classification": "medium",
+        "notes": "Côte relativement préservée, rivière Trang, plages mixtes",
+        "region": "andaman"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.75, 6.87] },
+      "properties": {
+        "id": "zone-23",
+        "name": "Satun — Pak Bara",
+        "score": 0.3525,
+        "historical": 0.20,
+        "morphology": 0.50,
+        "river": 0.40,
+        "ocean": 0.35,
+        "population": 0.30,
+        "category": "natural",
+        "classification": "medium",
+        "notes": "Port vers les îles, côte peu industrialisée",
+        "region": "andaman"
+      }
+    }
+  ]
+}

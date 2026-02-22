@@ -1,0 +1,137 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [97.64, 8.65] },
+      "properties": {
+        "id": "pa-01",
+        "name": "Mu Ko Similan NP",
+        "radiusKm": 15,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [97.87, 9.38] },
+      "properties": {
+        "id": "pa-02",
+        "name": "Mu Ko Surin NP",
+        "radiusKm": 12,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.50, 8.28] },
+      "properties": {
+        "id": "pa-03",
+        "name": "Ao Phang Nga NP",
+        "radiusKm": 10,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.77, 7.74] },
+      "properties": {
+        "id": "pa-04",
+        "name": "Hat Noppharat Thara - Mu Ko Phi Phi NP",
+        "radiusKm": 18,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.68, 9.62] },
+      "properties": {
+        "id": "pa-05",
+        "name": "Mu Ko Ang Thong NP",
+        "radiusKm": 12,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.95, 12.15] },
+      "properties": {
+        "id": "pa-06",
+        "name": "Khao Sam Roi Yot NP",
+        "radiusKm": 8,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [102.30, 12.00] },
+      "properties": {
+        "id": "pa-07",
+        "name": "Mu Ko Chang NP",
+        "radiusKm": 20,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.27, 7.38] },
+      "properties": {
+        "id": "pa-08",
+        "name": "Hat Chao Mai NP",
+        "radiusKm": 10,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.65, 6.60] },
+      "properties": {
+        "id": "pa-09",
+        "name": "Tarutao NP",
+        "radiusKm": 25,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [101.46, 12.57] },
+      "properties": {
+        "id": "pa-10",
+        "name": "Khao Laem Ya - Mu Ko Samet NP",
+        "radiusKm": 8,
+        "status": "restricted",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte restreinte — autorisation possible auprès du parc. Vérifier les conditions locales."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.30, 8.12] },
+      "properties": {
+        "id": "pa-11",
+        "name": "Sirinat NP (Phuket)",
+        "radiusKm": 5,
+        "status": "prohibited",
+        "legalBasis": "National Park Act B.E. 2562 (2019)",
+        "notes": "Collecte de tout matériau naturel ou non strictement interdite. Amende jusqu'à 100,000 THB."
+      }
+    }
+  ]
+}

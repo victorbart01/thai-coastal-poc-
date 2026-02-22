@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.58, 13.54] },
+      "properties": {
+        "id": "river-01",
+        "name": "Chao Phraya",
+        "populationUpstream": "12M+",
+        "majorCity": "Bangkok"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.98, 13.45] },
+      "properties": {
+        "id": "river-02",
+        "name": "Bang Pakong",
+        "populationUpstream": "2M+",
+        "majorCity": "Chachoengsao"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.32, 9.16] },
+      "properties": {
+        "id": "river-03",
+        "name": "Tapi",
+        "populationUpstream": "500K+",
+        "majorCity": "Surat Thani"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.18, 8.37] },
+      "properties": {
+        "id": "river-04",
+        "name": "Pak Phanang",
+        "populationUpstream": "300K+",
+        "majorCity": "Nakhon Si Thammarat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.58, 7.20] },
+      "properties": {
+        "id": "river-05",
+        "name": "Songkhla Lake outlet",
+        "populationUpstream": "1.5M+",
+        "majorCity": "Hat Yai"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [102.01, 12.48] },
+      "properties": {
+        "id": "river-06",
+        "name": "Chanthaburi",
+        "populationUpstream": "200K+",
+        "majorCity": "Chanthaburi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [98.62, 9.98] },
+      "properties": {
+        "id": "river-07",
+        "name": "Kra Buri",
+        "populationUpstream": "150K+",
+        "majorCity": "Ranong"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.30, 7.42] },
+      "properties": {
+        "id": "river-08",
+        "name": "Trang",
+        "populationUpstream": "250K+",
+        "majorCity": "Trang"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [99.18, 10.48] },
+      "properties": {
+        "id": "river-09",
+        "name": "Chumphon",
+        "populationUpstream": "200K+",
+        "majorCity": "Chumphon"
+      }
+    }
+  ]
+}

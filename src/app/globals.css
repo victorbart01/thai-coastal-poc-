@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+@theme {
+  /* Ocean palette */
+  --color-ocean-950: #0a0f1a;
+  --color-ocean-900: #0d1525;
+  --color-ocean-800: #0d1b2a;
+  --color-ocean-700: #1a2540;
+  --color-ocean-600: #1e293b;
+  --color-ocean-500: #334155;
+  --color-ocean-400: #475569;
+
+  /* Glass accent palette */
+  --color-glass: #38bdf8;
+  --color-glass-bright: #22d3ee;
+  --color-glass-deep: #06b6d4;
+  --color-glass-muted: #0ea5e9;
+
+  /* Score palette */
+  --color-score-very-high: #06b6d4;
+  --color-score-high: #22d3ee;
+  --color-score-medium: #facc15;
+  --color-score-low: #fb923c;
+  --color-score-very-low: #64748b;
+
+  /* Semantic */
+  --color-danger: #ef4444;
+  --color-river: #60a5fa;
+
+  /* Text */
+  --color-text-primary: #f0f6fc;
+  --color-text-body: #e0e6ed;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+
+  /* Fonts */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+}
+
+/* Base styles */
+body {
+  background: linear-gradient(135deg, #0a0f1a 0%, #0d1b2a 100%);
+  color: var(--color-text-body);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+/* ─── Focus & Accessibility ────────────────────────────── */
+
+*:focus-visible {
+  outline: 2px solid var(--color-glass);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────────── */
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-glass-deep);
+  border-radius: 2px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-glass);
+}
+
+/* Firefox */
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-glass-deep) transparent;
+}
+
+/* ─── Animations ───────────────────────────────────────── */
+
+/* River pulse */
+@keyframes pulse-river {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+.animate-pulse-river {
+  animation: pulse-river 2.5s ease-in-out infinite;
+}
+
+/* Score bar fill */
+@keyframes fill-bar {
+  from {
+    width: 0%;
+  }
+}
+
+.animate-fill-bar {
+  animation: fill-bar 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Sidebar panel stagger */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+/* Sidebar enter from left (tablet) */
+@keyframes sidebar-enter {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-sidebar-enter {
+  animation: sidebar-enter 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Backdrop fade in */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+/* Loading spinner */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 2s linear infinite;
+}
+
+/* ─── Mapbox Overrides ─────────────────────────────────── */
+
+.mapboxgl-popup-content {
+  background: #1a2540 !important;
+  color: #f0f6fc !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 12px 48px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: #1a2540 !important;
+}
+
+.mapboxgl-popup-close-button {
+  color: #94a3b8 !important;
+  font-size: 18px !important;
+  padding: 4px 8px !important;
+  transition: color 0.15s ease;
+}
+
+.mapboxgl-popup-close-button:hover {
+  color: #f0f6fc !important;
+  background: transparent !important;
+}
+
+/* Hide Mapbox attribution on small screens */
+@media (max-width: 767px) {
+  .mapboxgl-ctrl-attrib {
+    display: none;
+  }
+}
+
+/* ─── Custom Range Slider ──────────────────────────────── */
+
+.score-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-glass-deep);
+  cursor: pointer;
+  border: 2px solid var(--color-glass);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.35);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.score-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.55);
+  transform: scale(1.1);
+}
+
+.score-slider::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+}
+
+.score-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-glass-deep);
+  cursor: pointer;
+  border: 2px solid var(--color-glass);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.35);
+}
+
+.score-slider::-moz-range-track {
+  background: var(--color-ocean-600);
+  height: 6px;
+  border-radius: 9999px;
+}
