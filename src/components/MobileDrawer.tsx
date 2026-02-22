@@ -8,6 +8,7 @@ import { LegendPanel } from "./Sidebar/LegendPanel";
 import { FiltersPanel } from "./Sidebar/FiltersPanel";
 import { TopSpotsPanel } from "./Sidebar/TopSpotsPanel";
 import { RecentFindsPanel } from "./Sidebar/RecentFindsPanel";
+import { LeaderboardPanel } from "./Sidebar/LeaderboardPanel";
 import { MethodologyPanel } from "./Sidebar/MethodologyPanel";
 
 interface MobileDrawerProps {
@@ -94,6 +95,7 @@ export function MobileDrawer({ zones, protectedAreas, spots }: MobileDrawerProps
         <FiltersPanel />
         <TopSpotsPanel zones={zones} />
         <RecentFindsPanel spots={spots} />
+        <LeaderboardPanel spots={spots} />
         <MethodologyPanel />
       </div>
     </div>

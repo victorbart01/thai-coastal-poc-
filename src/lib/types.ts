@@ -132,3 +132,38 @@ export interface DraftSpot {
   tags: SpotTag[];
   photos: File[];
 }
+
+// ─── Gamification ───────────────────────────────────────────
+
+export type BadgeRarity = "common" | "rare" | "epic" | "legendary";
+
+export interface Badge {
+  id: string;
+  icon: string;
+  rarity: BadgeRarity;
+  criteria_type: string;
+  criteria_value: number;
+}
+
+export interface UserBadge {
+  id: string;
+  user_id: string;
+  badge_id: string;
+  earned_at: string;
+}
+
+export interface UserStats {
+  spots_count: number;
+  photos_count: number;
+  total_likes_received: number;
+  max_likes_on_spot: number;
+  member_days: number;
+}
+
+export interface LeaderboardEntry {
+  rank: number;
+  user: SpotAuthor;
+  spots_count: number;
+  likes_received: number;
+  score: number;
+}

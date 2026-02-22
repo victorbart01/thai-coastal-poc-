@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { User } from "lucide-react";
 import { useUser } from "@/lib/useUser";
 import { useTranslation } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
@@ -86,6 +88,14 @@ export function AuthButton() {
               <p className="truncate text-xs text-text-tertiary">{email}</p>
             )}
           </div>
+          <Link
+            href={`/profile/${user.id}`}
+            onClick={() => setOpen(false)}
+            className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-text-secondary transition-colors duration-150 hover:bg-white/[0.04] hover:text-text-primary"
+          >
+            <User className="h-3.5 w-3.5" />
+            {t("profile.title")}
+          </Link>
           <button
             onClick={async () => {
               const supabase = createClient();

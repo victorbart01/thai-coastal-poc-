@@ -6,6 +6,7 @@ import { LegendPanel } from "./LegendPanel";
 import { FiltersPanel } from "./FiltersPanel";
 import { TopSpotsPanel } from "./TopSpotsPanel";
 import { RecentFindsPanel } from "./RecentFindsPanel";
+import { LeaderboardPanel } from "./LeaderboardPanel";
 import { MethodologyPanel } from "./MethodologyPanel";
 
 interface SidebarProps {
@@ -20,6 +21,7 @@ const PANELS = [
   "filters",
   "topspots",
   "recentfinds",
+  "leaderboard",
   "methodology",
 ] as const;
 const STAGGER_MS = 80;
@@ -40,6 +42,7 @@ export function Sidebar({ zones, protectedAreas, spots }: SidebarProps) {
           {panel === "filters" && <FiltersPanel />}
           {panel === "topspots" && <TopSpotsPanel zones={zones} />}
           {panel === "recentfinds" && <RecentFindsPanel spots={spots} />}
+          {panel === "leaderboard" && <LeaderboardPanel spots={spots} />}
           {panel === "methodology" && <MethodologyPanel />}
         </div>
       ))}

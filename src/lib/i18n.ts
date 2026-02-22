@@ -182,6 +182,49 @@ const translations: Record<Locale, Record<string, string>> = {
     // Recent finds
     "recentFinds.title": "Recent finds",
     "recentFinds.empty": "No spots yet",
+
+    // Profile
+    "profile.title": "Profile",
+    "profile.memberSince": "Member since",
+    "profile.spots": "Spots",
+    "profile.likesReceived": "Likes received",
+    "profile.photos": "Photos",
+    "profile.daysActive": "Days active",
+    "profile.collection": "My Collection",
+    "profile.noSpots": "No spots yet",
+    "profile.backToMap": "Back to map",
+    "profile.shareProfile": "Share profile",
+    "profile.linkCopied": "Profile link copied!",
+
+    // Badges
+    "badge.title": "Badges",
+    "badge.earned": "Earned",
+    "badge.locked": "Locked",
+    "badge.first_drop": "First Drop",
+    "badge.first_drop.desc": "Drop your first spot on the map",
+    "badge.explorer": "Explorer",
+    "badge.explorer.desc": "Drop 5 spots on the map",
+    "badge.photographer": "Photographer",
+    "badge.photographer.desc": "Upload 20 photos",
+    "badge.local_expert": "Local Expert",
+    "badge.local_expert.desc": "Drop 10 spots on the map",
+    "badge.rare_find": "Rare Find",
+    "badge.rare_find.desc": "Get 50 likes on a single spot",
+    "badge.sea_glass_og": "Sea Glass OG",
+    "badge.sea_glass_og.desc": "Be a member for 30 days",
+
+    // Rarity
+    "rarity.common": "Common",
+    "rarity.rare": "Rare",
+    "rarity.epic": "Epic",
+    "rarity.legendary": "Legendary",
+
+    // Leaderboard
+    "leaderboard.title": "Leaderboard",
+    "leaderboard.spots": "spots",
+    "leaderboard.likes": "likes",
+    "leaderboard.score": "score",
+    "leaderboard.empty": "No contributors yet",
   },
   th: {
     // Header
@@ -362,6 +405,49 @@ const translations: Record<Locale, Record<string, string>> = {
     // Recent finds
     "recentFinds.title": "พบล่าสุด",
     "recentFinds.empty": "ยังไม่มีจุด",
+
+    // Profile
+    "profile.title": "โปรไฟล์",
+    "profile.memberSince": "สมาชิกตั้งแต่",
+    "profile.spots": "จุด",
+    "profile.likesReceived": "ยอดถูกใจ",
+    "profile.photos": "รูปภาพ",
+    "profile.daysActive": "วันที่ใช้งาน",
+    "profile.collection": "คอลเลกชันของฉัน",
+    "profile.noSpots": "ยังไม่มีจุด",
+    "profile.backToMap": "กลับไปแผนที่",
+    "profile.shareProfile": "แชร์โปรไฟล์",
+    "profile.linkCopied": "คัดลอกลิงก์โปรไฟล์แล้ว!",
+
+    // Badges
+    "badge.title": "เหรียญตรา",
+    "badge.earned": "ได้รับแล้ว",
+    "badge.locked": "ล็อค",
+    "badge.first_drop": "ดรอปแรก",
+    "badge.first_drop.desc": "ดรอปจุดแรกบนแผนที่",
+    "badge.explorer": "นักสำรวจ",
+    "badge.explorer.desc": "ดรอป 5 จุดบนแผนที่",
+    "badge.photographer": "ช่างภาพ",
+    "badge.photographer.desc": "อัพโหลด 20 รูป",
+    "badge.local_expert": "ผู้เชี่ยวชาญท้องถิ่น",
+    "badge.local_expert.desc": "ดรอป 10 จุดบนแผนที่",
+    "badge.rare_find": "ของหายาก",
+    "badge.rare_find.desc": "ได้รับ 50 ถูกใจในจุดเดียว",
+    "badge.sea_glass_og": "ซีกลาส OG",
+    "badge.sea_glass_og.desc": "เป็นสมาชิก 30 วัน",
+
+    // Rarity
+    "rarity.common": "ธรรมดา",
+    "rarity.rare": "หายาก",
+    "rarity.epic": "มหากาพย์",
+    "rarity.legendary": "ตำนาน",
+
+    // Leaderboard
+    "leaderboard.title": "กระดานผู้นำ",
+    "leaderboard.spots": "จุด",
+    "leaderboard.likes": "ถูกใจ",
+    "leaderboard.score": "คะแนน",
+    "leaderboard.empty": "ยังไม่มีผู้ร่วมสร้าง",
   },
 };
 

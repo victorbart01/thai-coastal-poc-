@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Popup } from "react-map-gl";
 import {
   ChevronLeft,
@@ -133,9 +134,12 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
                 {(spot.author.display_name ?? "?")[0]}
               </div>
             )}
-            <span className="text-[11px] text-text-secondary">
+            <Link
+              href={`/profile/${spot.user_id}`}
+              className="text-[11px] text-text-secondary transition-colors hover:text-pink-400 hover:underline"
+            >
               {spot.author.display_name ?? t("spot.anonymous")}
-            </span>
+            </Link>
             <span className="text-[10px] text-text-tertiary">
               {timeAgo(spot.created_at, locale)}
             </span>
