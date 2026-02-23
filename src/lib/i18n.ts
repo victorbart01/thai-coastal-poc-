@@ -28,6 +28,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "nav.signUp": "Sign up",
     "nav.dashboard": "Dashboard",
 
+    // Popular countries
+    "countries.title": "Popular countries",
+
     // Popular spots
     "popularSpots.title": "Popular spots",
 
@@ -259,6 +262,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "nav.forum": "ฟอรัม",
     "nav.signUp": "สมัคร",
     "nav.dashboard": "แดชบอร์ด",
+
+    // Popular countries
+    "countries.title": "ประเทศยอดนิยม",
 
     // Popular spots
     "popularSpots.title": "จุดยอดนิยม",

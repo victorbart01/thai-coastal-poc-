@@ -5,6 +5,7 @@ import { useNearbySpots } from "@/lib/useNearbySpots";
 import { TaglineSection } from "./TaglineSection";
 import { SearchBar } from "./SearchBar";
 import { QuickLinks } from "./QuickLinks";
+import { PopularCountriesPanel } from "./PopularCountriesPanel";
 import { PopularSpotsPanel } from "./PopularSpotsPanel";
 import { ActivityFeed } from "./ActivityFeed";
 import { LeaderboardPanel } from "./LeaderboardPanel";
@@ -19,6 +20,7 @@ const PANELS = [
   "search",
   "quicklinks",
   "popular",
+  "countries",
   "activity",
   "contributors",
   "toggles",
@@ -38,6 +40,7 @@ export function Sidebar({ spots }: SidebarProps) {
         >
           {panel === "tagline" && <TaglineSection />}
           {panel === "search" && <SearchBar />}
+          {panel === "countries" && <PopularCountriesPanel spots={nearbySpots} />}
           {panel === "quicklinks" && <QuickLinks />}
           {panel === "popular" && <PopularSpotsPanel spots={nearbySpots} />}
           {panel === "activity" && <ActivityFeed spots={nearbySpots} />}
