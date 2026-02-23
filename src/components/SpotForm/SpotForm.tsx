@@ -110,25 +110,47 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
           </div>
 
           {/* Stepper */}
-          <div className="flex gap-1 px-4 pt-3">
-            {STEP_LABELS.map((label, i) => (
-              <div key={i} className="flex-1">
-                <div
-                  className={`h-1 rounded-full transition-colors ${
-                    i + 1 <= spotFormStep ? "bg-gradient-to-r from-glass-deep to-accent-pink" : "bg-black/[0.06]"
-                  }`}
-                />
-                <p
-                  className={`mt-1 text-center text-[9px] ${
-                    i + 1 === spotFormStep
-                      ? "font-medium text-accent-pink"
-                      : "text-text-tertiary"
-                  }`}
-                >
-                  {t(label)}
-                </p>
-              </div>
-            ))}
+          <div className="flex items-center justify-center gap-0 px-4 pt-4 pb-1">
+            {STEP_LABELS.map((label, i) => {
+              const stepNum = i + 1;
+              const isCompleted = stepNum < spotFormStep;
+              const isCurrent = stepNum === spotFormStep;
+              return (
+                <div key={i} className="flex items-center">
+                  <div className="flex flex-col items-center gap-1">
+                    <div
+                      className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold transition-all ${
+                        isCompleted
+                          ? "bg-gradient-to-br from-glass-deep to-accent-pink text-white shadow-sm"
+                          : isCurrent
+                            ? "ring-2 ring-accent-pink/40 bg-accent-pink/10 text-accent-pink"
+                            : "bg-black/[0.05] text-text-tertiary"
+                      }`}
+                    >
+                      {stepNum}
+                    </div>
+                    <span
+                      className={`text-[9px] leading-tight ${
+                        isCurrent
+                          ? "font-medium text-accent-pink"
+                          : isCompleted
+                            ? "font-medium text-text-secondary"
+                            : "text-text-tertiary"
+                      }`}
+                    >
+                      {t(label)}
+                    </span>
+                  </div>
+                  {i < STEP_LABELS.length - 1 && (
+                    <div
+                      className={`mx-2.5 mb-4 h-px w-8 transition-colors ${
+                        stepNum < spotFormStep ? "bg-accent-pink/40" : "bg-black/[0.08]"
+                      }`}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* Step content */}
