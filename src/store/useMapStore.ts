@@ -92,7 +92,7 @@ export const useMapStore = create<MapState>((set) => ({
     showMedium: true,
     showLow: true,
     showProtected: true,
-    showRivers: true,
+    showRivers: false,
     showZones: false,
   },
   setFilter: (key, value) =>
