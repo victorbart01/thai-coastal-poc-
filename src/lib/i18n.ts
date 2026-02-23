@@ -140,14 +140,20 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Social — likes, comments, saves
     "social.like": "Like",
+    "social.likes": "likes",
+    "social.likedBy": "Liked by",
+    "social.member": "member",
+    "social.members": "members",
     "social.unlike": "Unlike",
     "social.comment": "Comment",
     "social.comments": "Comments",
+
     "social.save": "Save",
     "social.unsave": "Unsave",
     "social.share": "Share",
     "social.copyLink": "Copy link",
-    "social.shareToLine": "Share to LINE",
+    "social.shareToLine": "LINE",
+    "social.shareToFacebook": "Facebook",
     "social.copied": "Copied!",
     "social.signInToComment": "Sign in to comment",
     "social.signInToLike": "Sign in to like",
@@ -173,6 +179,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "profile.backToMap": "Back to map",
     "profile.shareProfile": "Share profile",
     "profile.linkCopied": "Profile link copied!",
+    "profile.savedSpots": "Saved Spots",
+    "profile.noSavedSpots": "No saved spots yet",
 
     // Badges
     "badge.title": "Badges",
@@ -361,14 +369,20 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Social — likes, comments, saves
     "social.like": "ถูกใจ",
+    "social.likes": "ถูกใจ",
+    "social.likedBy": "ถูกใจโดย",
+    "social.member": "สมาชิก",
+    "social.members": "สมาชิก",
     "social.unlike": "เลิกถูกใจ",
     "social.comment": "แสดงความคิดเห็น",
     "social.comments": "ความคิดเห็น",
+
     "social.save": "บันทึก",
     "social.unsave": "เลิกบันทึก",
     "social.share": "แชร์",
     "social.copyLink": "คัดลอกลิงก์",
-    "social.shareToLine": "แชร์ไปยัง LINE",
+    "social.shareToLine": "LINE",
+    "social.shareToFacebook": "Facebook",
     "social.copied": "คัดลอกแล้ว!",
     "social.signInToComment": "เข้าสู่ระบบเพื่อแสดงความคิดเห็น",
     "social.signInToLike": "เข้าสู่ระบบเพื่อถูกใจ",
@@ -394,6 +408,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "profile.backToMap": "กลับไปแผนที่",
     "profile.shareProfile": "แชร์โปรไฟล์",
     "profile.linkCopied": "คัดลอกลิงก์โปรไฟล์แล้ว!",
+    "profile.savedSpots": "จุดที่บันทึก",
+    "profile.noSavedSpots": "ยังไม่มีจุดที่บันทึก",
 
     // Badges
     "badge.title": "เหรียญตรา",

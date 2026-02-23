@@ -19,6 +19,18 @@ export function useShare() {
     [getSpotUrl]
   );
 
+  const shareToFacebook = useCallback(
+    (spotId: string) => {
+      const url = encodeURIComponent(getSpotUrl(spotId));
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    },
+    [getSpotUrl]
+  );
+
   const shareToLine = useCallback(
     (spotId: string) => {
       const url = encodeURIComponent(getSpotUrl(spotId));
@@ -31,5 +43,5 @@ export function useShare() {
     [getSpotUrl]
   );
 
-  return { getSpotUrl, copyLink, shareToLine };
+  return { getSpotUrl, copyLink, shareToFacebook, shareToLine };
 }
