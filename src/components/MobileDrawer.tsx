@@ -159,32 +159,69 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
     animateToSnap(target);
   }, [animateToSnap]);
 
-  // --- Scroll interlock: at full snap, when scrollTop === 0 and user drags down → shrink ---
+  // --- Content touch: drag sheet when not full, scroll interlock when full ---
   const handleContentTouchStart = useCallback(
     (e: React.TouchEvent) => {
-      if (currentSnap !== "full" || !contentRef.current || !sheetRef.current) return;
-      if (contentRef.current.scrollTop > 0) return;
-
+      if (!sheetRef.current) return;
       const touch = e.touches[0];
-      dragState.current = {
-        startY: touch.clientY,
-        startHeight: sheetRef.current.getBoundingClientRect().height,
-        lastY: touch.clientY,
-        lastTime: Date.now(),
-        isDragging: false, // not yet — wait for downward move
-        isScrollDrag: true,
-      };
+
+      if (currentSnap !== "full") {
+        // Not at full → treat as sheet drag (same as handle)
+        dragState.current = {
+          startY: touch.clientY,
+          startHeight: sheetRef.current.getBoundingClientRect().height,
+          lastY: touch.clientY,
+          lastTime: Date.now(),
+          isDragging: true,
+          isScrollDrag: false,
+        };
+        setIsDragging(true);
+      } else {
+        // At full → scroll interlock: wait for downward drag at scrollTop 0
+        if (!contentRef.current || contentRef.current.scrollTop > 0) return;
+        dragState.current = {
+          startY: touch.clientY,
+          startHeight: sheetRef.current.getBoundingClientRect().height,
+          lastY: touch.clientY,
+          lastTime: Date.now(),
+          isDragging: false,
+          isScrollDrag: true,
+        };
+      }
     },
     [currentSnap]
   );
 
   const handleContentTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!dragState.current?.isScrollDrag || !sheetRef.current || !contentRef.current) return;
-
+    if (!dragState.current || !sheetRef.current) return;
     const touch = e.touches[0];
+
+    // Case 1: direct sheet drag (not full snap)
+    if (!dragState.current.isScrollDrag && dragState.current.isDragging) {
+      e.preventDefault();
+      const deltaY = dragState.current.startY - touch.clientY;
+      const snaps = getSnapHeights();
+      const newHeight = Math.min(
+        snaps.full,
+        Math.max(PEEK_HEIGHT * 0.5, dragState.current.startHeight + deltaY)
+      );
+
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        if (sheetRef.current) {
+          sheetRef.current.style.height = `${newHeight}px`;
+        }
+      });
+
+      dragState.current.lastY = touch.clientY;
+      dragState.current.lastTime = Date.now();
+      return;
+    }
+
+    // Case 2: scroll interlock (full snap)
+    if (!dragState.current.isScrollDrag || !contentRef.current) return;
     const deltaY = touch.clientY - dragState.current.startY;
 
-    // Only activate if dragging down and content is at top
     if (deltaY > 0 && contentRef.current.scrollTop === 0) {
       if (!dragState.current.isDragging) {
         dragState.current.isDragging = true;
@@ -211,25 +248,40 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
   }, []);
 
   const handleContentTouchEnd = useCallback(() => {
-    if (!dragState.current?.isScrollDrag) return;
-    if (!dragState.current.isDragging) {
+    if (!dragState.current) return;
+
+    // If we never actually started dragging (scroll interlock didn't activate)
+    if (dragState.current.isScrollDrag && !dragState.current.isDragging) {
+      dragState.current = null;
+      return;
+    }
+
+    if (!dragState.current.isDragging || !sheetRef.current) {
       dragState.current = null;
       return;
     }
 
     cancelAnimationFrame(rafRef.current);
 
-    if (!sheetRef.current) return;
     const currentHeight = sheetRef.current.getBoundingClientRect().height;
-    const velocity =
-      (dragState.current.lastY - dragState.current.startY) /
-      Math.max(1, Date.now() - dragState.current.lastTime);
+    const isScrollInterlock = dragState.current.isScrollDrag;
+
+    // Velocity: for scroll interlock direction is inverted
+    const velocity = isScrollInterlock
+      ? (dragState.current.lastY - dragState.current.startY) /
+        Math.max(1, Date.now() - dragState.current.lastTime)
+      : (dragState.current.startY - dragState.current.lastY) /
+        Math.max(1, Date.now() - dragState.current.lastTime);
 
     const snaps = getSnapHeights();
     let target: SnapPoint;
 
     if (Math.abs(velocity) > VELOCITY_THRESHOLD) {
-      target = velocity > 0 ? (currentHeight < snaps.half ? "peek" : "half") : "full";
+      if (isScrollInterlock) {
+        target = velocity > 0 ? (currentHeight < snaps.half ? "peek" : "half") : "full";
+      } else {
+        target = velocity > 0 ? (currentHeight > snaps.half ? "full" : "half") : (currentHeight < snaps.half ? "peek" : "half");
+      }
     } else {
       target = nearestSnap(currentHeight, snaps);
     }
@@ -267,7 +319,9 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
       {/* Scrollable content */}
       <div
         ref={contentRef}
-        className="sidebar-scroll flex-1 space-y-3 overflow-y-auto px-3 pb-8"
+        className={`sidebar-scroll flex-1 space-y-3 px-3 pb-8 ${
+          currentSnap === "full" ? "overflow-y-auto" : "overflow-y-hidden"
+        }`}
         onTouchStart={handleContentTouchStart}
         onTouchMove={handleContentTouchMove}
         onTouchEnd={handleContentTouchEnd}
