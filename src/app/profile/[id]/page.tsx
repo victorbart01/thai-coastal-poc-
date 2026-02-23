@@ -43,7 +43,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-ocean-950">
+    <div className="h-screen overflow-y-auto bg-ocean-950">
       {/* Top bar */}
       <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-black/[0.06] bg-ocean-950/80 px-4 py-3 backdrop-blur-md">
         <Link
