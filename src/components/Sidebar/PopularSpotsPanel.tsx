@@ -41,14 +41,17 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
     scrollRef.current!.scrollLeft = ds.scrollLeft - dx;
   }, []);
 
-  const onPointerUp = useCallback((e: React.PointerEvent) => {
+  const resetDrag = useCallback(() => {
     dragState.current.isDown = false;
     const el = scrollRef.current;
-    if (el) {
-      el.releasePointerCapture(e.pointerId);
-      el.style.scrollSnapType = "";
-    }
+    if (el) el.style.scrollSnapType = "";
   }, []);
+
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
+    const el = scrollRef.current;
+    if (el) el.releasePointerCapture(e.pointerId);
+    resetDrag();
+  }, [resetDrag]);
 
   const popularSpots = useMemo(
     () =>
@@ -81,6 +84,7 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
+        onLostPointerCapture={resetDrag}
         style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
         className="mt-3 flex cursor-grab snap-x gap-2.5 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden active:cursor-grabbing"
       >
