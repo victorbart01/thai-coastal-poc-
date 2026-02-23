@@ -80,6 +80,11 @@ interface MapState {
   }) => void;
   clearSearch: () => void;
 
+  // User geolocation
+  userLocation: { latitude: number; longitude: number } | null;
+  setUserLocation: (loc: { latitude: number; longitude: number }) => void;
+  clearUserLocation: () => void;
+
   // Onboarding coach marks (0 = inactive, 1-3 = current step)
   onboardingStep: number;
   startOnboarding: () => void;
@@ -164,9 +169,34 @@ export const useMapStore = create<MapState>((set) => ({
       flyToTarget: { latitude: loc.latitude, longitude: loc.longitude, zoom: 11 },
     }),
   clearSearch: () =>
+    set((state) => {
+      // If user geolocation is active, fall back to it instead of resetting to Thailand
+      if (state.userLocation) {
+        return {
+          searchLocation: null,
+          flyToTarget: {
+            latitude: state.userLocation.latitude,
+            longitude: state.userLocation.longitude,
+            zoom: 9,
+          },
+        };
+      }
+      return {
+        searchLocation: null,
+        flyToTarget: { latitude: 12.5, longitude: 101, zoom: 6 },
+      };
+    }),
+
+  // User geolocation
+  userLocation: null,
+  setUserLocation: (loc) =>
     set({
-      searchLocation: null,
-      flyToTarget: { latitude: 12.5, longitude: 101, zoom: 6 },
+      userLocation: loc,
+      flyToTarget: { latitude: loc.latitude, longitude: loc.longitude, zoom: 9 },
+    }),
+  clearUserLocation: () =>
+    set({
+      userLocation: null,
     }),
 
   // Onboarding

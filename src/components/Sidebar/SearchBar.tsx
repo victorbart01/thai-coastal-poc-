@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { Search, MapPin, X, Loader2 } from "lucide-react";
+import { Search, MapPin, X, Loader2, Crosshair } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { useGeocoding } from "@/lib/useGeocoding";
 import { useMapStore } from "@/store/useMapStore";
+import { useUserLocation } from "@/lib/useUserLocation";
 
 export function SearchBar() {
   const { t } = useTranslation();
@@ -12,6 +13,8 @@ export function SearchBar() {
   const searchLocation = useMapStore((s) => s.searchLocation);
   const setSearchLocation = useMapStore((s) => s.setSearchLocation);
   const clearSearch = useMapStore((s) => s.clearSearch);
+  const userLocation = useMapStore((s) => s.userLocation);
+  const { locate, locating, error: locationError } = useUserLocation();
 
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,6 +87,21 @@ export function SearchBar() {
           style={{ outline: "none" }}
           className="min-w-0 flex-1 bg-transparent text-base md:text-xs text-text-primary placeholder:text-text-tertiary"
         />
+        <button
+          onClick={locate}
+          aria-label={t("search.locateMe")}
+          className="shrink-0 rounded-full p-0.5 transition-colors hover:bg-black/[0.06]"
+        >
+          <Crosshair
+            className={`h-4 w-4 ${
+              locating
+                ? "animate-spin text-text-tertiary"
+                : userLocation
+                  ? "text-accent-pink"
+                  : "text-text-tertiary"
+            }`}
+          />
+        </button>
         {(searchLocation || query.length > 0) && (
           <button
             onClick={handleClear}
@@ -132,6 +150,17 @@ export function SearchBar() {
           <span>
             {t("search.showingNear")} <strong>{searchLocation.name}</strong>
           </span>
+        </div>
+      )}
+      {!searchLocation && userLocation && (
+        <div className="mt-1.5 flex items-center gap-1 px-1 text-[11px] text-accent-pink">
+          <Crosshair className="h-3 w-3" />
+          <span>{t("search.nearYou")}</span>
+        </div>
+      )}
+      {locationError && (
+        <div className="mt-1.5 flex items-center gap-1 px-1 text-[11px] text-red-500">
+          <span>{locationError}</span>
         </div>
       )}
     </div>

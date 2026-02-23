@@ -17,6 +17,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "search.noResults": "No results found",
     "search.showingNear": "Showing spots near",
     "search.clearSearch": "Clear search",
+    "search.locateMe": "Locate me",
+    "search.nearYou": "Spots near your location",
+    "search.locationError": "Unable to get your location",
 
     // Navigation
     "nav.about": "About",
@@ -246,6 +249,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "search.noResults": "ไม่พบผลลัพธ์",
     "search.showingNear": "แสดงจุดใกล้",
     "search.clearSearch": "ล้างการค้นหา",
+    "search.locateMe": "ค้นหาตำแหน่งของฉัน",
+    "search.nearYou": "จุดใกล้ตำแหน่งของคุณ",
+    "search.locationError": "ไม่สามารถระบุตำแหน่งของคุณได้",
 
     // Navigation
     "nav.about": "เกี่ยวกับ",
