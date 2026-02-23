@@ -96,7 +96,7 @@ export function SearchBar() {
 
       {/* Autocomplete dropdown */}
       {showDropdown && (
-        <div className="glass-card absolute inset-x-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl py-1 shadow-lg">
+        <div className="absolute inset-x-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-black/[0.06] bg-white py-1 shadow-lg">
           {suggestions.length === 0 && !loading && (
             <div className="px-4 py-3 text-xs text-text-tertiary">
               {t("search.noResults")}
