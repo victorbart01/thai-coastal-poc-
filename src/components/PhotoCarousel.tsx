@@ -93,19 +93,22 @@ export function PhotoCarousel({ photos, title }: PhotoCarouselProps) {
   if (total === 0) return null;
 
   return (
-    <div className="group relative aspect-[4/3] overflow-hidden" ref={containerRef}>
+    <div
+      className="group relative aspect-[4/3] overflow-hidden"
+      ref={containerRef}
+      style={total > 1 ? { touchAction: "pan-y" } : undefined}
+      onPointerDown={total > 1 ? onPointerDown : undefined}
+      onPointerMove={total > 1 ? onPointerMove : undefined}
+      onPointerUp={total > 1 ? onPointerUp : undefined}
+      onPointerCancel={total > 1 ? onPointerCancel : undefined}
+    >
       {/* Sliding strip */}
       <div
         className="flex h-full"
         style={{
           transform: `translateX(calc(-${index * 100}% + ${dragOffset}px))`,
           transition: dragging ? "none" : "transform 300ms cubic-bezier(0.25, 1, 0.5, 1)",
-          touchAction: "pan-y",
         }}
-        onPointerDown={total > 1 ? onPointerDown : undefined}
-        onPointerMove={total > 1 ? onPointerMove : undefined}
-        onPointerUp={total > 1 ? onPointerUp : undefined}
-        onPointerCancel={total > 1 ? onPointerCancel : undefined}
       >
         {photos.map((photo, i) => (
           <div key={photo.id} className="w-full shrink-0">
