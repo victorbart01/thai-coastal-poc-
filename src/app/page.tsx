@@ -10,7 +10,7 @@ import { BottomTabBar } from "@/components/BottomTabBar";
 import type { TabId } from "@/components/BottomTabBar";
 import { SpotFAB } from "@/components/SpotFAB";
 import { SpotForm } from "@/components/SpotForm/SpotForm";
-import { CommentsPanel } from "@/components/CommentsPanel";
+import { SpotDetailPanel } from "@/components/SpotDetailPanel";
 import { OnboardingCoachMarks } from "@/components/OnboardingCoachMarks";
 import { useZones } from "@/lib/useZones";
 import { useSpots } from "@/lib/useSpots";
@@ -110,8 +110,8 @@ export default function Home() {
         />
       </div>
 
-      {/* Comments panel */}
-      <CommentsPanel />
+      {/* Spot detail panel (desktop/tablet) */}
+      <SpotDetailPanel />
 
       {/* Spot creation overlays */}
       <SpotFAB isLoggedIn={!!user} />

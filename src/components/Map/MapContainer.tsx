@@ -22,7 +22,6 @@ import { RiverLayer } from "./RiverLayer";
 import { ZonePopup } from "./ZonePopup";
 import { ProtectedPopup } from "./ProtectedPopup";
 import { SpotLayer } from "./SpotLayer";
-import { SpotPopup } from "./SpotPopup";
 import { DraftMarker } from "@/components/SpotForm/DraftMarker";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -65,7 +64,6 @@ type PopupInfo =
   | { type: "zone"; zone: SeaGlassZone; nearbyProtected: ProtectedArea | null }
   | { type: "protected"; area: ProtectedArea }
   | { type: "river"; river: RiverMouth }
-  | { type: "spot"; spot: Spot }
   | null;
 
 /** Check if a zone falls within any protected area's radius */
@@ -246,7 +244,6 @@ export function MapContainer({
         const spot = spots.find((s) => s.id === spotId);
         if (spot) {
           selectSpot(spot);
-          setPopupInfo({ type: "spot", spot });
           return;
         }
       }
@@ -374,9 +371,6 @@ export function MapContainer({
       )}
       {popupInfo?.type === "river" && (
         <RiverPopup river={popupInfo.river} onClose={handleClosePopup} />
-      )}
-      {popupInfo?.type === "spot" && (
-        <SpotPopup spot={popupInfo.spot} onClose={handleClosePopup} />
       )}
     </Map>
   );

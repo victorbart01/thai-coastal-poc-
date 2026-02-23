@@ -67,12 +67,6 @@ interface MapState {
   updateDraftSpot: (patch: Partial<DraftSpot>) => void;
   resetDraftSpot: () => void;
 
-  // Comments panel
-  showCommentsPanel: boolean;
-  commentingSpotId: string | null;
-  openComments: (spotId: string) => void;
-  closeComments: () => void;
-
   // Search location (geocoding result)
   searchLocation: {
     name: string;
@@ -161,14 +155,6 @@ export const useMapStore = create<MapState>((set) => ({
       draftSpot: { ...state.draftSpot, ...patch },
     })),
   resetDraftSpot: () => set({ draftSpot: { ...INITIAL_DRAFT } }),
-
-  // Comments panel
-  showCommentsPanel: false,
-  commentingSpotId: null,
-  openComments: (spotId) =>
-    set({ showCommentsPanel: true, commentingSpotId: spotId }),
-  closeComments: () =>
-    set({ showCommentsPanel: false, commentingSpotId: null }),
 
   // Search location
   searchLocation: null,

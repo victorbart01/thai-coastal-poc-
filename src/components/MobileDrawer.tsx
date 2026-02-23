@@ -11,6 +11,7 @@ import { PopularSpotsPanel } from "./Sidebar/PopularSpotsPanel";
 import { ActivityFeed } from "./Sidebar/ActivityFeed";
 import { LeaderboardPanel } from "./Sidebar/LeaderboardPanel";
 import { MapToggles } from "./Sidebar/MapToggles";
+import { MobileSpotDetail } from "./MobileSpotDetail";
 
 export type SnapPoint = "peek" | "half" | "full";
 
@@ -49,6 +50,7 @@ function nearestSnap(height: number, snaps: Record<SnapPoint, number>): SnapPoin
 
 export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps) {
   const showSpotForm = useMapStore((s) => s.showSpotForm);
+  const selectedSpot = useMapStore((s) => s.selectedSpot);
   const nearbySpots = useNearbySpots(spots);
   const sheetRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -88,6 +90,18 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
     },
     [onSnapChange]
   );
+
+  // Auto-snap to full when a spot is selected, back to peek when deselected
+  const prevSpotRef = useRef<string | null>(null);
+  useEffect(() => {
+    const spotId = selectedSpot?.id ?? null;
+    if (spotId && spotId !== prevSpotRef.current) {
+      animateToSnap("full");
+    } else if (!spotId && prevSpotRef.current) {
+      animateToSnap("peek");
+    }
+    prevSpotRef.current = spotId;
+  }, [selectedSpot, animateToSnap]);
 
   // --- Touch handlers for drag area ---
   const handleTouchStart = useCallback(
@@ -321,22 +335,28 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
       {/* Scrollable content */}
       <div
         ref={contentRef}
-        className={`sidebar-scroll flex-1 space-y-3 px-3 pb-8 ${
-          currentSnap === "full" ? "overflow-y-auto" : "overflow-y-hidden"
-        }`}
+        className={`sidebar-scroll flex-1 ${
+          selectedSpot ? "" : "space-y-3 px-3 pb-8"
+        } ${currentSnap === "full" ? "overflow-y-auto" : "overflow-y-hidden"}`}
         onTouchStart={handleContentTouchStart}
         onTouchMove={handleContentTouchMove}
         onTouchEnd={handleContentTouchEnd}
       >
-        <TaglineSection />
-        <div className="relative z-40">
-          <SearchBar />
-        </div>
-        <QuickLinks />
-        <PopularSpotsPanel spots={nearbySpots} />
-        <ActivityFeed spots={nearbySpots} />
-        <LeaderboardPanel spots={nearbySpots} />
-        <MapToggles />
+        {selectedSpot ? (
+          <MobileSpotDetail />
+        ) : (
+          <>
+            <TaglineSection />
+            <div className="relative z-40">
+              <SearchBar />
+            </div>
+            <QuickLinks />
+            <PopularSpotsPanel spots={nearbySpots} />
+            <ActivityFeed spots={nearbySpots} />
+            <LeaderboardPanel spots={nearbySpots} />
+            <MapToggles />
+          </>
+        )}
       </div>
     </div>
   );
