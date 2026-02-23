@@ -7,12 +7,11 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Camera,
   Star,
   Heart,
-  MessageCircle,
   Bookmark,
   Share2,
+  MapPin,
   Send,
   Reply,
   Trash2,
@@ -102,10 +101,6 @@ export function SpotDetailContent({
     }
   }, [social, setLikeInitial, setSaveInitial]);
 
-  const scrollToComments = () => {
-    commentsRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const handleSubmit = async () => {
     if (!text.trim() || !user) return;
     await addComment(spot.id, user.id, text.trim(), replyTo?.id);
@@ -188,200 +183,196 @@ export function SpotDetailContent({
     <>
       {/* Scrollable body — mirrors left sidebar: p-3 gap-3 with glass-card vignettes */}
       <div className="sidebar-scroll flex flex-1 flex-col gap-3 overflow-y-auto p-3">
-        {/* Close button */}
-        <div className="flex justify-end">
-          <button
-            onClick={onClose}
-            className="rounded-lg p-1.5 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
-        {/* Photo card */}
-        {spot.photos.length > 0 && (
-          <div className="glass-card group relative overflow-hidden rounded-2xl">
-            <Image
-              src={spot.photos[photoIndex].url}
-              alt={`${spot.title} — photo ${photoIndex + 1}`}
-              width={448}
-              height={224}
-              className="h-48 w-full object-cover"
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-            {/* Photo counter */}
-            <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
-              <Camera className="h-3 w-3 text-white/80" />
-              <span className="font-[family-name:var(--font-display)] text-[10px] text-white/80">
-                {photoIndex + 1}/{spot.photos.length}
-              </span>
-            </div>
-
-            {/* Arrows */}
-            {spot.photos.length > 1 && (
-              <>
-                <button
-                  onClick={() =>
-                    setPhotoIndex((i) => (i - 1 + spot.photos.length) % spot.photos.length)
-                  }
-                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
-                >
-                  <ChevronLeft className="h-4 w-4 text-white" />
-                </button>
-                <button
-                  onClick={() =>
-                    setPhotoIndex((i) => (i + 1) % spot.photos.length)
-                  }
-                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
-                >
-                  <ChevronRight className="h-4 w-4 text-white" />
-                </button>
-              </>
-            )}
-          </div>
-        )}
-
-        {/* Details card */}
-        <div className="glass-card rounded-2xl p-4">
-          {/* Title */}
-          <h2 className="font-[family-name:var(--font-display)] text-base font-semibold leading-snug text-text-primary">
-            {spot.title}
-          </h2>
-
-          {/* Author + date */}
-          <div className="mt-2.5 flex items-center gap-2">
+        {/* Post card */}
+        <div className="glass-card overflow-hidden rounded-2xl">
+          {/* Header: avatar + name + time + close */}
+          <div className="flex items-center gap-2.5 px-4 py-3">
             {spot.author.avatar_url ? (
               <Image
                 src={spot.author.avatar_url}
                 alt=""
-                width={20}
-                height={20}
-                className="h-5 w-5 rounded-full"
+                width={32}
+                height={32}
+                className="h-8 w-8 rounded-full"
                 unoptimized
               />
             ) : (
-              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-accent-pink/20 text-[10px] text-accent-pink">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-pink/20 text-xs font-medium text-accent-pink">
                 {(spot.author.display_name ?? "?")[0]}
               </div>
             )}
-            <Link
-              href={`/profile/${spot.user_id}`}
-              className="text-[11px] text-text-secondary transition-colors hover:text-accent-pink hover:underline"
+            <div className="min-w-0 flex-1">
+              <Link
+                href={`/profile/${spot.user_id}`}
+                className="block truncate text-xs font-semibold text-text-primary transition-colors hover:text-accent-pink"
+              >
+                {spot.author.display_name ?? t("spot.anonymous")}
+              </Link>
+              <p className="text-[10px] text-text-tertiary">
+                {timeAgo(spot.created_at, locale)}
+              </p>
+            </div>
+            <button
+              onClick={onClose}
+              className="rounded-lg p-1.5 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
             >
-              {spot.author.display_name ?? t("spot.anonymous")}
-            </Link>
-            <span className="text-[10px] text-text-tertiary">
-              {timeAgo(spot.created_at, locale)}
-            </span>
+              <X className="h-4 w-4" />
+            </button>
           </div>
 
-          {/* Rating */}
-          <div className="mt-2.5 flex items-center gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                className={`h-3.5 w-3.5 ${
-                  i < spot.rating
-                    ? "fill-accent-pink text-accent-pink"
-                    : "text-gray-300"
-                }`}
+          {/* Photo — edge-to-edge */}
+          {spot.photos.length > 0 && (
+            <div className="group relative">
+              <Image
+                src={spot.photos[photoIndex].url}
+                alt={`${spot.title} — photo ${photoIndex + 1}`}
+                width={448}
+                height={336}
+                className="aspect-[4/3] w-full object-cover"
+                unoptimized
               />
-            ))}
-            <span className="ml-1.5 font-[family-name:var(--font-display)] text-[11px] text-text-secondary">
-              {spot.rating}/5
-            </span>
-          </div>
 
-          {/* Coordinates */}
-          <p className="mt-2 font-mono text-[10px] text-text-tertiary">
-            {spot.latitude.toFixed(4)}, {spot.longitude.toFixed(4)}
-          </p>
+              {/* Photo counter */}
+              {spot.photos.length > 1 && (
+                <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
+                  <span className="font-[family-name:var(--font-display)] text-[10px] text-white/90">
+                    {photoIndex + 1}/{spot.photos.length}
+                  </span>
+                </div>
+              )}
 
-          {/* Tags */}
-          {spot.tags.length > 0 && (
-            <div className="mt-2.5 flex flex-wrap gap-1">
-              {spot.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-[10px] text-accent-pink"
-                >
-                  {t(`tag.${tag}`)}
-                </span>
-              ))}
+              {/* Arrows */}
+              {spot.photos.length > 1 && (
+                <>
+                  <button
+                    onClick={() =>
+                      setPhotoIndex((i) => (i - 1 + spot.photos.length) % spot.photos.length)
+                    }
+                    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
+                  >
+                    <ChevronLeft className="h-4 w-4 text-white" />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setPhotoIndex((i) => (i + 1) % spot.photos.length)
+                    }
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
+                  >
+                    <ChevronRight className="h-4 w-4 text-white" />
+                  </button>
+                </>
+              )}
             </div>
           )}
 
-          {/* Description */}
-          {spot.description && (
-            <p className="mt-2.5 text-[11px] leading-relaxed text-text-secondary">
-              {spot.description}
-            </p>
-          )}
+          {/* Content below photo */}
+          <div className="px-4 pt-3 pb-4">
+            {/* Rating — directly below photo */}
+            <div className="flex items-center gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  className={`h-4 w-4 ${
+                    i < spot.rating
+                      ? "fill-accent-pink text-accent-pink"
+                      : "text-gray-300"
+                  }`}
+                />
+              ))}
+              <span className="ml-1.5 font-[family-name:var(--font-display)] text-xs text-text-secondary">
+                {spot.rating}/5
+              </span>
+            </div>
+
+            {/* Title row + Bookmark & Share aligned right */}
+            <div className="mt-2.5 flex items-start gap-2">
+              <h2 className="min-w-0 flex-1 font-[family-name:var(--font-display)] text-base font-semibold leading-snug text-text-primary">
+                {spot.title}
+              </h2>
+              <div className="flex shrink-0 items-center gap-1">
+                <button
+                  onClick={() => user && toggleSave(spot.id, user.id)}
+                  disabled={!user || savingToggling}
+                  title={user ? (isSaved ? t("social.unsave") : t("social.save")) : t("social.signInToSave")}
+                  className="rounded-md p-1 transition-colors hover:bg-black/[0.06] disabled:opacity-50"
+                >
+                  <Bookmark
+                    className={`h-5 w-5 transition-colors ${
+                      isSaved ? "fill-text-primary text-text-primary" : "text-text-secondary hover:text-text-primary"
+                    }`}
+                  />
+                </button>
+                <div className="relative">
+                  <button
+                    onClick={() => setShowShare(!showShare)}
+                    title={t("social.share")}
+                    className="rounded-md p-1 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-secondary"
+                  >
+                    <Share2 className="h-5 w-5" />
+                  </button>
+                  {showShare && (
+                    <ShareMenu spotId={spot.id} onClose={() => setShowShare(false)} />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Description */}
+            {spot.description && (
+              <p className="mt-2 text-xs leading-relaxed text-text-secondary">
+                {spot.description}
+              </p>
+            )}
+
+            {/* Tags */}
+            {spot.tags.length > 0 && (
+              <div className="mt-2.5 flex flex-wrap gap-1">
+                {spot.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-[10px] text-accent-pink"
+                  >
+                    {t(`tag.${tag}`)}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Liked by X members */}
+            <div className="mt-3 flex items-center gap-1.5 border-t border-black/[0.06] pt-3">
+              <button
+                onClick={() => user && toggleLike(spot.id, user.id)}
+                disabled={!user || likingToggling}
+                title={user ? (isLiked ? t("social.unlike") : t("social.like")) : t("social.signInToLike")}
+                className="transition-transform active:scale-125 disabled:opacity-50"
+              >
+                <Heart
+                  className={`h-[18px] w-[18px] transition-colors ${
+                    isLiked ? "fill-accent-pink text-accent-pink" : "text-text-tertiary hover:text-text-secondary"
+                  }`}
+                />
+              </button>
+              <span className="text-xs text-text-secondary">
+                {likeCount > 0 ? (
+                  <>
+                    <span className="font-semibold text-text-primary">{t("social.likedBy")} {likeCount}</span>
+                    {" "}{likeCount === 1 ? t("social.member") : t("social.members")}
+                  </>
+                ) : (
+                  t("social.like")
+                )}
+              </span>
+            </div>
+          </div>
         </div>
 
-        {/* Social bar card */}
-        <div className="glass-card rounded-2xl p-4">
-          <div className="flex items-center gap-1">
-            {/* Like */}
-            <button
-              onClick={() => user && toggleLike(spot.id, user.id)}
-              disabled={!user || likingToggling}
-              title={user ? (isLiked ? t("social.unlike") : t("social.like")) : t("social.signInToLike")}
-              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] transition-colors hover:bg-black/[0.06] disabled:opacity-50"
-            >
-              <Heart
-                className={`h-3.5 w-3.5 transition-colors ${
-                  isLiked ? "fill-accent-pink text-accent-pink" : "text-text-tertiary"
-                }`}
-              />
-              {likeCount > 0 && (
-                <span className={isLiked ? "text-accent-pink" : "text-text-tertiary"}>
-                  {likeCount}
-                </span>
-              )}
-            </button>
-
-            {/* Comment (scroll to) */}
-            <button
-              onClick={scrollToComments}
-              title={t("social.comment")}
-              className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-secondary"
-            >
-              <MessageCircle className="h-3.5 w-3.5" />
-              {(social?.comment_count ?? spot.comment_count ?? 0) > 0 && (
-                <span>{social?.comment_count ?? spot.comment_count ?? 0}</span>
-              )}
-            </button>
-
-            {/* Save */}
-            <button
-              onClick={() => user && toggleSave(spot.id, user.id)}
-              disabled={!user || savingToggling}
-              title={user ? (isSaved ? t("social.unsave") : t("social.save")) : t("social.signInToSave")}
-              className="rounded-md px-2 py-1 transition-colors hover:bg-black/[0.06] disabled:opacity-50"
-            >
-              <Bookmark
-                className={`h-3.5 w-3.5 transition-colors ${
-                  isSaved ? "fill-accent-pink text-accent-pink" : "text-text-tertiary"
-                }`}
-              />
-            </button>
-
-            {/* Share */}
-            <div className="relative ml-auto">
-              <button
-                onClick={() => setShowShare(!showShare)}
-                title={t("social.share")}
-                className="rounded-md px-2 py-1 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-secondary"
-              >
-                <Share2 className="h-3.5 w-3.5" />
-              </button>
-              {showShare && (
-                <ShareMenu spotId={spot.id} onClose={() => setShowShare(false)} />
-              )}
-            </div>
+        {/* Coordinates card */}
+        <div className="glass-card rounded-2xl px-4 py-3">
+          <div className="flex items-center gap-2">
+            <MapPin className="h-3.5 w-3.5 shrink-0 text-text-tertiary" />
+            <span className="font-mono text-[11px] text-text-secondary">
+              {spot.latitude.toFixed(4)}, {spot.longitude.toFixed(4)}
+            </span>
           </div>
         </div>
 
