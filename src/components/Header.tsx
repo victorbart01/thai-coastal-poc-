@@ -19,7 +19,7 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
     <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center bg-black px-4">
       {/* Logo */}
       <span className="font-[family-name:var(--font-logo)] text-xl tracking-tight text-white">
-        <span className="font-bold">Seeglass</span>
+        <span className="font-bold">Seaglass</span>
         <span className="font-normal">map</span>
       </span>
 
