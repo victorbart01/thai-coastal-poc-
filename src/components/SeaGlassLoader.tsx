@@ -14,7 +14,7 @@ export function SeaGlassLoader({ message, size = 200 }: SeaGlassLoaderProps) {
 
         <svg
           viewBox="0 0 200 200"
-          className="h-full w-full drop-shadow-[0_24px_24px_rgba(0,0,0,0.35)]"
+          className="h-full w-full"
         >
           <defs>
             <filter id="frosted-glass" x="-20%" y="-20%" width="140%" height="140%">
