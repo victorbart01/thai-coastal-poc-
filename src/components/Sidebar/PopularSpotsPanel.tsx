@@ -29,16 +29,22 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
       scrollLeft: el.scrollLeft,
       hasDragged: false,
     };
-    el.setPointerCapture(e.pointerId);
-    el.style.scrollSnapType = "none";
   }, []);
 
   const onPointerMove = useCallback((e: React.PointerEvent) => {
     const ds = dragState.current;
     if (!ds.isDown) return;
+    const el = scrollRef.current;
+    if (!el) return;
     const dx = e.clientX - ds.startX;
-    if (Math.abs(dx) > 3) ds.hasDragged = true;
-    scrollRef.current!.scrollLeft = ds.scrollLeft - dx;
+    if (!ds.hasDragged && Math.abs(dx) > 3) {
+      ds.hasDragged = true;
+      el.setPointerCapture(e.pointerId);
+      el.style.scrollSnapType = "none";
+    }
+    if (ds.hasDragged) {
+      el.scrollLeft = ds.scrollLeft - dx;
+    }
   }, []);
 
   const resetDrag = useCallback(() => {
