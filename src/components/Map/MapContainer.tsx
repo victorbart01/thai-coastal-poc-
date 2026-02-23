@@ -163,6 +163,18 @@ export function MapContainer({
   // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally react to data array changes only (locale switch)
   }, [filteredZones, protectedAreas, riverMouths]);
 
+  // Sync map language with app locale
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (map?.setLanguage) {
+      if (map.isStyleLoaded()) {
+        map.setLanguage(locale);
+      } else {
+        map.once("style.load", () => map.setLanguage(locale));
+      }
+    }
+  }, [locale]);
+
   // Handle flyTo requests from the store
   useEffect(() => {
     if (flyToTarget && mapRef.current) {
@@ -335,7 +347,7 @@ export function MapContainer({
       ref={mapRef}
       initialViewState={INITIAL_VIEW}
       style={{ width: "100%", height: "100%" }}
-      mapStyle={`mapbox://styles/mapbox/streets-v12?language=${locale}`}
+      mapStyle="mapbox://styles/mapbox/streets-v12"
       mapboxAccessToken={MAPBOX_TOKEN}
       onMove={handleMove}
       onClick={handleClick}
