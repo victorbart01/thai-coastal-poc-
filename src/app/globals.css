@@ -200,6 +200,29 @@ body {
   animation: spin-slow 2s linear infinite;
 }
 
+/* SeaGlass loader */
+@keyframes sg-orbit-cw { to { transform: rotate(360deg); } }
+@keyframes sg-orbit-ccw { to { transform: rotate(-360deg); } }
+@keyframes sg-float {
+  0% { transform: translateX(var(--sg-start)); }
+  100% { transform: translateX(var(--sg-end)); }
+}
+@keyframes sg-spin-cw { to { transform: rotate(360deg); } }
+@keyframes sg-spin-ccw { to { transform: rotate(-360deg); } }
+
+.sg-orbit {
+  transform-origin: 100px 100px;
+  animation: var(--sg-orbit-dir) var(--sg-orbit-dur) linear infinite;
+}
+
+.sg-float {
+  animation: sg-float var(--sg-float-dur) ease-in-out infinite alternate;
+}
+
+.sg-spin {
+  animation: var(--sg-spin-dir) var(--sg-spin-dur) linear infinite;
+}
+
 /* FAB pulse glow — gradient teal+pink */
 @keyframes pulse-fab {
   0%, 100% {

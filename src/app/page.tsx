@@ -12,6 +12,7 @@ import { SpotFAB } from "@/components/SpotFAB";
 import { SpotForm } from "@/components/SpotForm/SpotForm";
 import { SpotDetailPanel } from "@/components/SpotDetailPanel";
 import { OnboardingCoachMarks } from "@/components/OnboardingCoachMarks";
+import { SeaGlassLoader } from "@/components/SeaGlassLoader";
 import { useZones } from "@/lib/useZones";
 import { useSpots } from "@/lib/useSpots";
 import { useUser } from "@/lib/useUser";
@@ -44,16 +45,7 @@ export default function Home() {
   }, [allSpots, selectSpot, flyTo]);
 
   if (loading) {
-    return (
-      <div className="flex h-screen flex-col items-center justify-center gap-4 bg-ocean-950">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-glass-deep to-accent-pink shadow-[0_4px_16px_rgba(6,182,212,0.2)]">
-          <span className="animate-spin-slow text-xl">🌊</span>
-        </div>
-        <p className="font-[family-name:var(--font-display)] text-sm text-text-secondary">
-          {t("loading")}
-        </p>
-      </div>
-    );
+    return <SeaGlassLoader message={t("loading")} />;
   }
 
   return (

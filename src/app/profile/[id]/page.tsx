@@ -9,6 +9,7 @@ import { useUserProfile } from "@/lib/useUserProfile";
 import { useUserBadges } from "@/lib/useUserBadges";
 import { ProfileHeader } from "@/components/ProfileHeader";
 import { BadgeCard } from "@/components/BadgeCard";
+import { SeaGlassLoader } from "@/components/SeaGlassLoader";
 import { useTranslation } from "@/lib/i18n";
 
 export default function ProfilePage() {
@@ -33,13 +34,7 @@ export default function ProfilePage() {
   }, [stats, checkAndAwardBadges]);
 
   if (loading || !profile) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-ocean-950">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-glass-deep to-glass-bright shadow-[0_4px_16px_rgba(6,182,212,0.2)]">
-          <span className="animate-spin-slow text-xl">🌊</span>
-        </div>
-      </div>
-    );
+    return <SeaGlassLoader />;
   }
 
   return (
