@@ -176,18 +176,25 @@ export function MapContainer({
     }
   }, [flyToTarget, clearFlyTo]);
 
-  // Zone hover
+  // Zone & spot hover
+  const [hoveredSpot, setHoveredSpot] = useState(false);
   const handleMouseMove = useCallback((e: MapLayerMouseEvent) => {
     const feature = e.features?.[0];
     if (feature?.layer?.id === "zones-circle") {
       setHoveredZoneId((feature.properties?.id as string) ?? null);
+      setHoveredSpot(false);
+    } else if (feature?.layer?.id === "spots-unclustered" || feature?.layer?.id === "spots-clusters") {
+      setHoveredZoneId(null);
+      setHoveredSpot(true);
     } else {
       setHoveredZoneId(null);
+      setHoveredSpot(false);
     }
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     setHoveredZoneId(null);
+    setHoveredSpot(false);
   }, []);
 
   // Click handler for map layers
@@ -320,7 +327,7 @@ export function MapContainer({
   // Determine cursor
   const cursor = isLocationStep
     ? "crosshair"
-    : hoveredZoneId
+    : hoveredZoneId || hoveredSpot
       ? "pointer"
       : "";
 

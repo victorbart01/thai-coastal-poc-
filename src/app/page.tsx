@@ -8,6 +8,7 @@ import { MobileDrawer } from "@/components/MobileDrawer";
 import { SpotFAB } from "@/components/SpotFAB";
 import { SpotForm } from "@/components/SpotForm/SpotForm";
 import { CommentsPanel } from "@/components/CommentsPanel";
+import { OnboardingCoachMarks } from "@/components/OnboardingCoachMarks";
 import { useZones } from "@/lib/useZones";
 import { useSpots } from "@/lib/useSpots";
 import { useUser } from "@/lib/useUser";
@@ -53,7 +54,7 @@ export default function Home() {
   return (
     <div className="relative h-screen overflow-hidden bg-ocean-950">
       {/* Map — fullscreen behind everything */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" data-onboarding="map">
         <MapContainer
           filteredZones={filteredZones}
           protectedAreas={protectedAreas}
@@ -68,12 +69,12 @@ export default function Home() {
         onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
       />
 
-      {/* Desktop sidebar — always visible on lg+, floating right */}
-      <div className="absolute right-0 top-12 bottom-0 z-10 hidden w-[360px] lg:block">
+      {/* Desktop sidebar — always visible on lg+, floating left */}
+      <div className="absolute left-0 top-12 bottom-0 z-10 hidden w-[360px] lg:block" data-onboarding="sidebar">
         <Sidebar spots={allSpots} />
       </div>
 
-      {/* Tablet sidebar — slide-over overlay on md to lg, from right */}
+      {/* Tablet sidebar — slide-over overlay on md to lg, from left */}
       {sidebarOpen && (
         <>
           {/* Backdrop */}
@@ -81,8 +82,8 @@ export default function Home() {
             className="animate-fade-in fixed inset-0 z-20 hidden bg-black/40 backdrop-blur-[2px] md:block lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
-          {/* Sidebar panel — from right */}
-          <div className="animate-sidebar-enter fixed inset-y-12 right-0 z-30 hidden w-[360px] shadow-2xl md:block lg:hidden">
+          {/* Sidebar panel — from left */}
+          <div className="animate-sidebar-enter fixed inset-y-12 left-0 z-30 hidden w-[360px] shadow-2xl md:block lg:hidden">
             <Sidebar spots={allSpots} />
           </div>
         </>
@@ -101,6 +102,9 @@ export default function Home() {
       {user && (
         <SpotForm userId={user.id} onPublished={refetchSpots} />
       )}
+
+      {/* Onboarding coach marks — first-time users only */}
+      {user && <OnboardingCoachMarks userId={user.id} />}
     </div>
   );
 }

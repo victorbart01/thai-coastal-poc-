@@ -1,6 +1,6 @@
 "use client";
 
-import { PanelRightOpen, PanelRightClose } from "lucide-react";
+import { PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { useMapStore } from "@/store/useMapStore";
 import type { Locale } from "@/lib/i18n";
@@ -64,9 +64,9 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
           aria-label={sidebarOpen ? t("header.closePanel") : t("header.openPanel")}
         >
           {sidebarOpen ? (
-            <PanelRightClose className="h-4 w-4" />
+            <PanelLeftClose className="h-4 w-4" />
           ) : (
-            <PanelRightOpen className="h-4 w-4" />
+            <PanelLeftOpen className="h-4 w-4" />
           )}
         </button>
       )}

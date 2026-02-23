@@ -152,10 +152,10 @@ body {
   opacity: 0;
 }
 
-/* Sidebar enter from right (tablet) */
+/* Sidebar enter from left (tablet) */
 @keyframes sidebar-enter {
   from {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
   to {
     transform: translateX(0);
