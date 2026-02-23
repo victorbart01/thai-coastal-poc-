@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   X,
-  ChevronLeft,
-  ChevronRight,
   Star,
   Heart,
   Bookmark,
@@ -25,6 +23,7 @@ import { useSaves } from "@/lib/useSaves";
 import { useComments } from "@/lib/useComments";
 import { useUser } from "@/lib/useUser";
 import { ShareMenu } from "@/components/ShareMenu";
+import { PhotoCarousel } from "@/components/PhotoCarousel";
 import type { Spot, Comment } from "@/lib/types";
 
 /** Desktop/tablet right-side panel — hidden on < md */
@@ -79,8 +78,6 @@ export function SpotDetailContent({
     deleteComment,
   } = useComments();
 
-  // Photo carousel
-  const [photoIndex, setPhotoIndex] = useState(0);
   const [showShare, setShowShare] = useState(false);
 
   // Comment input
@@ -220,50 +217,8 @@ export function SpotDetailContent({
             </button>
           </div>
 
-          {/* Photo — edge-to-edge */}
-          {spot.photos.length > 0 && (
-            <div className="group relative">
-              <Image
-                src={spot.photos[photoIndex].url}
-                alt={`${spot.title} — photo ${photoIndex + 1}`}
-                width={448}
-                height={336}
-                className="aspect-[4/3] w-full object-cover"
-                unoptimized
-              />
-
-              {/* Photo counter */}
-              {spot.photos.length > 1 && (
-                <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
-                  <span className="font-[family-name:var(--font-display)] text-[10px] text-white/90">
-                    {photoIndex + 1}/{spot.photos.length}
-                  </span>
-                </div>
-              )}
-
-              {/* Arrows */}
-              {spot.photos.length > 1 && (
-                <>
-                  <button
-                    onClick={() =>
-                      setPhotoIndex((i) => (i - 1 + spot.photos.length) % spot.photos.length)
-                    }
-                    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
-                  >
-                    <ChevronLeft className="h-4 w-4 text-white" />
-                  </button>
-                  <button
-                    onClick={() =>
-                      setPhotoIndex((i) => (i + 1) % spot.photos.length)
-                    }
-                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
-                  >
-                    <ChevronRight className="h-4 w-4 text-white" />
-                  </button>
-                </>
-              )}
-            </div>
-          )}
+          {/* Photo carousel — edge-to-edge */}
+          <PhotoCarousel photos={spot.photos} title={spot.title} />
 
           {/* Content below photo */}
           <div className="px-4 pt-3 pb-4">
