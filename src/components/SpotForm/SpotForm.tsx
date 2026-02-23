@@ -1,9 +1,11 @@
 "use client";
 
-import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight, Loader2, Search } from "lucide-react";
 import { useMapStore } from "@/store/useMapStore";
 import { useTranslation } from "@/lib/i18n";
 import { useCreateSpot } from "@/lib/useCreateSpot";
+import { useGeocoding } from "@/lib/useGeocoding";
 
 import { StepLocation } from "./StepLocation";
 import { StepPhotos } from "./StepPhotos";
@@ -28,8 +30,32 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
   const draftSpot = useMapStore((s) => s.draftSpot);
   const closeSpotForm = useMapStore((s) => s.closeSpotForm);
   const setSpotFormStep = useMapStore((s) => s.setSpotFormStep);
+  const flyTo = useMapStore((s) => s.flyTo);
   const { t } = useTranslation();
   const { creating, error, createSpot } = useCreateSpot();
+  const { query, setQuery, suggestions, retrieve } = useGeocoding();
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Close suggestions on click outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelectSuggestion = async (mapboxId: string) => {
+    const result = await retrieve(mapboxId);
+    if (result) {
+      flyTo({ latitude: result.latitude, longitude: result.longitude, zoom: 14 });
+    }
+    setQuery("");
+    setShowSuggestions(false);
+  };
 
   if (!showSpotForm) return null;
 
@@ -72,14 +98,52 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
   if (spotFormStep === 1) {
     return (
       <div className="fixed bottom-24 left-1/2 z-30 w-auto -translate-x-1/2 animate-slide-in md:bottom-8">
-        <div className="flex items-center gap-2 rounded-2xl border border-white/20 bg-black/70 px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl">
-          <StepLocation />
-          <button
-            onClick={closeSpotForm}
-            className="shrink-0 rounded-full p-1 text-white/50 transition-colors hover:bg-white/10 hover:text-white"
-          >
-            <X className="h-4 w-4" />
-          </button>
+        <div className="flex flex-col gap-2 rounded-2xl border border-white/20 bg-black/70 px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+          <div className="flex items-center gap-2">
+            <StepLocation />
+            <button
+              onClick={closeSpotForm}
+              className="shrink-0 rounded-full p-1 text-white/50 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Search bar */}
+          <div ref={searchRef} className="relative">
+            <div className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-1.5">
+              <Search className="h-3.5 w-3.5 shrink-0 text-white/50" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setShowSuggestions(true);
+                }}
+                onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+                placeholder={t("spotForm.searchPlaceholder")}
+                className="w-full min-w-[200px] bg-transparent text-xs text-white placeholder:text-white/40 focus:outline-none"
+              />
+            </div>
+
+            {/* Suggestions dropdown */}
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="absolute bottom-full left-0 right-0 mb-1 overflow-hidden rounded-xl border border-white/20 bg-black/80 shadow-lg backdrop-blur-xl">
+                {suggestions.slice(0, 4).map((s) => (
+                  <button
+                    key={s.mapbox_id}
+                    onClick={() => handleSelectSuggestion(s.mapbox_id)}
+                    className="flex w-full flex-col px-3 py-2 text-left transition-colors hover:bg-white/10"
+                  >
+                    <span className="text-xs font-medium text-white">{s.name}</span>
+                    {s.place_formatted && (
+                      <span className="text-[10px] text-white/50">{s.place_formatted}</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

@@ -110,6 +110,7 @@ export function MapContainer({
   const updateDraftSpot = useMapStore((s) => s.updateDraftSpot);
   const setSpotFormStep = useMapStore((s) => s.setSpotFormStep);
   const selectSpot = useMapStore((s) => s.selectSpot);
+  const locale = useMapStore((s) => s.locale);
 
   const [hoveredZoneId, setHoveredZoneId] = useState<string | null>(null);
   const [popupInfo, setPopupInfo] = useState<PopupInfo>(null);
@@ -334,7 +335,7 @@ export function MapContainer({
       ref={mapRef}
       initialViewState={INITIAL_VIEW}
       style={{ width: "100%", height: "100%" }}
-      mapStyle="mapbox://styles/mapbox/streets-v12"
+      mapStyle={`mapbox://styles/mapbox/streets-v12?language=${locale}`}
       mapboxAccessToken={MAPBOX_TOKEN}
       onMove={handleMove}
       onClick={handleClick}

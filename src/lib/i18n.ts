@@ -126,6 +126,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "spotForm.next": "Next",
     "spotForm.publish": "Publish",
     "spotForm.publishing": "Publishing...",
+    "spotForm.searchPlaceholder": "Search for a beach...",
 
     // Spot tags
     "tag.rocky_beach": "Rocky beach",
@@ -368,6 +369,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "spotForm.next": "ถัดไป",
     "spotForm.publish": "เผยแพร่",
     "spotForm.publishing": "กำลังเผยแพร่...",
+    "spotForm.searchPlaceholder": "ค้นหาชายหาด...",
 
     // Spot tags
     "tag.rocky_beach": "หาดหิน",
