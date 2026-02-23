@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { countryFromCoords } from "./countryFromCoords";
+import { countryFromCoords, flagFromCountryName } from "./countryFromCoords";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!;
 
@@ -56,10 +56,14 @@ export function useReverseGeocode(lat: number, lng: number): ReverseGeocodeResul
           }
         }
 
-        // Fallback to bounding-box lookup for flag (Mapbox doesn't return flag emojis)
-        const bbLookup = countryFromCoords(lat, lng);
-        countryFlag = bbLookup.flag;
-        if (!country) country = bbLookup.name !== "Other" ? bbLookup.name : null;
+        // Derive flag from Mapbox country name; fall back to bounding-box
+        if (country) {
+          countryFlag = flagFromCountryName(country);
+        } else {
+          const bb = countryFromCoords(lat, lng);
+          countryFlag = bb.flag;
+          country = bb.name !== "Other" ? bb.name : null;
+        }
 
         const entry = { placeName, country, countryFlag };
         cache.set(key, entry);

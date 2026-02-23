@@ -66,15 +66,37 @@ const COUNTRIES: Country[] = [
 
 const OTHER = { name: "Other", flag: "🌏" } as const;
 
+/** Name → flag lookup (case-insensitive). Works with Mapbox country names. */
+const FLAG_BY_NAME = new Map<string, string>(
+  COUNTRIES.map((c) => [c.name.toLowerCase(), c.flag])
+);
+
+export function flagFromCountryName(name: string): string {
+  return FLAG_BY_NAME.get(name.toLowerCase()) ?? OTHER.flag;
+}
+
 export function countryFromCoords(
   lat: number,
   lng: number
 ): { name: string; flag: string } {
+  const matches: Country[] = [];
   for (const c of COUNTRIES) {
     const { latMin, latMax, lngMin, lngMax } = c.bounds;
     if (lat >= latMin && lat <= latMax && lng >= lngMin && lng <= lngMax) {
-      return { name: c.name, flag: c.flag };
+      matches.push(c);
     }
   }
-  return OTHER;
+  if (matches.length === 0) return OTHER;
+  if (matches.length === 1) return { name: matches[0].name, flag: matches[0].flag };
+  // When multiple bounding boxes overlap, pick the smallest (most specific)
+  let best = matches[0];
+  let bestArea = Infinity;
+  for (const m of matches) {
+    const area = (m.bounds.latMax - m.bounds.latMin) * (m.bounds.lngMax - m.bounds.lngMin);
+    if (area < bestArea) {
+      bestArea = area;
+      best = m;
+    }
+  }
+  return { name: best.name, flag: best.flag };
 }
