@@ -95,7 +95,7 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
 
       {/* Modal panel */}
       <div className="fixed bottom-0 left-0 right-0 z-50 mx-auto max-w-md animate-slide-in md:bottom-auto md:left-1/2 md:top-1/2 md:max-h-[85vh] md:-translate-x-1/2 md:-translate-y-1/2">
-        <div className="glass-card rounded-t-2xl shadow-2xl md:rounded-2xl">
+        <div className="rounded-t-2xl bg-white/95 shadow-2xl backdrop-blur-xl md:rounded-2xl">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-black/[0.06] px-4 py-3">
             <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">

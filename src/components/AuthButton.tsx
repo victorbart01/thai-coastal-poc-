@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { User } from "lucide-react";
 import { useUser } from "@/lib/useUser";
 import { useTranslation } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
@@ -10,23 +8,6 @@ import { createClient } from "@/lib/supabase/client";
 export function AuthButton() {
   const { user, loading } = useUser();
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [open]);
 
   if (loading) {
     return (
@@ -56,12 +37,11 @@ export function AuthButton() {
   const avatarUrl = user.user_metadata?.avatar_url;
   const displayName =
     user.user_metadata?.full_name ?? user.user_metadata?.name ?? "User";
-  const email = user.email;
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button
-        onClick={() => setOpen((v) => !v)}
+    <div className="flex items-center gap-2.5">
+      <Link
+        href={`/profile/${user.id}`}
         className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-white/30 transition-all duration-200 hover:border-white/60"
       >
         {avatarUrl ? (
@@ -72,42 +52,20 @@ export function AuthButton() {
             className="h-full w-full object-cover"
           />
         ) : (
-          <span className="text-xs font-semibold text-text-secondary">
+          <span className="text-xs font-semibold text-white">
             {displayName[0]?.toUpperCase()}
           </span>
         )}
+      </Link>
+      <button
+        onClick={async () => {
+          const supabase = createClient();
+          await supabase.auth.signOut();
+        }}
+        className="font-[family-name:var(--font-display)] text-[11px] font-semibold tracking-wide text-white/70 transition-colors duration-200 hover:text-white"
+      >
+        {t("auth.signOut")}
       </button>
-
-      {open && (
-        <div className="glass-card absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-2xl shadow-xl">
-          <div className="border-b border-black/[0.06] px-4 py-3">
-            <p className="truncate text-sm font-medium text-text-primary">
-              {displayName}
-            </p>
-            {email && (
-              <p className="truncate text-xs text-text-tertiary">{email}</p>
-            )}
-          </div>
-          <Link
-            href={`/profile/${user.id}`}
-            onClick={() => setOpen(false)}
-            className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-text-secondary transition-colors duration-150 hover:bg-black/[0.04] hover:text-text-primary"
-          >
-            <User className="h-3.5 w-3.5" />
-            {t("profile.title")}
-          </Link>
-          <button
-            onClick={async () => {
-              const supabase = createClient();
-              await supabase.auth.signOut();
-              setOpen(false);
-            }}
-            className="w-full px-4 py-2.5 text-left text-sm text-text-secondary transition-colors duration-150 hover:bg-black/[0.04] hover:text-text-primary"
-          >
-            {t("auth.signOut")}
-          </button>
-        </div>
-      )}
     </div>
   );
 }

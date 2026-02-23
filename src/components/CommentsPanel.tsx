@@ -126,7 +126,7 @@ export function CommentsPanel() {
       />
 
       {/* Panel */}
-      <div className="animate-panel-enter-right glass-surface fixed inset-y-0 right-0 z-40 flex w-full max-w-sm flex-col shadow-2xl">
+      <div className="animate-panel-enter-right fixed inset-y-0 right-0 z-40 flex w-full max-w-sm flex-col bg-white/93 shadow-2xl backdrop-blur-xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-black/[0.06] px-4 py-3">
           <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">

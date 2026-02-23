@@ -23,7 +23,7 @@ export function QuickLinks() {
         <Link
           key={link.href + link.label}
           href={link.href}
-          className="rounded-full border border-black/[0.08] bg-black/[0.03] px-3 py-1.5 text-[11px] font-medium text-text-secondary transition-all duration-200 hover:border-black/[0.12] hover:bg-black/[0.06] hover:text-text-primary"
+          className="rounded-full border border-black/[0.12] bg-white/60 px-3 py-1.5 text-[11px] font-semibold text-text-secondary shadow-sm transition-all duration-200 hover:border-black/[0.18] hover:bg-white/80 hover:text-text-primary"
         >
           {link.label}
         </Link>
