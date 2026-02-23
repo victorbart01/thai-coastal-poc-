@@ -71,8 +71,8 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
   // Step 1: show a small floating banner so the map stays interactive
   if (spotFormStep === 1) {
     return (
-      <div className="fixed bottom-24 left-1/2 z-30 -translate-x-1/2 animate-slide-in md:bottom-8">
-        <div className="flex items-center gap-3 rounded-2xl border border-white/20 bg-black/70 px-5 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+      <div className="fixed bottom-24 left-1/2 z-30 w-auto -translate-x-1/2 animate-slide-in md:bottom-8">
+        <div className="flex items-center gap-2 rounded-2xl border border-white/20 bg-black/70 px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl">
           <StepLocation />
           <button
             onClick={closeSpotForm}
