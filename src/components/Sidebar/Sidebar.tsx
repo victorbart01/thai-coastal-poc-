@@ -33,7 +33,7 @@ export function Sidebar({ spots }: SidebarProps) {
       {PANELS.map((panel, i) => (
         <div
           key={panel}
-          className="animate-slide-in"
+          className={`animate-slide-in${panel === "search" ? " relative z-40" : ""}`}
           style={{ animationDelay: `${i * STAGGER_MS}ms` }}
         >
           {panel === "tagline" && <TaglineSection />}

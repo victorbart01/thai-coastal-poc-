@@ -329,7 +329,9 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
         onTouchEnd={handleContentTouchEnd}
       >
         <TaglineSection />
-        <SearchBar />
+        <div className="relative z-40">
+          <SearchBar />
+        </div>
         <QuickLinks />
         <PopularSpotsPanel spots={nearbySpots} />
         <ActivityFeed spots={nearbySpots} />
