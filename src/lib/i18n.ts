@@ -139,6 +139,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Spot popup
     "spot.anonymous": "Anonymous",
+    "spot.coordinates": "Coordinates",
 
     // Legend — community spot
     "legend.communitySpot": "Community spot",
@@ -374,6 +375,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Spot popup
     "spot.anonymous": "ไม่ระบุชื่อ",
+    "spot.coordinates": "พิกัด",
 
     // Legend — community spot
     "legend.communitySpot": "จุดจากชุมชน",

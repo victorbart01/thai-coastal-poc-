@@ -22,6 +22,7 @@ import { useLikes } from "@/lib/useLikes";
 import { useSaves } from "@/lib/useSaves";
 import { useComments } from "@/lib/useComments";
 import { useUser } from "@/lib/useUser";
+import { useReverseGeocode } from "@/lib/useReverseGeocode";
 import { ShareMenu } from "@/components/ShareMenu";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
 import type { Spot, Comment } from "@/lib/types";
@@ -52,6 +53,7 @@ export function SpotDetailContent({
 }) {
   const { t, locale } = useTranslation();
   const { user } = useUser();
+  const { placeName, country, countryFlag, loading: geoLoading } = useReverseGeocode(spot.latitude, spot.longitude);
   const commentsRef = useRef<HTMLDivElement>(null);
 
   // Social hooks
@@ -323,11 +325,25 @@ export function SpotDetailContent({
 
         {/* Coordinates card */}
         <div className="glass-card rounded-2xl px-4 py-3">
-          <div className="flex items-center gap-2">
-            <MapPin className="h-3.5 w-3.5 shrink-0 text-text-tertiary" />
-            <span className="font-mono text-[11px] text-text-secondary">
-              {spot.latitude.toFixed(4)}, {spot.longitude.toFixed(4)}
-            </span>
+          <div className="flex items-start gap-2">
+            <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-text-tertiary" />
+            <div className="flex min-w-0 flex-col gap-0.5">
+              {geoLoading ? (
+                <div className="h-3 w-32 animate-pulse rounded bg-black/[0.06]" />
+              ) : placeName ? (
+                <span className="text-xs leading-snug text-text-primary">{placeName}</span>
+              ) : null}
+              {geoLoading ? (
+                <div className="h-3 w-20 animate-pulse rounded bg-black/[0.06]" />
+              ) : country ? (
+                <span className="text-[11px] text-text-secondary">
+                  {countryFlag} {country}
+                </span>
+              ) : null}
+              <span className="font-mono text-[11px] text-text-tertiary">
+                {spot.latitude.toFixed(4)}, {spot.longitude.toFixed(4)}
+              </span>
+            </div>
           </div>
         </div>
 
