@@ -16,7 +16,7 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
   const setLocale = useMapStore((s) => s.setLocale);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center px-4" style={{ backgroundColor: "#9AC8D6" }}>
+    <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center bg-black px-4">
       {/* Logo */}
       <span className="font-[family-name:var(--font-logo)] text-xl tracking-tight text-white">
         <span className="font-bold">Seeglass</span>
