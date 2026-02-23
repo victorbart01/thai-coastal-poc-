@@ -61,6 +61,7 @@ export function MobileDrawer({ spots }: MobileDrawerProps) {
 
   return (
     <div
+      data-onboarding="mobile-drawer"
       className={`glass-surface fixed inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-black/[0.06] shadow-[0_-4px_24px_rgba(0,0,0,0.08)] ${
         isDragging ? "" : "transition-[height] duration-300 ease-out"
       }`}

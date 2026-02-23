@@ -1,26 +1,51 @@
-# Phase 4 — Gamification & Rétention
+# UI Redesign — Soft Dark Glassmorphism
 
-## Implementation
+## Status: COMPLETE
 
-- [x] 1. Migration SQL (`004_gamification.sql`) — badges + user_badges tables with RLS
-- [x] 2. Types (`types.ts`) — Badge, UserBadge, UserStats, LeaderboardEntry
-- [x] 3. i18n (`i18n.ts`) — ~25 EN + ~25 TH keys for profile, badges, leaderboard, rarity
-- [x] 4. `badges.ts` — BADGE_DEFINITIONS + checkBadgeCriteria()
-- [x] 5. `useUserBadges.ts` — hook for fetching/awarding badges
-- [x] 6. `useUserProfile.ts` — hook for profile + spots + stats
-- [x] 7. `BadgeCard.tsx` — badge display with rarity colors + locked state
-- [x] 8. `ProfileHeader.tsx` — avatar, name, bio, stats row, share button
-- [x] 9. `/profile/[id]/page.tsx` — full profile page with badges + collection
-- [x] 10. `LeaderboardPanel.tsx` — top 10 contributors sidebar panel
-- [x] 11. `Sidebar.tsx` + `MobileDrawer.tsx` — wired leaderboard panel
-- [x] 12. `AuthButton.tsx` — "My Profile" link in dropdown
-- [x] 13. `SpotPopup.tsx` — clickable author name → profile link
-- [x] 14. `npm run build` — passes ✅
+All phases implemented and build passes.
 
-## Manual steps required
-- [ ] Execute `supabase/migrations/004_gamification.sql` in Supabase SQL Editor
+## Phases Completed
 
-## Review
-- Build passes with 0 errors, only 2 warnings (img vs Image in AuthButton/ProfileHeader — external URLs with referrerPolicy)
-- Profile page at `/profile/[id]` — 3.85 kB client bundle
-- All 8 new files created, 7 existing files modified
+- [x] **Phase 0** — globals.css: new tokens, glassmorphism utilities, body bg, scrollbar, animations, mapbox overrides, range slider
+- [x] **Phase 1** — page.tsx: fullscreen map, glass header fixed, sidebar right overlay
+- [x] **Phase 2** — Header.tsx: glass-header, logo gradient teal→pink, PanelRight icons, glow line via-accent-pink
+- [x] **Phase 3** — Sidebar.tsx: glass-surface
+- [x] **Phase 4** — 7 sidebar panels: glass-card rounded-2xl, sub-cards bg-white/[0.04], progress bars bg-white/[0.08]
+- [x] **Phase 5** — MobileDrawer: glass-surface, grab handle bg-white/[0.2]
+- [x] **Phase 6** — Popups: removed border-l, rounded-2xl, gradient from-black/70, accent-pink tags
+- [x] **Phase 7** — Overlays: CommentsPanel glass-surface, AuthButton glass-card dropdown, ShareMenu glass-card, SpotFAB gradient teal→pink
+- [x] **Phase 8** — SpotForm: glass-card modal, stepper gradient, CTA gradient, inputs bg-white/[0.06]
+- [x] **Phase 9** — Profile: glass-card spot cards, stat cards glass-card rounded-2xl, BadgeCard backdrop-blur
+
+## Files Modified (26)
+
+1. `src/app/globals.css`
+2. `src/app/page.tsx`
+3. `src/components/Header.tsx`
+4. `src/components/Sidebar/Sidebar.tsx`
+5. `src/components/Sidebar/StatsPanel.tsx`
+6. `src/components/Sidebar/LegendPanel.tsx`
+7. `src/components/Sidebar/FiltersPanel.tsx`
+8. `src/components/Sidebar/TopSpotsPanel.tsx`
+9. `src/components/Sidebar/RecentFindsPanel.tsx`
+10. `src/components/Sidebar/LeaderboardPanel.tsx`
+11. `src/components/Sidebar/MethodologyPanel.tsx`
+12. `src/components/MobileDrawer.tsx`
+13. `src/components/Map/SpotPopup.tsx`
+14. `src/components/Map/ZonePopup.tsx`
+15. `src/components/Map/MapContainer.tsx`
+16. `src/components/CommentsPanel.tsx`
+17. `src/components/AuthButton.tsx`
+18. `src/components/ShareMenu.tsx`
+19. `src/components/SpotFAB.tsx`
+20. `src/components/SpotForm/SpotForm.tsx`
+21. `src/components/SpotForm/StepDetails.tsx`
+22. `src/components/SpotForm/StepPhotos.tsx`
+23. `src/components/SpotForm/StepPreview.tsx`
+24. `src/app/profile/[id]/page.tsx`
+25. `src/components/ProfileHeader.tsx`
+26. `src/components/BadgeCard.tsx`
+
+## Build Result
+
+`npm run build` passes with zero errors.

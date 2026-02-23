@@ -72,6 +72,12 @@ interface MapState {
   commentingSpotId: string | null;
   openComments: (spotId: string) => void;
   closeComments: () => void;
+
+  // Onboarding coach marks (0 = inactive, 1-3 = current step)
+  onboardingStep: number;
+  startOnboarding: () => void;
+  nextOnboardingStep: () => void;
+  completeOnboarding: () => void;
 }
 
 export const useMapStore = create<MapState>((set) => ({
@@ -150,4 +156,13 @@ export const useMapStore = create<MapState>((set) => ({
     set({ showCommentsPanel: true, commentingSpotId: spotId }),
   closeComments: () =>
     set({ showCommentsPanel: false, commentingSpotId: null }),
+
+  // Onboarding
+  onboardingStep: 0,
+  startOnboarding: () => set({ onboardingStep: 1 }),
+  nextOnboardingStep: () =>
+    set((state) => ({
+      onboardingStep: state.onboardingStep < 3 ? state.onboardingStep + 1 : 0,
+    })),
+  completeOnboarding: () => set({ onboardingStep: 0 }),
 }));

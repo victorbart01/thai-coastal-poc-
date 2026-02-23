@@ -162,6 +162,11 @@ export function SpotPopup({ spot, onClose }: SpotPopupProps) {
             </span>
           </div>
 
+          {/* Coordinates */}
+          <p className="mt-1.5 font-mono text-[10px] text-text-tertiary">
+            {spot.latitude.toFixed(4)}, {spot.longitude.toFixed(4)}
+          </p>
+
           {/* Tags */}
           {spot.tags.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-1">

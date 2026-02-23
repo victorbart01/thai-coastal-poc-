@@ -206,6 +206,16 @@ const translations: Record<Locale, Record<string, string>> = {
     "shop.comingSoon": "Coming soon — stay tuned!",
     "forum.title": "Forum",
     "forum.comingSoon": "Coming soon — stay tuned!",
+
+    // Onboarding coach marks
+    "onboarding.step1":
+      "This is the community map. Each pink dot is a sea glass spot shared by a collector.",
+    "onboarding.step2":
+      "Here you'll find recent discoveries, popular spots, and the leaderboard.",
+    "onboarding.step3": "Ready to share? Tap here to drop your first spot!",
+    "onboarding.next": "Next",
+    "onboarding.skip": "Skip",
+    "onboarding.done": "Got it!",
   },
   th: {
     // Header
@@ -410,6 +420,16 @@ const translations: Record<Locale, Record<string, string>> = {
     "shop.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
     "forum.title": "ฟอรัม",
     "forum.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
+
+    // Onboarding coach marks
+    "onboarding.step1":
+      "นี่คือแผนที่ชุมชน จุดสีชมพูแต่ละจุดคือจุดซีกลาสที่นักสะสมแชร์ไว้",
+    "onboarding.step2":
+      "ที่นี่คุณจะพบการค้นพบล่าสุด จุดยอดนิยม และลีดเดอร์บอร์ด",
+    "onboarding.step3": "พร้อมแชร์หรือยัง? แตะที่นี่เพื่อดรอปจุดแรกของคุณ!",
+    "onboarding.next": "ถัดไป",
+    "onboarding.skip": "ข้าม",
+    "onboarding.done": "เข้าใจแล้ว!",
   },
 };
 
