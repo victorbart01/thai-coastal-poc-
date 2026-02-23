@@ -18,10 +18,15 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center bg-black px-4">
       {/* Logo */}
-      <span className="font-[family-name:var(--font-logo)] text-xl tracking-tight text-white">
-        <span className="font-bold">Seaglass</span>
-        <span className="font-normal">map</span>
-      </span>
+      <div className="flex items-center gap-1.5">
+        <span className="font-[family-name:var(--font-logo)] text-xl tracking-tight text-white">
+          <span className="font-bold">Seaglass</span>
+          <span className="font-normal">map</span>
+        </span>
+        <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/70">
+          beta
+        </span>
+      </div>
 
       {/* Spacer */}
       <div className="flex-1" />
