@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "tsx scripts/seed-spots.ts"
+    "seed": "tsx scripts/seed-spots.ts",
+    "seed:photos": "tsx scripts/seed-photos.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
