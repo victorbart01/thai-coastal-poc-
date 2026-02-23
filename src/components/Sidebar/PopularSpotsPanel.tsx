@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import Image from "next/image";
 import { Heart } from "lucide-react";
 import type { Spot } from "@/lib/types";
@@ -15,6 +15,40 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
   const selectSpot = useMapStore((s) => s.selectSpot);
   const flyTo = useMapStore((s) => s.flyTo);
   const { t } = useTranslation();
+
+  // Drag-to-scroll state
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, hasDragged: false });
+
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    dragState.current = {
+      isDown: true,
+      startX: e.clientX,
+      scrollLeft: el.scrollLeft,
+      hasDragged: false,
+    };
+    el.setPointerCapture(e.pointerId);
+    el.style.scrollSnapType = "none";
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    const ds = dragState.current;
+    if (!ds.isDown) return;
+    const dx = e.clientX - ds.startX;
+    if (Math.abs(dx) > 3) ds.hasDragged = true;
+    scrollRef.current!.scrollLeft = ds.scrollLeft - dx;
+  }, []);
+
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
+    dragState.current.isDown = false;
+    const el = scrollRef.current;
+    if (el) {
+      el.releasePointerCapture(e.pointerId);
+      el.style.scrollSnapType = "";
+    }
+  }, []);
 
   const popularSpots = useMemo(
     () =>
@@ -41,14 +75,22 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
         {t("popularSpots.title")}
       </h3>
 
-      <div className="mt-3 flex snap-x gap-2.5 overflow-x-auto pb-1">
+      <div
+        ref={scrollRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+        className="mt-3 flex cursor-grab snap-x gap-2.5 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden active:cursor-grabbing"
+      >
         {popularSpots.map((spot) => {
           const thumbnail = spot.photos[0]?.url;
 
           return (
             <button
               key={spot.id}
-              onClick={() => handleClick(spot)}
+              onClick={() => { if (!dragState.current.hasDragged) handleClick(spot); }}
               className="group min-w-[200px] shrink-0 snap-start overflow-hidden rounded-2xl border border-transparent bg-black/[0.03] text-left transition-all duration-200 hover:border-black/[0.08] hover:bg-black/[0.06]"
             >
               {/* Thumbnail */}
