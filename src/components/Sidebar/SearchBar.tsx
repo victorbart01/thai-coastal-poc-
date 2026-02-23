@@ -55,7 +55,7 @@ export function SearchBar() {
   const showDropdown = open && query.length >= 2;
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className={`relative ${open ? "z-50" : ""}`}>
       {/* Input pill */}
       <div className="glass-card flex w-full items-center gap-2.5 rounded-full px-4 py-2.5">
         {loading ? (
