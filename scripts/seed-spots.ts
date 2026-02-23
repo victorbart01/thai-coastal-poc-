@@ -260,8 +260,8 @@ const SPOTS: SpotDef[] = [
     title: "Hat Nam Rin, Ban Chang",
     description:
       "Rocky beach in the Ban Chang area with potentially favorable conditions for sea glass accumulation.",
-    lat: 12.635,
-    lng: 101.07,
+    lat: 12.662365,
+    lng: 101.064212,
     rating: 2,
     tags: ["rocky_beach"],
     accountIdx: 2,
