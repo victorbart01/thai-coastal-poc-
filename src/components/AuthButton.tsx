@@ -30,7 +30,7 @@ export function AuthButton() {
 
   if (loading) {
     return (
-      <div className="h-7 w-16 animate-pulse rounded-full bg-black/[0.04]" />
+      <div className="h-7 w-16 animate-pulse rounded-full bg-white/20" />
     );
   }
 
@@ -46,7 +46,7 @@ export function AuthButton() {
             },
           });
         }}
-        className="rounded-full border border-black/[0.08] bg-black/[0.04] px-3 py-1 font-[family-name:var(--font-display)] text-[11px] font-semibold tracking-wide text-text-secondary transition-all duration-200 hover:bg-black/[0.08] hover:text-text-primary"
+        className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-[family-name:var(--font-display)] text-[11px] font-semibold tracking-wide text-white transition-all duration-200 hover:bg-white/20"
       >
         {t("auth.signIn")}
       </button>
@@ -62,7 +62,7 @@ export function AuthButton() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-black/[0.08] transition-all duration-200 hover:border-glass-deep/40"
+        className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-white/30 transition-all duration-200 hover:border-white/60"
       >
         {avatarUrl ? (
           <img

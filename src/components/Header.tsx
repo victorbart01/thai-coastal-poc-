@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { useMapStore } from "@/store/useMapStore";
@@ -16,16 +17,16 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
   const setLocale = useMapStore((s) => s.setLocale);
 
   return (
-    <header className="glass-header fixed inset-x-0 top-0 z-10 flex h-12 items-center border-b border-black/[0.06] px-4">
+    <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center px-4" style={{ backgroundColor: "#9AC8D6" }}>
       {/* Logo */}
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-glass-deep to-accent-pink shadow-[0_2px_8px_rgba(6,182,212,0.2)]">
-        <span className="text-base leading-none">🌊</span>
-      </div>
-
-      {/* Title */}
-      <h1 className="ml-3 font-[family-name:var(--font-display)] text-sm font-semibold tracking-wide text-text-primary">
-        {t("header.title")}
-      </h1>
+      <Image
+        src="/logo.png"
+        alt="Seeglassmap"
+        width={140}
+        height={32}
+        className="h-7 w-auto"
+        priority
+      />
 
       {/* Spacer */}
       <div className="flex-1" />
@@ -34,18 +35,18 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
       <AuthButton />
 
       {/* Separator */}
-      <div className="mx-2 h-4 w-px bg-black/[0.06]" />
+      <div className="mx-2 h-4 w-px bg-white/30" />
 
       {/* Language switcher */}
-      <div className="flex items-center gap-0.5 rounded-full border border-black/[0.08] bg-black/[0.04] p-0.5">
+      <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/10 p-0.5">
         {(["en", "th"] as Locale[]).map((lang) => (
           <button
             key={lang}
             onClick={() => setLocale(lang)}
             className={`rounded-full px-2.5 py-1 font-[family-name:var(--font-display)] text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 ${
               locale === lang
-                ? "bg-gradient-to-r from-glass-deep/30 to-accent-pink/30 text-white shadow-[0_1px_4px_rgba(6,182,212,0.15)]"
-                : "text-text-tertiary hover:text-text-secondary"
+                ? "bg-white/25 text-white shadow-sm"
+                : "text-white/60 hover:text-white"
             }`}
           >
             {lang}
@@ -54,13 +55,13 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
       </div>
 
       {/* Separator */}
-      <div className="mx-2 h-4 w-px bg-black/[0.06]" />
+      <div className="mx-2 h-4 w-px bg-white/30" />
 
       {/* Tablet sidebar toggle — visible only on md < lg, now on the right */}
       {onToggleSidebar && (
         <button
           onClick={onToggleSidebar}
-          className="hidden rounded-md p-1.5 text-text-secondary transition-colors duration-200 hover:bg-black/[0.06] hover:text-text-primary md:block lg:hidden"
+          className="hidden rounded-md p-1.5 text-white/80 transition-colors duration-200 hover:bg-white/10 hover:text-white md:block lg:hidden"
           aria-label={sidebarOpen ? t("header.closePanel") : t("header.openPanel")}
         >
           {sidebarOpen ? (
@@ -70,9 +71,6 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
           )}
         </button>
       )}
-
-      {/* Subtle glow line under header */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent-pink/30 to-transparent" />
     </header>
   );
 }
