@@ -91,7 +91,8 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
             <button
               key={spot.id}
               onClick={() => { if (!dragState.current.hasDragged) handleClick(spot); }}
-              className="group min-w-[200px] shrink-0 snap-start overflow-hidden rounded-2xl border border-transparent bg-black/[0.03] text-left transition-all duration-200 hover:border-black/[0.08] hover:bg-black/[0.06]"
+              draggable={false}
+              className="group min-w-[200px] shrink-0 select-none snap-start overflow-hidden rounded-2xl border border-transparent bg-black/[0.03] text-left transition-all duration-200 hover:border-black/[0.08] hover:bg-black/[0.06]"
             >
               {/* Thumbnail */}
               {thumbnail && (
@@ -100,7 +101,8 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
                     src={thumbnail}
                     alt={spot.title}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    draggable={false}
+                    className="pointer-events-none object-cover transition-transform duration-300 group-hover:scale-105"
                     unoptimized
                   />
                 </div>
