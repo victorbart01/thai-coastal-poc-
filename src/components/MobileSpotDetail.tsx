@@ -12,17 +12,18 @@ export function MobileSpotDetail() {
   if (!selectedSpot) return null;
 
   return (
-    <div className="flex h-full flex-col">
-      {/* Back arrow */}
+    <div>
+      {/* Back arrow — sticky so it remains visible while scrolling */}
       <button
         onClick={() => selectSpot(null)}
-        className="flex shrink-0 items-center gap-2 px-3 py-2 text-xs text-text-secondary transition-colors hover:text-text-primary"
+        className="sticky top-0 z-10 flex w-full items-center gap-2 bg-[rgba(255,255,255,0.88)] px-3 py-2 text-xs text-text-secondary backdrop-blur-xl transition-colors hover:text-text-primary"
       >
         <ArrowLeft className="h-4 w-4" />
         Back
       </button>
 
-      {/* Reuse shared content */}
+      {/* Reuse shared content — no flex height constraint so the
+          MobileDrawer content div handles scrolling */}
       <SpotDetailContent
         key={selectedSpot.id}
         spot={selectedSpot}

@@ -182,7 +182,7 @@ export function SpotDetailContent({
   return (
     <>
       {/* Scrollable body — mirrors left sidebar: p-3 gap-3 with glass-card vignettes */}
-      <div className="sidebar-scroll flex flex-1 flex-col gap-3 overflow-y-auto p-3">
+      <div className="sidebar-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-3">
         {/* Post card */}
         <div className="glass-card overflow-hidden rounded-2xl">
           {/* Header: avatar + name + time + close */}
