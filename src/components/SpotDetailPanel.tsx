@@ -186,28 +186,30 @@ export function SpotDetailContent({
 
   return (
     <>
-      {/* Scrollable body */}
-      <div className="sidebar-scroll flex-1 overflow-y-auto">
-        {/* Photo carousel */}
+      {/* Scrollable body — mirrors left sidebar: p-3 gap-3 with glass-card vignettes */}
+      <div className="sidebar-scroll flex flex-1 flex-col gap-3 overflow-y-auto p-3">
+        {/* Close button */}
+        <div className="flex justify-end">
+          <button
+            onClick={onClose}
+            className="rounded-lg p-1.5 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* Photo card */}
         {spot.photos.length > 0 && (
-          <div className="group relative">
+          <div className="glass-card group relative overflow-hidden rounded-2xl">
             <Image
               src={spot.photos[photoIndex].url}
               alt={`${spot.title} — photo ${photoIndex + 1}`}
               width={448}
               height={224}
-              className="h-56 w-full object-cover"
+              className="h-48 w-full object-cover"
               unoptimized
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-            {/* Close button over photo */}
-            <button
-              onClick={onClose}
-              className="absolute right-3 top-3 rounded-full bg-black/40 p-1.5 text-white backdrop-blur-sm transition-colors hover:bg-black/60"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
             {/* Photo counter */}
             <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
@@ -241,27 +243,15 @@ export function SpotDetailContent({
           </div>
         )}
 
-        {/* If no photos, show close button standalone */}
-        {spot.photos.length === 0 && (
-          <div className="flex justify-end px-4 pt-3">
-            <button
-              onClick={onClose}
-              className="rounded-lg p-1.5 text-text-tertiary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-        )}
-
-        {/* Details */}
-        <div className="space-y-3 px-4 pt-4 pb-4">
+        {/* Details card */}
+        <div className="glass-card rounded-2xl p-4">
           {/* Title */}
           <h2 className="font-[family-name:var(--font-display)] text-base font-semibold leading-snug text-text-primary">
             {spot.title}
           </h2>
 
           {/* Author + date */}
-          <div className="flex items-center gap-2">
+          <div className="mt-2.5 flex items-center gap-2">
             {spot.author.avatar_url ? (
               <Image
                 src={spot.author.avatar_url}
@@ -288,7 +278,7 @@ export function SpotDetailContent({
           </div>
 
           {/* Rating */}
-          <div className="flex items-center gap-0.5">
+          <div className="mt-2.5 flex items-center gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
                 key={i}
@@ -305,13 +295,13 @@ export function SpotDetailContent({
           </div>
 
           {/* Coordinates */}
-          <p className="font-mono text-[10px] text-text-tertiary">
+          <p className="mt-2 font-mono text-[10px] text-text-tertiary">
             {spot.latitude.toFixed(4)}, {spot.longitude.toFixed(4)}
           </p>
 
           {/* Tags */}
           {spot.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1">
+            <div className="mt-2.5 flex flex-wrap gap-1">
               {spot.tags.map((tag) => (
                 <span
                   key={tag}
@@ -325,13 +315,15 @@ export function SpotDetailContent({
 
           {/* Description */}
           {spot.description && (
-            <p className="text-[11px] leading-relaxed text-text-secondary">
+            <p className="mt-2.5 text-[11px] leading-relaxed text-text-secondary">
               {spot.description}
             </p>
           )}
+        </div>
 
-          {/* Social bar */}
-          <div className="flex items-center gap-1 border-t border-black/[0.06] pt-3">
+        {/* Social bar card */}
+        <div className="glass-card rounded-2xl p-4">
+          <div className="flex items-center gap-1">
             {/* Like */}
             <button
               onClick={() => user && toggleLike(spot.id, user.id)}
@@ -391,74 +383,74 @@ export function SpotDetailContent({
               )}
             </div>
           </div>
-
-          {/* Comments section */}
-          <div ref={commentsRef} className="border-t border-black/[0.06] pt-3">
-            <h3 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
-              {t("social.comments")}
-            </h3>
-
-            <div className="mt-2">
-              {commentsLoading ? (
-                <div className="flex items-center justify-center py-8">
-                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-glass-deep border-t-transparent" />
-                </div>
-              ) : comments.length === 0 ? (
-                <p className="py-8 text-center text-xs text-text-tertiary">
-                  {t("social.noComments")}
-                </p>
-              ) : (
-                <div className="divide-y divide-black/[0.04]">
-                  {comments.map((c) => renderComment(c))}
-                </div>
-              )}
-            </div>
-          </div>
         </div>
-      </div>
 
-      {/* Comment input bar — fixed at panel bottom */}
-      <div className="border-t border-black/[0.06] p-3">
-        {user ? (
-          <>
-            {replyTo && (
-              <div className="mb-2 flex items-center gap-2 rounded-md bg-black/[0.04] px-2.5 py-1.5">
-                <Reply className="h-3 w-3 text-pink-400" />
-                <span className="flex-1 truncate text-[10px] text-text-secondary">
-                  {t("social.reply")} @{replyTo.name}
-                </span>
-                <button
-                  onClick={() => setReplyTo(null)}
-                  className="text-text-tertiary hover:text-text-primary"
-                >
-                  <X className="h-3 w-3" />
-                </button>
+        {/* Comments card */}
+        <div ref={commentsRef} className="glass-card rounded-2xl p-4">
+          <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+            {t("social.comments")}
+          </h3>
+
+          <div className="mt-3">
+            {commentsLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-glass-deep border-t-transparent" />
+              </div>
+            ) : comments.length === 0 ? (
+              <p className="py-6 text-center text-xs text-text-tertiary">
+                {t("social.noComments")}
+              </p>
+            ) : (
+              <div className="divide-y divide-black/[0.04]">
+                {comments.map((c) => renderComment(c))}
               </div>
             )}
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder={t("social.addComment")}
-                maxLength={500}
-                className="flex-1 rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-2 text-xs text-text-primary placeholder:text-text-tertiary focus:border-accent-pink focus:outline-none"
-              />
-              <button
-                onClick={handleSubmit}
-                disabled={!text.trim() || submitting}
-                className="rounded-lg bg-gradient-to-r from-glass-deep to-accent-pink p-2 text-white transition-colors disabled:opacity-40"
-              >
-                <Send className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          </>
-        ) : (
-          <p className="text-center text-xs text-text-tertiary">
-            {t("social.signInToComment")}
-          </p>
-        )}
+          </div>
+
+          {/* Comment input */}
+          <div className="mt-3 border-t border-black/[0.06] pt-3">
+            {user ? (
+              <>
+                {replyTo && (
+                  <div className="mb-2 flex items-center gap-2 rounded-md bg-black/[0.04] px-2.5 py-1.5">
+                    <Reply className="h-3 w-3 text-pink-400" />
+                    <span className="flex-1 truncate text-[10px] text-text-secondary">
+                      {t("social.reply")} @{replyTo.name}
+                    </span>
+                    <button
+                      onClick={() => setReplyTo(null)}
+                      className="text-text-tertiary hover:text-text-primary"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                )}
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder={t("social.addComment")}
+                    maxLength={500}
+                    className="flex-1 rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-2 text-xs text-text-primary placeholder:text-text-tertiary focus:border-accent-pink focus:outline-none"
+                  />
+                  <button
+                    onClick={handleSubmit}
+                    disabled={!text.trim() || submitting}
+                    className="rounded-lg bg-gradient-to-r from-glass-deep to-accent-pink p-2 text-white transition-colors disabled:opacity-40"
+                  >
+                    <Send className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <p className="text-center text-xs text-text-tertiary">
+                {t("social.signInToComment")}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </>
   );
