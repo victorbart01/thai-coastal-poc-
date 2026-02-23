@@ -81,7 +81,7 @@ export function SearchBar() {
             }
           }}
           placeholder={t("search.placeholder")}
-          className="min-w-0 flex-1 bg-transparent text-base md:text-xs text-text-primary outline-none placeholder:text-text-tertiary"
+          className="min-w-0 flex-1 bg-transparent text-base md:text-xs text-text-primary outline-none ring-0 focus:ring-0 focus:outline-none placeholder:text-text-tertiary"
         />
         {(searchLocation || query.length > 0) && (
           <button
