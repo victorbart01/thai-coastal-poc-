@@ -73,6 +73,19 @@ interface MapState {
   openComments: (spotId: string) => void;
   closeComments: () => void;
 
+  // Search location (geocoding result)
+  searchLocation: {
+    name: string;
+    latitude: number;
+    longitude: number;
+  } | null;
+  setSearchLocation: (loc: {
+    name: string;
+    latitude: number;
+    longitude: number;
+  }) => void;
+  clearSearch: () => void;
+
   // Onboarding coach marks (0 = inactive, 1-3 = current step)
   onboardingStep: number;
   startOnboarding: () => void;
@@ -156,6 +169,19 @@ export const useMapStore = create<MapState>((set) => ({
     set({ showCommentsPanel: true, commentingSpotId: spotId }),
   closeComments: () =>
     set({ showCommentsPanel: false, commentingSpotId: null }),
+
+  // Search location
+  searchLocation: null,
+  setSearchLocation: (loc) =>
+    set({
+      searchLocation: loc,
+      flyToTarget: { latitude: loc.latitude, longitude: loc.longitude, zoom: 11 },
+    }),
+  clearSearch: () =>
+    set({
+      searchLocation: null,
+      flyToTarget: { latitude: 12.5, longitude: 101, zoom: 6 },
+    }),
 
   // Onboarding
   onboardingStep: 0,

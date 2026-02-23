@@ -3,6 +3,7 @@
 import { useRef, useCallback, useEffect, useState } from "react";
 import type { Spot } from "@/lib/types";
 import { useMapStore } from "@/store/useMapStore";
+import { useNearbySpots } from "@/lib/useNearbySpots";
 import { TaglineSection } from "./Sidebar/TaglineSection";
 import { SearchBar } from "./Sidebar/SearchBar";
 import { QuickLinks } from "./Sidebar/QuickLinks";
@@ -48,6 +49,7 @@ function nearestSnap(height: number, snaps: Record<SnapPoint, number>): SnapPoin
 
 export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps) {
   const showSpotForm = useMapStore((s) => s.showSpotForm);
+  const nearbySpots = useNearbySpots(spots);
   const sheetRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const dragState = useRef<{
@@ -329,9 +331,9 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
         <TaglineSection />
         <SearchBar />
         <QuickLinks />
-        <PopularSpotsPanel spots={spots} />
-        <ActivityFeed spots={spots} />
-        <LeaderboardPanel spots={spots} />
+        <PopularSpotsPanel spots={nearbySpots} />
+        <ActivityFeed spots={nearbySpots} />
+        <LeaderboardPanel spots={nearbySpots} />
         <MapToggles />
       </div>
     </div>

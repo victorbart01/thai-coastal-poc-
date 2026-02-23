@@ -1,6 +1,7 @@
 "use client";
 
 import type { Spot } from "@/lib/types";
+import { useNearbySpots } from "@/lib/useNearbySpots";
 import { TaglineSection } from "./TaglineSection";
 import { SearchBar } from "./SearchBar";
 import { QuickLinks } from "./QuickLinks";
@@ -25,6 +26,8 @@ const PANELS = [
 const STAGGER_MS = 80;
 
 export function Sidebar({ spots }: SidebarProps) {
+  const nearbySpots = useNearbySpots(spots);
+
   return (
     <aside className="sidebar-scroll glass-surface flex h-full flex-col gap-3 overflow-y-auto p-3">
       {PANELS.map((panel, i) => (
@@ -36,9 +39,9 @@ export function Sidebar({ spots }: SidebarProps) {
           {panel === "tagline" && <TaglineSection />}
           {panel === "search" && <SearchBar />}
           {panel === "quicklinks" && <QuickLinks />}
-          {panel === "popular" && <PopularSpotsPanel spots={spots} />}
-          {panel === "activity" && <ActivityFeed spots={spots} />}
-          {panel === "contributors" && <LeaderboardPanel spots={spots} />}
+          {panel === "popular" && <PopularSpotsPanel spots={nearbySpots} />}
+          {panel === "activity" && <ActivityFeed spots={nearbySpots} />}
+          {panel === "contributors" && <LeaderboardPanel spots={nearbySpots} />}
           {panel === "toggles" && <MapToggles />}
         </div>
       ))}

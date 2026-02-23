@@ -14,7 +14,9 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Search
     "search.placeholder": "Find a beach, spot or collector...",
-    "search.comingSoon": "Coming soon",
+    "search.noResults": "No results found",
+    "search.showingNear": "Showing spots near",
+    "search.clearSearch": "Clear search",
 
     // Navigation
     "nav.about": "About",
@@ -233,7 +235,9 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Search
     "search.placeholder": "ค้นหาชายหาด จุด หรือนักสะสม...",
-    "search.comingSoon": "เร็วๆ นี้",
+    "search.noResults": "ไม่พบผลลัพธ์",
+    "search.showingNear": "แสดงจุดใกล้",
+    "search.clearSearch": "ล้างการค้นหา",
 
     // Navigation
     "nav.about": "เกี่ยวกับ",
