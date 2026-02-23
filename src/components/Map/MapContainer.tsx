@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import Map, {
   Popup,
+  AttributionControl,
   type MapRef,
   type MapLayerMouseEvent,
   type ViewStateChangeEvent,
@@ -346,7 +347,11 @@ export function MapContainer({
         "spots-clusters",
       ]}
       cursor={cursor}
+      attributionControl={false}
     >
+      {/* Attribution — bottom-left, compact */}
+      <AttributionControl position="bottom-left" compact />
+
       {/* Layer order: Protected (bottom) → Rivers → Zones → Spots (top) */}
       <ProtectedLayer protectedAreas={protectedAreas} />
       <RiverLayer riverMouths={riverMouths} onRiverClick={handleRiverClick} />

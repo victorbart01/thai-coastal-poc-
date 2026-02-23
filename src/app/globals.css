@@ -223,19 +223,7 @@ body {
   animation: var(--sg-spin-dir) var(--sg-spin-dur) linear infinite;
 }
 
-/* FAB pulse glow — gradient teal+pink */
-@keyframes pulse-fab {
-  0%, 100% {
-    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.2), 0 4px 16px rgba(244, 114, 182, 0.2);
-  }
-  50% {
-    box-shadow: 0 6px 24px rgba(6, 182, 212, 0.25), 0 6px 24px rgba(244, 114, 182, 0.25);
-  }
-}
-
-.animate-pulse-fab {
-  animation: pulse-fab 2s ease-in-out infinite;
-}
+/* FAB pulse glow — removed, using static glass effect instead */
 
 /* iOS-style spring curve for bottom sheet snapping */
 .sheet-transition {
