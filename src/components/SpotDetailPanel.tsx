@@ -183,7 +183,7 @@ export function SpotDetailContent({
       {/* Scrollable body — mirrors left sidebar: p-3 gap-3 with glass-card vignettes */}
       <div className="sidebar-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-3">
         {/* Post card */}
-        <div className="glass-card overflow-hidden rounded-2xl">
+        <div className="glass-card shrink-0 overflow-hidden rounded-2xl">
           {/* Header: avatar + name + time + close */}
           <div className="flex items-center gap-2.5 px-4 py-3">
             {spot.author.avatar_url ? (
@@ -324,7 +324,7 @@ export function SpotDetailContent({
         </div>
 
         {/* Coordinates card */}
-        <div className="glass-card rounded-2xl px-4 py-3">
+        <div className="glass-card shrink-0 rounded-2xl px-4 py-3">
           <div className="flex items-start gap-2">
             <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-text-tertiary" />
             <div className="flex min-w-0 flex-col gap-0.5">
@@ -348,7 +348,7 @@ export function SpotDetailContent({
         </div>
 
         {/* Comments card */}
-        <div ref={commentsRef} className="glass-card rounded-2xl p-4">
+        <div ref={commentsRef} className="glass-card shrink-0 rounded-2xl p-4">
           <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
             {t("social.comments")}
           </h3>
