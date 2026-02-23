@@ -213,6 +213,11 @@ body {
   animation: pulse-fab 2s ease-in-out infinite;
 }
 
+/* iOS-style spring curve for bottom sheet snapping */
+.sheet-transition {
+  transition: height 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
 /* ─── Mapbox Overrides ─────────────────────────────────── */
 
 .mapboxgl-popup-content {

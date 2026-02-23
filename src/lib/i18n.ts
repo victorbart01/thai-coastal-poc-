@@ -207,6 +207,11 @@ const translations: Record<Locale, Record<string, string>> = {
     "forum.title": "Forum",
     "forum.comingSoon": "Coming soon — stay tuned!",
 
+    // Tab bar
+    "tab.discover": "Discover",
+    "tab.contribute": "Contribute",
+    "tab.profile": "Profile",
+
     // Onboarding coach marks
     "onboarding.step1":
       "This is the community map. Each pink dot is a sea glass spot shared by a collector.",
@@ -420,6 +425,11 @@ const translations: Record<Locale, Record<string, string>> = {
     "shop.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
     "forum.title": "ฟอรัม",
     "forum.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
+
+    // Tab bar
+    "tab.discover": "ค้นพบ",
+    "tab.contribute": "แชร์จุด",
+    "tab.profile": "โปรไฟล์",
 
     // Onboarding coach marks
     "onboarding.step1":

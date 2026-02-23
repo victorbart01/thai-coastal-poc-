@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
-import { ChevronUp } from "lucide-react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import type { Spot } from "@/lib/types";
+import { useMapStore } from "@/store/useMapStore";
 import { TaglineSection } from "./Sidebar/TaglineSection";
 import { SearchBar } from "./Sidebar/SearchBar";
 import { QuickLinks } from "./Sidebar/QuickLinks";
@@ -11,84 +11,267 @@ import { ActivityFeed } from "./Sidebar/ActivityFeed";
 import { LeaderboardPanel } from "./Sidebar/LeaderboardPanel";
 import { MapToggles } from "./Sidebar/MapToggles";
 
+export type SnapPoint = "peek" | "half" | "full";
+
 interface MobileDrawerProps {
   spots: Spot[];
+  snapTo?: SnapPoint;
+  onSnapChange?: (snap: SnapPoint) => void;
 }
 
-const COLLAPSED_HEIGHT = 30;
-const EXPANDED_HEIGHT = 80;
+const TAB_BAR_HEIGHT = 56; // px, matches BottomTabBar
+const PEEK_HEIGHT = 120;
+const VELOCITY_THRESHOLD = 0.5; // px/ms — flick detection
+const DRAG_AREA_HEIGHT = 48; // px — top region that is draggable
 
-export function MobileDrawer({ spots }: MobileDrawerProps) {
-  const [sheetHeight, setSheetHeight] = useState(COLLAPSED_HEIGHT);
+function getSnapHeights() {
+  const vh = window.innerHeight;
+  return {
+    peek: PEEK_HEIGHT,
+    half: vh * 0.5,
+    full: vh * 0.9,
+  };
+}
+
+function nearestSnap(height: number, snaps: Record<SnapPoint, number>): SnapPoint {
+  let closest: SnapPoint = "peek";
+  let minDist = Infinity;
+  for (const [key, val] of Object.entries(snaps) as [SnapPoint, number][]) {
+    const dist = Math.abs(height - val);
+    if (dist < minDist) {
+      minDist = dist;
+      closest = key;
+    }
+  }
+  return closest;
+}
+
+export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps) {
+  const showSpotForm = useMapStore((s) => s.showSpotForm);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const dragState = useRef<{
+    startY: number;
+    startHeight: number;
+    lastY: number;
+    lastTime: number;
+    isDragging: boolean;
+    isScrollDrag: boolean; // true when dragging started from scroll interlock
+  } | null>(null);
+  const [currentSnap, setCurrentSnap] = useState<SnapPoint>("peek");
   const [isDragging, setIsDragging] = useState(false);
-  const dragRef = useRef<{ startY: number; startHeight: number } | null>(null);
+  const rafRef = useRef<number>(0);
 
-  const isExpanded = sheetHeight > (COLLAPSED_HEIGHT + EXPANDED_HEIGHT) / 2;
+  // Respond to parent snapTo prop changes
+  useEffect(() => {
+    if (!snapTo || !sheetRef.current) return;
+    const snaps = getSnapHeights();
+    sheetRef.current.style.height = `${snaps[snapTo]}px`;
+    setCurrentSnap(snapTo);
+  }, [snapTo]);
 
+  // Initialize at peek height
+  useEffect(() => {
+    if (!sheetRef.current) return;
+    sheetRef.current.style.height = `${PEEK_HEIGHT}px`;
+  }, []);
+
+  const animateToSnap = useCallback(
+    (snap: SnapPoint) => {
+      if (!sheetRef.current) return;
+      const snaps = getSnapHeights();
+      sheetRef.current.style.height = `${snaps[snap]}px`;
+      setCurrentSnap(snap);
+      onSnapChange?.(snap);
+    },
+    [onSnapChange]
+  );
+
+  // --- Touch handlers for drag area ---
   const handleTouchStart = useCallback(
     (e: React.TouchEvent) => {
-      setIsDragging(true);
-      dragRef.current = {
-        startY: e.touches[0].clientY,
-        startHeight: sheetHeight,
+      if (!sheetRef.current) return;
+      const touch = e.touches[0];
+      dragState.current = {
+        startY: touch.clientY,
+        startHeight: sheetRef.current.getBoundingClientRect().height,
+        lastY: touch.clientY,
+        lastTime: Date.now(),
+        isDragging: true,
+        isScrollDrag: false,
       };
+      setIsDragging(true);
     },
-    [sheetHeight]
+    []
   );
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!dragRef.current) return;
-    const deltaY = dragRef.current.startY - e.touches[0].clientY;
-    const deltaPercent = (deltaY / window.innerHeight) * 100;
+    if (!dragState.current?.isDragging || !sheetRef.current) return;
+    e.preventDefault();
+
+    const touch = e.touches[0];
+    const deltaY = dragState.current.startY - touch.clientY;
+    const snaps = getSnapHeights();
     const newHeight = Math.min(
-      EXPANDED_HEIGHT,
-      Math.max(10, dragRef.current.startHeight + deltaPercent)
+      snaps.full,
+      Math.max(PEEK_HEIGHT * 0.5, dragState.current.startHeight + deltaY)
     );
-    setSheetHeight(newHeight);
+
+    // DOM-direct update via rAF
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      if (sheetRef.current) {
+        sheetRef.current.style.height = `${newHeight}px`;
+      }
+    });
+
+    dragState.current.lastY = touch.clientY;
+    dragState.current.lastTime = Date.now();
   }, []);
 
   const handleTouchEnd = useCallback(() => {
-    if (!dragRef.current) return;
-    setIsDragging(false);
-    const mid = (COLLAPSED_HEIGHT + EXPANDED_HEIGHT) / 2;
-    setSheetHeight(sheetHeight > mid ? EXPANDED_HEIGHT : COLLAPSED_HEIGHT);
-    dragRef.current = null;
-  }, [sheetHeight]);
+    if (!dragState.current?.isDragging || !sheetRef.current) return;
+    cancelAnimationFrame(rafRef.current);
 
-  const toggleSheet = useCallback(() => {
-    setSheetHeight(isExpanded ? COLLAPSED_HEIGHT : EXPANDED_HEIGHT);
-  }, [isExpanded]);
+    const currentHeight = sheetRef.current.getBoundingClientRect().height;
+    const velocity =
+      (dragState.current.startY - dragState.current.lastY) /
+      Math.max(1, Date.now() - dragState.current.lastTime + (Date.now() - dragState.current.lastTime === 0 ? 1 : 0));
+
+    const snaps = getSnapHeights();
+    let target: SnapPoint;
+
+    if (Math.abs(velocity) > VELOCITY_THRESHOLD) {
+      // Flick: snap in the direction of the flick
+      if (velocity > 0) {
+        // Swiped up
+        target = currentHeight > snaps.half ? "full" : "half";
+      } else {
+        // Swiped down
+        target = currentHeight < snaps.half ? "peek" : "half";
+      }
+    } else {
+      target = nearestSnap(currentHeight, snaps);
+    }
+
+    setIsDragging(false);
+    dragState.current = null;
+    animateToSnap(target);
+  }, [animateToSnap]);
+
+  // --- Scroll interlock: at full snap, when scrollTop === 0 and user drags down → shrink ---
+  const handleContentTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      if (currentSnap !== "full" || !contentRef.current || !sheetRef.current) return;
+      if (contentRef.current.scrollTop > 0) return;
+
+      const touch = e.touches[0];
+      dragState.current = {
+        startY: touch.clientY,
+        startHeight: sheetRef.current.getBoundingClientRect().height,
+        lastY: touch.clientY,
+        lastTime: Date.now(),
+        isDragging: false, // not yet — wait for downward move
+        isScrollDrag: true,
+      };
+    },
+    [currentSnap]
+  );
+
+  const handleContentTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!dragState.current?.isScrollDrag || !sheetRef.current || !contentRef.current) return;
+
+    const touch = e.touches[0];
+    const deltaY = touch.clientY - dragState.current.startY;
+
+    // Only activate if dragging down and content is at top
+    if (deltaY > 0 && contentRef.current.scrollTop === 0) {
+      if (!dragState.current.isDragging) {
+        dragState.current.isDragging = true;
+        setIsDragging(true);
+      }
+      e.preventDefault();
+
+      const snaps = getSnapHeights();
+      const newHeight = Math.max(
+        PEEK_HEIGHT * 0.5,
+        Math.min(snaps.full, dragState.current.startHeight - deltaY)
+      );
+
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        if (sheetRef.current) {
+          sheetRef.current.style.height = `${newHeight}px`;
+        }
+      });
+
+      dragState.current.lastY = touch.clientY;
+      dragState.current.lastTime = Date.now();
+    }
+  }, []);
+
+  const handleContentTouchEnd = useCallback(() => {
+    if (!dragState.current?.isScrollDrag) return;
+    if (!dragState.current.isDragging) {
+      dragState.current = null;
+      return;
+    }
+
+    cancelAnimationFrame(rafRef.current);
+
+    if (!sheetRef.current) return;
+    const currentHeight = sheetRef.current.getBoundingClientRect().height;
+    const velocity =
+      (dragState.current.lastY - dragState.current.startY) /
+      Math.max(1, Date.now() - dragState.current.lastTime);
+
+    const snaps = getSnapHeights();
+    let target: SnapPoint;
+
+    if (Math.abs(velocity) > VELOCITY_THRESHOLD) {
+      target = velocity > 0 ? (currentHeight < snaps.half ? "peek" : "half") : "full";
+    } else {
+      target = nearestSnap(currentHeight, snaps);
+    }
+
+    setIsDragging(false);
+    dragState.current = null;
+    animateToSnap(target);
+  }, [animateToSnap]);
+
+  if (showSpotForm) return null;
 
   return (
     <div
+      ref={sheetRef}
       data-onboarding="mobile-drawer"
-      className={`glass-surface fixed inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-black/[0.06] shadow-[0_-4px_24px_rgba(0,0,0,0.08)] ${
-        isDragging ? "" : "transition-[height] duration-300 ease-out"
+      className={`glass-surface fixed inset-x-0 z-30 flex flex-col rounded-t-2xl border-t border-black/[0.06] shadow-[0_-4px_24px_rgba(0,0,0,0.08)] ${
+        isDragging ? "" : "sheet-transition"
       }`}
-      style={{ height: `${sheetHeight}vh` }}
+      style={{
+        bottom: `calc(${TAB_BAR_HEIGHT}px + env(safe-area-inset-bottom))`,
+        height: PEEK_HEIGHT,
+      }}
     >
-      {/* Grab handle */}
+      {/* Drag handle area — 48px tall */}
       <div
-        className="flex shrink-0 cursor-grab items-center justify-center pb-2 pt-3 active:cursor-grabbing"
+        className="flex shrink-0 cursor-grab flex-col items-center justify-center active:cursor-grabbing"
+        style={{ height: DRAG_AREA_HEIGHT }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        onClick={toggleSheet}
       >
-        <div className="h-1 w-10 rounded-full bg-white/[0.2] transition-colors duration-200 active:bg-glass-deep" />
+        <div className="h-1 w-10 rounded-full bg-black/10" />
       </div>
 
-      {/* Expand hint */}
-      <div className="flex items-center justify-center pb-2">
-        <ChevronUp
-          className={`h-4 w-4 text-text-tertiary transition-transform duration-300 ${
-            isExpanded ? "rotate-180" : ""
-          }`}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="sidebar-scroll flex-1 space-y-3 overflow-y-auto px-3 pb-8">
+      {/* Scrollable content */}
+      <div
+        ref={contentRef}
+        className="sidebar-scroll flex-1 space-y-3 overflow-y-auto px-3 pb-8"
+        onTouchStart={handleContentTouchStart}
+        onTouchMove={handleContentTouchMove}
+        onTouchEnd={handleContentTouchEnd}
+      >
         <TaglineSection />
         <SearchBar />
         <QuickLinks />

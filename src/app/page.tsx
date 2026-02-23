@@ -5,6 +5,9 @@ import { MapContainer } from "@/components/Map/MapContainer";
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { MobileDrawer } from "@/components/MobileDrawer";
+import type { SnapPoint } from "@/components/MobileDrawer";
+import { BottomTabBar } from "@/components/BottomTabBar";
+import type { TabId } from "@/components/BottomTabBar";
 import { SpotFAB } from "@/components/SpotFAB";
 import { SpotForm } from "@/components/SpotForm/SpotForm";
 import { CommentsPanel } from "@/components/CommentsPanel";
@@ -20,6 +23,8 @@ export default function Home() {
   const { spots, allSpots, refetch: refetchSpots } = useSpots();
   const { user } = useUser();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabId>("discover");
+  const [drawerSnap, setDrawerSnap] = useState<SnapPoint | undefined>(undefined);
   const { t } = useTranslation();
   const selectSpot = useMapStore((s) => s.selectSpot);
   const flyTo = useMapStore((s) => s.flyTo);
@@ -89,9 +94,20 @@ export default function Home() {
         </>
       )}
 
-      {/* Mobile drawer — visible only on < md */}
+      {/* Mobile drawer + tab bar — visible only on < md */}
       <div className="md:hidden">
-        <MobileDrawer spots={allSpots} />
+        <MobileDrawer
+          spots={allSpots}
+          snapTo={drawerSnap}
+          onSnapChange={() => setDrawerSnap(undefined)}
+        />
+        <BottomTabBar
+          activeTab={activeTab}
+          onTabChange={(tab) => {
+            setActiveTab(tab);
+            if (tab === "discover") setDrawerSnap("half");
+          }}
+        />
       </div>
 
       {/* Comments panel */}

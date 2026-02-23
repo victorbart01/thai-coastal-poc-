@@ -41,6 +41,7 @@ const STEP_CONFIG: {
   },
   {
     selector: '[data-onboarding="fab"]',
+    mobileSelector: '[data-onboarding="tab-contribute"]',
     messageKey: "onboarding.step3",
     position: "left",
     mobilePosition: "top",
