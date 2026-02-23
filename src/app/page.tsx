@@ -92,6 +92,7 @@ export default function Home() {
           spots={allSpots}
           snapTo={drawerSnap}
           onSnapChange={() => setDrawerSnap(undefined)}
+          onSpotUpdated={refetchSpots}
         />
         <BottomTabBar
           activeTab={activeTab}
@@ -103,7 +104,7 @@ export default function Home() {
       </div>
 
       {/* Spot detail panel (desktop/tablet) */}
-      <SpotDetailPanel />
+      <SpotDetailPanel onSpotUpdated={refetchSpots} />
 
       {/* Spot creation overlays */}
       <SpotFAB isLoggedIn={!!user} />

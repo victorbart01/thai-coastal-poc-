@@ -13,6 +13,7 @@ import {
   Send,
   Reply,
   Trash2,
+  GripVertical,
 } from "lucide-react";
 import { useMapStore } from "@/store/useMapStore";
 import { useTranslation } from "@/lib/i18n";
@@ -23,12 +24,13 @@ import { useSaves } from "@/lib/useSaves";
 import { useComments } from "@/lib/useComments";
 import { useUser } from "@/lib/useUser";
 import { useReverseGeocode } from "@/lib/useReverseGeocode";
+import { useAdmin } from "@/lib/useAdmin";
 import { ShareMenu } from "@/components/ShareMenu";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
 import type { Spot, Comment } from "@/lib/types";
 
 /** Desktop/tablet right-side panel — hidden on < md */
-export function SpotDetailPanel() {
+export function SpotDetailPanel({ onSpotUpdated }: { onSpotUpdated?: () => void }) {
   const selectedSpot = useMapStore((s) => s.selectedSpot);
   const selectSpot = useMapStore((s) => s.selectSpot);
 
@@ -37,7 +39,7 @@ export function SpotDetailPanel() {
   return (
     <div className="animate-panel-enter-right absolute right-0 top-12 bottom-0 z-10 hidden w-[360px] flex-col md:flex">
       <div className="glass-surface flex h-full flex-col">
-        <SpotDetailContent key={selectedSpot.id} spot={selectedSpot} onClose={() => selectSpot(null)} />
+        <SpotDetailContent key={selectedSpot.id} spot={selectedSpot} onClose={() => selectSpot(null)} onSpotUpdated={onSpotUpdated} />
       </div>
     </div>
   );
@@ -47,12 +49,15 @@ export function SpotDetailPanel() {
 export function SpotDetailContent({
   spot,
   onClose,
+  onSpotUpdated,
 }: {
   spot: Spot;
   onClose: () => void;
+  onSpotUpdated?: () => void;
 }) {
   const { t, locale } = useTranslation();
   const { user } = useUser();
+  const isAdmin = useAdmin();
   const { placeName, country, countryFlag, loading: geoLoading } = useReverseGeocode(spot.latitude, spot.longitude);
   const commentsRef = useRef<HTMLDivElement>(null);
 
@@ -81,6 +86,43 @@ export function SpotDetailContent({
   } = useComments();
 
   const [showShare, setShowShare] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  // Admin repositioning
+  const repositioningSpot = useMapStore((s) => s.repositioningSpot);
+  const startRepositioning = useMapStore((s) => s.startRepositioning);
+  const cancelRepositioning = useMapStore((s) => s.cancelRepositioning);
+  const selectSpot = useMapStore((s) => s.selectSpot);
+
+  const isRepositioning = repositioningSpot?.id === spot.id;
+
+  const handleSavePosition = async () => {
+    if (!repositioningSpot) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/spots/${spot.id}/position`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          latitude: repositioningSpot.lat,
+          longitude: repositioningSpot.lng,
+        }),
+      });
+      if (!res.ok) throw new Error("Failed to save");
+      // Update selectedSpot in store with new coords
+      selectSpot({
+        ...spot,
+        latitude: repositioningSpot.lat,
+        longitude: repositioningSpot.lng,
+      });
+      cancelRepositioning();
+      onSpotUpdated?.();
+    } catch (err) {
+      console.error("Failed to save position:", err);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   // Comment input
   const [text, setText] = useState("");
@@ -327,7 +369,7 @@ export function SpotDetailContent({
         <div className="glass-card shrink-0 rounded-2xl px-4 py-3">
           <div className="flex items-start gap-2">
             <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-text-tertiary" />
-            <div className="flex min-w-0 flex-col gap-0.5">
+            <div className="flex min-w-0 flex-1 flex-col gap-0.5">
               {geoLoading ? (
                 <div className="h-3 w-32 animate-pulse rounded bg-black/[0.06]" />
               ) : placeName ? (
@@ -341,10 +383,41 @@ export function SpotDetailContent({
                 </span>
               ) : null}
               <span className="font-mono text-[11px] text-text-tertiary">
-                {spot.latitude.toFixed(4)}, {spot.longitude.toFixed(4)}
+                {isRepositioning
+                  ? `${repositioningSpot.lat.toFixed(4)}, ${repositioningSpot.lng.toFixed(4)}`
+                  : `${spot.latitude.toFixed(4)}, ${spot.longitude.toFixed(4)}`}
               </span>
             </div>
+            {/* Admin edit position button */}
+            {isAdmin && !isRepositioning && (
+              <button
+                onClick={() => startRepositioning(spot)}
+                className="flex shrink-0 items-center gap-1 rounded-lg bg-cyan-500/10 px-2 py-1 text-[10px] font-medium text-cyan-600 transition-colors hover:bg-cyan-500/20"
+              >
+                <GripVertical className="h-3 w-3" />
+                {t("admin.editPosition")}
+              </button>
+            )}
           </div>
+          {/* Admin save/cancel buttons */}
+          {isAdmin && isRepositioning && (
+            <div className="mt-2 flex items-center gap-2 border-t border-black/[0.06] pt-2">
+              <button
+                onClick={handleSavePosition}
+                disabled={saving}
+                className="flex-1 rounded-lg bg-cyan-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-cyan-600 disabled:opacity-50"
+              >
+                {saving ? t("admin.saving") : t("admin.save")}
+              </button>
+              <button
+                onClick={cancelRepositioning}
+                disabled={saving}
+                className="flex-1 rounded-lg bg-black/[0.06] px-3 py-1.5 text-xs font-medium text-text-secondary transition-colors hover:bg-black/[0.1] disabled:opacity-50"
+              >
+                {t("admin.cancel")}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Comments card */}

@@ -4,7 +4,7 @@ import { useMapStore } from "@/store/useMapStore";
 import { SpotDetailContent } from "@/components/SpotDetailPanel";
 
 /** Mobile spot detail — embedded inside MobileDrawer (no panel chrome) */
-export function MobileSpotDetail() {
+export function MobileSpotDetail({ onSpotUpdated }: { onSpotUpdated?: () => void }) {
   const selectedSpot = useMapStore((s) => s.selectedSpot);
   const selectSpot = useMapStore((s) => s.selectSpot);
 
@@ -15,6 +15,7 @@ export function MobileSpotDetail() {
       key={selectedSpot.id}
       spot={selectedSpot}
       onClose={() => selectSpot(null)}
+      onSpotUpdated={onSpotUpdated}
     />
   );
 }

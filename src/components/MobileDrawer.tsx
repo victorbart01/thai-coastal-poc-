@@ -19,6 +19,7 @@ interface MobileDrawerProps {
   spots: Spot[];
   snapTo?: SnapPoint;
   onSnapChange?: (snap: SnapPoint) => void;
+  onSpotUpdated?: () => void;
 }
 
 const TAB_BAR_HEIGHT = 56; // px, matches BottomTabBar
@@ -48,7 +49,7 @@ function nearestSnap(height: number, snaps: Record<SnapPoint, number>): SnapPoin
   return closest;
 }
 
-export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps) {
+export function MobileDrawer({ spots, snapTo, onSnapChange, onSpotUpdated }: MobileDrawerProps) {
   const showSpotForm = useMapStore((s) => s.showSpotForm);
   const selectedSpot = useMapStore((s) => s.selectedSpot);
   const nearbySpots = useNearbySpots(spots);
@@ -343,7 +344,7 @@ export function MobileDrawer({ spots, snapTo, onSnapChange }: MobileDrawerProps)
         onTouchEnd={handleContentTouchEnd}
       >
         {selectedSpot ? (
-          <MobileSpotDetail />
+          <MobileSpotDetail onSpotUpdated={onSpotUpdated} />
         ) : (
           <>
             <TaglineSection />

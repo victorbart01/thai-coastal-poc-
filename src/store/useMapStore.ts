@@ -85,6 +85,12 @@ interface MapState {
   setUserLocation: (loc: { latitude: number; longitude: number }) => void;
   clearUserLocation: () => void;
 
+  // Admin spot repositioning
+  repositioningSpot: { id: string; lat: number; lng: number } | null;
+  startRepositioning: (spot: Spot) => void;
+  updateRepositioningCoords: (lat: number, lng: number) => void;
+  cancelRepositioning: () => void;
+
   // Onboarding coach marks (0 = inactive, 1-3 = current step)
   onboardingStep: number;
   startOnboarding: () => void;
@@ -198,6 +204,20 @@ export const useMapStore = create<MapState>((set) => ({
     set({
       userLocation: null,
     }),
+
+  // Admin spot repositioning
+  repositioningSpot: null,
+  startRepositioning: (spot) =>
+    set({
+      repositioningSpot: { id: spot.id, lat: spot.latitude, lng: spot.longitude },
+    }),
+  updateRepositioningCoords: (lat, lng) =>
+    set((state) =>
+      state.repositioningSpot
+        ? { repositioningSpot: { ...state.repositioningSpot, lat, lng } }
+        : {}
+    ),
+  cancelRepositioning: () => set({ repositioningSpot: null }),
 
   // Onboarding
   onboardingStep: 0,

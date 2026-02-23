@@ -22,6 +22,7 @@ import { ZonePopup } from "./ZonePopup";
 import { ProtectedPopup } from "./ProtectedPopup";
 import { SpotLayer } from "./SpotLayer";
 import { DraftMarker } from "@/components/SpotForm/DraftMarker";
+import { DraggableSpotMarker } from "./DraggableSpotMarker";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -354,6 +355,9 @@ export function MapContainer({
 
       {/* Draft marker for spot creation */}
       <DraftMarker />
+
+      {/* Draggable marker for admin spot repositioning */}
+      <DraggableSpotMarker />
 
       {/* Popups */}
       {popupInfo?.type === "zone" && (

@@ -238,6 +238,12 @@ const translations: Record<Locale, Record<string, string>> = {
     "onboarding.next": "Next",
     "onboarding.skip": "Skip",
     "onboarding.done": "Got it!",
+
+    // Admin
+    "admin.editPosition": "Edit position",
+    "admin.save": "Save",
+    "admin.cancel": "Cancel",
+    "admin.saving": "Saving...",
   },
   th: {
     // Header
@@ -474,6 +480,12 @@ const translations: Record<Locale, Record<string, string>> = {
     "onboarding.next": "ถัดไป",
     "onboarding.skip": "ข้าม",
     "onboarding.done": "เข้าใจแล้ว!",
+
+    // Admin
+    "admin.editPosition": "แก้ไขตำแหน่ง",
+    "admin.save": "บันทึก",
+    "admin.cancel": "ยกเลิก",
+    "admin.saving": "กำลังบันทึก...",
   },
 };
 
