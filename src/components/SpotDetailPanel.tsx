@@ -108,7 +108,12 @@ export function SpotDetailContent({
           longitude: repositioningSpot.lng,
         }),
       });
-      if (!res.ok) throw new Error("Failed to save");
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        console.error("Save position failed:", res.status, body);
+        alert(`Error ${res.status}: ${body.error ?? "Unknown error"}`);
+        return;
+      }
       // Update selectedSpot in store with new coords
       selectSpot({
         ...spot,
@@ -119,6 +124,7 @@ export function SpotDetailContent({
       onSpotUpdated?.();
     } catch (err) {
       console.error("Failed to save position:", err);
+      alert("Network error — could not save position");
     } finally {
       setSaving(false);
     }
