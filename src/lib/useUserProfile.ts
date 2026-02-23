@@ -15,6 +15,7 @@ interface UserProfile {
 export function useUserProfile() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [spots, setSpots] = useState<Spot[]>([]);
+  const [savedSpots, setSavedSpots] = useState<Spot[]>([]);
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -107,6 +108,62 @@ export function useUserProfile() {
 
     setSpots(mappedSpots);
 
+    // Fetch saved spots (RLS: only returns rows for the authenticated user)
+    const { data: savesData } = await supabase
+      .from("saves")
+      .select("spot_id")
+      .eq("user_id", userId);
+
+    const savedSpotIds = (savesData ?? []).map((s) => s.spot_id);
+    if (savedSpotIds.length > 0) {
+      const { data: savedRows } = await supabase
+        .from("spots")
+        .select("*, spot_photos ( id, storage_path, position ), user_profiles!spots_user_id_fkey ( id, display_name, avatar_url )")
+        .in("id", savedSpotIds)
+        .eq("status", "published");
+
+      const mapped: Spot[] = (savedRows ?? []).map((row) => {
+        const authorData = row.user_profiles as unknown as { id: string; display_name: string | null; avatar_url: string | null } | null;
+        const photos = (
+          (row.spot_photos as Array<{ id: string; storage_path: string; position: number }>) ?? []
+        )
+          .sort((a, b) => a.position - b.position)
+          .map(
+            (p): SpotPhoto => ({
+              id: p.id,
+              storage_path: p.storage_path,
+              position: p.position,
+              url: `${supabaseUrl}/storage/v1/object/public/spot-photos/${p.storage_path}`,
+            })
+          );
+
+        return {
+          id: row.id,
+          user_id: row.user_id,
+          title: row.title,
+          description: row.description ?? "",
+          latitude: row.latitude,
+          longitude: row.longitude,
+          rating: row.rating,
+          tags: (row.tags ?? []) as SpotTag[],
+          status: row.status,
+          created_at: row.created_at,
+          updated_at: row.updated_at,
+          photos,
+          author: {
+            id: authorData?.id ?? row.user_id,
+            display_name: authorData?.display_name ?? null,
+            avatar_url: authorData?.avatar_url ?? null,
+          },
+          like_count: 0,
+          comment_count: 0,
+        };
+      });
+      setSavedSpots(mapped);
+    } else {
+      setSavedSpots([]);
+    }
+
     // Compute stats
     const totalLikes = mappedSpots.reduce((sum, s) => sum + (s.like_count ?? 0), 0);
     const maxLikes = mappedSpots.reduce(
@@ -128,5 +185,5 @@ export function useUserProfile() {
     setLoading(false);
   }, []);
 
-  return { profile, spots, stats, loading, fetchProfile };
+  return { profile, spots, savedSpots, stats, loading, fetchProfile };
 }
