@@ -2,7 +2,6 @@
 
 import { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import Map, {
-  NavigationControl,
   Popup,
   type MapRef,
   type MapLayerMouseEvent,
@@ -347,8 +346,6 @@ export function MapContainer({
       ]}
       cursor={cursor}
     >
-      <NavigationControl position="top-right" />
-
       {/* Layer order: Protected (bottom) → Rivers → Zones → Spots (top) */}
       <ProtectedLayer protectedAreas={protectedAreas} />
       <RiverLayer riverMouths={riverMouths} onRiverClick={handleRiverClick} />
