@@ -245,6 +245,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "admin.save": "Save",
     "admin.cancel": "Cancel",
     "admin.saving": "Saving...",
+    "admin.deleteSpot": "Delete spot",
+    "admin.deleting": "Deleting...",
+    "admin.confirmDelete": "Are you sure you want to delete this spot? This cannot be undone.",
   },
   th: {
     // Header
@@ -488,6 +491,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "admin.save": "บันทึก",
     "admin.cancel": "ยกเลิก",
     "admin.saving": "กำลังบันทึก...",
+    "admin.deleteSpot": "ลบจุด",
+    "admin.deleting": "กำลังลบ...",
+    "admin.confirmDelete": "คุณแน่ใจหรือไม่ว่าต้องการลบจุดนี้? การดำเนินการนี้ไม่สามารถย้อนกลับได้",
   },
 };
 

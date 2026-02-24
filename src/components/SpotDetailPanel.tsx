@@ -87,6 +87,7 @@ export function SpotDetailContent({
 
   const [showShare, setShowShare] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   // Admin repositioning
   const repositioningSpot = useMapStore((s) => s.repositioningSpot);
@@ -127,6 +128,27 @@ export function SpotDetailContent({
       alert("Network error — could not save position");
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDeleteSpot = async () => {
+    if (!window.confirm(t("admin.confirmDelete"))) return;
+    setDeleting(true);
+    try {
+      const res = await fetch(`/api/spots/${spot.id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        console.error("Delete spot failed:", res.status, body);
+        alert(`Error ${res.status}: ${body.error ?? "Unknown error"}`);
+        return;
+      }
+      selectSpot(null);
+      onSpotUpdated?.();
+    } catch (err) {
+      console.error("Failed to delete spot:", err);
+      alert("Network error — could not delete spot");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -394,15 +416,25 @@ export function SpotDetailContent({
                   : `${spot.latitude.toFixed(4)}, ${spot.longitude.toFixed(4)}`}
               </span>
             </div>
-            {/* Admin edit position button */}
+            {/* Admin edit position + delete buttons */}
             {isAdmin && !isRepositioning && (
-              <button
-                onClick={() => startRepositioning(spot)}
-                className="flex shrink-0 items-center gap-1 rounded-lg bg-cyan-500/10 px-2 py-1 text-[10px] font-medium text-cyan-600 transition-colors hover:bg-cyan-500/20"
-              >
-                <GripVertical className="h-3 w-3" />
-                {t("admin.editPosition")}
-              </button>
+              <div className="flex shrink-0 items-center gap-1">
+                <button
+                  onClick={() => startRepositioning(spot)}
+                  className="flex items-center gap-1 rounded-lg bg-cyan-500/10 px-2 py-1 text-[10px] font-medium text-cyan-600 transition-colors hover:bg-cyan-500/20"
+                >
+                  <GripVertical className="h-3 w-3" />
+                  {t("admin.editPosition")}
+                </button>
+                <button
+                  onClick={handleDeleteSpot}
+                  disabled={deleting}
+                  className="flex items-center gap-1 rounded-lg bg-red-500/10 px-2 py-1 text-[10px] font-medium text-red-600 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+                >
+                  <Trash2 className="h-3 w-3" />
+                  {deleting ? t("admin.deleting") : t("admin.deleteSpot")}
+                </button>
+              </div>
             )}
           </div>
           {/* Admin save/cancel buttons */}
