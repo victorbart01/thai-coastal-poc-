@@ -96,6 +96,11 @@ interface MapState {
   startOnboarding: () => void;
   nextOnboardingStep: () => void;
   completeOnboarding: () => void;
+
+  // Signup modal
+  showSignupModal: boolean;
+  openSignupModal: () => void;
+  closeSignupModal: () => void;
 }
 
 export const useMapStore = create<MapState>((set) => ({
@@ -227,4 +232,9 @@ export const useMapStore = create<MapState>((set) => ({
       onboardingStep: state.onboardingStep < 3 ? state.onboardingStep + 1 : 0,
     })),
   completeOnboarding: () => set({ onboardingStep: 0 }),
+
+  // Signup modal
+  showSignupModal: false,
+  openSignupModal: () => set({ showSignupModal: true }),
+  closeSignupModal: () => set({ showSignupModal: false }),
 }));

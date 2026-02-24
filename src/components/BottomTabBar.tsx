@@ -28,13 +28,17 @@ export function BottomTabBar({ activeTab, onTabChange }: BottomTabBarProps) {
     { id: "profile", icon: User, labelKey: "tab.profile" },
   ];
 
+  const openSignupModal = useMapStore((s) => s.openSignupModal);
+
   const handleTab = (tab: TabId) => {
     if (tab === "contribute") {
       if (user) openSpotForm();
+      else openSignupModal();
       return;
     }
     if (tab === "profile") {
       if (user) router.push(`/profile/${user.id}`);
+      else openSignupModal();
       return;
     }
     onTabChange(tab);

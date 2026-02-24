@@ -12,6 +12,7 @@ import { SpotFAB } from "@/components/SpotFAB";
 import { SpotForm } from "@/components/SpotForm/SpotForm";
 import { SpotDetailPanel } from "@/components/SpotDetailPanel";
 import { OnboardingCoachMarks } from "@/components/OnboardingCoachMarks";
+import { SignupModal } from "@/components/SignupModal";
 import { SeaGlassLoader } from "@/components/SeaGlassLoader";
 import { useZones } from "@/lib/useZones";
 import { useSpots } from "@/lib/useSpots";
@@ -114,6 +115,9 @@ export default function Home() {
 
       {/* Onboarding coach marks — first-time users only */}
       {user && <OnboardingCoachMarks userId={user.id} />}
+
+      {/* Signup modal */}
+      <SignupModal />
     </div>
   );
 }

@@ -58,6 +58,7 @@ export function SpotDetailContent({
   const { t, locale } = useTranslation();
   const { user } = useUser();
   const isAdmin = useAdmin();
+  const openSignupModal = useMapStore((s) => s.openSignupModal);
   const { placeName, country, countryFlag, loading: geoLoading } = useReverseGeocode(spot.latitude, spot.longitude);
   const commentsRef = useRef<HTMLDivElement>(null);
 
@@ -518,9 +519,12 @@ export function SpotDetailContent({
                 </div>
               </>
             ) : (
-              <p className="text-center text-xs text-text-tertiary">
+              <button
+                onClick={openSignupModal}
+                className="block w-full text-center text-xs text-accent-pink transition-colors hover:text-glass-deep"
+              >
                 {t("social.signInToComment")}
-              </p>
+              </button>
             )}
           </div>
         </div>

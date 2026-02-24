@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useUser } from "@/lib/useUser";
 import { useTranslation } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
+import { useMapStore } from "@/store/useMapStore";
 
 export function AuthButton() {
   const { user, loading } = useUser();
   const { t } = useTranslation();
+  const openSignupModal = useMapStore((s) => s.openSignupModal);
 
   if (loading) {
     return (
@@ -18,15 +20,7 @@ export function AuthButton() {
   if (!user) {
     return (
       <button
-        onClick={async () => {
-          const supabase = createClient();
-          await supabase.auth.signInWithOAuth({
-            provider: "google",
-            options: {
-              redirectTo: `${window.location.origin}/auth/callback`,
-            },
-          });
-        }}
+        onClick={openSignupModal}
         className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-[family-name:var(--font-display)] text-[11px] font-semibold tracking-wide text-white transition-all duration-200 hover:bg-white/20"
       >
         {t("auth.signIn")}
