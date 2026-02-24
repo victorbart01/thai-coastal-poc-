@@ -17,6 +17,7 @@ export function BottomTabBar({ activeTab, onTabChange }: BottomTabBarProps) {
   const { t } = useTranslation();
   const showSpotForm = useMapStore((s) => s.showSpotForm);
   const openSpotForm = useMapStore((s) => s.openSpotForm);
+  const openSignupModal = useMapStore((s) => s.openSignupModal);
   const { user } = useUser();
   const router = useRouter();
 
@@ -27,8 +28,6 @@ export function BottomTabBar({ activeTab, onTabChange }: BottomTabBarProps) {
     { id: "contribute", icon: PlusCircle, labelKey: "tab.contribute" },
     { id: "profile", icon: User, labelKey: "tab.profile" },
   ];
-
-  const openSignupModal = useMapStore((s) => s.openSignupModal);
 
   const handleTab = (tab: TabId) => {
     if (tab === "contribute") {

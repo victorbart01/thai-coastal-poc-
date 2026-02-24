@@ -1,0 +1,366 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.9083,
+          13.2933
+        ]
+      },
+      "properties": {
+        "name": "Bang Saen (บางแสน)",
+        "region": "Upper Gulf — Chonburi",
+        "status": "confirmed",
+        "colors": "Marron, vert, transparent",
+        "quality": "Modéré",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Plage urbaine, 1h de BKK. Artisan local y collecte pour bijoux."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.8083,
+          13.1583
+        ]
+      },
+      "properties": {
+        "name": "Koh Si Chang — Hat Tham Phang",
+        "region": "Upper Gulf — Chonburi",
+        "status": "confirmed",
+        "colors": "Blanc, vert, marron, turquoise (rare)",
+        "quality": "Bon — pièces rondes 50-80 ans",
+        "source": "TikTok/Lemon8 @seaglassinstudio",
+        "notes": "Île historique, ancien port royal. Pièces rondes exceptionnelles."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.817,
+          13.148
+        ]
+      },
+      "properties": {
+        "name": "Koh Si Chang — Ao Tham Jok Kok",
+        "region": "Upper Gulf — Chonburi",
+        "status": "confirmed",
+        "colors": "Turquoise, seafoam, marron, vert",
+        "quality": "Bon",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Baie rocheuse, accumulation naturelle dans les rochers."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.813,
+          13.162
+        ]
+      },
+      "properties": {
+        "name": "Koh Si Chang — Hat Hin Muad Sila",
+        "region": "Upper Gulf — Chonburi",
+        "status": "confirmed",
+        "colors": "Turquoise (rare), vert, marron",
+        "quality": "Modéré",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Plage de galets avec sea glass mélangé aux pierres."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.825,
+          13.125
+        ]
+      },
+      "properties": {
+        "name": "Koh Kham Yai (เกาะขามใหญ่)",
+        "region": "Upper Gulf — Chonburi",
+        "status": "confirmed",
+        "colors": "Seafoam (rare), vert, marron, transparent",
+        "quality": "Très bon — abondant",
+        "source": "Lemon8/TikTok @seaglassinstudio",
+        "notes": "Réputé pour l'abondance. Sea glass partout sur la plage."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.925,
+          12.7617
+        ]
+      },
+      "properties": {
+        "name": "Bang Saray (บางเสร่)",
+        "region": "Upper Gulf — Chonburi",
+        "status": "confirmed",
+        "colors": "Vert, marron, blanc",
+        "quality": "Correct — 3-5 pcs/h jewelry grade",
+        "source": "Odyssey Sea Glass (Carol)",
+        "notes": "Premier rapport documenté en Thaïlande. Meilleur Déc-Juin."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.0583,
+          12.615
+        ]
+      },
+      "properties": {
+        "name": "Hat Phla (หาดพลา), Ban Chang",
+        "region": "Eastern Seaboard — Rayong",
+        "status": "explored",
+        "colors": "Marron, vert, transparent",
+        "quality": "Faible à modéré",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Zone industrielle à proximité (Map Ta Phut)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.065,
+          12.625
+        ]
+      },
+      "properties": {
+        "name": "Hat Phayun (หาดพยูน), Ban Chang",
+        "region": "Eastern Seaboard — Rayong",
+        "status": "explored",
+        "colors": "Non détaillé",
+        "quality": "Variable",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Plage calme adjacente à Hat Phla."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.07,
+          12.635
+        ]
+      },
+      "properties": {
+        "name": "Hat Nam Rin (หาดน้ำริน), Ban Chang",
+        "region": "Eastern Seaboard — Rayong",
+        "status": "explored",
+        "colors": "Non détaillé",
+        "quality": "Variable",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Plage rocheuse potentiellement favorable."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.05,
+          12.6083
+        ]
+      },
+      "properties": {
+        "name": "Hat Son Krasib (หาดสนกระซิบ)",
+        "region": "Eastern Seaboard — Rayong",
+        "status": "explored",
+        "colors": "Non détaillé",
+        "quality": "Variable",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Plage bordée de pins."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.847,
+          10.092
+        ]
+      },
+      "properties": {
+        "name": "Koh Tao — Lighthouse Bay",
+        "region": "Gulf Islands — Koh Tao",
+        "status": "confirmed",
+        "colors": "Noir (très rare!), turquoise, vert, bleu",
+        "quality": "Bon — pièces rares multicolores",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Plage isolée, 40 min de marche. Trouvaille de BLACK sea glass."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.852,
+          10.082
+        ]
+      },
+      "properties": {
+        "name": "Koh Tao — Laem Thian",
+        "region": "Gulf Islands — Koh Tao",
+        "status": "confirmed",
+        "colors": "Turquoise, vert, marron",
+        "quality": "Modéré",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Cap abandonné, resort fermé 2011. Zone isolée."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.06,
+          9.47
+        ]
+      },
+      "properties": {
+        "name": "Lamai Beach, Koh Samui",
+        "region": "Gulf Islands — Koh Samui",
+        "status": "probable",
+        "colors": "Non détaillé",
+        "quality": "Faible",
+        "source": "FinGlass",
+        "notes": "Mention dans guide de shelling. Non confirmé directement."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.039,
+          7.591
+        ]
+      },
+      "properties": {
+        "name": "Klong Kong Beach, Koh Lanta",
+        "region": "Andaman — Koh Lanta",
+        "status": "confirmed",
+        "colors": "Blanc, vert, aqua bleu, marron",
+        "quality": "Bon — pièces larges et bien patinées",
+        "source": "Blog megajazzybeachjewelry",
+        "notes": "Pièces 'really frosted and extra large'. Spot: 'half soi klong kong'."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.3923,
+          7.8804
+        ]
+      },
+      "properties": {
+        "name": "Phuket (plages diverses)",
+        "region": "Andaman — Phuket",
+        "status": "confirmed",
+        "colors": "Vert (bouteilles bière), marron",
+        "quality": "Modéré — beach cleanups",
+        "source": "Andaman Ceramics",
+        "notes": "Verre collecté lors de nettoyages. Pas de plage spécifique."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.295,
+          8.095
+        ]
+      },
+      "properties": {
+        "name": "Nai Yang Beach, Phuket",
+        "region": "Andaman — Phuket",
+        "status": "probable",
+        "colors": "Non détaillé",
+        "quality": "Faible",
+        "source": "FinGlass",
+        "notes": "Mentionné pour shelling. Parc national Sirinat."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.52,
+          6.87
+        ]
+      },
+      "properties": {
+        "name": "Ko Bulon Leh",
+        "region": "Andaman — Satun",
+        "status": "probable",
+        "colors": "Non détaillé",
+        "quality": "Faible",
+        "source": "FinGlass",
+        "notes": "Île isolée, peu développée. Potentiel non confirmé."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.9667,
+          12.805
+        ]
+      },
+      "properties": {
+        "name": "Cha-Am Nord",
+        "region": "Gulf — Phetchaburi",
+        "status": "explored",
+        "colors": "1 pièce trouvée en 1h+",
+        "quality": "Très faible",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Résultat décevant. Zone sableuse peu favorable."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.9617,
+          12.8167
+        ]
+      },
+      "properties": {
+        "name": "Cha-Am — Bang Ketu",
+        "region": "Gulf — Phetchaburi",
+        "status": "explored",
+        "colors": "Non détaillé",
+        "quality": "Très faible",
+        "source": "Lemon8 @seaglassinstudio",
+        "notes": "Exploré dans le même trip."
+      }
+    }
+  ]
+}
