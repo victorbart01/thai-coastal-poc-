@@ -19,6 +19,7 @@ import { useSpots } from "@/lib/useSpots";
 import { useUser } from "@/lib/useUser";
 import { useTranslation } from "@/lib/i18n";
 import { useMapStore } from "@/store/useMapStore";
+import { useRealtimeNotifications } from "@/lib/useRealtimeNotifications";
 
 export default function Home() {
   const { filteredZones, protectedAreas, riverMouths, loading } = useZones();
@@ -30,6 +31,7 @@ export default function Home() {
   const { t } = useTranslation();
   const selectSpot = useMapStore((s) => s.selectSpot);
   const flyTo = useMapStore((s) => s.flyTo);
+  useRealtimeNotifications(user?.id);
 
   // Deep-link: ?spot=<id> → flyTo + selectSpot
   useEffect(() => {

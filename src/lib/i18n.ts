@@ -331,6 +331,12 @@ const translations: Record<Locale, Record<string, string>> = {
     "signup.checkEmailDesc": "We sent a magic link to {email}. Click it to join.",
     "signup.resend": "Resend link",
     "signup.tryAnother": "Use another email",
+
+    // Toast notifications
+    "toast.badgeUnlocked": "Badge unlocked!",
+    "toast.spotPublished": "Spot published!",
+    "toast.newLike": "liked your spot",
+    "toast.newComment": "commented on your spot",
   },
   th: {
     // Header
@@ -660,6 +666,12 @@ const translations: Record<Locale, Record<string, string>> = {
     "signup.checkEmailDesc": "เราส่งลิงก์วิเศษไปที่ {email} คลิกเพื่อเข้าร่วม",
     "signup.resend": "ส่งลิงก์อีกครั้ง",
     "signup.tryAnother": "ใช้อีเมลอื่น",
+
+    // Toast notifications
+    "toast.badgeUnlocked": "ปลดล็อคเหรียญตรา!",
+    "toast.spotPublished": "เผยแพร่จุดแล้ว!",
+    "toast.newLike": "ถูกใจจุดของคุณ",
+    "toast.newComment": "แสดงความคิดเห็นในจุดของคุณ",
   },
 };
 

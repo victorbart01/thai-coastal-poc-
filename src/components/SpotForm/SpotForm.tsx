@@ -6,6 +6,8 @@ import { useMapStore } from "@/store/useMapStore";
 import { useTranslation } from "@/lib/i18n";
 import { useCreateSpot } from "@/lib/useCreateSpot";
 import { useGeocoding } from "@/lib/useGeocoding";
+import { useNotifications } from "@/lib/useNotifications";
+import { usePostPublishBadgeCheck } from "@/lib/usePostPublishBadgeCheck";
 
 import { StepLocation } from "./StepLocation";
 import { StepPhotos } from "./StepPhotos";
@@ -34,6 +36,8 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
   const { t } = useTranslation();
   const { creating, error, createSpot } = useCreateSpot();
   const { query, setQuery, suggestions, retrieve } = useGeocoding();
+  const { showPublishToast } = useNotifications();
+  const { checkBadges } = usePostPublishBadgeCheck(userId);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -87,10 +91,13 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
   };
 
   const handlePublish = async () => {
+    const spotTitle = draftSpot.title;
     const spotId = await createSpot(draftSpot, userId);
     if (spotId) {
       closeSpotForm();
       onPublished();
+      showPublishToast(spotTitle, t);
+      checkBadges(t);
     }
   };
 

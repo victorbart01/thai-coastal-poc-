@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans, Nunito } from "next/font/google";
+import { ToasterProvider } from "@/components/ToasterProvider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -42,7 +43,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${dmSans.variable} ${nunito.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <ToasterProvider />
+      </body>
     </html>
   );
 }
