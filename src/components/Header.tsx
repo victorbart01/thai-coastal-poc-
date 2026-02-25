@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { useMapStore } from "@/store/useMapStore";
@@ -19,6 +20,12 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
     <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center bg-black px-4">
       {/* Logo */}
       <div className="flex items-center gap-1.5">
+        <Image
+          src="/logo_pin_sgm.png"
+          alt="Seaglass logo"
+          width={28}
+          height={28}
+        />
         <span className="font-[family-name:var(--font-logo)] text-xl tracking-tight text-white">
           <span className="font-bold">Seaglass</span>
           <span className="font-normal">map</span>

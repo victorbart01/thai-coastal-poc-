@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { X, MapPin, Bookmark, MessageCircle, Trophy, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useTranslation } from "@/lib/i18n";
@@ -118,8 +119,17 @@ export function SignupModal() {
 
           {/* Header */}
           <div className="mb-6 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-glass-deep/20 to-accent-pink/20">
-              <Sparkles className="h-7 w-7 text-accent-pink" />
+            <div className="mx-auto mb-4 flex items-center justify-center gap-2">
+              <Image
+                src="/logo_pin_sgm.png"
+                alt="Seaglass logo"
+                width={40}
+                height={40}
+              />
+              <span className="font-[family-name:var(--font-logo)] text-2xl tracking-tight text-text-primary">
+                <span className="font-bold">Seaglass</span>
+                <span className="font-normal">map</span>
+              </span>
             </div>
             <h1 className="font-[family-name:var(--font-display)] text-xl font-bold text-text-primary sm:text-2xl">
               {t("signup.title")}
