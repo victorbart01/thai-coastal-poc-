@@ -262,6 +262,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "trophy.unique_tags_used": "Tags",
     "trophy.max_likes_on_spot": "Viral",
     "trophy.completed": "MAX",
+    "trophy.next": "Next:",
 
     // Rarity
     "rarity.common": "Common",
@@ -590,6 +591,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "trophy.unique_tags_used": "แท็ก",
     "trophy.max_likes_on_spot": "ไวรัล",
     "trophy.completed": "สูงสุด",
+    "trophy.next": "ถัดไป:",
 
     // Rarity
     "rarity.common": "ธรรมดา",
