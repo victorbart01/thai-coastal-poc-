@@ -171,6 +171,9 @@ export function SignupModal() {
               ))}
             </div>
 
+            {/* Separator */}
+            <div className="mb-3 h-px bg-gradient-to-r from-transparent via-black/[0.12] to-transparent sm:mb-4" />
+
             {/* Form or confirmation */}
             {sent ? (
               <div className="rounded-2xl border border-black/[0.06] bg-white/50 p-5 text-center backdrop-blur-sm">

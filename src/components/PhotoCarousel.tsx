@@ -139,6 +139,7 @@ export function PhotoCarousel({ photos, title }: PhotoCarouselProps) {
         <>
           {index > 0 && (
             <button
+              onPointerDown={(e) => e.stopPropagation()}
               onClick={() => goTo(index - 1)}
               className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
             >
@@ -147,6 +148,7 @@ export function PhotoCarousel({ photos, title }: PhotoCarouselProps) {
           )}
           {index < total - 1 && (
             <button
+              onPointerDown={(e) => e.stopPropagation()}
               onClick={() => goTo(index + 1)}
               className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
             >
@@ -162,6 +164,7 @@ export function PhotoCarousel({ photos, title }: PhotoCarouselProps) {
           {photos.map((_, i) => (
             <button
               key={i}
+              onPointerDown={(e) => e.stopPropagation()}
               onClick={() => goTo(i)}
               className={`h-1.5 w-1.5 rounded-full transition-colors ${
                 i === index ? "bg-white" : "bg-white/50"
