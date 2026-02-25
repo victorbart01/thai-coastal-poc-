@@ -20,8 +20,27 @@ export async function PATCH(
       data: { user },
     } = await supabaseAuth.auth.getUser();
 
-    if (!user || !ADMIN_IDS.includes(user.id)) {
+    if (!user) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    const isAdmin = ADMIN_IDS.includes(user.id);
+
+    // If not admin, verify the user owns this spot
+    if (!isAdmin) {
+      const supabaseCheck = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+      );
+      const { data: spot } = await supabaseCheck
+        .from("spots")
+        .select("user_id")
+        .eq("id", id)
+        .single();
+
+      if (!spot || spot.user_id !== user.id) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
     }
 
     // Validate body

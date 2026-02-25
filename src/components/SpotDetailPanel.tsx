@@ -58,6 +58,8 @@ export function SpotDetailContent({
   const { t, locale } = useTranslation();
   const { user } = useUser();
   const isAdmin = useAdmin();
+  const isOwner = user?.id === spot.user_id;
+  const canEdit = isAdmin || isOwner;
   const openSignupModal = useMapStore((s) => s.openSignupModal);
   const { placeName, country, countryFlag, loading: geoLoading } = useReverseGeocode(spot.latitude, spot.longitude);
   const commentsRef = useRef<HTMLDivElement>(null);
@@ -418,7 +420,7 @@ export function SpotDetailContent({
               </span>
             </div>
             {/* Admin edit position + delete buttons */}
-            {isAdmin && !isRepositioning && (
+            {canEdit && !isRepositioning && (
               <div className="flex shrink-0 items-center gap-1">
                 <button
                   onClick={() => startRepositioning(spot)}
@@ -439,7 +441,7 @@ export function SpotDetailContent({
             )}
           </div>
           {/* Admin save/cancel buttons */}
-          {isAdmin && isRepositioning && (
+          {canEdit && isRepositioning && (
             <div className="mt-2 flex items-center gap-2 border-t border-black/[0.06] pt-2">
               <button
                 onClick={handleSavePosition}
