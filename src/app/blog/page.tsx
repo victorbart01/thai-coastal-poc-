@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Clock } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { getBlogPosts } from "@/lib/blogPosts";
@@ -37,31 +38,37 @@ export default function BlogPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="block rounded-xl border border-black/[0.08] bg-white/60 p-5 shadow-sm transition-all duration-200 hover:border-black/[0.14] hover:bg-white/80 hover:shadow-md"
+              className="block overflow-hidden rounded-xl border border-black/[0.08] bg-white/60 shadow-sm transition-all duration-200 hover:border-black/[0.14] hover:bg-white/80 hover:shadow-md"
             >
-              <div className="flex gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-glass-50/50 text-2xl">
-                  {post.image}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold leading-snug text-text-primary">
-                    {post.title}
-                  </h2>
-                  <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-text-body">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-3 flex items-center gap-3 text-[11px] text-text-tertiary">
-                    <time dateTime={post.date}>
-                      {new Date(post.date).toLocaleDateString(
-                        locale === "th" ? "th-TH" : "en-US",
-                        { year: "numeric", month: "long", day: "numeric" }
-                      )}
-                    </time>
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      {post.readingTime} {t("blog.minRead")}
-                    </span>
-                  </div>
+              {post.image.startsWith("/") ? (
+                <div className="relative aspect-[3/1] w-full">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 672px) 100vw, 672px"
+                  />
+                </div>
+              ) : null}
+              <div className="p-5">
+                <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold leading-snug text-text-primary">
+                  {post.title}
+                </h2>
+                <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-text-body">
+                  {post.excerpt}
+                </p>
+                <div className="mt-3 flex items-center gap-3 text-[11px] text-text-tertiary">
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString(
+                      locale === "th" ? "th-TH" : "en-US",
+                      { year: "numeric", month: "long", day: "numeric" }
+                    )}
+                  </time>
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    {post.readingTime} {t("blog.minRead")}
+                  </span>
                 </div>
               </div>
             </Link>

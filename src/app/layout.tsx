@@ -22,6 +22,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://seaglassmap.com"),
   title: "Sea Glass Map — The world's sea glass community",
   description:
     "Discover, share and explore sea glass spots around the world. A community-driven interactive map for sea glass collectors.",
