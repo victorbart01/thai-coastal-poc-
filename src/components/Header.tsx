@@ -17,7 +17,7 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
   const setLocale = useMapStore((s) => s.setLocale);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center bg-black px-4">
+    <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center gap-2 bg-black px-4 sm:gap-0">
       {/* Logo */}
       <div className="flex items-center gap-1.5">
         <Image
@@ -41,8 +41,8 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
       {/* Auth button */}
       <AuthButton />
 
-      {/* Separator */}
-      <div className="mx-2 h-4 w-px bg-white/30" />
+      {/* Separator — hidden on mobile */}
+      <div className="mx-2 hidden h-4 w-px bg-white/30 sm:block" />
 
       {/* Language switcher */}
       <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/10 p-0.5">
@@ -61,8 +61,8 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
         ))}
       </div>
 
-      {/* Separator */}
-      <div className="mx-2 h-4 w-px bg-white/30" />
+      {/* Separator — hidden on mobile */}
+      <div className="mx-2 hidden h-4 w-px bg-white/30 sm:block" />
 
       {/* Tablet sidebar toggle — visible only on md < lg, now on the right */}
       {onToggleSidebar && (

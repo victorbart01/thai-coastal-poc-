@@ -97,6 +97,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Auth
     "auth.signIn": "Sign in",
     "auth.signOut": "Sign out",
+    "auth.profile": "My profile",
 
     // Loading
     loading: "Loading data...",
@@ -370,6 +371,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Auth
     "auth.signIn": "เข้าสู่ระบบ",
     "auth.signOut": "ออกจากระบบ",
+    "auth.profile": "โปรไฟล์",
 
     // Loading
     loading: "กำลังโหลดข้อมูล...",
