@@ -19,7 +19,10 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-20 flex h-12 items-center gap-2 bg-black px-4 sm:gap-0">
       {/* Logo */}
-      <div className="flex items-center gap-1.5">
+      <a
+        href="https://seaglassmap.com"
+        className="flex items-center gap-1.5 transition-opacity hover:opacity-80"
+      >
         <Image
           src="/logo_pin_sgm.png"
           alt="Seaglass logo"
@@ -34,7 +37,7 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
         <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/70">
           beta
         </span>
-      </div>
+      </a>
 
       {/* Spacer */}
       <div className="flex-1" />
