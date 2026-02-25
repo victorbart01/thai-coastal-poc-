@@ -250,6 +250,19 @@ const translations: Record<Locale, Record<string, string>> = {
     "badge.veteran": "Veteran",
     "badge.veteran.desc": "Be a member for 365 days",
 
+    // Trophies
+    "trophy.title": "Trophies",
+    "trophy.spots_count": "Spots",
+    "trophy.photos_count": "Photos",
+    "trophy.total_likes_received": "Likes",
+    "trophy.comments_count": "Comments",
+    "trophy.saves_count": "Saves",
+    "trophy.likes_given": "Generosity",
+    "trophy.member_days": "Seniority",
+    "trophy.unique_tags_used": "Tags",
+    "trophy.max_likes_on_spot": "Viral",
+    "trophy.completed": "MAX",
+
     // Rarity
     "rarity.common": "Common",
     "rarity.rare": "Rare",
@@ -564,6 +577,19 @@ const translations: Record<Locale, Record<string, string>> = {
     "badge.hall_of_fame.desc": "ได้รับ 500 ถูกใจ",
     "badge.veteran": "ทหารผ่านศึก",
     "badge.veteran.desc": "เป็นสมาชิก 365 วัน",
+
+    // Trophies
+    "trophy.title": "ถ้วยรางวัล",
+    "trophy.spots_count": "จุด",
+    "trophy.photos_count": "รูปภาพ",
+    "trophy.total_likes_received": "ถูกใจ",
+    "trophy.comments_count": "ความคิดเห็น",
+    "trophy.saves_count": "บันทึก",
+    "trophy.likes_given": "ความใจกว้าง",
+    "trophy.member_days": "อาวุโส",
+    "trophy.unique_tags_used": "แท็ก",
+    "trophy.max_likes_on_spot": "ไวรัล",
+    "trophy.completed": "สูงสุด",
 
     // Rarity
     "rarity.common": "ธรรมดา",

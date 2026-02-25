@@ -1,4 +1,4 @@
-import type { Badge, UserStats } from "@/lib/types";
+import type { Badge, BadgeRarity, UserStats } from "@/lib/types";
 
 export const BADGE_DEFINITIONS: Badge[] = [
   // ── COMMON (8) — "Welcome aboard" ──────────────────────────
@@ -42,4 +42,84 @@ export function checkBadgeCriteria(stats: UserStats): string[] {
       return typeof value === "number" && value >= badge.criteria_value;
     })
     .map((b) => b.id);
+}
+
+// ─── Trophy Paths (progression cards) ──────────────────────
+
+export interface TrophyPath {
+  criteriaType: keyof UserStats;
+  tiers: Badge[];
+}
+
+/** 9 progression paths, one per criteria_type, tiers sorted by criteria_value asc */
+export const TROPHY_PATHS: TrophyPath[] = (() => {
+  const map: Record<string, Badge[]> = {};
+  for (const b of BADGE_DEFINITIONS) {
+    (map[b.criteria_type] ??= []).push(b);
+  }
+  return Object.entries(map).map(([criteriaType, tiers]) => {
+    tiers.sort((a, b) => a.criteria_value - b.criteria_value);
+    return { criteriaType: criteriaType as keyof UserStats, tiers };
+  });
+})();
+
+export interface TrophyProgress {
+  path: TrophyPath;
+  currentTier: Badge | null;
+  nextTier: Badge | null;
+  displayRarity: BadgeRarity;
+  currentValue: number;
+  progressPercent: number;
+  started: boolean;
+  completed: boolean;
+}
+
+export function getTrophyProgress(
+  path: TrophyPath,
+  currentValue: number,
+  earnedBadgeIds: string[],
+): TrophyProgress {
+  const { tiers } = path;
+
+  // Find highest earned tier (scan from top to bottom)
+  let currentTierIdx = -1;
+  for (let i = tiers.length - 1; i >= 0; i--) {
+    if (earnedBadgeIds.includes(tiers[i].id)) {
+      currentTierIdx = i;
+      break;
+    }
+  }
+
+  const currentTier = currentTierIdx >= 0 ? tiers[currentTierIdx] : null;
+  const nextTier = currentTierIdx < tiers.length - 1 ? tiers[currentTierIdx + 1] : null;
+  const started = currentTier !== null;
+  const completed = currentTierIdx === tiers.length - 1;
+
+  // Display rarity = current tier rarity, or first tier rarity if not started
+  const displayRarity = currentTier?.rarity ?? tiers[0].rarity;
+
+  // Progress calculation
+  let progressPercent: number;
+  if (completed) {
+    progressPercent = 1;
+  } else if (!started) {
+    // Progress toward first tier
+    progressPercent = Math.min(1, Math.max(0, currentValue / tiers[0].criteria_value));
+  } else {
+    // Progress from current tier toward next tier
+    const from = currentTier!.criteria_value;
+    const to = nextTier!.criteria_value;
+    progressPercent = Math.min(1, Math.max(0, (currentValue - from) / (to - from)));
+  }
+
+  return {
+    path,
+    currentTier,
+    nextTier,
+    displayRarity,
+    currentValue,
+    progressPercent,
+    started,
+    completed,
+  };
 }

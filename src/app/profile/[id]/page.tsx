@@ -8,12 +8,10 @@ import { ArrowLeft, Star, Heart, Bookmark } from "lucide-react";
 import { useUserProfile } from "@/lib/useUserProfile";
 import { useUserBadges } from "@/lib/useUserBadges";
 import { ProfileHeader } from "@/components/ProfileHeader";
-import { BadgeCard } from "@/components/BadgeCard";
+import { TrophyCard } from "@/components/TrophyCard";
 import { SeaGlassLoader } from "@/components/SeaGlassLoader";
 import { useTranslation } from "@/lib/i18n";
-import type { BadgeRarity } from "@/lib/types";
-
-const RARITY_ORDER: BadgeRarity[] = ["common", "rare", "epic", "legendary"];
+import { TROPHY_PATHS, getTrophyProgress } from "@/lib/badges";
 
 export default function ProfilePage() {
   const params = useParams<{ id: string }>();
@@ -36,12 +34,13 @@ export default function ProfilePage() {
     }
   }, [stats, checkAndAwardBadges]);
 
-  const badgesByRarity = useMemo(() => {
-    const grouped = new Map<BadgeRarity, typeof badges>();
-    for (const r of RARITY_ORDER) grouped.set(r, []);
-    for (const b of badges) grouped.get(b.rarity)!.push(b);
-    return grouped;
-  }, [badges]);
+  const trophyProgresses = useMemo(() => {
+    if (!stats) return [];
+    return TROPHY_PATHS.map((path) => {
+      const value = stats[path.criteriaType] ?? 0;
+      return getTrophyProgress(path, value, earnedBadgeIds);
+    });
+  }, [stats, earnedBadgeIds]);
 
   if (loading || !profile) {
     return <SeaGlassLoader />;
@@ -73,43 +72,22 @@ export default function ProfilePage() {
           stats={stats}
         />
 
-        {/* Badges section — grouped by rarity */}
+        {/* Trophies section — 9 progression cards */}
         <section className="mt-8">
           <div className="flex items-baseline justify-between">
             <h2 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
-              {t("badge.title")}
+              {t("trophy.title")}
             </h2>
             <span className="text-[10px] text-text-tertiary">
               {earnedBadgeIds.length} / {badges.length} {t("badge.progress")}
             </span>
           </div>
 
-          {RARITY_ORDER.map((rarity) => {
-            const group = badgesByRarity.get(rarity) ?? [];
-            if (group.length === 0) return null;
-            return (
-              <div key={rarity} className="mt-4">
-                <h3 className={`text-[10px] font-semibold uppercase tracking-wider ${
-                  rarity === "common" ? "text-text-tertiary" :
-                  rarity === "rare" ? "text-blue-400" :
-                  rarity === "epic" ? "text-purple-400" :
-                  "text-yellow-400"
-                }`}>
-                  {t(`rarity.${rarity}`)}
-                </h3>
-                <div className="mt-1.5 grid grid-cols-4 gap-1.5 sm:grid-cols-8">
-                  {group.map((badge) => (
-                    <BadgeCard
-                      key={badge.id}
-                      badge={badge}
-                      earned={earnedBadgeIds.includes(badge.id)}
-                      compact
-                    />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+          <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-5">
+            {trophyProgresses.map((tp) => (
+              <TrophyCard key={tp.path.criteriaType} trophy={tp} />
+            ))}
+          </div>
         </section>
 
         {/* Saved Spots — only shown when there are saves (private via RLS) */}
