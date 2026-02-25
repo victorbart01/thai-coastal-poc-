@@ -159,6 +159,10 @@ export interface UserStats {
   total_likes_received: number;
   max_likes_on_spot: number;
   member_days: number;
+  comments_count: number;
+  saves_count: number;
+  likes_given: number;
+  unique_tags_used: number;
 }
 
 export interface LeaderboardEntry {

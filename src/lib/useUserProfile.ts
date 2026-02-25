@@ -24,8 +24,8 @@ export function useUserProfile() {
     const supabase = createClient();
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 
-    // Parallel fetch: profile, spots+photos, likes received, user_badges
-    const [profileRes, spotsRes] = await Promise.all([
+    // Parallel fetch: profile, spots+photos, comments count, likes given count, saves
+    const [profileRes, spotsRes, commentsCountRes, likesGivenCountRes, savesRes] = await Promise.all([
       supabase.from("user_profiles").select("*").eq("id", userId).single(),
       supabase
         .from("spots")
@@ -33,6 +33,18 @@ export function useUserProfile() {
         .eq("user_id", userId)
         .eq("status", "published")
         .order("created_at", { ascending: false }),
+      supabase
+        .from("comments")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", userId),
+      supabase
+        .from("likes")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", userId),
+      supabase
+        .from("saves")
+        .select("spot_id")
+        .eq("user_id", userId),
     ]);
 
     const profileData = profileRes.data;
@@ -109,11 +121,7 @@ export function useUserProfile() {
     setSpots(mappedSpots);
 
     // Fetch saved spots (RLS: only returns rows for the authenticated user)
-    const { data: savesData } = await supabase
-      .from("saves")
-      .select("spot_id")
-      .eq("user_id", userId);
-
+    const savesData = savesRes.data;
     const savedSpotIds = (savesData ?? []).map((s) => s.spot_id);
     if (savedSpotIds.length > 0) {
       const { data: savedRows } = await supabase
@@ -174,12 +182,19 @@ export function useUserProfile() {
       (Date.now() - new Date(profileData.created_at).getTime()) / (1000 * 60 * 60 * 24)
     );
 
+    // Unique tags used across all spots
+    const allTags = new Set(mappedSpots.flatMap((s) => s.tags));
+
     setStats({
       spots_count: mappedSpots.length,
       photos_count: totalPhotos,
       total_likes_received: totalLikes,
       max_likes_on_spot: maxLikes,
       member_days: memberDays,
+      comments_count: commentsCountRes.count ?? 0,
+      saves_count: (savesData ?? []).length,
+      likes_given: likesGivenCountRes.count ?? 0,
+      unique_tags_used: allTags.size,
     });
 
     setLoading(false);

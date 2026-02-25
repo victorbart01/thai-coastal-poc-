@@ -21,14 +21,15 @@ const RARITY_TEXT: Record<BadgeRarity, string> = {
 interface BadgeCardProps {
   badge: Badge;
   earned: boolean;
+  compact?: boolean;
 }
 
-export function BadgeCard({ badge, earned }: BadgeCardProps) {
+export function BadgeCard({ badge, earned, compact }: BadgeCardProps) {
   const { t } = useTranslation();
 
   return (
     <div
-      className={`relative flex flex-col items-center gap-1.5 rounded-2xl border p-3 transition-all duration-200 ${
+      className={`relative flex flex-col items-center gap-1 rounded-2xl border p-2 transition-all duration-200 ${
         earned
           ? RARITY_COLORS[badge.rarity]
           : "border-black/[0.04] bg-black/[0.03] opacity-50 grayscale"
@@ -36,28 +37,30 @@ export function BadgeCard({ badge, earned }: BadgeCardProps) {
     >
       {/* Lock overlay for unearned */}
       {!earned && (
-        <div className="absolute right-1.5 top-1.5">
-          <Lock className="h-3 w-3 text-text-tertiary" />
+        <div className="absolute right-1 top-1">
+          <Lock className="h-2.5 w-2.5 text-text-tertiary" />
         </div>
       )}
 
       {/* Icon */}
-      <span className="text-2xl">{badge.icon}</span>
+      <span className={compact ? "text-xl" : "text-2xl"}>{badge.icon}</span>
 
       {/* Name */}
-      <p className="text-center font-[family-name:var(--font-display)] text-[11px] font-semibold text-text-primary">
+      <p className="text-center font-[family-name:var(--font-display)] text-[10px] font-semibold leading-tight text-text-primary">
         {t(`badge.${badge.id}`)}
       </p>
 
       {/* Rarity */}
-      <span className={`text-[9px] font-medium uppercase tracking-wider ${RARITY_TEXT[badge.rarity]}`}>
+      <span className={`text-[8px] font-medium uppercase tracking-wider ${RARITY_TEXT[badge.rarity]}`}>
         {t(`rarity.${badge.rarity}`)}
       </span>
 
-      {/* Description */}
-      <p className="text-center text-[9px] leading-snug text-text-tertiary">
-        {t(`badge.${badge.id}.desc`)}
-      </p>
+      {/* Description — hidden in compact mode */}
+      {!compact && (
+        <p className="text-center text-[9px] leading-snug text-text-tertiary">
+          {t(`badge.${badge.id}.desc`)}
+        </p>
+      )}
     </div>
   );
 }

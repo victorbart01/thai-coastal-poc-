@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,6 +11,9 @@ import { ProfileHeader } from "@/components/ProfileHeader";
 import { BadgeCard } from "@/components/BadgeCard";
 import { SeaGlassLoader } from "@/components/SeaGlassLoader";
 import { useTranslation } from "@/lib/i18n";
+import type { BadgeRarity } from "@/lib/types";
+
+const RARITY_ORDER: BadgeRarity[] = ["common", "rare", "epic", "legendary"];
 
 export default function ProfilePage() {
   const params = useParams<{ id: string }>();
@@ -32,6 +35,13 @@ export default function ProfilePage() {
       checkAndAwardBadges(stats);
     }
   }, [stats, checkAndAwardBadges]);
+
+  const badgesByRarity = useMemo(() => {
+    const grouped = new Map<BadgeRarity, typeof badges>();
+    for (const r of RARITY_ORDER) grouped.set(r, []);
+    for (const b of badges) grouped.get(b.rarity)!.push(b);
+    return grouped;
+  }, [badges]);
 
   if (loading || !profile) {
     return <SeaGlassLoader />;
@@ -63,20 +73,43 @@ export default function ProfilePage() {
           stats={stats}
         />
 
-        {/* Badges section */}
+        {/* Badges section — grouped by rarity */}
         <section className="mt-8">
-          <h2 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
-            {t("badge.title")}
-          </h2>
-          <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-6">
-            {badges.map((badge) => (
-              <BadgeCard
-                key={badge.id}
-                badge={badge}
-                earned={earnedBadgeIds.includes(badge.id)}
-              />
-            ))}
+          <div className="flex items-baseline justify-between">
+            <h2 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+              {t("badge.title")}
+            </h2>
+            <span className="text-[10px] text-text-tertiary">
+              {earnedBadgeIds.length} / {badges.length} {t("badge.progress")}
+            </span>
           </div>
+
+          {RARITY_ORDER.map((rarity) => {
+            const group = badgesByRarity.get(rarity) ?? [];
+            if (group.length === 0) return null;
+            return (
+              <div key={rarity} className="mt-4">
+                <h3 className={`text-[10px] font-semibold uppercase tracking-wider ${
+                  rarity === "common" ? "text-text-tertiary" :
+                  rarity === "rare" ? "text-blue-400" :
+                  rarity === "epic" ? "text-purple-400" :
+                  "text-yellow-400"
+                }`}>
+                  {t(`rarity.${rarity}`)}
+                </h3>
+                <div className="mt-1.5 grid grid-cols-4 gap-1.5 sm:grid-cols-8">
+                  {group.map((badge) => (
+                    <BadgeCard
+                      key={badge.id}
+                      badge={badge}
+                      earned={earnedBadgeIds.includes(badge.id)}
+                      compact
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </section>
 
         {/* Saved Spots — only shown when there are saves (private via RLS) */}
