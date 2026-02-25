@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { X, MapPin, Bookmark, MessageCircle, Trophy, Sparkles } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useTranslation } from "@/lib/i18n";
 import { useMapStore } from "@/store/useMapStore";
 
 const VALUE_PROPS = [
-  { icon: MapPin, key: "signup.valueShare" },
-  { icon: Bookmark, key: "signup.valueSave" },
-  { icon: MessageCircle, key: "signup.valueComment" },
-  { icon: Trophy, key: "signup.valueBadges" },
+  { img: "/icon-pin.png", key: "signup.valueShare" },
+  { img: "/icon-bookmark.png", key: "signup.valueSave" },
+  { img: "/icon-comment.png", key: "signup.valueComment" },
+  { img: "/icon-leaderboard.png", key: "signup.valueBadges" },
 ] as const;
 
 export function SignupModal() {
@@ -160,12 +160,12 @@ export function SignupModal() {
 
             {/* Value props */}
             <div className="mb-3 grid grid-cols-2 gap-1.5 sm:mb-6 sm:gap-2">
-              {VALUE_PROPS.map(({ icon: Icon, key }) => (
+              {VALUE_PROPS.map(({ img, key }) => (
                 <div
                   key={key}
                   className="flex items-center gap-2 rounded-xl border border-black/[0.08] bg-white/60 px-2.5 py-2 shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white/80 hover:shadow-md sm:gap-2.5 sm:px-3 sm:py-2.5"
                 >
-                  <Icon className="h-3.5 w-3.5 shrink-0 text-glass-deep sm:h-4 sm:w-4" />
+                  <Image src={img} alt="" width={30} height={30} className="h-[30px] w-[30px] shrink-0" />
                   <span className="text-[11px] leading-tight text-text-secondary sm:text-xs">{t(key)}</span>
                 </div>
               ))}
