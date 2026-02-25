@@ -191,6 +191,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "profile.linkCopied": "Profile link copied!",
     "profile.savedSpots": "Saved Spots",
     "profile.noSavedSpots": "No saved spots yet",
+    "profile.changeAvatar": "Change photo",
 
     // Badges
     "badge.title": "Badges",
@@ -526,6 +527,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "profile.linkCopied": "คัดลอกลิงก์โปรไฟล์แล้ว!",
     "profile.savedSpots": "จุดที่บันทึก",
     "profile.noSavedSpots": "ยังไม่มีจุดที่บันทึก",
+    "profile.changeAvatar": "เปลี่ยนรูปภาพ",
 
     // Badges
     "badge.title": "เหรียญตรา",

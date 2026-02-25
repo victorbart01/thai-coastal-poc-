@@ -17,7 +17,7 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
   const setLocale = useMapStore((s) => s.setLocale);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-10 flex h-12 items-center gap-2 bg-black px-4 sm:gap-0">
+    <header className="fixed inset-x-0 top-0 z-20 flex h-12 items-center gap-2 bg-black px-4 sm:gap-0">
       {/* Logo */}
       <div className="flex items-center gap-1.5">
         <Image

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { Link2, Check } from "lucide-react";
+import { useState, useRef } from "react";
+import { Link2, Check, Camera, Loader2 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import { createClient } from "@/lib/supabase/client";
 import type { UserStats } from "@/lib/types";
 
 interface ProfileHeaderProps {
@@ -11,11 +12,19 @@ interface ProfileHeaderProps {
   bio: string | null;
   createdAt: string;
   stats: UserStats | null;
+  isOwnProfile?: boolean;
+  userId?: string;
+  onAvatarUpdated?: (newUrl: string) => void;
 }
 
-export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats }: ProfileHeaderProps) {
+export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats, isOwnProfile, userId, onAvatarUpdated }: ProfileHeaderProps) {
   const { t, locale } = useTranslation();
   const [copied, setCopied] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [localAvatar, setLocalAvatar] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const displayAvatar = localAvatar ?? avatarUrl;
 
   const memberSince = new Date(createdAt).toLocaleDateString(
     locale === "th" ? "th-TH" : "en-US",
@@ -28,22 +37,86 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats }:
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !userId) return;
+
+    setUploading(true);
+    try {
+      const supabase = createClient();
+      const ext = file.name.split(".").pop() ?? "jpg";
+      const path = `${userId}/avatar.${ext}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("avatars")
+        .upload(path, file, { cacheControl: "3600", upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from("avatars")
+        .getPublicUrl(path);
+
+      const cacheBustedUrl = `${publicUrl}?t=${Date.now()}`;
+
+      const { error: updateError } = await supabase
+        .from("user_profiles")
+        .update({ avatar_url: cacheBustedUrl })
+        .eq("id", userId);
+
+      if (updateError) throw updateError;
+
+      setLocalAvatar(cacheBustedUrl);
+      onAvatarUpdated?.(cacheBustedUrl);
+    } catch (err) {
+      console.error("Avatar upload failed:", err);
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
   return (
     <div>
       {/* Avatar + name + bio */}
       <div className="flex items-start gap-4">
-        {avatarUrl ? (
-          <img
-            src={avatarUrl}
-            alt={displayName}
-            referrerPolicy="no-referrer"
-            className="h-16 w-16 shrink-0 rounded-full border-2 border-black/10"
-          />
-        ) : (
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-black/10 bg-pink-400/20 text-xl font-bold text-pink-400">
-            {displayName[0]?.toUpperCase()}
-          </div>
-        )}
+        <div className="group relative shrink-0">
+          {displayAvatar ? (
+            <img
+              src={displayAvatar}
+              alt={displayName}
+              referrerPolicy="no-referrer"
+              className="h-16 w-16 rounded-full border-2 border-black/10 object-cover"
+            />
+          ) : (
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-black/10 bg-pink-400/20 text-xl font-bold text-pink-400">
+              {displayName[0]?.toUpperCase()}
+            </div>
+          )}
+          {isOwnProfile && (
+            <>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="hidden"
+                onChange={handleAvatarUpload}
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="absolute inset-0 flex items-center justify-center rounded-full bg-black/0 opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100"
+                aria-label={t("profile.changeAvatar")}
+              >
+                {uploading ? (
+                  <Loader2 className="h-5 w-5 animate-spin text-white" />
+                ) : (
+                  <Camera className="h-5 w-5 text-white" />
+                )}
+              </button>
+            </>
+          )}
+        </div>
 
         <div className="min-w-0 flex-1">
           <h1 className="truncate font-[family-name:var(--font-display)] text-lg font-bold text-text-primary">

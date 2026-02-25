@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ArrowLeft, Star, Heart, Bookmark } from "lucide-react";
 import { useUserProfile } from "@/lib/useUserProfile";
 import { useUserBadges } from "@/lib/useUserBadges";
+import { useUser } from "@/lib/useUser";
 import { ProfileHeader } from "@/components/ProfileHeader";
 import { TrophyCard } from "@/components/TrophyCard";
 import { SeaGlassLoader } from "@/components/SeaGlassLoader";
@@ -17,6 +18,8 @@ export default function ProfilePage() {
   const params = useParams<{ id: string }>();
   const userId = params.id;
   const { t } = useTranslation();
+  const { user } = useUser();
+  const isOwnProfile = user?.id === userId;
   const { profile, spots, savedSpots, stats, loading, fetchProfile } = useUserProfile();
   const { badges, earnedBadgeIds, fetchEarnedBadges, checkAndAwardBadges } = useUserBadges(userId);
 
@@ -70,6 +73,9 @@ export default function ProfilePage() {
           bio={profile.bio}
           createdAt={profile.created_at}
           stats={stats}
+          isOwnProfile={isOwnProfile}
+          userId={userId}
+          onAvatarUpdated={(url) => fetchProfile(userId)}
         />
 
         {/* Trophies section — 9 progression cards */}
