@@ -110,7 +110,7 @@ export function SignupModal() {
       <div className="animate-panel-enter-right relative w-full max-w-md">
         <div className="max-h-[90dvh] overflow-hidden rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
           {/* ── Dark header (logo only) ── */}
-          <div className="relative overflow-hidden bg-black px-6 py-5 sm:px-8">
+          <div className="relative overflow-hidden bg-black px-6 py-3.5 sm:py-5 sm:px-8">
             {/* Glow behind logo */}
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-glass-deep/20 blur-2xl" />
 
@@ -131,7 +131,7 @@ export function SignupModal() {
                   className="absolute -left-[48px]"
                 />
                 <div className="relative">
-                  <span className="font-[family-name:var(--font-logo)] text-[1.75rem] tracking-tight text-white">
+                  <span className="font-[family-name:var(--font-logo)] text-[1.4rem] tracking-tight text-white sm:text-[1.75rem]">
                     <span className="font-bold">Seaglass</span>
                     <span className="font-normal">map</span>
                   </span>
@@ -147,26 +147,26 @@ export function SignupModal() {
           <div className="h-[2px] bg-gradient-to-r from-glass-deep via-accent-pink to-glass-deep" />
 
           {/* ── Glass body ── */}
-          <div className="glass-card overflow-y-auto rounded-b-3xl border-t-0 p-6 sm:p-8">
+          <div className="glass-card overflow-y-auto rounded-b-3xl border-t-0 p-4 sm:p-8">
             {/* Title + subtitle */}
-            <div className="mb-5 text-center">
-              <h1 className="font-[family-name:var(--font-display)] text-xl font-bold text-text-primary sm:text-2xl">
+            <div className="mb-3 text-center sm:mb-5">
+              <h1 className="font-[family-name:var(--font-display)] text-lg font-bold text-text-primary sm:text-xl">
                 {t("signup.title")}
               </h1>
-              <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">
+              <p className="mt-1 text-xs leading-relaxed text-text-secondary sm:mt-1.5 sm:text-sm">
                 {t("signup.subtitle")}
               </p>
             </div>
 
             {/* Value props */}
-            <div className="mb-6 grid grid-cols-2 gap-2">
+            <div className="mb-3 grid grid-cols-2 gap-1.5 sm:mb-6 sm:gap-2">
               {VALUE_PROPS.map(({ icon: Icon, key }) => (
                 <div
                   key={key}
-                  className="flex items-center gap-2.5 rounded-xl border border-black/[0.08] bg-white/60 px-3 py-2.5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white/80 hover:shadow-md"
+                  className="flex items-center gap-2 rounded-xl border border-black/[0.08] bg-white/60 px-2.5 py-2 shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white/80 hover:shadow-md sm:gap-2.5 sm:px-3 sm:py-2.5"
                 >
-                  <Icon className="h-4 w-4 shrink-0 text-glass-deep" />
-                  <span className="text-xs text-text-secondary">{t(key)}</span>
+                  <Icon className="h-3.5 w-3.5 shrink-0 text-glass-deep sm:h-4 sm:w-4" />
+                  <span className="text-[11px] leading-tight text-text-secondary sm:text-xs">{t(key)}</span>
                 </div>
               ))}
             </div>
@@ -204,15 +204,15 @@ export function SignupModal() {
               </div>
             ) : (
               <>
-                <form onSubmit={handleMagicLink} className="space-y-3">
-                  <div className="flex gap-3">
+                <form onSubmit={handleMagicLink} className="space-y-2 sm:space-y-3">
+                  <div className="flex gap-2 sm:gap-3">
                     <input
                       type="text"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder={t("signup.firstName")}
                       required
-                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none"
+                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3 py-2 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none sm:px-3.5 sm:py-2.5"
                     />
                     <input
                       type="text"
@@ -220,7 +220,7 @@ export function SignupModal() {
                       onChange={(e) => setLastName(e.target.value)}
                       placeholder={t("signup.lastName")}
                       required
-                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none"
+                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3 py-2 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none sm:px-3.5 sm:py-2.5"
                     />
                   </div>
                   <input
@@ -229,7 +229,7 @@ export function SignupModal() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("signup.email")}
                     required
-                    className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none"
+                    className="w-full rounded-xl border border-white/50 bg-white/60 px-3 py-2 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none sm:px-3.5 sm:py-2.5"
                   />
 
                   {error && (
@@ -239,7 +239,7 @@ export function SignupModal() {
                   <button
                     type="submit"
                     disabled={sending}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-glass-deep to-accent-pink py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-[0_4px_20px_rgba(6,182,212,0.4)] disabled:opacity-60"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-glass-deep to-accent-pink py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-[0_4px_20px_rgba(6,182,212,0.4)] disabled:opacity-60 sm:py-3"
                   >
                     <Sparkles className="h-4 w-4" />
                     {sending ? t("signup.sending") : t("signup.sendMagicLink")}
@@ -247,7 +247,7 @@ export function SignupModal() {
                 </form>
 
                 {/* Divider */}
-                <div className="my-5 flex items-center gap-3">
+                <div className="my-3 flex items-center gap-3 sm:my-5">
                   <div className="h-px flex-1 bg-gradient-to-r from-transparent via-black/[0.12] to-transparent" />
                   <span className="text-xs text-text-tertiary">{t("signup.or")}</span>
                   <div className="h-px flex-1 bg-gradient-to-r from-transparent via-black/[0.12] to-transparent" />
@@ -256,7 +256,7 @@ export function SignupModal() {
                 {/* Google OAuth */}
                 <button
                   onClick={handleGoogle}
-                  className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-black/[0.08] bg-white/70 py-3 text-sm font-medium text-text-primary shadow-sm backdrop-blur-sm transition-all hover:bg-white/90 hover:shadow-md"
+                  className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-black/[0.08] bg-white/70 py-2.5 text-sm font-medium text-text-primary shadow-sm backdrop-blur-sm transition-all hover:bg-white/90 hover:shadow-md sm:py-3"
                 >
                   <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24">
                     <path
@@ -282,7 +282,7 @@ export function SignupModal() {
             )}
 
             {/* Already a member */}
-            <p className="mt-6 text-center text-xs text-text-tertiary">
+            <p className="mt-3 text-center text-xs text-text-tertiary sm:mt-6">
               {t("signup.alreadyMember")}{" "}
               <button
                 onClick={handleGoogle}
