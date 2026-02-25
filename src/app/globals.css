@@ -82,6 +82,12 @@ body {
   border-radius: 4px;
 }
 
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
 /* ─── Custom Scrollbar ─────────────────────────────────── */
 
 .sidebar-scroll::-webkit-scrollbar {

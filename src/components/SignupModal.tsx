@@ -121,17 +121,25 @@ export function SignupModal() {
               <X className="h-5 w-5" />
             </button>
 
-            <div className="relative flex items-center justify-center gap-2.5">
-              <Image
-                src="/logo_pin_sgm.png"
-                alt="Seaglass logo"
-                width={48}
-                height={48}
-              />
-              <span className="font-[family-name:var(--font-logo)] text-2xl tracking-tight text-white sm:text-3xl">
-                <span className="font-bold">Seaglass</span>
-                <span className="font-normal">map</span>
-              </span>
+            <div className="flex w-full items-center justify-center">
+              <div className="relative flex items-center">
+                <Image
+                  src="/logo_pin_sgm.png"
+                  alt="Seaglass logo"
+                  width={40}
+                  height={40}
+                  className="absolute -left-[48px]"
+                />
+                <div className="relative">
+                  <span className="font-[family-name:var(--font-logo)] text-[1.75rem] tracking-tight text-white">
+                    <span className="font-bold">Seaglass</span>
+                    <span className="font-normal">map</span>
+                  </span>
+                  <span className="absolute -right-[38px] top-1 rounded-full bg-white/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/70">
+                    beta
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -204,7 +212,7 @@ export function SignupModal() {
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder={t("signup.firstName")}
                       required
-                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:border-glass-deep focus:outline-none focus:ring-1 focus:ring-glass-deep/30"
+                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none"
                     />
                     <input
                       type="text"
@@ -212,7 +220,7 @@ export function SignupModal() {
                       onChange={(e) => setLastName(e.target.value)}
                       placeholder={t("signup.lastName")}
                       required
-                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:border-glass-deep focus:outline-none focus:ring-1 focus:ring-glass-deep/30"
+                      className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none"
                     />
                   </div>
                   <input
@@ -221,7 +229,7 @@ export function SignupModal() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("signup.email")}
                     required
-                    className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:border-glass-deep focus:outline-none focus:ring-1 focus:ring-glass-deep/30"
+                    className="w-full rounded-xl border border-white/50 bg-white/60 px-3.5 py-2.5 text-sm text-text-primary shadow-sm backdrop-blur-sm placeholder:text-text-tertiary focus:outline-none focus-visible:outline-none"
                   />
 
                   {error && (
