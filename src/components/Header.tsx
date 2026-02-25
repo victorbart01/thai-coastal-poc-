@@ -23,10 +23,10 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
         <Image
           src="/logo_pin_sgm.png"
           alt="Seaglass logo"
-          width={28}
-          height={28}
+          width={40}
+          height={40}
         />
-        <span className="font-[family-name:var(--font-logo)] text-xl tracking-tight text-white">
+        <span className="font-[family-name:var(--font-logo)] text-[1.5rem] tracking-tight text-white">
           <span className="font-bold">Seaglass</span>
           <span className="font-normal">map</span>
         </span>
