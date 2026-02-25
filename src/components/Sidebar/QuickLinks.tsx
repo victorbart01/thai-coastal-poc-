@@ -15,6 +15,7 @@ export function QuickLinks() {
 
   const navLinks = [
     { label: t("nav.about"), href: "/about" },
+    { label: t("nav.blog"), href: "/blog" },
     { label: t("nav.shop"), href: "/shop" },
     { label: t("nav.forum"), href: "/forum" },
   ];

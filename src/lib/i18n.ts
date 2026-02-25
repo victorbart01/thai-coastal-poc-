@@ -23,6 +23,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Navigation
     "nav.about": "About",
+    "nav.blog": "Blog",
     "nav.shop": "Shop",
     "nav.forum": "Forum",
     "nav.signUp": "Sign up",
@@ -220,6 +221,11 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Placeholder pages
     "about.title": "About Sea Glass Map",
+    "blog.title": "Blog",
+    "blog.subtitle": "Tips, guides, and stories from the sea glass community.",
+    "blog.readMore": "Read more",
+    "blog.minRead": "min read",
+    "blog.backToBlog": "Back to blog",
     "shop.title": "Shop",
     "shop.comingSoon": "Coming soon — stay tuned!",
     "forum.title": "Forum",
@@ -290,6 +296,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Navigation
     "nav.about": "เกี่ยวกับ",
+    "nav.blog": "บล็อก",
     "nav.shop": "ร้านค้า",
     "nav.forum": "ฟอรัม",
     "nav.signUp": "สมัคร",
@@ -487,6 +494,11 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Placeholder pages
     "about.title": "เกี่ยวกับ Sea Glass Map",
+    "blog.title": "บล็อก",
+    "blog.subtitle": "เคล็ดลับ คู่มือ และเรื่องราวจากชุมชนซีกลาส",
+    "blog.readMore": "อ่านต่อ",
+    "blog.minRead": "นาทีอ่าน",
+    "blog.backToBlog": "กลับไปบล็อก",
     "shop.title": "ร้านค้า",
     "shop.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
     "forum.title": "ฟอรัม",
