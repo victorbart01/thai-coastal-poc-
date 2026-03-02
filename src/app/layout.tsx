@@ -28,10 +28,11 @@ export const metadata: Metadata = {
     "Discover, share and explore sea glass spots around the world. A community-driven interactive map for sea glass collectors.",
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
     ],
-    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
