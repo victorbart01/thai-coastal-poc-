@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans, Nunito } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { ToasterProvider } from "@/components/ToasterProvider";
 import "./globals.css";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         <ToasterProvider />
+        <Analytics />
       </body>
     </html>
   );
