@@ -4,11 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Camera, Users } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import { useMapStore } from "@/store/useMapStore";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SignupModal } from "@/components/SignupModal";
 
 export default function AboutClient() {
   const { t } = useTranslation();
+  const openSignupModal = useMapStore((s) => s.openSignupModal);
 
   return (
     <div className="h-screen overflow-y-auto bg-white">
@@ -39,12 +42,12 @@ export default function AboutClient() {
             >
               {t("about.hero.cta.map")}
             </Link>
-            <Link
-              href="/signup"
+            <button
+              onClick={openSignupModal}
               className="rounded-full border-2 border-white px-7 py-3 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
               {t("about.hero.cta.join")}
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -66,7 +69,7 @@ export default function AboutClient() {
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
-                src="/images/blog/sea-glass-on-sand.jpg"
+                src="/images/blog/sea-glass-on-sand.png"
                 alt="Colorful sea glass on a beach"
                 fill
                 className="object-cover"
@@ -148,16 +151,17 @@ export default function AboutClient() {
           <p className="mt-4 text-base leading-relaxed text-white/70">
             {t("about.cta.sub")}
           </p>
-          <Link
-            href="/signup"
+          <button
+            onClick={openSignupModal}
             className="mt-8 inline-block rounded-full bg-glass-deep px-8 py-3.5 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-glass-muted"
           >
             {t("about.cta.button")}
-          </Link>
+          </button>
         </div>
       </section>
 
       <SiteFooter />
+      <SignupModal />
     </div>
   );
 }
