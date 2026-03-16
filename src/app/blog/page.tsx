@@ -1,80 +1,106 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, Clock } from "lucide-react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "@/lib/i18n";
-import { getBlogPosts } from "@/lib/blogPosts";
+import { getBlogPosts, getFeaturedPost, getNonFeaturedPosts, type BlogCategory } from "@/lib/blogPosts";
+import { SiteNavbar } from "@/components/SiteNavbar";
+import { SiteFooter } from "@/components/SiteFooter";
+import { CategoryFilter } from "@/components/blog/CategoryFilter";
+import { FeaturedArticle } from "@/components/blog/FeaturedArticle";
+import { BlogCard } from "@/components/blog/BlogCard";
+import { Pagination } from "@/components/blog/Pagination";
+
+const POSTS_PER_PAGE = 6;
 
 export default function BlogPage() {
   const { t, locale } = useTranslation();
-  const posts = getBlogPosts(locale);
+  const [selectedCategory, setSelectedCategory] = useState<BlogCategory | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const allPosts = getBlogPosts(locale);
+  const featuredPost = getFeaturedPost(locale);
+  const nonFeaturedPosts = getNonFeaturedPosts(locale);
+
+  const filteredPosts = useMemo(() => {
+    if (!selectedCategory) return nonFeaturedPosts;
+    return allPosts.filter((p) => p.category === selectedCategory && !p.featured);
+  }, [selectedCategory, allPosts, nonFeaturedPosts]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  const handleCategoryChange = (cat: BlogCategory | null) => {
+    setSelectedCategory(cat);
+    setCurrentPage(1);
+  };
+
+  const showFeatured = !selectedCategory && currentPage === 1 && featuredPost;
 
   return (
-    <div className="min-h-screen bg-ocean-950">
-      <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-black/[0.06] bg-ocean-950/80 px-4 py-3 backdrop-blur-md">
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs text-text-secondary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t("profile.backToMap")}
-        </Link>
-        <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
-          {t("blog.title")}
-        </h2>
-      </header>
+    <div className="h-screen overflow-y-auto bg-ocean-950">
+      <SiteNavbar />
 
-      <main className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
-        <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold text-text-primary">
-          {t("blog.title")}
-        </h1>
-        <p className="mt-2 text-sm text-text-secondary">
-          {t("blog.subtitle")}
-        </p>
-
-        <div className="mt-8 space-y-4">
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="block overflow-hidden rounded-xl border border-black/[0.08] bg-white/60 shadow-sm transition-all duration-200 hover:border-black/[0.14] hover:bg-white/80 hover:shadow-md"
-            >
-              {post.image.startsWith("/") ? (
-                <div className="relative aspect-[3/1] w-full">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 672px) 100vw, 672px"
-                  />
-                </div>
-              ) : null}
-              <div className="p-5">
-                <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold leading-snug text-text-primary">
-                  {post.title}
-                </h2>
-                <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-text-body">
-                  {post.excerpt}
-                </p>
-                <div className="mt-3 flex items-center gap-3 text-[11px] text-text-tertiary">
-                  <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString(
-                      locale === "th" ? "th-TH" : "en-US",
-                      { year: "numeric", month: "long", day: "numeric" }
-                    )}
-                  </time>
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {post.readingTime} {t("blog.minRead")}
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
+      {/* Hero */}
+      <section className="pb-10 pt-24 text-center md:pb-14 md:pt-28">
+        <div className="mx-auto max-w-3xl px-6">
+          <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-text-primary sm:text-4xl">
+            {t("blog.journal.title")}
+          </h1>
+          <p className="mx-auto mt-3 max-w-xl text-base text-text-secondary">
+            {t("blog.journal.subtitle")}
+          </p>
+          <div className="mt-8">
+            <CategoryFilter selected={selectedCategory} onSelect={handleCategoryChange} />
+          </div>
         </div>
+      </section>
+
+      <main className="mx-auto max-w-6xl px-6 pb-16">
+        {/* Featured article */}
+        {showFeatured && (
+          <section className="mb-14">
+            <FeaturedArticle post={featuredPost} />
+          </section>
+        )}
+
+        {/* Latest articles grid */}
+        <section>
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-text-primary">
+              {t("blog.latestArticles")}
+            </h2>
+            <span className="text-sm text-text-tertiary">
+              {filteredPosts.length} {t("blog.articlesCount")}
+            </span>
+          </div>
+
+          {paginatedPosts.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {paginatedPosts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-white/[0.08] bg-navy-900/40 p-12 text-center">
+              <p className="text-text-secondary">No articles in this category yet.</p>
+            </div>
+          )}
+
+          {/* Pagination */}
+          <div className="mt-12">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </div>
+        </section>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }

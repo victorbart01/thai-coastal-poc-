@@ -23,6 +23,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Navigation
     "nav.about": "About",
+    "nav.map": "Map",
     "nav.blog": "Blog",
     "nav.shop": "Shop",
     "nav.forum": "Forum",
@@ -316,12 +317,33 @@ const translations: Record<Locale, Record<string, string>> = {
     "about.footer.contact": "Contact",
     "about.footer.copyright": "© 2026 Seaglassmap. All rights reserved.",
 
-    // Placeholder pages
+    // Footer
+    "footer.explore": "Explore",
+    "footer.community": "Community",
+    "footer.followUs": "Follow Us",
+    "footer.topCollectors": "Top Collectors",
+    "footer.submitSpot": "Submit a Spot",
+    "footer.guidelines": "Guidelines",
+    "footer.madeWith": "Made with \u2764 for the sea glass community",
+
+    // Blog
     "blog.title": "Blog",
+    "blog.journal.title": "The Sea Glass Journal",
+    "blog.journal.subtitle": "Stories, tips, and guides from the sea glass community.",
     "blog.subtitle": "Tips, guides, and stories from the sea glass community.",
-    "blog.readMore": "Read more",
+    "blog.readMore": "Read More",
     "blog.minRead": "min read",
     "blog.backToBlog": "Back to blog",
+    "blog.latestArticles": "Latest Articles",
+    "blog.articlesCount": "articles",
+    "blog.pagination.previous": "Previous",
+    "blog.pagination.next": "Next",
+    "blog.categories.all": "All",
+    "blog.categories.guide": "Guides",
+    "blog.categories.spots": "Spots",
+    "blog.categories.collecting-tips": "Collecting Tips",
+    "blog.categories.community": "Community Stories",
+    "blog.categories.news": "News",
     "shop.title": "Shop",
     "shop.comingSoon": "Coming soon — stay tuned!",
     "forum.title": "Forum",
@@ -398,6 +420,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Navigation
     "nav.about": "เกี่ยวกับ",
+    "nav.map": "แผนที่",
     "nav.blog": "บล็อก",
     "nav.shop": "ร้านค้า",
     "nav.forum": "ฟอรัม",
@@ -691,12 +714,33 @@ const translations: Record<Locale, Record<string, string>> = {
     "about.footer.contact": "ติดต่อ",
     "about.footer.copyright": "© 2026 Seaglassmap. สงวนลิขสิทธิ์",
 
-    // Placeholder pages
+    // Footer
+    "footer.explore": "สำรวจ",
+    "footer.community": "ชุมชน",
+    "footer.followUs": "ติดตามเรา",
+    "footer.topCollectors": "นักสะสมอันดับต้น",
+    "footer.submitSpot": "ส่งจุด",
+    "footer.guidelines": "แนวทาง",
+    "footer.madeWith": "สร้างด้วย \u2764 เพื่อชุมชนซีกลาส",
+
+    // Blog
     "blog.title": "บล็อก",
+    "blog.journal.title": "The Sea Glass Journal",
+    "blog.journal.subtitle": "เรื่องราว เคล็ดลับ และคู่มือจากชุมชนซีกลาส",
     "blog.subtitle": "เคล็ดลับ คู่มือ และเรื่องราวจากชุมชนซีกลาส",
     "blog.readMore": "อ่านต่อ",
     "blog.minRead": "นาทีอ่าน",
     "blog.backToBlog": "กลับไปบล็อก",
+    "blog.latestArticles": "บทความล่าสุด",
+    "blog.articlesCount": "บทความ",
+    "blog.pagination.previous": "ก่อนหน้า",
+    "blog.pagination.next": "ถัดไป",
+    "blog.categories.all": "ทั้งหมด",
+    "blog.categories.guide": "คู่มือ",
+    "blog.categories.spots": "จุด",
+    "blog.categories.collecting-tips": "เคล็ดลับการสะสม",
+    "blog.categories.community": "เรื่องราวชุมชน",
+    "blog.categories.news": "ข่าว",
     "shop.title": "ร้านค้า",
     "shop.comingSoon": "เร็วๆ นี้ — รอติดตาม!",
     "forum.title": "ฟอรัม",

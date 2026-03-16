@@ -4,7 +4,7 @@ import { useEffect, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Star, Heart, Bookmark } from "lucide-react";
+import { Star, Heart, Bookmark } from "lucide-react";
 import { useUserProfile } from "@/lib/useUserProfile";
 import { useUserBadges } from "@/lib/useUserBadges";
 import { useUser } from "@/lib/useUser";
@@ -13,6 +13,8 @@ import { TrophyCard } from "@/components/TrophyCard";
 import { SeaGlassLoader } from "@/components/SeaGlassLoader";
 import { useTranslation } from "@/lib/i18n";
 import { TROPHY_PATHS, getTrophyProgress } from "@/lib/badges";
+import { SiteNavbar } from "@/components/SiteNavbar";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export default function ProfilePage() {
   const params = useParams<{ id: string }>();
@@ -51,21 +53,9 @@ export default function ProfilePage() {
 
   return (
     <div className="h-screen overflow-y-auto bg-ocean-950">
-      {/* Top bar */}
-      <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-black/[0.06] bg-ocean-950/80 px-4 py-3 backdrop-blur-md">
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs text-text-secondary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t("profile.backToMap")}
-        </Link>
-        <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
-          {t("profile.title")}
-        </h2>
-      </header>
+      <SiteNavbar />
 
-      <main className="mx-auto max-w-3xl px-4 py-6 sm:px-6">
+      <main className="mx-auto max-w-3xl px-4 pt-20 pb-6 sm:px-6">
         {/* Profile header */}
         <ProfileHeader
           displayName={profile.display_name ?? "Anonymous"}
@@ -109,7 +99,7 @@ export default function ProfilePage() {
                 return (
                   <Link
                     key={spot.id}
-                    href={`/?spot=${spot.id}`}
+                    href={`/map?spot=${spot.id}`}
                     className="glass-card group overflow-hidden rounded-2xl transition-all duration-200 hover:bg-black/[0.10] hover:shadow-lg"
                   >
                     {thumbnail && (
@@ -168,7 +158,7 @@ export default function ProfilePage() {
                 return (
                   <Link
                     key={spot.id}
-                    href={`/?spot=${spot.id}`}
+                    href={`/map?spot=${spot.id}`}
                     className="glass-card group overflow-hidden rounded-2xl transition-all duration-200 hover:bg-black/[0.10] hover:shadow-lg"
                   >
                     {/* Thumbnail */}
@@ -217,6 +207,8 @@ export default function ProfilePage() {
           )}
         </section>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }

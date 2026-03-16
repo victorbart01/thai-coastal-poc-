@@ -1,10 +1,20 @@
 import type { Locale } from "./i18n";
 
+export type BlogCategory = "guide" | "spots" | "collecting-tips" | "community" | "news";
+
+export interface BlogAuthor {
+  name: string;
+  avatar: string;
+}
+
 export interface BlogPost {
   slug: string;
   image: string;
   date: string;
   readingTime: number;
+  category: BlogCategory;
+  author: BlogAuthor;
+  featured?: boolean;
 }
 
 export interface BlogPostContent extends BlogPost {
@@ -13,6 +23,22 @@ export interface BlogPostContent extends BlogPost {
   content: string[];
   metaDescription: string;
 }
+
+export const BLOG_CATEGORIES: BlogCategory[] = [
+  "guide",
+  "spots",
+  "collecting-tips",
+  "community",
+  "news",
+];
+
+export const CATEGORY_COLORS: Record<BlogCategory, string> = {
+  guide: "bg-orange-500 text-white",
+  spots: "bg-cyan-500 text-white",
+  "collecting-tips": "bg-rose-500 text-white",
+  community: "bg-emerald-500 text-white",
+  news: "bg-violet-500 text-white",
+};
 
 const posts: Record<string, Record<Locale, Omit<BlogPostContent, keyof BlogPost>>> = {
   "best-sea-glass-beaches-thailand": {
@@ -212,22 +238,29 @@ const posts: Record<string, Record<Locale, Omit<BlogPostContent, keyof BlogPost>
 
 const postMeta: BlogPost[] = [
   {
-    slug: "best-sea-glass-beaches-thailand",
-    image: "/images/blog/thailand-beach-hero.jpg",
-    date: "2026-02-20",
-    readingTime: 8,
-  },
-  {
     slug: "what-is-sea-glass-complete-guide",
     image: "/images/blog/sea-glass-collection-hero.jpg",
-    date: "2026-02-15",
+    date: "2026-03-10",
     readingTime: 10,
+    category: "guide",
+    author: { name: "Andaman Scout", avatar: "" },
+    featured: true,
+  },
+  {
+    slug: "best-sea-glass-beaches-thailand",
+    image: "/images/blog/thailand-beach-hero.jpg",
+    date: "2026-03-08",
+    readingTime: 8,
+    category: "spots",
+    author: { name: "Victor Barthelemy", avatar: "" },
   },
   {
     slug: "sea-glass-jewelry-diy-guide",
     image: "/images/blog/sea-glass-jewelry-hero.jpg",
     date: "2026-02-10",
     readingTime: 7,
+    category: "collecting-tips",
+    author: { name: "Andaman Scout", avatar: "" },
   },
 ];
 
@@ -245,6 +278,18 @@ export function getBlogPost(
   const meta = postMeta.find((p) => p.slug === slug);
   if (!meta || !posts[slug]) return null;
   return { ...meta, ...posts[slug][locale] };
+}
+
+export function getFeaturedPost(locale: Locale): BlogPostContent | null {
+  const featured = postMeta.find((p) => p.featured);
+  if (!featured) return null;
+  return { ...featured, ...posts[featured.slug][locale] };
+}
+
+export function getNonFeaturedPosts(locale: Locale): BlogPostContent[] {
+  return postMeta
+    .filter((p) => !p.featured)
+    .map((meta) => ({ ...meta, ...posts[meta.slug][locale] }));
 }
 
 export function getAllSlugs(): string[] {

@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { getBlogPost } from "@/lib/blogPosts";
+import { SiteNavbar } from "@/components/SiteNavbar";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export default function BlogPostClient() {
   const { slug } = useParams<{ slug: string }>();
@@ -22,17 +24,9 @@ export default function BlogPostClient() {
 
   return (
     <div className="min-h-screen bg-ocean-950">
-      <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-black/[0.06] bg-ocean-950/80 px-4 py-3 backdrop-blur-md">
-        <Link
-          href="/blog"
-          className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs text-text-secondary transition-colors hover:bg-black/[0.06] hover:text-text-primary"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t("blog.backToBlog")}
-        </Link>
-      </header>
+      <SiteNavbar />
 
-      <main className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
+      <main className="mx-auto max-w-2xl px-4 pt-20 pb-10 sm:px-6">
         <article>
           {/* Hero image */}
           {post.image.startsWith("/") && (
@@ -107,6 +101,8 @@ export default function BlogPostClient() {
           </Link>
         </div>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }
