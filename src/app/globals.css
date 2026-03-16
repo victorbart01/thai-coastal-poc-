@@ -16,6 +16,11 @@
   --color-glass-deep: #06b6d4;
   --color-glass-muted: #0ea5e9;
 
+  /* Navy palette (About / landing pages) */
+  --color-navy-950: #0B1121;
+  --color-navy-900: #0F172A;
+  --color-navy-800: #1E293B;
+
   /* Accent pink */
   --color-accent-pink: #f472b6;
 

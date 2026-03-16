@@ -276,8 +276,47 @@ const translations: Record<Locale, Record<string, string>> = {
     "leaderboard.likes": "likes",
     "leaderboard.empty": "No contributors yet",
 
-    // Placeholder pages
+    // About — hero
     "about.title": "About Sea Glass Map",
+    "about.hero.heading": "Discover the World's Best Sea Glass Beaches",
+    "about.hero.sub": "Join a global community of collectors sharing their favorite spots, tips, and treasures.",
+    "about.hero.cta.map": "Explore the Map",
+    "about.hero.cta.join": "Join the Community",
+    // About — mission
+    "about.mission.label": "OUR MISSION",
+    "about.mission.heading": "Connecting Sea Glass Enthusiasts Worldwide",
+    "about.mission.p1": "Seaglassmap was born from a simple idea: that the world's most beautiful sea glass beaches deserve to be discovered, documented, and shared. Our community-driven platform brings together collectors from every corner of the globe to build the most comprehensive map of sea glass locations ever created.",
+    "about.mission.p2": "Whether you're a seasoned collector or just beginning your journey, Seaglassmap helps you find new beaches to explore, connect with fellow enthusiasts, and contribute to a growing body of knowledge about these natural treasures.",
+    // About — how it works
+    "about.how.label": "HOW IT WORKS",
+    "about.how.heading": "Start Your Sea Glass Journey",
+    "about.how.step1.label": "Step 1",
+    "about.how.step1.title": "Discover Spots",
+    "about.how.step1.desc": "Browse the interactive map to find sea glass beaches near you.",
+    "about.how.step2.label": "Step 2",
+    "about.how.step2.title": "Share Your Finds",
+    "about.how.step2.desc": "Pin your favorite spots and upload photos of your sea glass treasures.",
+    "about.how.step3.label": "Step 3",
+    "about.how.step3.title": "Join the Community",
+    "about.how.step3.desc": "Connect with collectors, leave reviews, and help others find the best beaches.",
+    // About — stats
+    "about.stats.label": "OUR COMMUNITY",
+    "about.stats.beaches": "Beaches Mapped",
+    "about.stats.collectors": "Collectors",
+    "about.stats.countries": "Countries",
+    "about.stats.finds": "Sea Glass Finds",
+    // About — CTA
+    "about.cta.heading": "Ready to Start Collecting?",
+    "about.cta.sub": "Join thousands of sea glass enthusiasts and start discovering beautiful beaches today.",
+    "about.cta.button": "Get Started — It's Free",
+    // About — footer
+    "about.footer.desc": "A global community platform for sea glass collectors. Discover beaches, share your finds, and connect with enthusiasts worldwide.",
+    "about.footer.links": "Links",
+    "about.footer.social": "Social",
+    "about.footer.contact": "Contact",
+    "about.footer.copyright": "© 2026 Seaglassmap. All rights reserved.",
+
+    // Placeholder pages
     "blog.title": "Blog",
     "blog.subtitle": "Tips, guides, and stories from the sea glass community.",
     "blog.readMore": "Read more",
@@ -612,8 +651,47 @@ const translations: Record<Locale, Record<string, string>> = {
     "leaderboard.likes": "ถูกใจ",
     "leaderboard.empty": "ยังไม่มีผู้ร่วมสร้าง",
 
-    // Placeholder pages
+    // About — hero
     "about.title": "เกี่ยวกับ Sea Glass Map",
+    "about.hero.heading": "ค้นพบชายหาดซีกลาสที่ดีที่สุดในโลก",
+    "about.hero.sub": "เข้าร่วมชุมชนนักสะสมระดับโลกที่แชร์จุดที่ชื่นชอบ เคล็ดลับ และสมบัติ",
+    "about.hero.cta.map": "สำรวจแผนที่",
+    "about.hero.cta.join": "เข้าร่วมชุมชน",
+    // About — mission
+    "about.mission.label": "พันธกิจของเรา",
+    "about.mission.heading": "เชื่อมต่อนักสะสมซีกลาสทั่วโลก",
+    "about.mission.p1": "Seaglassmap เกิดจากแนวคิดง่ายๆ ว่าชายหาดซีกลาสที่สวยที่สุดในโลกสมควรได้รับการค้นพบ บันทึก และแชร์ แพลตฟอร์มที่ขับเคลื่อนโดยชุมชนของเรารวบรวมนักสะสมจากทุกมุมโลกเพื่อสร้างแผนที่สถานที่ซีกลาสที่ครอบคลุมที่สุด",
+    "about.mission.p2": "ไม่ว่าคุณจะเป็นนักสะสมผู้มีประสบการณ์หรือเพิ่งเริ่มต้น Seaglassmap ช่วยให้คุณค้นหาชายหาดใหม่ เชื่อมต่อกับเพื่อนนักสะสม และมีส่วนร่วมในความรู้ที่เพิ่มพูนเกี่ยวกับสมบัติธรรมชาติเหล่านี้",
+    // About — how it works
+    "about.how.label": "ใช้งานอย่างไร",
+    "about.how.heading": "เริ่มต้นการเดินทางซีกลาสของคุณ",
+    "about.how.step1.label": "ขั้นตอนที่ 1",
+    "about.how.step1.title": "ค้นพบจุด",
+    "about.how.step1.desc": "เรียกดูแผนที่เชิงโต้ตอบเพื่อค้นหาชายหาดซีกลาสใกล้คุณ",
+    "about.how.step2.label": "ขั้นตอนที่ 2",
+    "about.how.step2.title": "แชร์สิ่งที่ค้นพบ",
+    "about.how.step2.desc": "ปักหมุดจุดที่ชื่นชอบและอัปโหลดรูปถ่ายซีกลาสของคุณ",
+    "about.how.step3.label": "ขั้นตอนที่ 3",
+    "about.how.step3.title": "เข้าร่วมชุมชน",
+    "about.how.step3.desc": "เชื่อมต่อกับนักสะสม แสดงความคิดเห็น และช่วยผู้อื่นค้นหาชายหาดที่ดีที่สุด",
+    // About — stats
+    "about.stats.label": "ชุมชนของเรา",
+    "about.stats.beaches": "ชายหาดที่ทำแผนที่",
+    "about.stats.collectors": "นักสะสม",
+    "about.stats.countries": "ประเทศ",
+    "about.stats.finds": "ซีกลาสที่พบ",
+    // About — CTA
+    "about.cta.heading": "พร้อมเริ่มสะสมหรือยัง?",
+    "about.cta.sub": "เข้าร่วมนักสะสมซีกลาสหลายพันคนและเริ่มค้นพบชายหาดที่สวยงามวันนี้",
+    "about.cta.button": "เริ่มต้น — ฟรี",
+    // About — footer
+    "about.footer.desc": "แพลตฟอร์มชุมชนระดับโลกสำหรับนักสะสมซีกลาส ค้นพบชายหาด แชร์สิ่งที่พบ และเชื่อมต่อกับผู้ที่ชื่นชอบทั่วโลก",
+    "about.footer.links": "ลิงก์",
+    "about.footer.social": "โซเชียล",
+    "about.footer.contact": "ติดต่อ",
+    "about.footer.copyright": "© 2026 Seaglassmap. สงวนลิขสิทธิ์",
+
+    // Placeholder pages
     "blog.title": "บล็อก",
     "blog.subtitle": "เคล็ดลับ คู่มือ และเรื่องราวจากชุมชนซีกลาส",
     "blog.readMore": "อ่านต่อ",
