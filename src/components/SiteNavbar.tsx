@@ -8,8 +8,9 @@ import { AuthButton } from "@/components/AuthButton";
 import type { Locale } from "@/lib/i18n";
 
 const NAV_LINKS = [
-  { labelKey: "nav.map", href: "/map" },
-  { labelKey: "nav.blog", href: "/blog", soon: true },
+  { labelKey: "nav.map", href: "/map", icon: "🗺️" },
+  { labelKey: "nav.about", href: "/about", icon: "🐚" },
+  { labelKey: "nav.blog", href: "/blog", icon: "✏️", soon: true },
 ];
 
 export function SiteNavbar() {
@@ -36,6 +37,7 @@ export function SiteNavbar() {
               key={link.href}
               className="flex cursor-default items-center gap-1.5 font-[family-name:var(--font-display)] text-sm font-medium text-white/30"
             >
+              <span className="text-xs">{link.icon}</span>
               {t(link.labelKey)}
               <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/40">
                 soon
@@ -45,8 +47,9 @@ export function SiteNavbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-[family-name:var(--font-display)] text-sm font-medium text-white/80 transition-colors hover:text-white"
+              className="flex items-center gap-1.5 font-[family-name:var(--font-display)] text-sm font-medium text-white/80 transition-colors hover:text-white"
             >
+              <span className="text-xs">{link.icon}</span>
               {t(link.labelKey)}
             </Link>
           )
