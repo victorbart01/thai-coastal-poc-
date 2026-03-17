@@ -20,7 +20,7 @@ export default function AboutClient() {
       {/* ── Hero ───────────────────────────────────────── */}
       <section className="relative flex min-h-[520px] items-center justify-center pt-14 md:min-h-[600px]">
         <Image
-          src="/images/blog/thai-coastline.jpg"
+          src="/hero-section.png"
           alt="Ocean coastline"
           fill
           priority

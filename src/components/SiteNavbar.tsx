@@ -9,9 +9,7 @@ import type { Locale } from "@/lib/i18n";
 
 const NAV_LINKS = [
   { labelKey: "nav.map", href: "/map" },
-  { labelKey: "nav.blog", href: "/blog" },
-  { labelKey: "nav.shop", href: "/shop" },
-  { labelKey: "nav.forum", href: "/forum" },
+  { labelKey: "nav.blog", href: "/blog", soon: true },
 ];
 
 export function SiteNavbar() {
@@ -32,15 +30,27 @@ export function SiteNavbar() {
       </Link>
 
       <div className="hidden items-center gap-6 md:flex">
-        {NAV_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="font-[family-name:var(--font-display)] text-sm font-medium text-white/80 transition-colors hover:text-white"
-          >
-            {t(link.labelKey)}
-          </Link>
-        ))}
+        {NAV_LINKS.map((link) =>
+          link.soon ? (
+            <span
+              key={link.href}
+              className="flex cursor-default items-center gap-1.5 font-[family-name:var(--font-display)] text-sm font-medium text-white/30"
+            >
+              {t(link.labelKey)}
+              <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/40">
+                soon
+              </span>
+            </span>
+          ) : (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="font-[family-name:var(--font-display)] text-sm font-medium text-white/80 transition-colors hover:text-white"
+            >
+              {t(link.labelKey)}
+            </Link>
+          )
+        )}
       </div>
 
       <div className="flex items-center gap-3">
