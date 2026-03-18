@@ -55,7 +55,7 @@ export default function ProfilePage() {
     <div className="h-screen overflow-y-auto bg-ocean-950">
       <SiteNavbar />
 
-      <main className="mx-auto max-w-3xl px-4 pt-20 pb-6 sm:px-6">
+      <main className="mx-auto max-w-3xl px-6 pt-20 pb-6">
         {/* Profile header */}
         <ProfileHeader
           displayName={profile.display_name ?? "Anonymous"}
@@ -71,10 +71,10 @@ export default function ProfilePage() {
         {/* Trophies section — 9 progression cards */}
         <section className="mt-8">
           <div className="flex items-baseline justify-between">
-            <h2 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+            <h2 className="font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
               {t("trophy.title")}
             </h2>
-            <span className="text-[10px] text-text-tertiary">
+            <span className="text-xs text-text-tertiary">
               {earnedBadgeIds.length} / {badges.length} {t("badge.progress")}
             </span>
           </div>
@@ -89,7 +89,7 @@ export default function ProfilePage() {
         {/* Saved Spots — only shown when there are saves (private via RLS) */}
         {savedSpots.length > 0 && (
           <section className="mt-8">
-            <h2 className="flex items-center gap-1.5 font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+            <h2 className="flex items-center gap-1.5 font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
               <Bookmark className="h-3.5 w-3.5" />
               {t("profile.savedSpots")}
             </h2>
@@ -126,12 +126,12 @@ export default function ProfilePage() {
                               className={`h-3 w-3 ${
                                 i < spot.rating
                                   ? "fill-accent-pink text-accent-pink"
-                                  : "text-gray-300"
+                                  : "text-text-tertiary"
                               }`}
                             />
                           ))}
                         </div>
-                        <span className="text-[10px] text-text-tertiary">
+                        <span className="text-xs text-text-tertiary">
                           {spot.author.display_name ?? t("spot.anonymous")}
                         </span>
                       </div>
@@ -145,7 +145,7 @@ export default function ProfilePage() {
 
         {/* My Collection */}
         <section className="mt-8">
-          <h2 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+          <h2 className="font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
             {t("profile.collection")}
           </h2>
 
@@ -188,13 +188,13 @@ export default function ProfilePage() {
                               className={`h-3 w-3 ${
                                 i < spot.rating
                                   ? "fill-accent-pink text-accent-pink"
-                                  : "text-gray-300"
+                                  : "text-text-tertiary"
                               }`}
                             />
                           ))}
                         </div>
                         {/* Likes */}
-                        <div className="flex items-center gap-1 text-[10px] text-text-tertiary">
+                        <div className="flex items-center gap-1 text-xs text-text-tertiary">
                           <Heart className="h-3 w-3" />
                           <span>{spot.like_count ?? 0}</span>
                         </div>

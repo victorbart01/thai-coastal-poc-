@@ -40,7 +40,7 @@ export function ProtectedPopup({ area, onClose }: ProtectedPopupProps) {
         {/* Header */}
         <div className="flex items-center gap-2">
           <ShieldAlert className="h-4 w-4 shrink-0 text-danger" />
-          <h3 className="pr-4 font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
+          <h3 className="pr-4 font-display text-sm font-semibold text-text-primary">
             {area.name}
           </h3>
         </div>
@@ -48,7 +48,7 @@ export function ProtectedPopup({ area, onClose }: ProtectedPopupProps) {
         {/* Status badge */}
         <div className="mt-2.5">
           <span
-            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-medium ${
+            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${
               area.status === "prohibited"
                 ? "bg-danger/15 text-danger"
                 : "bg-score-low/15 text-score-low"
@@ -64,22 +64,22 @@ export function ProtectedPopup({ area, onClose }: ProtectedPopupProps) {
         </div>
 
         {/* Radius */}
-        <p className="mt-2.5 text-[11px] text-text-secondary">
+        <p className="mt-2.5 text-xs text-text-secondary">
           <span className="text-text-tertiary">{t("protected.protectionRadius")} </span>
-          <span className="font-[family-name:var(--font-display)] font-medium">
+          <span className="font-display font-medium">
             {area.radiusKm} km
           </span>
         </p>
 
         {/* Legal basis */}
-        <p className="mt-1.5 text-[11px] text-text-secondary">
+        <p className="mt-1.5 text-xs text-text-secondary">
           <span className="text-text-tertiary">{t("protected.legalBasis")} </span>
           {area.legalBasis}
         </p>
 
         {/* Detailed warning */}
         <div className="mt-3 rounded-lg border border-danger/10 bg-danger/5 p-2.5">
-          <p className="text-[10px] leading-relaxed text-text-secondary">
+          <p className="text-xs leading-relaxed text-text-secondary">
             {statusDescription}
           </p>
         </div>

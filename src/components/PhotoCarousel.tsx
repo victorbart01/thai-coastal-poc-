@@ -128,7 +128,7 @@ export function PhotoCarousel({ photos, title }: PhotoCarouselProps) {
       {/* Photo counter badge */}
       {total > 1 && (
         <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
-          <span className="font-[family-name:var(--font-display)] text-[10px] text-white/90">
+          <span className="font-display text-xs text-white/90">
             {index + 1}/{total}
           </span>
         </div>

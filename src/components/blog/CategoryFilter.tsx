@@ -15,7 +15,7 @@ export function CategoryFilter({ selected, onSelect }: CategoryFilterProps) {
     <div className="flex flex-wrap items-center justify-center gap-2">
       <button
         onClick={() => onSelect(null)}
-        className={`rounded-full px-5 py-2 font-[family-name:var(--font-display)] text-sm font-medium transition-all duration-200 ${
+        className={`rounded-full px-5 py-2 font-display text-sm font-medium transition-all duration-200 ${
           selected === null
             ? "bg-glass-deep text-white shadow-md"
             : "border border-white/20 bg-transparent text-text-secondary hover:border-white/40 hover:text-text-primary"
@@ -27,7 +27,7 @@ export function CategoryFilter({ selected, onSelect }: CategoryFilterProps) {
         <button
           key={cat}
           onClick={() => onSelect(cat)}
-          className={`rounded-full px-5 py-2 font-[family-name:var(--font-display)] text-sm font-medium transition-all duration-200 ${
+          className={`rounded-full px-5 py-2 font-display text-sm font-medium transition-all duration-200 ${
             selected === cat
               ? "bg-glass-deep text-white shadow-md"
               : "border border-white/20 bg-transparent text-text-secondary hover:border-white/40 hover:text-text-primary"

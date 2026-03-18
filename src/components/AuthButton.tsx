@@ -36,7 +36,7 @@ export function AuthButton() {
     return (
       <button
         onClick={openSignupModal}
-        className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-[family-name:var(--font-display)] text-[11px] font-semibold tracking-wide text-white transition-all duration-200 hover:bg-white/20"
+        className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-display text-xs font-semibold tracking-wide text-white transition-all duration-200 hover:bg-white/20"
       >
         {t("auth.signIn")}
       </button>

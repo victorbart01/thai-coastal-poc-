@@ -26,7 +26,7 @@ export default function BlogPostClient() {
     <div className="min-h-screen bg-ocean-950">
       <SiteNavbar />
 
-      <main className="mx-auto max-w-2xl px-4 pt-20 pb-10 sm:px-6">
+      <main className="mx-auto max-w-2xl px-6 pt-20 pb-10">
         <article>
           {/* Hero image */}
           {post.image.startsWith("/") && (
@@ -55,7 +55,7 @@ export default function BlogPostClient() {
             </span>
           </div>
 
-          <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold leading-tight text-text-primary">
+          <h1 className="font-display text-2xl font-bold leading-tight text-text-primary">
             {post.title}
           </h1>
 
@@ -80,7 +80,7 @@ export default function BlogPostClient() {
                 return (
                   <h2
                     key={i}
-                    className="mt-8 font-[family-name:var(--font-display)] text-lg font-semibold text-text-primary"
+                    className="mt-8 font-display text-lg font-semibold text-text-primary"
                   >
                     {block.replace("## ", "")}
                   </h2>

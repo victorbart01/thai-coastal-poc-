@@ -10,12 +10,12 @@ interface AuthorAvatarProps {
 }
 
 const AVATAR_COLORS = [
-  "bg-cyan-600",
-  "bg-emerald-600",
-  "bg-violet-600",
-  "bg-amber-600",
-  "bg-rose-600",
-  "bg-indigo-600",
+  "bg-glass-deep",
+  "bg-success",
+  "bg-rarity-epic",
+  "bg-warning",
+  "bg-accent-pink",
+  "bg-rarity-rare",
 ];
 
 function getColorFromName(name: string): string {
@@ -42,7 +42,7 @@ export function AuthorAvatar({ name, avatar, size = 28 }: AuthorAvatarProps) {
         style={{ width: size, height: size }}
       >
         <span
-          className="font-[family-name:var(--font-display)] font-semibold text-white"
+          className="font-display font-semibold text-white"
           style={{ fontSize: size * 0.4 }}
         >
           {initials}

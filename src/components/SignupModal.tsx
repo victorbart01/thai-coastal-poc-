@@ -6,6 +6,7 @@ import { X, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useTranslation } from "@/lib/i18n";
 import { useMapStore } from "@/store/useMapStore";
+import { Button } from "@/components/ui/Button";
 
 const VALUE_PROPS = [
   { img: "/icon-pin.png", key: "signup.valueShare" },
@@ -131,11 +132,11 @@ export function SignupModal() {
                   className="absolute -left-[48px]"
                 />
                 <div className="relative">
-                  <span className="font-[family-name:var(--font-logo)] text-[1.4rem] tracking-tight text-white sm:text-[1.75rem]">
+                  <span className="font-logo text-xl tracking-tight text-white">
                     <span className="font-bold">Seaglass</span>
                     <span className="font-normal">map</span>
                   </span>
-                  <span className="absolute -right-[38px] top-1 rounded-full bg-white/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/70">
+                  <span className="absolute -right-[38px] top-1 rounded-full bg-white/15 px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white/70">
                     beta
                   </span>
                 </div>
@@ -150,7 +151,7 @@ export function SignupModal() {
           <div className="glass-card overflow-y-auto rounded-b-3xl border-t-0 p-4 sm:p-8">
             {/* Title + subtitle */}
             <div className="mb-3 text-center sm:mb-5">
-              <h1 className="font-[family-name:var(--font-display)] text-lg font-bold text-text-primary sm:text-xl">
+              <h1 className="font-display text-lg font-bold text-text-primary sm:text-xl">
                 {t("signup.title")}
               </h1>
               <p className="mt-1 text-xs leading-relaxed text-text-secondary sm:mt-1.5 sm:text-sm">
@@ -166,7 +167,7 @@ export function SignupModal() {
                   className="flex items-center gap-2 rounded-xl border border-black/[0.08] bg-white/60 px-2.5 py-2 shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white/80 hover:shadow-md sm:gap-2.5 sm:px-3 sm:py-2.5"
                 >
                   <Image src={img} alt="" width={30} height={30} className="h-[30px] w-[30px] shrink-0" />
-                  <span className="text-[11px] leading-tight text-text-secondary sm:text-xs">{t(key)}</span>
+                  <span className="text-xs leading-tight text-text-secondary sm:text-xs">{t(key)}</span>
                 </div>
               ))}
             </div>
@@ -180,29 +181,22 @@ export function SignupModal() {
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-glass-deep/10">
                   <span className="text-2xl">✉️</span>
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-base font-semibold text-text-primary">
+                <h2 className="font-display text-base font-semibold text-text-primary">
                   {t("signup.checkEmail")}
                 </h2>
                 <p className="mt-1.5 text-xs leading-relaxed text-text-secondary">
                   {t("signup.checkEmailDesc").replace("{email}", email)}
                 </p>
                 {error && (
-                  <p className="mt-2 text-xs text-red-500">{error}</p>
+                  <p className="mt-2 text-xs text-danger">{error}</p>
                 )}
                 <div className="mt-4 flex items-center justify-center gap-3">
-                  <button
-                    onClick={handleResend}
-                    disabled={sending}
-                    className="rounded-lg border border-black/[0.08] bg-white/60 px-4 py-2 text-xs font-medium text-text-secondary backdrop-blur-sm transition-colors hover:bg-white/80 disabled:opacity-50"
-                  >
+                  <Button variant="secondary" size="sm" onClick={handleResend} disabled={sending}>
                     {sending ? t("signup.sending") : t("signup.resend")}
-                  </button>
-                  <button
-                    onClick={resetForm}
-                    className="rounded-lg border border-black/[0.08] bg-white/60 px-4 py-2 text-xs font-medium text-text-secondary backdrop-blur-sm transition-colors hover:bg-white/80"
-                  >
+                  </Button>
+                  <Button variant="secondary" size="sm" onClick={resetForm}>
                     {t("signup.tryAnother")}
-                  </button>
+                  </Button>
                 </div>
               </div>
             ) : (
@@ -236,17 +230,13 @@ export function SignupModal() {
                   />
 
                   {error && (
-                    <p className="text-xs text-red-500">{error}</p>
+                    <p className="text-xs text-danger">{error}</p>
                   )}
 
-                  <button
-                    type="submit"
-                    disabled={sending}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-glass-deep to-accent-pink py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-[0_4px_20px_rgba(6,182,212,0.4)] disabled:opacity-60 sm:py-3"
-                  >
+                  <Button type="submit" disabled={sending} className="w-full rounded-xl shadow-lg hover:shadow-[0_4px_20px_rgba(6,182,212,0.4)]">
                     <Sparkles className="h-4 w-4" />
                     {sending ? t("signup.sending") : t("signup.sendMagicLink")}
-                  </button>
+                  </Button>
                 </form>
 
                 {/* Divider */}
@@ -257,10 +247,7 @@ export function SignupModal() {
                 </div>
 
                 {/* Google OAuth */}
-                <button
-                  onClick={handleGoogle}
-                  className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-black/[0.08] bg-white/70 py-2.5 text-sm font-medium text-text-primary shadow-sm backdrop-blur-sm transition-all hover:bg-white/90 hover:shadow-md sm:py-3"
-                >
+                <Button variant="secondary" onClick={handleGoogle} className="w-full rounded-xl shadow-sm hover:shadow-md">
                   <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24">
                     <path
                       d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
@@ -280,7 +267,7 @@ export function SignupModal() {
                     />
                   </svg>
                   {t("signup.continueWithGoogle")}
-                </button>
+                </Button>
               </>
             )}
 

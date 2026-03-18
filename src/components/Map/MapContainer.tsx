@@ -417,15 +417,15 @@ function RiverPopup({
       <div className="min-w-[200px] overflow-hidden rounded-2xl p-4">
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 rounded-full border-2 border-dashed border-river bg-river/20" />
-          <h3 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
+          <h3 className="font-display text-sm font-semibold text-text-primary">
             {river.name}
           </h3>
         </div>
-        <p className="mt-2 text-[11px] text-text-secondary">
+        <p className="mt-2 text-xs text-text-secondary">
           <span className="text-text-tertiary">{t("river.upstreamPopulation")} </span>
           {river.populationUpstream}
         </p>
-        <p className="mt-1 text-[11px] text-text-secondary">
+        <p className="mt-1 text-xs text-text-secondary">
           <span className="text-text-tertiary">{t("river.majorCity")} </span>
           {river.majorCity}
         </p>

@@ -8,13 +8,14 @@ import { useMapStore } from "@/store/useMapStore";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SignupModal } from "@/components/SignupModal";
+import { Button } from "@/components/ui/Button";
 
 export default function AboutClient() {
   const { t } = useTranslation();
   const openSignupModal = useMapStore((s) => s.openSignupModal);
 
   return (
-    <div className="h-screen overflow-y-auto bg-white">
+    <div className="h-screen overflow-y-auto bg-ocean-950">
       <SiteNavbar />
 
       {/* ── Hero ───────────────────────────────────────── */}
@@ -29,7 +30,7 @@ export default function AboutClient() {
         <div className="absolute inset-0 bg-navy-900/70" />
 
         <div className="relative z-10 mx-auto max-w-3xl px-6 py-20 text-center">
-          <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
+          <h1 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
             {t("about.hero.heading")}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
@@ -38,27 +39,24 @@ export default function AboutClient() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/map"
-              className="rounded-full bg-glass-deep px-7 py-3 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-glass-muted"
+              className="rounded-full bg-glass-deep px-7 py-3 font-display text-sm font-semibold text-white transition-colors hover:bg-glass-muted"
             >
               {t("about.hero.cta.map")}
             </Link>
-            <button
-              onClick={openSignupModal}
-              className="rounded-full border-2 border-white px-7 py-3 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
+            <Button variant="secondary" pill size="lg" onClick={openSignupModal} className="border-2 border-white bg-transparent text-white hover:bg-white/10 hover:text-white">
               {t("about.hero.cta.join")}
-            </button>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* ── Our Mission ────────────────────────────────── */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="text-center font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.2em] text-glass-deep">
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.2em] text-glass-deep">
             {t("about.mission.label")}
           </p>
-          <h2 className="mx-auto mt-3 max-w-2xl text-center font-[family-name:var(--font-display)] text-2xl font-bold text-text-primary sm:text-3xl md:text-4xl">
+          <h2 className="mx-auto mt-3 max-w-2xl text-center font-display text-2xl font-bold text-text-primary sm:text-3xl md:text-4xl">
             {t("about.mission.heading")}
           </h2>
 
@@ -80,12 +78,12 @@ export default function AboutClient() {
       </section>
 
       {/* ── How It Works ───────────────────────────────── */}
-      <section className="bg-ocean-950 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="text-center font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.2em] text-glass-deep">
+      <section className="bg-ocean-950 py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.2em] text-glass-deep">
             {t("about.how.label")}
           </p>
-          <h2 className="mx-auto mt-3 max-w-xl text-center font-[family-name:var(--font-display)] text-2xl font-bold text-text-primary sm:text-3xl">
+          <h2 className="mx-auto mt-3 max-w-xl text-center font-display text-2xl font-bold text-text-primary sm:text-3xl">
             {t("about.how.heading")}
           </h2>
 
@@ -102,10 +100,10 @@ export default function AboutClient() {
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-glass-deep/10">
                   <Icon className="h-6 w-6 text-glass-deep" />
                 </div>
-                <span className="mt-5 text-[11px] font-semibold uppercase tracking-wider text-glass-deep">
+                <span className="mt-5 text-xs font-semibold uppercase tracking-wider text-glass-deep">
                   {t(`about.how.${step}.label`)}
                 </span>
-                <h3 className="mt-2 font-[family-name:var(--font-display)] text-lg font-bold text-text-primary">
+                <h3 className="mt-2 font-display text-lg font-bold text-text-primary">
                   {t(`about.how.${step}.title`)}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary">
@@ -118,9 +116,9 @@ export default function AboutClient() {
       </section>
 
       {/* ── Community Stats ────────────────────────────── */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <p className="text-center font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.2em] text-glass-deep">
+          <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.2em] text-glass-deep">
             {t("about.stats.label")}
           </p>
 
@@ -132,7 +130,7 @@ export default function AboutClient() {
               { value: "10,000+", labelKey: "about.stats.finds" },
             ].map((stat) => (
               <div key={stat.labelKey} className="text-center">
-                <p className="font-[family-name:var(--font-display)] text-3xl font-bold text-text-primary sm:text-4xl">
+                <p className="font-display text-3xl font-bold text-text-primary sm:text-4xl">
                   {stat.value}
                 </p>
                 <p className="mt-1 text-sm text-text-secondary">{t(stat.labelKey)}</p>
@@ -143,20 +141,17 @@ export default function AboutClient() {
       </section>
 
       {/* ── CTA Banner ─────────────────────────────────── */}
-      <section className="bg-navy-900 py-20 md:py-28">
+      <section className="bg-navy-900 py-16 md:py-24">
         <div className="mx-auto max-w-2xl px-6 text-center">
-          <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             {t("about.cta.heading")}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/70">
             {t("about.cta.sub")}
           </p>
-          <button
-            onClick={openSignupModal}
-            className="mt-8 inline-block rounded-full bg-glass-deep px-8 py-3.5 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-glass-muted"
-          >
+          <Button pill size="lg" onClick={openSignupModal} className="mt-8">
             {t("about.cta.button")}
-          </button>
+          </Button>
         </div>
       </section>
 

@@ -16,9 +16,9 @@ export function DraftMarker() {
     >
       <div className="relative flex items-center justify-center">
         {/* Pulsing ring */}
-        <span className="absolute h-8 w-8 animate-ping rounded-full bg-pink-400/30" />
+        <span className="absolute h-8 w-8 animate-ping rounded-full bg-accent-pink/30" />
         {/* Core dot */}
-        <span className="relative h-4 w-4 rounded-full border-2 border-white bg-pink-400 shadow-lg" />
+        <span className="relative h-4 w-4 rounded-full border-2 border-white bg-accent-pink shadow-lg" />
       </div>
     </Marker>
   );

@@ -44,9 +44,9 @@ export default function BlogPage() {
       <SiteNavbar />
 
       {/* Hero */}
-      <section className="pb-10 pt-24 text-center md:pb-14 md:pt-28">
+      <section className="pb-10 pt-20 text-center md:pb-14">
         <div className="mx-auto max-w-3xl px-6">
-          <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-text-primary sm:text-4xl">
+          <h1 className="font-display text-3xl font-bold text-text-primary sm:text-4xl">
             {t("blog.journal.title")}
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-base text-text-secondary">
@@ -58,7 +58,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <main className="mx-auto max-w-6xl px-6 pb-16">
+      <main className="mx-auto max-w-5xl px-6 pb-16">
         {/* Featured article */}
         {showFeatured && (
           <section className="mb-14">
@@ -69,7 +69,7 @@ export default function BlogPage() {
         {/* Latest articles grid */}
         <section>
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-text-primary">
+            <h2 className="font-display text-xl font-bold text-text-primary">
               {t("blog.latestArticles")}
             </h2>
             <span className="text-sm text-text-tertiary">

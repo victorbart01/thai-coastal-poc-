@@ -5,6 +5,7 @@ import { Link2, Check, Camera, Loader2 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
 import type { UserStats } from "@/lib/types";
+import { Button } from "@/components/ui/Button";
 
 interface ProfileHeaderProps {
   displayName: string;
@@ -89,7 +90,7 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats, i
               className="h-16 w-16 rounded-full border-2 border-black/10 object-cover"
             />
           ) : (
-            <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-black/10 bg-pink-400/20 text-xl font-bold text-pink-400">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-black/10 bg-accent-pink/20 text-xl font-bold text-accent-pink">
               {displayName[0]?.toUpperCase()}
             </div>
           )}
@@ -119,25 +120,22 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats, i
         </div>
 
         <div className="min-w-0 flex-1">
-          <h1 className="truncate font-[family-name:var(--font-display)] text-lg font-bold text-text-primary">
+          <h1 className="truncate font-display text-lg font-bold text-text-primary">
             {displayName}
           </h1>
           {bio && (
             <p className="mt-0.5 text-xs text-text-secondary">{bio}</p>
           )}
-          <p className="mt-1 text-[11px] text-text-tertiary">
+          <p className="mt-1 text-xs text-text-tertiary">
             {t("profile.memberSince")} {memberSince}
           </p>
         </div>
 
         {/* Share button */}
-        <button
-          onClick={handleShare}
-          className="flex shrink-0 items-center gap-1.5 rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-1.5 text-[11px] text-text-secondary transition-colors hover:bg-black/[0.08] hover:text-text-primary"
-        >
+        <Button variant="secondary" size="sm" onClick={handleShare} className="shrink-0">
           {copied ? (
             <>
-              <Check className="h-3.5 w-3.5 text-green-400" />
+              <Check className="h-3.5 w-3.5 text-success" />
               {t("profile.linkCopied")}
             </>
           ) : (
@@ -146,7 +144,7 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats, i
               {t("profile.shareProfile")}
             </>
           )}
-        </button>
+        </Button>
       </div>
 
       {/* Stats row */}
@@ -162,10 +160,10 @@ export function ProfileHeader({ displayName, avatarUrl, bio, createdAt, stats, i
               key={label}
               className="glass-card rounded-2xl px-3 py-2.5 text-center"
             >
-              <p className="font-[family-name:var(--font-display)] text-lg font-bold text-text-primary">
+              <p className="font-display text-lg font-bold text-text-primary">
                 {value}
               </p>
-              <p className="text-[10px] uppercase tracking-wider text-text-tertiary">
+              <p className="text-xs uppercase tracking-wider text-text-tertiary">
                 {label}
               </p>
             </div>

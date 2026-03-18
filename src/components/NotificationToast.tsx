@@ -51,7 +51,7 @@ export function NotificationToast({
     <div className={`${baseClasses} ${variantClasses}`}>
       {icon && <span className="text-2xl shrink-0">{icon}</span>}
       <div className="flex flex-col gap-0.5 min-w-0">
-        <p className="text-sm font-semibold text-white font-[family-name:var(--font-display)] truncate">
+        <p className="text-sm font-semibold text-white font-display truncate">
           {title}
         </p>
         {description && (

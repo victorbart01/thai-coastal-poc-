@@ -33,7 +33,15 @@
 
   /* Semantic */
   --color-danger: #ef4444;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
   --color-river: #60a5fa;
+
+  /* Rarity palette */
+  --color-rarity-common: #9CA3AF;
+  --color-rarity-rare: #60a5fa;
+  --color-rarity-epic: #c084fc;
+  --color-rarity-legendary: #facc15;
 
   /* Text */
   --color-text-primary: #1A1A2E;
@@ -44,6 +52,7 @@
   /* Fonts */
   --font-display: "Space Grotesk", sans-serif;
   --font-body: "DM Sans", sans-serif;
+  --font-logo: "Nunito", sans-serif;
 }
 
 /* ─── Glassmorphism Utilities ─────────────────────────── */

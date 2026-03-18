@@ -133,7 +133,7 @@ export function SearchBar() {
                   {s.name}
                 </div>
                 {s.place_formatted && (
-                  <div className="truncate text-[11px] text-text-tertiary">
+                  <div className="truncate text-xs text-text-tertiary">
                     {s.place_formatted}
                   </div>
                 )}
@@ -145,7 +145,7 @@ export function SearchBar() {
 
       {/* "Showing spots near …" indicator */}
       {searchLocation && (
-        <div className="mt-1.5 flex items-center gap-1 px-1 text-[11px] text-text-tertiary">
+        <div className="mt-1.5 flex items-center gap-1 px-1 text-xs text-text-tertiary">
           <MapPin className="h-3 w-3" />
           <span>
             {t("search.showingNear")} <strong>{searchLocation.name}</strong>
@@ -153,13 +153,13 @@ export function SearchBar() {
         </div>
       )}
       {!searchLocation && userLocation && (
-        <div className="mt-1.5 flex items-center gap-1 px-1 text-[11px] text-accent-pink">
+        <div className="mt-1.5 flex items-center gap-1 px-1 text-xs text-accent-pink">
           <Crosshair className="h-3 w-3" />
           <span>{t("search.nearYou")}</span>
         </div>
       )}
       {locationError && (
-        <div className="mt-1.5 flex items-center gap-1 px-1 text-[11px] text-red-500">
+        <div className="mt-1.5 flex items-center gap-1 px-1 text-xs text-danger">
           <span>{locationError}</span>
         </div>
       )}

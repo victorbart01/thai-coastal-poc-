@@ -11,7 +11,7 @@ export function QuickLinks() {
   const openSignupModal = useMapStore((s) => s.openSignupModal);
 
   const linkClass =
-    "rounded-full border border-black/[0.12] bg-white/60 px-3 py-1.5 text-[11px] font-semibold text-text-secondary shadow-sm transition-all duration-200 hover:border-black/[0.18] hover:bg-white/80 hover:text-text-primary";
+    "rounded-full border border-black/[0.12] bg-white/60 px-3 py-1.5 text-xs font-semibold text-text-secondary shadow-sm transition-all duration-200 hover:border-black/[0.18] hover:bg-white/80 hover:text-text-primary";
 
   const navLinks = [
     { label: t("nav.about"), href: "/" },

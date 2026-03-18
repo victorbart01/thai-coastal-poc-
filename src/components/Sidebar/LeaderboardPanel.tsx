@@ -44,8 +44,8 @@ export function LeaderboardPanel({ spots }: LeaderboardPanelProps) {
 
   return (
     <div className="glass-card rounded-2xl p-4">
-      <h3 className="flex items-center gap-1.5 font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
-        <Trophy className="h-3.5 w-3.5 text-yellow-400" />
+      <h3 className="flex items-center gap-1.5 font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
+        <Trophy className="h-3.5 w-3.5 text-rarity-legendary" />
         {t("contributors.title")}
       </h3>
 
@@ -61,13 +61,13 @@ export function LeaderboardPanel({ spots }: LeaderboardPanelProps) {
             >
               {/* Rank */}
               <span
-                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-[family-name:var(--font-display)] text-[10px] font-bold ${
+                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-display text-xs font-bold ${
                   entry.rank === 1
-                    ? "bg-yellow-400/20 text-yellow-400"
+                    ? "bg-rarity-legendary/20 text-rarity-legendary"
                     : entry.rank === 2
-                    ? "bg-gray-300/20 text-gray-300"
+                    ? "bg-rarity-common/20 text-rarity-common"
                     : entry.rank === 3
-                    ? "bg-amber-600/20 text-amber-600"
+                    ? "bg-warning/20 text-warning"
                     : "bg-black/[0.06] text-text-tertiary"
                 }`}
               >
@@ -85,19 +85,19 @@ export function LeaderboardPanel({ spots }: LeaderboardPanelProps) {
                   unoptimized
                 />
               ) : (
-                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-pink-400/20 text-[9px] text-pink-400">
+                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-pink/20 text-xs text-accent-pink">
                   {(entry.user.display_name ?? "?")[0]}
                 </div>
               )}
 
               {/* Name + spots count */}
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[11px] font-medium text-text-primary">
+                <p className="truncate text-xs font-medium text-text-primary">
                   {entry.user.display_name ?? "Anonymous"}
                 </p>
               </div>
 
-              <span className="shrink-0 text-[10px] text-text-tertiary">
+              <span className="shrink-0 text-xs text-text-tertiary">
                 {entry.spots_count} {t("leaderboard.spots")}
               </span>
             </Link>

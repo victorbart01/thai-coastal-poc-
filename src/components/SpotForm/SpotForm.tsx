@@ -13,6 +13,7 @@ import { StepLocation } from "./StepLocation";
 import { StepPhotos } from "./StepPhotos";
 import { StepDetails } from "./StepDetails";
 import { StepPreview } from "./StepPreview";
+import { Button } from "@/components/ui/Button";
 
 interface SpotFormProps {
   userId: string;
@@ -144,7 +145,7 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
                   >
                     <span className="text-xs font-medium text-white">{s.name}</span>
                     {s.place_formatted && (
-                      <span className="text-[10px] text-white/50">{s.place_formatted}</span>
+                      <span className="text-xs text-white/50">{s.place_formatted}</span>
                     )}
                   </button>
                 ))}
@@ -169,7 +170,7 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
         <div className="rounded-t-2xl bg-white/95 shadow-2xl backdrop-blur-xl md:rounded-2xl">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-black/[0.06] px-4 py-3">
-            <h2 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
+            <h2 className="font-display text-sm font-semibold text-text-primary">
               {t("spotForm.title")}
             </h2>
             <button
@@ -201,7 +202,7 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
                       {stepNum}
                     </div>
                     <span
-                      className={`text-[9px] leading-tight ${
+                      className={`text-xs leading-tight ${
                         isCurrent
                           ? "font-medium text-accent-pink"
                           : isCompleted
@@ -240,34 +241,23 @@ export function SpotForm({ userId, onPublished }: SpotFormProps) {
 
           {/* Navigation */}
           <div className="flex items-center justify-between border-t border-black/[0.06] px-4 py-3">
-            <button
-              onClick={handleBack}
-              className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs text-text-secondary transition-colors hover:bg-black/[0.06]"
-            >
+            <Button variant="ghost" size="sm" onClick={handleBack}>
               <ChevronLeft className="h-3.5 w-3.5" />
               {t("spotForm.back")}
-            </button>
+            </Button>
 
             {spotFormStep < 4 ? (
-              <button
-                onClick={handleNext}
-                disabled={!canGoNext}
-                className="flex items-center gap-1 rounded-lg bg-gradient-to-r from-glass-deep to-accent-pink px-4 py-1.5 text-xs font-medium text-white transition-all disabled:opacity-30"
-              >
+              <Button size="sm" onClick={handleNext} disabled={!canGoNext}>
                 {t("spotForm.next")}
                 <ChevronRight className="h-3.5 w-3.5" />
-              </button>
+              </Button>
             ) : (
-              <button
-                onClick={handlePublish}
-                disabled={creating}
-                className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-glass-deep to-accent-pink px-5 py-1.5 text-xs font-medium text-white transition-all disabled:opacity-60"
-              >
+              <Button size="sm" onClick={handlePublish} disabled={creating}>
                 {creating && (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
                 )}
                 {creating ? t("spotForm.publishing") : t("spotForm.publish")}
-              </button>
+              </Button>
             )}
           </div>
         </div>

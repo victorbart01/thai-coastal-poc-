@@ -15,7 +15,7 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-1.5">
             <Image src="/logo_pin_sgm.png" alt="Seaglassmap" width={32} height={32} className="h-7 w-7" />
-            <span className="font-[family-name:var(--font-logo)] text-lg tracking-tight text-white">
+            <span className="font-logo text-lg tracking-tight text-white">
               <span className="font-bold">Seaglass</span>
               <span className="font-normal">map</span>
             </span>
@@ -27,7 +27,7 @@ export function SiteFooter() {
 
         {/* Explore */}
         <div>
-          <h4 className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-wider text-white">
+          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
             {t("footer.explore")}
           </h4>
           <ul className="mt-4 space-y-2.5">
@@ -50,7 +50,7 @@ export function SiteFooter() {
 
         {/* Community */}
         <div>
-          <h4 className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-wider text-white">
+          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
             {t("footer.community")}
           </h4>
           <ul className="mt-4 space-y-2.5">
@@ -71,7 +71,7 @@ export function SiteFooter() {
 
         {/* Follow Us */}
         <div>
-          <h4 className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-wider text-white">
+          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
             {t("footer.followUs")}
           </h4>
           <div className="mt-4 flex gap-3">

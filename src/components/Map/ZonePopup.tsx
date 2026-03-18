@@ -61,7 +61,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
             <div className="flex h-36 w-full items-center justify-center rounded-t-2xl bg-black/[0.04]">
               <div className="flex flex-col items-center gap-2">
                 <div className="h-6 w-6 animate-spin rounded-full border-2 border-glass-bright/30 border-t-glass-bright" />
-                <span className="text-[10px] text-text-tertiary">{t("popup.loadingPhotos")}</span>
+                <span className="text-xs text-text-tertiary">{t("popup.loadingPhotos")}</span>
               </div>
             </div>
           )}
@@ -71,7 +71,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
             <div className="flex h-24 w-full items-center justify-center rounded-t-2xl bg-black/[0.03]">
               <div className="flex items-center gap-2 text-text-tertiary">
                 <ImageOff className="h-4 w-4" />
-                <span className="text-[10px]">{t("popup.noPhotos")}</span>
+                <span className="text-xs">{t("popup.noPhotos")}</span>
               </div>
             </div>
           )}
@@ -95,7 +95,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
               {/* Photo count badge */}
               <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
                 <Camera className="h-3 w-3 text-white/80" />
-                <span className="font-[family-name:var(--font-display)] text-[10px] text-white/80">
+                <span className="font-display text-xs text-white/80">
                   {photoIndex + 1}/{photos.length}
                 </span>
               </div>
@@ -127,20 +127,20 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
 
           <div className="p-4">
             {/* Header */}
-            <h3 className="pr-4 font-[family-name:var(--font-display)] text-sm font-semibold leading-snug text-text-primary">
+            <h3 className="pr-4 font-display text-sm font-semibold leading-snug text-text-primary">
               {zone.name}
             </h3>
 
             {/* Score display */}
             <div className="mt-2.5 flex items-baseline gap-2">
               <span
-                className="font-[family-name:var(--font-display)] text-2xl font-bold"
+                className="font-display text-2xl font-bold"
                 style={{ color }}
               >
                 {Math.round(zone.score * 100)}%
               </span>
               <span
-                className="rounded-full px-2 py-0.5 text-[10px] font-medium"
+                className="rounded-full px-2 py-0.5 text-xs font-medium"
                 style={{
                   backgroundColor: `${color}15`,
                   color,
@@ -156,7 +156,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
                 const value = zone.subscores[key];
                 return (
                   <div key={key} className="flex items-center gap-2">
-                    <span className="w-[72px] shrink-0 text-[10px] text-text-tertiary">
+                    <span className="w-[72px] shrink-0 text-xs text-text-tertiary">
                       {t(labelKey)}
                     </span>
                     <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/[0.06]">
@@ -169,7 +169,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
                         }}
                       />
                     </div>
-                    <span className="w-8 shrink-0 text-right font-[family-name:var(--font-display)] text-[10px] text-text-secondary">
+                    <span className="w-8 shrink-0 text-right font-display text-xs text-text-secondary">
                       {Math.round(value * 100)}%
                     </span>
                   </div>
@@ -180,7 +180,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
             {/* Category badge */}
             <div className="mt-3">
               <span
-                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-medium"
+                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium"
                 style={{
                   backgroundColor: `${categoryColor}15`,
                   color: categoryColor,
@@ -195,7 +195,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
             </div>
 
             {/* Notes */}
-            <p className="mt-2.5 text-[11px] leading-relaxed text-text-secondary">
+            <p className="mt-2.5 text-xs leading-relaxed text-text-secondary">
               {zone.notes}
             </p>
 
@@ -204,10 +204,10 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
               <div className="mt-3 flex items-start gap-2 rounded-lg border border-danger/20 bg-danger/5 p-2.5">
                 <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-danger" />
                 <div>
-                  <p className="text-[11px] font-medium text-danger">
+                  <p className="text-xs font-medium text-danger">
                     {t("popup.nearbyProtected")}
                   </p>
-                  <p className="mt-0.5 text-[10px] leading-relaxed text-danger/70">
+                  <p className="mt-0.5 text-xs leading-relaxed text-danger/70">
                     {nearbyProtected.name} —{" "}
                     {nearbyProtected.status === "prohibited"
                       ? t("popup.collectionProhibited")
@@ -269,7 +269,7 @@ export function ZonePopup({ zone, nearbyProtected, onClose }: ZonePopupProps) {
 
           {/* Caption */}
           <div className="absolute bottom-6 rounded-full bg-black/50 px-4 py-2 backdrop-blur-sm">
-            <span className="font-[family-name:var(--font-display)] text-sm text-white">
+            <span className="font-display text-sm text-white">
               {zone.name}
             </span>
             <span className="ml-2 text-xs text-white/60">

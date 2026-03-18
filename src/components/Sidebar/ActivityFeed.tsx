@@ -39,7 +39,7 @@ export function ActivityFeed({ spots }: ActivityFeedProps) {
 
   return (
     <div className="glass-card rounded-2xl p-4">
-      <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+      <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
         {t("activity.title")}
       </h3>
 
@@ -64,13 +64,13 @@ export function ActivityFeed({ spots }: ActivityFeedProps) {
                   unoptimized
                 />
               ) : (
-                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-pink-400/20 text-[9px] text-pink-400">
+                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-pink/20 text-xs text-accent-pink">
                   {(spot.author.display_name ?? "?")[0]}
                 </div>
               )}
 
               {/* Text */}
-              <p className="min-w-0 flex-1 truncate text-[11px] text-text-body">
+              <p className="min-w-0 flex-1 truncate text-xs text-text-body">
                 <span className="font-medium text-text-primary">
                   {spot.author.display_name ?? t("spot.anonymous")}
                 </span>

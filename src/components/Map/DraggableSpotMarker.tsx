@@ -29,9 +29,9 @@ export function DraggableSpotMarker() {
     >
       <div className="relative flex items-center justify-center">
         {/* Pulsing ring — cyan to distinguish from pink draft marker */}
-        <span className="absolute h-10 w-10 animate-ping rounded-full bg-cyan-400/30" />
+        <span className="absolute h-10 w-10 animate-ping rounded-full bg-glass/30" />
         {/* Core dot */}
-        <span className="relative h-5 w-5 rounded-full border-2 border-white bg-cyan-500 shadow-lg" />
+        <span className="relative h-5 w-5 rounded-full border-2 border-white bg-glass-deep shadow-lg" />
       </div>
     </Marker>
   );

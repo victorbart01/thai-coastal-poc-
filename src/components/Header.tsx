@@ -30,11 +30,11 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
           height={40}
           className="h-8 w-8 sm:h-10 sm:w-10"
         />
-        <span className="font-[family-name:var(--font-logo)] text-[1.2rem] tracking-tight text-white sm:text-[1.5rem]">
+        <span className="font-logo text-lg tracking-tight text-white">
           <span className="font-bold">Seaglass</span>
           <span className="font-normal">map</span>
         </span>
-        <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/70">
+        <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white/70">
           beta
         </span>
       </a>
@@ -54,7 +54,7 @@ export function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
           <button
             key={lang}
             onClick={() => setLocale(lang)}
-            className={`rounded-full px-2.5 py-1 font-[family-name:var(--font-display)] text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 ${
+            className={`rounded-full px-2.5 py-1 font-display text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
               locale === lang
                 ? "bg-white/25 text-white shadow-sm"
                 : "text-white/60 hover:text-white"

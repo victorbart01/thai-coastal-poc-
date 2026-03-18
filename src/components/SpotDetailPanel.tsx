@@ -15,6 +15,7 @@ import {
   Trash2,
   GripVertical,
 } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import { useMapStore } from "@/store/useMapStore";
 import { useTranslation } from "@/lib/i18n";
 import { timeAgo } from "@/lib/timeAgo";
@@ -203,7 +204,7 @@ export function SpotDetailContent({
             unoptimized
           />
         ) : (
-          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-pink-400/20 text-[10px] text-pink-400">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-pink/20 text-xs text-accent-pink">
             {(comment.author.display_name ?? "?")[0]}
           </div>
         )}
@@ -213,11 +214,11 @@ export function SpotDetailContent({
             <span className="text-xs font-medium text-text-primary">
               {comment.author.display_name ?? t("spot.anonymous")}
             </span>
-            <span className="text-[10px] text-text-tertiary">
+            <span className="text-xs text-text-tertiary">
               {timeAgo(comment.created_at, locale)}
             </span>
           </div>
-          <p className="mt-0.5 text-[11px] leading-relaxed text-text-secondary">
+          <p className="mt-0.5 text-xs leading-relaxed text-text-secondary">
             {comment.content}
           </p>
           <div className="mt-1 flex items-center gap-3">
@@ -229,7 +230,7 @@ export function SpotDetailContent({
                     name: comment.author.display_name ?? t("spot.anonymous"),
                   })
                 }
-                className="flex items-center gap-1 text-[10px] text-text-tertiary transition-colors hover:text-pink-400"
+                className="flex items-center gap-1 text-xs text-text-tertiary transition-colors hover:text-accent-pink"
               >
                 <Reply className="h-3 w-3" />
                 {t("social.reply")}
@@ -238,7 +239,7 @@ export function SpotDetailContent({
             {user && comment.user_id === user.id && (
               <button
                 onClick={() => deleteComment(comment.id, spot.id)}
-                className="flex items-center gap-1 text-[10px] text-text-tertiary transition-colors hover:text-red-400"
+                className="flex items-center gap-1 text-xs text-text-tertiary transition-colors hover:text-danger"
               >
                 <Trash2 className="h-3 w-3" />
                 {t("social.delete")}
@@ -280,7 +281,7 @@ export function SpotDetailContent({
               >
                 {spot.author.display_name ?? t("spot.anonymous")}
               </Link>
-              <p className="text-[10px] text-text-tertiary">
+              <p className="text-xs text-text-tertiary">
                 {timeAgo(spot.created_at, locale)}
               </p>
             </div>
@@ -305,18 +306,18 @@ export function SpotDetailContent({
                   className={`h-4 w-4 ${
                     i < spot.rating
                       ? "fill-accent-pink text-accent-pink"
-                      : "text-gray-300"
+                      : "text-text-tertiary"
                   }`}
                 />
               ))}
-              <span className="ml-1.5 font-[family-name:var(--font-display)] text-xs text-text-secondary">
+              <span className="ml-1.5 font-display text-xs text-text-secondary">
                 {spot.rating}/5
               </span>
             </div>
 
             {/* Title row + Bookmark & Share aligned right */}
             <div className="mt-2.5 flex items-start gap-2">
-              <h2 className="min-w-0 flex-1 font-[family-name:var(--font-display)] text-base font-semibold leading-snug text-text-primary">
+              <h2 className="min-w-0 flex-1 font-display text-base font-semibold leading-snug text-text-primary">
                 {spot.title}
               </h2>
               <div className="flex shrink-0 items-center gap-1">
@@ -360,7 +361,7 @@ export function SpotDetailContent({
                 {spot.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-[10px] text-accent-pink"
+                    className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-xs text-accent-pink"
                   >
                     {t(`tag.${tag}`)}
                   </span>
@@ -409,11 +410,11 @@ export function SpotDetailContent({
               {geoLoading ? (
                 <div className="h-3 w-20 animate-pulse rounded bg-black/[0.06]" />
               ) : country ? (
-                <span className="text-[11px] text-text-secondary">
+                <span className="text-xs text-text-secondary">
                   {countryFlag} {country}
                 </span>
               ) : null}
-              <span className="font-mono text-[11px] text-text-tertiary">
+              <span className="font-mono text-xs text-text-tertiary">
                 {isRepositioning
                   ? `${repositioningSpot.lat.toFixed(4)}, ${repositioningSpot.lng.toFixed(4)}`
                   : `${spot.latitude.toFixed(4)}, ${spot.longitude.toFixed(4)}`}
@@ -422,48 +423,33 @@ export function SpotDetailContent({
             {/* Admin edit position + delete buttons */}
             {canEdit && !isRepositioning && (
               <div className="flex shrink-0 items-center gap-1">
-                <button
-                  onClick={() => startRepositioning(spot)}
-                  className="flex items-center gap-1 rounded-lg bg-cyan-500/10 px-2 py-1 text-[10px] font-medium text-cyan-600 transition-colors hover:bg-cyan-500/20"
-                >
+                <Button variant="ghost" size="sm" onClick={() => startRepositioning(spot)} className="text-glass-deep hover:bg-glass-deep/10">
                   <GripVertical className="h-3 w-3" />
                   {t("admin.editPosition")}
-                </button>
-                <button
-                  onClick={handleDeleteSpot}
-                  disabled={deleting}
-                  className="flex items-center gap-1 rounded-lg bg-red-500/10 px-2 py-1 text-[10px] font-medium text-red-600 transition-colors hover:bg-red-500/20 disabled:opacity-50"
-                >
+                </Button>
+                <Button variant="danger" size="sm" onClick={handleDeleteSpot} disabled={deleting}>
                   <Trash2 className="h-3 w-3" />
                   {deleting ? t("admin.deleting") : t("admin.deleteSpot")}
-                </button>
+                </Button>
               </div>
             )}
           </div>
           {/* Admin save/cancel buttons */}
           {canEdit && isRepositioning && (
             <div className="mt-2 flex items-center gap-2 border-t border-black/[0.06] pt-2">
-              <button
-                onClick={handleSavePosition}
-                disabled={saving}
-                className="flex-1 rounded-lg bg-cyan-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-cyan-600 disabled:opacity-50"
-              >
+              <Button size="sm" onClick={handleSavePosition} disabled={saving} className="flex-1">
                 {saving ? t("admin.saving") : t("admin.save")}
-              </button>
-              <button
-                onClick={cancelRepositioning}
-                disabled={saving}
-                className="flex-1 rounded-lg bg-black/[0.06] px-3 py-1.5 text-xs font-medium text-text-secondary transition-colors hover:bg-black/[0.1] disabled:opacity-50"
-              >
+              </Button>
+              <Button variant="secondary" size="sm" onClick={cancelRepositioning} disabled={saving} className="flex-1">
                 {t("admin.cancel")}
-              </button>
+              </Button>
             </div>
           )}
         </div>
 
         {/* Comments card */}
         <div ref={commentsRef} className="glass-card shrink-0 rounded-2xl p-4">
-          <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+          <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
             {t("social.comments")}
           </h3>
 
@@ -489,8 +475,8 @@ export function SpotDetailContent({
               <>
                 {replyTo && (
                   <div className="mb-2 flex items-center gap-2 rounded-md bg-black/[0.04] px-2.5 py-1.5">
-                    <Reply className="h-3 w-3 text-pink-400" />
-                    <span className="flex-1 truncate text-[10px] text-text-secondary">
+                    <Reply className="h-3 w-3 text-accent-pink" />
+                    <span className="flex-1 truncate text-xs text-text-secondary">
                       {t("social.reply")} @{replyTo.name}
                     </span>
                     <button

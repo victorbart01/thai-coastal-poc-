@@ -34,7 +34,7 @@ export function PopularCountriesPanel({ spots }: PopularCountriesPanelProps) {
 
   return (
     <div className="glass-card rounded-2xl p-4">
-      <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+      <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
         {t("countries.title")}
       </h3>
 
@@ -42,7 +42,7 @@ export function PopularCountriesPanel({ spots }: PopularCountriesPanelProps) {
         {topCountries.map(({ name, flag, count }) => (
           <span
             key={name}
-            className="inline-flex items-center gap-1 rounded-full bg-black/[0.03] px-2.5 py-1 text-[11px] font-medium text-text-primary"
+            className="inline-flex items-center gap-1 rounded-full bg-black/[0.03] px-2.5 py-1 text-xs font-medium text-text-primary"
           >
             {flag} {name} {count}
           </span>

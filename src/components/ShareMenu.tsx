@@ -50,7 +50,7 @@ export function ShareMenu({ spotId, onClose }: ShareMenuProps) {
           <button onClick={handleCopy} className="flex flex-col items-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black/[0.06]">
               {copied ? (
-                <Check className="h-8 w-8 text-emerald-400" />
+                <Check className="h-8 w-8 text-success" />
               ) : (
                 <Link2 className="h-8 w-8 text-text-primary" />
               )}

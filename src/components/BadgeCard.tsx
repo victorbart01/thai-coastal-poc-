@@ -6,16 +6,16 @@ import { useTranslation } from "@/lib/i18n";
 
 const RARITY_COLORS: Record<BadgeRarity, string> = {
   common:    "border-black/10 bg-black/[0.06] backdrop-blur-sm",
-  rare:      "border-blue-400/30 bg-black/[0.06] backdrop-blur-sm",
-  epic:      "border-purple-400/30 bg-black/[0.06] backdrop-blur-sm",
-  legendary: "border-yellow-400/30 bg-black/[0.06] backdrop-blur-sm",
+  rare:      "border-rarity-rare/30 bg-black/[0.06] backdrop-blur-sm",
+  epic:      "border-rarity-epic/30 bg-black/[0.06] backdrop-blur-sm",
+  legendary: "border-rarity-legendary/30 bg-black/[0.06] backdrop-blur-sm",
 };
 
 const RARITY_TEXT: Record<BadgeRarity, string> = {
   common:    "text-text-tertiary",
-  rare:      "text-blue-400",
-  epic:      "text-purple-400",
-  legendary: "text-yellow-400",
+  rare:      "text-rarity-rare",
+  epic:      "text-rarity-epic",
+  legendary: "text-rarity-legendary",
 };
 
 interface BadgeCardProps {
@@ -46,18 +46,18 @@ export function BadgeCard({ badge, earned, compact }: BadgeCardProps) {
       <span className={compact ? "text-xl" : "text-2xl"}>{badge.icon}</span>
 
       {/* Name */}
-      <p className="text-center font-[family-name:var(--font-display)] text-[10px] font-semibold leading-tight text-text-primary">
+      <p className="text-center font-display text-xs font-semibold leading-tight text-text-primary">
         {t(`badge.${badge.id}`)}
       </p>
 
       {/* Rarity */}
-      <span className={`text-[8px] font-medium uppercase tracking-wider ${RARITY_TEXT[badge.rarity]}`}>
+      <span className={`text-xs font-medium uppercase tracking-wider ${RARITY_TEXT[badge.rarity]}`}>
         {t(`rarity.${badge.rarity}`)}
       </span>
 
       {/* Description — hidden in compact mode */}
       {!compact && (
-        <p className="text-center text-[9px] leading-snug text-text-tertiary">
+        <p className="text-center text-xs leading-snug text-text-tertiary">
           {t(`badge.${badge.id}.desc`)}
         </p>
       )}

@@ -16,7 +16,7 @@ export function BlogCard({ post }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block overflow-hidden rounded-xl border border-white/[0.08] bg-navy-900 shadow-sm transition-all duration-200 hover:border-white/[0.16] hover:shadow-lg"
+      className="group block overflow-hidden rounded-2xl border border-white/[0.08] bg-navy-900 shadow-sm transition-all duration-200 hover:border-white/[0.16] hover:shadow-lg"
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         {post.image.startsWith("/") && (
@@ -29,14 +29,14 @@ export function BlogCard({ post }: BlogCardProps) {
           />
         )}
         <span
-          className={`absolute bottom-3 left-3 rounded-md px-2.5 py-1 text-[11px] font-semibold ${CATEGORY_COLORS[post.category]}`}
+          className={`absolute bottom-3 left-3 rounded-md px-2.5 py-1 text-xs font-semibold ${CATEGORY_COLORS[post.category]}`}
         >
           {t(`blog.categories.${post.category}`)}
         </span>
       </div>
 
       <div className="p-5">
-        <h3 className="font-[family-name:var(--font-display)] text-base font-semibold leading-snug text-white line-clamp-2">
+        <h3 className="font-display text-base font-semibold leading-snug text-white line-clamp-2">
           {post.title}
         </h3>
         <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/60">

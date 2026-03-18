@@ -40,7 +40,7 @@ export function FeaturedArticle({ post }: FeaturedArticleProps) {
             {t(`blog.categories.${post.category}`)}
           </span>
 
-          <h2 className="mt-4 font-[family-name:var(--font-display)] text-xl font-bold leading-tight text-white sm:text-2xl">
+          <h2 className="mt-4 font-display text-xl font-bold leading-tight text-white sm:text-2xl">
             {post.title}
           </h2>
 
@@ -61,7 +61,7 @@ export function FeaturedArticle({ post }: FeaturedArticleProps) {
             </div>
           </div>
 
-          <span className="mt-6 inline-flex items-center gap-1.5 font-[family-name:var(--font-display)] text-sm font-semibold text-glass-deep transition-colors group-hover:text-glass-muted">
+          <span className="mt-6 inline-flex items-center gap-1.5 font-display text-sm font-semibold text-glass-deep transition-colors group-hover:text-glass-muted">
             {t("blog.readMore")}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </span>

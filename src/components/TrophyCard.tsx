@@ -7,28 +7,28 @@ import { useTranslation } from "@/lib/i18n";
 
 const RARITY_STYLES: Record<BadgeRarity, { border: string; glow: string; dot: string; label: string }> = {
   common: {
-    border: "border-gray-400/30",
+    border: "border-rarity-common/30",
     glow: "shadow-[0_0_12px_rgba(156,163,175,0.25)]",
-    dot: "bg-gray-400",
-    label: "text-gray-400",
+    dot: "bg-rarity-common",
+    label: "text-rarity-common",
   },
   rare: {
-    border: "border-blue-400/40",
+    border: "border-rarity-rare/40",
     glow: "shadow-[0_0_12px_rgba(96,165,250,0.3)]",
-    dot: "bg-blue-400",
-    label: "text-blue-400",
+    dot: "bg-rarity-rare",
+    label: "text-rarity-rare",
   },
   epic: {
-    border: "border-purple-400/40",
+    border: "border-rarity-epic/40",
     glow: "shadow-[0_0_12px_rgba(192,132,252,0.3)]",
-    dot: "bg-purple-400",
-    label: "text-purple-400",
+    dot: "bg-rarity-epic",
+    label: "text-rarity-epic",
   },
   legendary: {
-    border: "border-yellow-400/40",
+    border: "border-rarity-legendary/40",
     glow: "shadow-[0_0_12px_rgba(250,204,21,0.3)]",
-    dot: "bg-yellow-400",
-    label: "text-yellow-400",
+    dot: "bg-rarity-legendary",
+    label: "text-rarity-legendary",
   },
 };
 
@@ -82,12 +82,12 @@ export function TrophyCard({ trophy }: { trophy: TrophyProgress }) {
       <span className="text-2xl leading-none">{emoji}</span>
 
       {/* Path name */}
-      <span className="text-[10px] font-medium text-text-secondary truncate max-w-full">
+      <span className="text-xs font-medium text-text-secondary truncate max-w-full">
         {t(`trophy.${path.criteriaType}`)}
       </span>
 
       {/* Hint: next objective or completed */}
-      <span className="text-[9px] text-text-tertiary truncate max-w-full">
+      <span className="text-xs text-text-tertiary truncate max-w-full">
         {hintLabel}
       </span>
 
@@ -99,7 +99,7 @@ export function TrophyCard({ trophy }: { trophy: TrophyProgress }) {
             style={{ width: `${Math.round(progressPercent * 100)}%` }}
           />
         </div>
-        <p className="mt-0.5 text-center text-[9px] text-text-tertiary">
+        <p className="mt-0.5 text-center text-xs text-text-tertiary">
           {completed ? t("trophy.completed") : `${currentValue} / ${targetValue}`}
         </p>
       </div>
@@ -122,7 +122,7 @@ export function TrophyCard({ trophy }: { trophy: TrophyProgress }) {
       </div>
 
       {/* Rarity label */}
-      <span className={`text-[8px] font-bold uppercase tracking-wider ${styles.label}`}>
+      <span className={`text-xs font-bold uppercase tracking-wider ${styles.label}`}>
         {t(`rarity.${displayRarity}`)}
       </span>
 
@@ -131,11 +131,11 @@ export function TrophyCard({ trophy }: { trophy: TrophyProgress }) {
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 w-48 animate-fade-in">
           <div className="glass-card rounded-xl border border-white/20 p-3 shadow-lg text-left">
             {/* Badge name */}
-            <p className="text-[11px] font-semibold text-text-primary">
+            <p className="text-xs font-semibold text-text-primary">
               {t(`badge.${hintTier.id}`)}
             </p>
             {/* Badge description */}
-            <p className="mt-0.5 text-[10px] text-text-secondary">
+            <p className="mt-0.5 text-xs text-text-secondary">
               {t(`badge.${hintTier.id}.desc`)}
             </p>
 
@@ -146,7 +146,7 @@ export function TrophyCard({ trophy }: { trophy: TrophyProgress }) {
                   ? tier.criteria_value <= currentTier.criteria_value
                   : false;
                 return (
-                  <div key={tier.id} className="flex items-center gap-1.5 text-[10px]">
+                  <div key={tier.id} className="flex items-center gap-1.5 text-xs">
                     <span className="leading-none">{tier.icon}</span>
                     <span className={earned ? "text-text-primary" : "text-text-tertiary"}>
                       {t(`badge.${tier.id}`)}

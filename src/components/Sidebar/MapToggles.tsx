@@ -43,7 +43,7 @@ export function MapToggles() {
 
   return (
     <div className="glass-card rounded-2xl p-4">
-      <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+      <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
         {t("toggles.title")}
       </h3>
 

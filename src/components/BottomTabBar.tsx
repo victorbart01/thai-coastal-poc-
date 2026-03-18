@@ -64,7 +64,7 @@ export function BottomTabBar({ activeTab, onTabChange }: BottomTabBarProps) {
               }`}
             >
               <Icon className="h-5 w-5" />
-              <span className="text-[10px] font-medium leading-tight">
+              <span className="text-xs font-medium leading-tight">
                 {t(labelKey)}
               </span>
             </button>

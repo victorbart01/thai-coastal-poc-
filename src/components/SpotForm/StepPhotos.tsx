@@ -30,7 +30,7 @@ export function StepPhotos() {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <Camera className="h-4 w-4 text-accent-pink" />
-        <h3 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
+        <h3 className="font-display text-sm font-semibold text-text-primary">
           {t("spotForm.stepPhotos")}
         </h3>
       </div>
@@ -79,7 +79,7 @@ export function StepPhotos() {
       />
 
       {draftSpot.photos.length === 0 && (
-        <p className="text-[11px] text-danger">{t("spotForm.photoRequired")}</p>
+        <p className="text-xs text-danger">{t("spotForm.photoRequired")}</p>
       )}
     </div>
   );

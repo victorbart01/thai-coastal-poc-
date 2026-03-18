@@ -15,7 +15,7 @@ export function StepPreview() {
 
   return (
     <div className="space-y-3">
-      <h3 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
+      <h3 className="font-display text-sm font-semibold text-text-primary">
         {t("spotForm.stepPreview")}
       </h3>
 
@@ -35,7 +35,7 @@ export function StepPreview() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 backdrop-blur-sm">
               <Camera className="h-3 w-3 text-white/80" />
-              <span className="font-[family-name:var(--font-display)] text-[10px] text-white/80">
+              <span className="font-display text-xs text-white/80">
                 {photoIndex + 1}/{previewUrls.length}
               </span>
             </div>
@@ -68,7 +68,7 @@ export function StepPreview() {
         )}
 
         <div className="p-3">
-          <h4 className="font-[family-name:var(--font-display)] text-sm font-semibold text-text-primary">
+          <h4 className="font-display text-sm font-semibold text-text-primary">
             {draftSpot.title || t("spotForm.untitled")}
           </h4>
 
@@ -92,7 +92,7 @@ export function StepPreview() {
               {draftSpot.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-[10px] text-accent-pink"
+                  className="rounded-full bg-accent-pink/10 px-2 py-0.5 text-xs text-accent-pink"
                 >
                   {t(`tag.${tag}`)}
                 </span>
@@ -102,7 +102,7 @@ export function StepPreview() {
 
           {/* Description */}
           {draftSpot.description && (
-            <p className="mt-2 text-[11px] leading-relaxed text-text-secondary">
+            <p className="mt-2 text-xs leading-relaxed text-text-secondary">
               {draftSpot.description}
             </p>
           )}

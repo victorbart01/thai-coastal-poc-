@@ -57,7 +57,7 @@ export function StepDetails() {
               />
             </button>
           ))}
-          <span className="ml-2 font-[family-name:var(--font-display)] text-sm text-text-secondary">
+          <span className="ml-2 font-display text-sm text-text-secondary">
             {draftSpot.rating}/5
           </span>
         </div>
@@ -75,7 +75,7 @@ export function StepDetails() {
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
                   active
                     ? "bg-accent-pink/20 text-accent-pink"
                     : "bg-black/[0.06] text-text-tertiary hover:text-text-secondary"

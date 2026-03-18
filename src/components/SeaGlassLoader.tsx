@@ -94,7 +94,7 @@ export function SeaGlassLoader({ message, size = 200 }: SeaGlassLoaderProps) {
       </div>
 
       {message && (
-        <p className="font-[family-name:var(--font-display)] text-sm text-text-secondary">
+        <p className="font-display text-sm text-text-secondary">
           {message}
         </p>
       )}

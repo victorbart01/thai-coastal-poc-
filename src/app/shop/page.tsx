@@ -11,9 +11,9 @@ export default function ShopPage() {
     <div className="h-screen overflow-y-auto bg-ocean-950">
       <SiteNavbar />
 
-      <main className="mx-auto flex max-w-2xl flex-col items-center px-4 pt-28 pb-20 text-center sm:px-6">
+      <main className="mx-auto flex max-w-2xl flex-col items-center px-6 pt-20 pb-20 text-center">
         <span className="text-5xl">🛍️</span>
-        <h1 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-bold text-text-primary">
+        <h1 className="mt-4 font-display text-2xl font-bold text-text-primary">
           {t("shop.title")}
         </h1>
         <p className="mt-2 text-sm text-text-secondary">

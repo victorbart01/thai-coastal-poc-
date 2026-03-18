@@ -239,7 +239,7 @@ export function OnboardingCoachMarks({ userId }: OnboardingCoachMarksProps) {
               <div
                 key={s}
                 className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                  s === step ? "bg-cyan-500" : "bg-gray-300"
+                  s === step ? "bg-glass-deep" : "bg-text-tertiary"
                 }`}
               />
             ))}
@@ -249,13 +249,13 @@ export function OnboardingCoachMarks({ userId }: OnboardingCoachMarksProps) {
           <div className="flex gap-2">
             <button
               onClick={handleComplete}
-              className="rounded-lg px-3 py-1.5 text-xs font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
+              className="rounded-lg px-3 py-1.5 text-xs font-medium text-text-secondary transition-colors hover:bg-black/[0.04] hover:text-text-primary"
             >
               {t("onboarding.skip")}
             </button>
             <button
               onClick={handleNext}
-              className="rounded-lg bg-cyan-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-cyan-600"
+              className="rounded-lg bg-glass-deep px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-glass-muted"
             >
               {step === 3 ? t("onboarding.done") : t("onboarding.next")}
             </button>

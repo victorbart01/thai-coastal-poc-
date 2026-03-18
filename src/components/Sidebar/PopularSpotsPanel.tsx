@@ -80,7 +80,7 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
 
   return (
     <div className="glass-card rounded-2xl p-4">
-      <h3 className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-wider text-text-secondary">
+      <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-text-secondary">
         {t("popularSpots.title")}
       </h3>
 
@@ -122,7 +122,7 @@ export function PopularSpotsPanel({ spots }: PopularSpotsPanelProps) {
                 <p className="truncate text-xs font-medium text-text-primary">
                   {spot.title}
                 </p>
-                <div className="mt-1 flex items-center gap-1 text-[10px] text-text-tertiary">
+                <div className="mt-1 flex items-center gap-1 text-xs text-text-tertiary">
                   <Heart className="h-3 w-3" />
                   <span>{spot.like_count ?? 0}</span>
                 </div>
